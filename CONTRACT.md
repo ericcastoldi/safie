@@ -74,8 +74,3 @@ Ao fim da fase de Construção, teremos o produto final, totalmente funcional no
 Com o produto finalizado e funcional, na fase de implantação é feita a aquisição do domínio, o contrato do fornecedor de hospedagem e a instalação do portal (site da loja e site administrativo) no ambiente disponibilizado pelo fornecedor de hospedagem.
 
 Esta fase deve durar até 2 semanas, e após a implantação o site está pronto para ser divulgado e aberto para compras.
-
-# Investimento
-O investimento no projeto envolve os custos operacionais dos provedores de serviços envolvidos e o investimento no desenvolvimento do projeto em si. O investimento total do desenvolvimento do projeto é de R$599, além dos custos operacionais com provedores de serviços.
-
-Para cada provedor a ser contratado para o projeto, será feita uma pesquisa e um orçamento por parte do Desenvolvedor para que então a Patrocinadora faça a decisão do provedor de serviço a ser utilizado.
