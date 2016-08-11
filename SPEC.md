@@ -2,7 +2,7 @@
 Portal de _e-commerce_ para venda de coleções de peças de vestuário feminino feitas sob medida para as clientes do site.
 
 ## Funcionalidades Principais
-- O **Cliente** do site pode criar uma conta, pesquisar e ver detalhes de coleções e peças, realizar a compra de peças e consultar o andamento e o histórico das compras efetuadas.
+- O **Cliente** do site pode criar uma conta, definir suas medidas, pesquisar e ver detalhes de coleções e peças, realizar a compra de peças e consultar o andamento e o histórico das compras efetuadas.
 - O **Administrador** do site pode alterar o conteúdo dinâmico do site, criar coleções, criar peças, definir quais coleções e peças estão ativas, consultar as compras feitas no site, alterar o status das compras feitas no site e consultar um resumo financeiro das compras feitas no site.
 
 ## Detalhamento
