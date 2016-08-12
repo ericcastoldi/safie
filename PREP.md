@@ -37,27 +37,29 @@ Criar o entry point dos componentes react, com os componentes `Provider` do paco
 
 Criar a estrutura de testes para os componentes react. Criar testes para o entry point e para o componente principal. Para cada componente react criado deverá ser criado um teste. O teste pode fazer apenas o mock dos módulos importados via `require`, inicializar os objetos dos pacotes de testes react e definir um teste para o método `render`.
 
-> O teste do método `render` deve falhar sempre, a não ser que sejam implementados os devidos cenários de verificações e asserções.
+> O teste do método `render` deve falhar a não ser que sejam implementados os devidos cenários de verificações e asserções.
 
 Configurar projeto no Coveralls, no Travis e no Code Climate, para que seja avaliada a qualidade do produto a cada Pull Request. Alterar também o `README.md` para que exiba os badges de cobertura de código e de build.
 
 Criar um template a englobar todas as páginas contendo _placeholders_ para topo e rodapé. O topo deverá conter o nome da loja e o rodapé não precisa ter conteúdo. As partes desse template deve ser implementadas utilizando componentes react e eles devem ser renderizados no componente principal da loja.
 
-Definir um `initialState` básico a ser utilizado nas páginas _Listagem de Peças_ e _Detalhes da Peça_.  e realizar o envio desse `initialState` para o _client_ utilizando o servidor http, através da técnica de _server rendering_.
-
-Criar a página de _Listagem de Peças_, apresentando uma _grid_ 3x5 de _placeholders_ com _captions_ representando as peças. Ao clicar nos placeholders deve ser disparada uma navegação para a página  _Detalhes da Peça_.
-
-A página  _Detalhes da Peça_ deve conter um painel de exibição das fotos da peça, apresentando uma foto em destaque e _thumbnails_ das fotos disponíveis. Ao lado da foto em destaque devem aparecer um texto de detalhes da peça e um botão para compra.
-
-
+Definir um `initialState` básico a ser utilizado nas páginas _Listagem de Peças_ e _Detalhes da Peça_.  e realizar o envio desse `initialState` para o _client_ utilizando o servidor http, através da técnica de _server rendering_. Implementar as páginas _Listagem de Peças_ e _Detalhes da Peça_ de acordo com o detalhamento.
 
 Criar arquivos de configuração do Heroku e criar pipeline de continuous deployment para o projeto no Heroku. Alterar também o `README.md` para que exiba links para os ambientes.
 
 ### Desenvolvimento do protótipo
+Detalhamento da estrutura das páginas principais do site. Todas as páginas listadas abaixo estarão inseridas em um contexto de cabeçalho e rodapé.
 
 #### Home
 
 > TODO: Detalhar conteúdo da Home.
+
+#### Listagem de Peças
+A página de _Listagem de Peças_ deve apresentanr um _grid_ 3x5 de _placeholders_ com _captions_ representando as peças. Ao clicar nos _placeholders_ deve ser disparada uma navegação para a página  _Detalhes da Peça_.
+
+#### Detalhes da Peça
+
+A página  _Detalhes da Peça_ deve conter um painel de exibição das fotos da peça, apresentando uma foto em destaque e _thumbnails_ das fotos disponíveis. Ao lado da foto em destaque devem aparecer um texto de detalhes da peça e um botão para compra.
 
 #### Carrinho de compras
 
