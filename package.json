@@ -1,0 +1,19 @@
+{
+  "name": "safie",
+  "version": "1.0.0",
+  "description": "Portal de e-commerce para venda de coleções de peças de vestuário feminino feitas sob medida para as clientes do site.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericcastoldi/safie.git"
+  },
+  "author": "Eric Castoldi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericcastoldi/safie/issues"
+  },
+  "homepage": "https://github.com/ericcastoldi/safie"
+}
