@@ -6,7 +6,7 @@ var app = express();
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, 'node_modules')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/store/')));
 
 
 app.use(bodyParser.json());
@@ -22,14 +22,14 @@ app.use(function (req, res, next) {
 });
 
 app.get('*', function (request, response) {
-  var indexHtml = path.resolve(__dirname, 'public/store/', 'store.html');
+  var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
   response.sendFile(indexHtml);
 });
-
-app.get('/cockpit/*', function (request, response) {
-  var indexHtml = path.resolve(__dirname, 'public/cockpit/', 'cockpit.html');
-  response.sendFile(indexHtml);
-});
+//
+// app.get('/cockpit/*', function (request, response) {
+//   var indexHtml = path.resolve(__dirname, 'public/cockpit/', 'index.html');
+//   response.sendFile(indexHtml);
+// });
 
 app.listen(app.get('port'), function () {
   console.log('Server up and running! http://localhost:' + app.get('port') + '/');
