@@ -1,1 +1,1 @@
-# safie
+# Safie  [![Build Status](https://travis-ci.org/ericcastoldi/safie.svg?branch=master)](https://travis-ci.org/ericcastoldi/safie) [![Coverage Status](https://coveralls.io/repos/github/ericcastoldi/safie/badge.svg?branch=)](https://coveralls.io/github/ericcastoldi/safie?branch=) [![Issue Count](https://codeclimate.com/github/ericcastoldi/safie/badges/issue_count.svg)](https://codeclimate.com/github/ericcastoldi/safie) [![Code Climate](https://codeclimate.com/github/ericcastoldi/safie/badges/gpa.svg)](https://codeclimate.com/github/ericcastoldi/safie)
