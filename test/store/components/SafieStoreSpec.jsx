@@ -17,6 +17,7 @@ describe('SafieStore - root component', function(){
     this.safieStoreTitle = ReactTestUtils.findRenderedDOMComponentWithTag(componentTree, 'h1');
   });
 
+  // TODO: Ajustar teste quando o componente for atualizado
   it('should render an <h1> element with the name of the store.', function() {
 
     expect(this.safieStoreTitle.tagName).to.equal('H1');
