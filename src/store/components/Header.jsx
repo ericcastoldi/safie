@@ -3,7 +3,7 @@ var React = require('react');
 var Header = React.createClass({
   render: function(){
     return (
-      <div className="header-band">
+      <div className="u-full-width header-band ">
         <div className="container">
           <div className="row">
             <div className="twelve columns">

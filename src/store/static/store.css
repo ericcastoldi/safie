@@ -1,16 +1,33 @@
-.container {
-  max-width: 100%;
+
+nav.menu {
+  background-color: #100D08;
+  text-transform  : uppercase;
+  height          : 5rem;
+  line-height     : 5rem;
+  text-align      : center;
+}
+
+nav.menu a {
+  text-decoration: none;
+  color          : #FFDBA3;
+  margin-right   : 3rem;
+}
+nav.menu a:last-child {
+  margin-right: 0;
+}
+nav.menu a:hover {
+  color: #FFB033;
 }
 
 .header-container,
 .header-container h1 {
-  margin          : 0 10rem;
-  height          : 20rem;
-  line-height     : 20rem;
-  background-color: #100D08;
-  color           : #FFDBA3;
-  text-align      : center;
-  text-transform  : uppercase;
+  font-size     : 10rem;
+  height        : 20rem;
+  text-align    : center;
+  text-transform: lowercase;
+  vertical-align: bottom;
+  line-height   : 20rem;
+
 }
 
 .spacer-band {
