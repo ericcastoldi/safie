@@ -21,7 +21,7 @@ describe('SafieStore - root component', function(){
   it('should render an <h1> element with the name of the store.', function() {
 
     expect(this.safieStoreTitle.tagName).to.equal('H1');
-    expect(this.safieStoreTitle.textContent).to.equal('Safie Store');
+    expect(this.safieStoreTitle.textContent).to.equal('Safie');
   });
 
 });

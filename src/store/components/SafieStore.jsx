@@ -1,5 +1,7 @@
 var React = require('react');
 var Header = require('./Header.jsx');
+var Menu = require('./Menu.jsx');
+var ProductGrid = require('./ProductGrid.jsx');
 var Footer = require('./Footer.jsx');
 
 var SafieStore = React.createClass({
@@ -8,7 +10,8 @@ var SafieStore = React.createClass({
     return (
       <div>
         <Header />
-        <div className="spacer-band"></div>
+        <Menu />
+        <ProductGrid />
         <Footer />
       </div>
     );

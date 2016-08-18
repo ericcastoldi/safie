@@ -6,7 +6,8 @@ var app = express();
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static(path.join(__dirname, 'node_modules')));
-app.use(express.static(path.join(__dirname, 'public/store/')));
+app.use(express.static(path.join(__dirname, 'public/store')));
+app.use('/img', express.static(path.join(__dirname, 'public/store/img')));
 
 
 app.use(bodyParser.json());
@@ -21,10 +22,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('*', function (request, response) {
-  var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
-  response.sendFile(indexHtml);
-});
+// app.get('*', function (request, response) {
+//   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
+//   response.sendFile(indexHtml);
+// });
 //
 // app.get('/cockpit/*', function (request, response) {
 //   var indexHtml = path.resolve(__dirname, 'public/cockpit/', 'index.html');

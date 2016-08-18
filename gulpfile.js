@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 // Transform all required files with Babel
 require('babel-core/register');
 
-var storeStaticFiles = 'src/store/static/*',
+var storeStaticFiles = 'src/store/static/**',
   storeComponentsEntryPoint = ['src/store/components/App.jsx'],
   storeOutput = 'public/store';
 
