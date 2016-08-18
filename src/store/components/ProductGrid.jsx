@@ -21,37 +21,37 @@ var ProductGrid = React.createClass({
       return {
         products: [
           {
-            picture: '/img/demo/lookbook1.jpg',
+            picture: '/img/demo/lookbook01.jpg',
             caption: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
-            picture: '/img/demo/lookbook2.jpg',
+            picture: '/img/demo/lookbook02.jpg',
             caption: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
-            picture: '/img/demo/lookbook3.jpg',
+            picture: '/img/demo/lookbook03.jpg',
             caption: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
-            picture: '/img/demo/lookbook4.jpg',
+            picture: '/img/demo/lookbook04.jpg',
             caption: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
-            picture: '/img/demo/lookbook5.jpg',
+            picture: '/img/demo/lookbook05.jpg',
             caption: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
-            picture: '/img/demo/lookbook6.jpg',
+            picture: '/img/demo/lookbook06.jpg',
             caption: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10

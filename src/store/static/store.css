@@ -1,3 +1,10 @@
+a {
+  color          : #100D08;
+  text-decoration: none;
+}
+a:hover {
+  color: #FFC107;
+}
 
 nav.menu {
   background-color: #100D08;
@@ -8,15 +15,11 @@ nav.menu {
 }
 
 nav.menu a {
-  text-decoration: none;
-  color          : #FFDBA3;
-  margin-right   : 3rem;
+  color       : #FFDBA3;
+  margin-right: 3rem;
 }
 nav.menu a:last-child {
   margin-right: 0;
-}
-nav.menu a:hover {
-  color: #FFB033;
 }
 
 .header-container,
@@ -28,6 +31,31 @@ nav.menu a:hover {
   vertical-align: bottom;
   line-height   : 20rem;
 
+}
+
+.listagem-produtos {
+  margin-top   : 3rem;
+  margin-bottom: 3rem;
+}
+
+.listagem-produtos .row {
+  max-height: 50rem;
+}
+
+.produto-legenda {
+  height: 8rem;
+}
+
+.produto-listagem {
+  text-align: center;
+}
+
+.produto-imagem {
+  max-height: 45rem;
+}
+
+.produto-imagem img {
+  max-height: inherit;
 }
 
 .spacer-band {

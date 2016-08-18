@@ -26,11 +26,11 @@ var ProductCard = React.createClass({
     return (
       <div className="produto-listagem">
         <Link to={product.route}>
-          <div className="u-max-full-width produto-imagem ">
-            <img src={product.picture} alt={product.caption}/>
+          <div className="produto-imagem ">
+            <img src={product.picture} alt={product.caption} />
           </div>
-          <div className="produto-valor">
-            R$ {product.price}
+          <div className="produto-legenda">
+            {product.caption}<br />R$ {product.price}
           </div>
         </Link>
       </div>
