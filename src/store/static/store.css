@@ -15,7 +15,7 @@ nav.menu {
 }
 
 nav.menu a {
-  color       : #FFDBA3;
+  color       : #FAFAFA;
   margin-right: 3rem;
 }
 nav.menu a:last-child {
@@ -56,6 +56,30 @@ nav.menu a:last-child {
 
 .produto-imagem img {
   max-height: inherit;
+}
+
+.foto-principal-produto img {
+  max-width: 100%;
+}
+
+.thumbnail-container {
+  height  : 10rem;
+  width   : 10rem;
+  display : inline;
+  overflow: hidden;
+}
+
+.thumbnail-container img {
+  max-width: 100%;
+}
+
+.botao-comprar-produto {
+  border        : 0.5rem solid #100D08;
+  text-transform: uppercase;
+  text-align    : center;
+
+  padding-top   : 1rem;
+  padding-bottom: 1rem;
 }
 
 .spacer-band {

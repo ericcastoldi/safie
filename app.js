@@ -22,10 +22,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.get('*', function (request, response) {
-//   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
-//   response.sendFile(indexHtml);
-// });
+app.get('*', function (request, response) {
+  var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
+  response.sendFile(indexHtml);
+});
 //
 // app.get('/cockpit/*', function (request, response) {
 //   var indexHtml = path.resolve(__dirname, 'public/cockpit/', 'index.html');

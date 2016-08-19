@@ -7,12 +7,14 @@ var Route = ReactRouter.Route;
 
 
 var SafieStore = require('./SafieStore.jsx');
-
-
+var ProductGrid = require('./ProductGrid.jsx');
+var ProductDetail = require('./ProductDetail.jsx');
 
 ReactDOM.render(
   <Router history={ReactRouter.browserHistory}>
-      <Route path="/" component={SafieStore} />
+    <Route component={SafieStore}>
+      <Route path="/" component={ProductGrid} />
       <Redirect from="*" to="/" />
+    </Route>
   </Router>,
   document.getElementById('app'));
