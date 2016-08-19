@@ -14,6 +14,7 @@ ReactDOM.render(
   <Router history={ReactRouter.browserHistory}>
     <Route component={SafieStore}>
       <Route path="/" component={ProductGrid} />
+      <Route path="/produtos/:id" component={ProductDetail} />
       <Redirect from="*" to="/" />
     </Route>
   </Router>,
