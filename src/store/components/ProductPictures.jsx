@@ -1,13 +1,12 @@
 var React = require('react');
+var ProductMainPicture = require('./ProductMainPicture.jsx');
+var ProductPicturesPicker = require('./ProductPicturesPicker.jsx');
 
 var ProductPictures = React.createClass({
 
-  propTypes: {
-    pictures: React.PropTypes.arrayOf(React.PropTypes.string)
-  },
-
-  getDefaultProps: function (){
+  getInitialState: function (){
     return {
+      activePicture: '/img/demo/lookbook13.jpg',
       pictures: [
         '/img/demo/lookbook13.jpg',
         '/img/demo/lookbook14.jpg',
@@ -17,28 +16,20 @@ var ProductPictures = React.createClass({
     };
   },
 
-  renderThumbnails: function(){
-    return this.props.pictures.map(function(pic, index) {
-      return (
-        <div key={index} className="thumbnail-container">
-          <img src={pic} />
-        </div>
-      );
-    });
+  changeActivePicture: function(pic){
+    this.setState({activePicture: pic});
   },
+
 
   render: function(){
 
-    var thumbnails = this.renderThumbnails();
-
     return (
       <div>
-        <div className="foto-principal-produto">
-          <img src={this.props.pictures[0]} />
-        </div>
-        <div className="thumbnails-produto">
-          {thumbnails}
-        </div>
+        <ProductMainPicture picture={this.state.activePicture} />
+
+        <ProductPicturesPicker
+          pictures={this.state.pictures}
+          picturePicked={this.changeActivePicture} />
       </div>
     );
   }

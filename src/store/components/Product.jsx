@@ -1,21 +1,21 @@
 var React = require('react');
 var ProductPictures = require('./ProductPictures.jsx');
-var ProductDescription = require('./ProductDescription.jsx');
+var ProductDetails = require('./ProductDetails.jsx');
 
-var ProductDetail = React.createClass({
+var Product = React.createClass({
 
   render: function() {
     return (
       <div className="container">
         <div className="row">
-          <div className="one-half column">
+          <div className="eight columns">
 
             <ProductPictures />
 
           </div>
-          <div className="one-half column">
+          <div className="four columns">
 
-            <ProductDescription />
+            <ProductDetails />
 
           </div>
         </div>
@@ -24,4 +24,4 @@ var ProductDetail = React.createClass({
   }
 });
 
-module.exports = ProductDetail;
+module.exports = Product;

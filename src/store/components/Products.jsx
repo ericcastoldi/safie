@@ -1,7 +1,7 @@
 var React = require('react');
 var ProductCard = require('./ProductCard.jsx');
 
-var ProductGrid = React.createClass({
+var Products = React.createClass({
 
   propTypes: {
     products: React
@@ -9,7 +9,7 @@ var ProductGrid = React.createClass({
       .arrayOf(
         React.PropTypes.shape({
           picture: React.PropTypes.string.isRequired,
-          caption: React.PropTypes.string,
+          name: React.PropTypes.string.isRequired,
           route: React.PropTypes.string.isRequired,
           price: React.PropTypes.number.isRequired
         })
@@ -22,37 +22,37 @@ var ProductGrid = React.createClass({
         products: [
           {
             picture: '/img/demo/lookbook01.jpg',
-            caption: 'Peça de exemplo à venda',
+            name: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
             picture: '/img/demo/lookbook02.jpg',
-            caption: 'Peça de exemplo à venda',
+            name: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
             picture: '/img/demo/lookbook03.jpg',
-            caption: 'Peça de exemplo à venda',
+            name: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
             picture: '/img/demo/lookbook04.jpg',
-            caption: 'Peça de exemplo à venda',
+            name: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
             picture: '/img/demo/lookbook05.jpg',
-            caption: 'Peça de exemplo à venda',
+            name: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           },
           {
             picture: '/img/demo/lookbook06.jpg',
-            caption: 'Peça de exemplo à venda',
+            name: 'Peça de exemplo à venda',
             route: '/produtos/123',
             price: 10
           }
@@ -64,7 +64,7 @@ var ProductGrid = React.createClass({
 
     var renderedProducts = this.renderProducts();
     return (
-      <div className="listagem-produtos">
+      <div className="grid-produtos">
         <div className="container">
           {renderedProducts}
         </div>
@@ -92,7 +92,7 @@ var ProductGrid = React.createClass({
       });
 
       return (
-        <div key={index} className="row">{productRowContent}</div>
+        <div key={index} className="row linha">{productRowContent}</div>
       );
     });
 
@@ -101,4 +101,4 @@ var ProductGrid = React.createClass({
 
 });
 
-module.exports = ProductGrid;
+module.exports = Products;

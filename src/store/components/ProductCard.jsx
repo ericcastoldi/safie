@@ -6,31 +6,20 @@ var ProductCard = React.createClass({
   propTypes: {
     product: React
       .PropTypes
-      .shape({picture: React.PropTypes.string.isRequired, caption: React.PropTypes.string, route: React.PropTypes.string.isRequired, price: React.PropTypes.number.isRequired})
+      .shape({picture: React.PropTypes.string.isRequired, name: React.PropTypes.string, route: React.PropTypes.string.isRequired, price: React.PropTypes.number.isRequired})
       .isRequired
-  },
-
-  getDefaultProps: function () {
-    return {
-      product: {
-        picture: '/img/quadro-exemplo.png',
-        caption: 'Quadro de exemplo à venda',
-        route: '/produtos/123',
-        price: 10
-      }
-    };
   },
 
   render: function () {
     var product = this.props.product;
     return (
-      <div className="produto-listagem">
+      <div className="card-produto">
         <Link to={product.route}>
-          <div className="produto-imagem ">
-            <img src={product.picture} alt={product.caption} />
+          <div className="foto">
+            <img src={product.picture} alt={product.name} />
           </div>
-          <div className="produto-legenda">
-            {product.caption}<br />R$ {product.price}
+          <div className="legenda">
+            {product.name}<br />R$ {product.price}
           </div>
         </Link>
       </div>

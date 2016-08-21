@@ -1,10 +1,10 @@
 var React = require('react');
 
-var ProductDescription = React.createClass({
+var ProductDetails = React.createClass({
 
 
     propTypes: {
-      caption: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
       price: React.PropTypes.number.isRequired,
       description: React.PropTypes.string,
       measures: React.PropTypes.arrayOf(React.PropTypes.string)
@@ -13,10 +13,10 @@ var ProductDescription = React.createClass({
 
   getDefaultProps: function (){
     return {
-      caption: 'Saia Mid Velvet',
+      name: 'Saia Mid Velvet',
       price: 230.00,
       description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
-      measures: ['Cintura']
+      measures: ['Cintura', 'Pernas']
      };
   },
 
@@ -35,28 +35,26 @@ var ProductDescription = React.createClass({
     var measureFields = this.renderMeasures();
 
     return (
-      <div>
+      <div className="detalhes-produto">
 
-        <div className="titulo-produto">
-          {this.props.caption}
+        <div>
+          <h3>{this.props.name}</h3>
         </div>
-        <div className="preco-produto">
-          {this.props.price}
+        <div>
+          <h5>R$ {this.props.price}</h5>
         </div>
-        <div className="descricao-produto">
+        <div className="descricao">
           {this.props.description}
         </div>
-        <div className="medidas-produto">
+        <div className="medidas">
           {measureFields}
         </div>
         <div className="comprar-produto">
-          <div className="botao-comprar-produto">
-            <a href="#">Adicionar à Sacola de Compras</a>
-          </div>
+          <button>Comprar</button>
         </div>
       </div>
     );
   }
 });
 
-module.exports = ProductDescription;
+module.exports = ProductDetails;
