@@ -7,7 +7,7 @@ var ProductDetails = React.createClass({
       name: React.PropTypes.string.isRequired,
       price: React.PropTypes.number.isRequired,
       description: React.PropTypes.string,
-      measures: React.PropTypes.arrayOf(React.PropTypes.string)
+      measures: React.PropTypes.object
     },
 
 
@@ -16,12 +16,15 @@ var ProductDetails = React.createClass({
       name: 'Saia Mid Velvet',
       price: 230.00,
       description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
-      measures: ['Cintura', 'Pernas']
+      measures: {
+        'Cintura': null,
+        'Pernas': null
+      }
      };
   },
 
   renderMeasures: function(){
-    var measuresMap = this.props.measures.map(function(measure, index){
+    var measuresMap = Object.keys(this.props.measures).map(function(measure, index){
       return (
         <input type="text" key={index} placeholder={measure} />
       );

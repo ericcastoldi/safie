@@ -26,11 +26,7 @@ app.get('*', function (request, response) {
   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
   response.sendFile(indexHtml);
 });
-//
-// app.get('/cockpit/*', function (request, response) {
-//   var indexHtml = path.resolve(__dirname, 'public/cockpit/', 'index.html');
-//   response.sendFile(indexHtml);
-// });
+
 
 app.listen(app.get('port'), function () {
   console.log('Server up and running! http://localhost:' + app.get('port') + '/');

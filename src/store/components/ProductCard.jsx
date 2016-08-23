@@ -19,7 +19,10 @@ var ProductCard = React.createClass({
             <img src={product.picture} alt={product.name} />
           </div>
           <div className="legenda">
-            {product.name}<br />R$ {product.price}
+            {product.name}
+          </div>
+          <div className="preco">
+            R$ {product.price}
           </div>
         </Link>
       </div>
