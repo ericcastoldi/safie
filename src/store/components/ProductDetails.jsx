@@ -1,60 +1,45 @@
 var React = require('react');
+var ProductInfo = require('./ProductInfo.jsx');
+var ProductPrice = require('./ProductPrice.jsx');
+var SizeForm = require('./SizeForm.jsx');
+var BuyButton = require('./BuyButton.jsx');
 
 var ProductDetails = React.createClass({
 
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+    price: React.PropTypes.number.isRequired,
+    description: React.PropTypes.string,
+    measures: React.PropTypes.object
+  },
 
-    propTypes: {
-      name: React.PropTypes.string.isRequired,
-      price: React.PropTypes.number.isRequired,
-      description: React.PropTypes.string,
-      measures: React.PropTypes.object
-    },
-
-
-  getDefaultProps: function (){
+  getDefaultProps: function () {
     return {
       name: 'Saia Mid Velvet',
       price: 230.00,
       description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
       measures: {
-        'Cintura': null,
-        'Pernas': null
+        Cintura: null,
+        Pernas: null
       }
-     };
+    };
   },
 
-  renderMeasures: function(){
-    var measuresMap = Object.keys(this.props.measures).map(function(measure, index){
-      return (
-        <input type="text" key={index} placeholder={measure} />
-      );
-    });
-
-    return measuresMap;
-  },
-
-  render: function(){
-
-    var measureFields = this.renderMeasures();
+  render: function () {
 
     return (
       <div className="detalhes-produto">
 
-        <div>
-          <h3>{this.props.name}</h3>
-        </div>
-        <div>
-          <h5>R$ {this.props.price}</h5>
-        </div>
-        <div className="descricao">
-          {this.props.description}
-        </div>
-        <div className="medidas">
-          {measureFields}
-        </div>
-        <div className="comprar-produto">
-          <button>Comprar</button>
-        </div>
+        <ProductInfo
+          name={this.props.name}
+          description={this.props.description} />
+
+        <ProductPrice price={this.props.price} />
+
+        <SizeForm measures={this.props.measures} />
+
+        <BuyButton label="Comprar" route="/bag" />
+
       </div>
     );
   }

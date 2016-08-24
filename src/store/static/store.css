@@ -55,8 +55,14 @@ nav.menu a:last-child {
   max-height: 45rem;
 }
 
-.card-produto .foto img {
+/*.card-produto .foto img {
   max-height: inherit;
+}*/
+
+/* ProductPicture.jsx */
+.foto-produto img {
+  max-width : 100%;
+  max-height: 100%;
 }
 
 /* ProductMainPicture.jsx */
@@ -64,7 +70,7 @@ nav.menu a:last-child {
   max-width: 100%;
 }
 
-/*ProductPicturesPicker.jsx*/
+/*ProductPicturesViewer.jsx*/
 .thumbnail-produto {
   height            : 10rem;
   width             : 10rem;
@@ -84,7 +90,7 @@ nav.menu a:last-child {
   max-height: 100%;
 }
 
-/*ProductDetails.jsx*/
+/* ProductDetails.jsx */
 .detalhes-produto {
   border-left   : 1px solid #100D08;
   min-height    : 25rem;
@@ -93,22 +99,25 @@ nav.menu a:last-child {
   padding-top   : 1rem;
 }
 
-.detalhes-produto .descricao {
+/* ProductInfo.jsx */
+.informacoes-produto {
   padding-bottom: 5rem;
 }
 
-.detalhes-produto .medidas {
+/* SizeForm.jsx */
+.form-medidas {
   padding-bottom: 2rem;
 }
 
-.detalhes-produto .medidas input {
+.form-medidas input {
   border-radius: 0;
   width        : 100%;
 }
-.detalhes-produto .medidas input:focus {
+.form-medidas input:focus {
   border: 1px solid #100D08;
 }
 
+/* BuyButton.jsx */
 .comprar-produto button {
   font-size    : 1.5rem;
   height       : 4rem;
@@ -117,9 +126,8 @@ nav.menu a:last-child {
   width        : 100%;
 }
 .comprar-produto button:hover {
-  color           : #100D08;
-  font-weight     : 600;
-  background-color: #FFF59D;
+  color      : #FFC107;
+  font-weight: 600;
 }
 
 /* ShoppingBag.jsx */
@@ -127,18 +135,16 @@ nav.menu a:last-child {
   vertical-align: top;
 }
 
+.sacola .comprar-produto {
+  float: right;
+}
+
 /* BagProduct.jsx */
 .produto-sacola .imagem {
-  max-height   : 25rem;
   max-width    : 20rem;
   float        : left;
   padding-right: 1rem;
   margin-right : 2rem;
-}
-
-.produto-sacola .imagem img {
-  max-width : 100%;
-  max-height: 100%;
 }
 
 .produto-sacola-medidas p {

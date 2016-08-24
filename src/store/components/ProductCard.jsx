@@ -1,5 +1,6 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var ProductPicture = require('./ProductPicture.jsx');
 
 var ProductCard = React.createClass({
 
@@ -16,7 +17,7 @@ var ProductCard = React.createClass({
       <div className="card-produto">
         <Link to={product.route}>
           <div className="foto">
-            <img src={product.picture} alt={product.name} />
+            <ProductPicture picture={product.picture} description={product.name} />
           </div>
           <div className="legenda">
             {product.name}

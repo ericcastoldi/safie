@@ -1,5 +1,5 @@
 var React = require('react');
-var ProductPictures = require('./ProductPictures.jsx');
+var ProductPicturesViewer = require('./ProductPicturesViewer.jsx');
 var ProductDetails = require('./ProductDetails.jsx');
 
 var Product = React.createClass({
@@ -10,7 +10,7 @@ var Product = React.createClass({
         <div className="row">
           <div className="eight columns">
 
-            <ProductPictures />
+            <ProductPicturesViewer />
 
           </div>
           <div className="four columns">

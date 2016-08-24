@@ -1,8 +1,8 @@
 var React = require('react');
-var ProductMainPicture = require('./ProductMainPicture.jsx');
+var ProductPicture = require('./ProductPicture.jsx');
 var ProductPicturesPicker = require('./ProductPicturesPicker.jsx');
 
-var ProductPictures = React.createClass({
+var ProductPicturesViewer = React.createClass({
 
   getInitialState: function (){
     return {
@@ -25,7 +25,7 @@ var ProductPictures = React.createClass({
 
     return (
       <div>
-        <ProductMainPicture picture={this.state.activePicture} />
+        <ProductPicture picture={this.state.activePicture} />
 
         <ProductPicturesPicker
           pictures={this.state.pictures}
@@ -35,4 +35,4 @@ var ProductPictures = React.createClass({
   }
 });
 
-module.exports = ProductPictures;
+module.exports = ProductPicturesViewer;

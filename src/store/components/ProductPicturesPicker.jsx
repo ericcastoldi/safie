@@ -1,4 +1,5 @@
 var React = require('react');
+var ProductPicture = require('./ProductPicture.jsx');
 
 var ProductPicturesPicker = React.createClass({
 
@@ -13,7 +14,7 @@ var ProductPicturesPicker = React.createClass({
         <div key={index}
             onMouseEnter={this.props.picturePicked.bind(null, pic)}
             className="thumbnail-produto">
-          <img src={pic} />
+          <ProductPicture picture={pic} />
         </div>
       );
     }.bind(this));

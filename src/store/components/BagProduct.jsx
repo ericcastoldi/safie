@@ -1,5 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var ProductPicture = require('./ProductPicture.jsx');
+
 
 var BagProduct = React.createClass({
 
@@ -15,7 +17,7 @@ var BagProduct = React.createClass({
       <div className="produto-sacola">
         <Link to={this.props.route}>
           <div className="imagem">
-            <img src={this.props.picture} alt={this.props.name} />
+            <ProductPicture picture={this.props.picture} description={this.props.name} />
           </div>
           <div className="descricao">
             <h5>{this.props.name}</h5>

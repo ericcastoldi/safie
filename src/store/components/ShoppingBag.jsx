@@ -1,26 +1,21 @@
 var React = require('react');
 var BagProduct = require('./BagProduct.jsx');
-var BagProductMeasures = require('./BagProductMeasures.jsx');
-var BagProductPrice = require('./BagProductPrice.jsx');
-
+var SizeInfo = require('./SizeInfo.jsx');
+var ProductPrice = require('./ProductPrice.jsx');
+var BuyButton = require('./BuyButton.jsx');
 
 var ShoppingBag = React.createClass({
 
   propTypes: {
-    products: React
-      .PropTypes
-      .arrayOf(
-        React.PropTypes.shape({
-          picture: React.PropTypes.string.isRequired,
-          name: React.PropTypes.string.isRequired,
-          route: React.PropTypes.string,
-          description: React.PropTypes.string,
-          price: React.PropTypes.number.isRequired,
-          measures: React.PropTypes.object
-        })
-      )
+    products: React.PropTypes.arrayOf(React.PropTypes.shape({
+      picture: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
+      route: React.PropTypes.string,
+      description: React.PropTypes.string,
+      price: React.PropTypes.number.isRequired,
+      measures: React.PropTypes.object
+    }))
   },
-
 
   getDefaultProps: function () {
     return {
@@ -35,16 +30,14 @@ var ShoppingBag = React.createClass({
             'Cintura': 50,
             'Pernas': 120
           }
-        },
-        {
+        }, {
           picture: '/img/demo/lookbook02.jpg',
           name: 'Peça exemplo',
           description: 'Peça de exemplo à venda',
           route: '/produtos/123',
           price: 10,
           measures: {}
-        },
-        {
+        }, {
           picture: '/img/demo/lookbook03.jpg',
           name: 'Peça de exemplo à venda',
           route: '/produtos/123',
@@ -57,16 +50,16 @@ var ShoppingBag = React.createClass({
     };
   },
 
-
   render: function () {
 
     var renderedRows = this.renderDataRows();
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="twelve columns">
-            <div className="sacola">
+      <div className="sacola">
+        <div className="container">
+          <div className="row">
+            <div className="twelve columns">
+
               <h1>Sacola de compras</h1>
               <table>
                 <thead>
@@ -74,6 +67,7 @@ var ShoppingBag = React.createClass({
                     <th>Peça</th>
                     <th>Medidas</th>
                     <th>Preço</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -81,28 +75,33 @@ var ShoppingBag = React.createClass({
                 </tbody>
               </table>
             </div>
+
+          </div>
+          <div className="row">
+            <div className="twelve columns">
+              <BuyButton label="Finalizar Compra" route="/comprar"/>
+            </div>
           </div>
         </div>
       </div>
     );
   },
 
-  renderDataRows: function() {
-    return this.props.products.map(function(product, index){
+  renderDataRows: function () {
+    return this.props.products.map(function (product, index) {
       return (
         <tr key={index}>
           <td>
-            <BagProduct
-              picture={product.picture}
-              name={product.name}
-              description={product.description}
-              route={product.route} />
+            <BagProduct picture={product.picture} name={product.name} description={product.description} route={product.route}/>
           </td>
           <td>
-            <BagProductMeasures measures={product.measures} />
+            <SizeInfo measures={product.measures}/>
           </td>
           <td>
-            <BagProductPrice price={product.price} />
+            <ProductPrice price={product.price}/>
+          </td>
+          <td>
+            <a href="#">x</a>
           </td>
         </tr>
       );

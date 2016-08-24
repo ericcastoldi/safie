@@ -1,6 +1,6 @@
 var React = require('react');
 
-var BagProductMeasures = React.createClass({
+var SizeInfo = React.createClass({
 
   propTypes: {
     measures: React.PropTypes.object
@@ -43,4 +43,4 @@ var BagProductMeasures = React.createClass({
 });
 
 
-module.exports = BagProductMeasures;
+module.exports = SizeInfo;
