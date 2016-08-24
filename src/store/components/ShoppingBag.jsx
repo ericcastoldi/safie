@@ -66,18 +66,21 @@ var ShoppingBag = React.createClass({
       <div className="container">
         <div className="row">
           <div className="twelve columns">
-            <table>
-              <thead>
-                <tr>
-                  <th>Peça</th>
-                  <th>Medidas</th>
-                  <th>Preço</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderedRows}
-              </tbody>
-            </table>
+            <div className="sacola">
+              <h1>Sacola de compras</h1>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Peça</th>
+                    <th>Medidas</th>
+                    <th>Preço</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderedRows}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

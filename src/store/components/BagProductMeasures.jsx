@@ -27,7 +27,7 @@ var BagProductMeasures = React.createClass({
     var measuresMap = Object.keys(this.props.measures).map(function(measure, index){
 
       var measureValue = this.props.measures[measure] ?
-        this.props.measures[measure] :
+        this.props.measures[measure] + 'cm' :
         'Medida não especificada';
 
       return (
