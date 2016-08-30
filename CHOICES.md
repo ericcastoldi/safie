@@ -19,16 +19,20 @@ Banco de dados a ser utilizado, podendo ser um banco de dados relacional comum o
 
 Para a loja deve se utilizado um framework css que forneça um grid (preferencialmente aninhável) e estilos básicos de tipografia e de forms. O framework não pode depender de javascript algum, e caso no framework exista algum tipo de componente que use javascript deve ser possível utilizar o resto do framework sem fazer referência a javascript algum.
 
-O framework também não deve depender de compilações (sass/less), bastando fazer a referencia ao(s) arquivo(s) css do framework. Devem ser priorizados os frameworks que fazem uso de semantica para definir os elementos HTML a serem afetados pelos estilos. Boa nomenclatura das classes CSS também é um fator importante que deve ser considerado ao  
+O framework também não deve depender de compilações (sass/less), bastando fazer a referencia ao(s) arquivo(s) css do framework. Devem ser priorizados os frameworks que fazem uso de semantica para definir os elementos HTML a serem afetados pelos estilos. Boa nomenclatura das classes CSS também é um fator importante que deve ser considerado na escolha.
 
->> A preocupação com javascript reside no grande número de scripts que já são enviados ao client por parte do React. Para evitar conflitos e diminuir o memory footprint do client deve ser utilizado o mínimo de javascript possível.
+> A preocupação com javascript reside no grande número de scripts que já são enviados ao client por parte do React. Para evitar conflitos e diminuir o memory footprint do client deve ser utilizado o mínimo de javascript possível.
 
 ### Frameworks
 #### Skeleton CSS - http://getskeleton.com/
-Utilizado em projetos recentes.
 
-* Tamanho (Kb) -
-* Largura do grid -
+##### Tamanho (Kb)
+O Skeleton é composto por dois arquivos css: o `normalize.css` (7.6Kb) e o `skeleton.css` (11.1Kb). Juntos eles somam 18.7Kb.
+
+##### Grid
+Contempla um grid de 12 colunas, com uma largura máxima de 960px que pode ser alterada via CSS.
+
+
 * Colunas do grid -
 * Tipografia -
 * Formulários -
