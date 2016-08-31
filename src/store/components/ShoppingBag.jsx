@@ -1,6 +1,5 @@
 var React = require('react');
-var BagProduct = require('./BagProduct.jsx');
-var SizeInfo = require('./SizeInfo.jsx');
+var ProductCardHorizontal = require('./ProductCardHorizontal.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
 var BuyButton = require('./BuyButton.jsx');
 
@@ -65,7 +64,6 @@ var ShoppingBag = React.createClass({
                 <thead>
                   <tr>
                     <th>Peça</th>
-                    <th>Medidas</th>
                     <th>Preço</th>
                     <th></th>
                   </tr>
@@ -92,10 +90,7 @@ var ShoppingBag = React.createClass({
       return (
         <tr key={index}>
           <td>
-            <BagProduct picture={product.picture} name={product.name} description={product.description} route={product.route}/>
-          </td>
-          <td>
-            <SizeInfo measures={product.measures}/>
+            <ProductCardHorizontal product={product} />
           </td>
           <td>
             <ProductPrice price={product.price}/>

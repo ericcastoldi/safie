@@ -1,44 +1,6 @@
 var React = require('react');
-
-
-var ProductTitle = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string.isRequired
-  },
-
-  render: function () {
-    return (
-      <h3>{this.props.name}</h3>
-    );
-  }
-});
-
-var ProductTitleSmall = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string.isRequired
-  },
-
-  render: function () {
-    return (
-      <h5>{this.props.name}</h5>
-    );
-  }
-});
-
-
-var ProductTitleTiny = React.createClass({
-  propTypes: {
-    name: React.PropTypes.string.isRequired
-  },
-
-  render: function () {
-    return (
-      <p>{this.props.name}</p>
-    );
-  }
-});
-
-
+var ProductTitle = require('./ProductTitle.jsx');
+var ProductInfoLayout = require('./ProductInfoLayout.jsx');
 
 var ProductInfo = React.createClass({
   propTypes: {
@@ -48,16 +10,9 @@ var ProductInfo = React.createClass({
 
   render: function () {
     return (
-      <div className="informacoes-produto">
-        <div>
-          <h3>{this.props.name}</h3>
-        </div>
-
-        <div className="descricao">
-          {this.props.description}
-        </div>
-
-      </div>
+      <ProductInfoLayout description={this.props.description}>
+        <ProductTitle name={this.props.name} />
+      </ProductInfoLayout>
     );
   }
 });
