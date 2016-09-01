@@ -12,7 +12,7 @@ A **Prototipação** visa entregar um software funcional porém utilizando dados
 
 ## Cronograma de Entregas
 
-### Setembro - Fase: Prototipação
+### Setembro - Prototipação
 
 Durante o mês de setembro serão desenvolvidas todas as páginas da loja e da área administrativa. A entrega desta fase é a loja e a área administrativa **por completo**, visando ser o mais fiel possível visualmente ao produto final. O caráter de protótipo se dá pelo fato de que nesta versão todas as informações (produtos, pedidos, clientes, sacola de compras, etc.) exibidas no site serão estáticas. Na prática nenhum botão realizará ação alguma e nenhuma informação cadastrada será salva. Assim podemos ter contato com o site de forma mais rápida facilitando o ciclo de construção e validação.
 
@@ -21,7 +21,10 @@ Durante o mês de setembro serão desenvolvidas todas as páginas da loja e da �
 - **Listagem de Peças:** página listando as peças de uma coleção ou de resultados de uma pesquisa. Parte desta página já foi desenvolvida na fase de Preparação, agora ela precisa ser aprimorada para exibir resultados de pesquisa e para se adaptar à identidade visual da marca Safie.
 - **Detalhes da Peça:** página principal de uma peça, com detalhes, fotos e botão para compra. Parte desta página já foi desenvolvida na fase de Preparação, agora ela precisa ser aprimorada para ser exibida de forma mais confortável em dispositivos móveis. Atualmente a informação de medidas da cliente está nesta página mas não sei se isso seria o ideal no fluxo de compra. Seria interessante discutir com a equipe que está te auxiliando sobre como seria uma boa forma de obter as medidas das clientes (no momento da compra? no momento do cadastro de clientes? no momento do pagamento?).
 - **Sacola de compras:** página listando os itens já adicionados ao carrinho, com cálculo de frete por CEP e com botão para fechar a compra. Parte desta página já foi desenvolvida na fase de Preparação, agora ela precisa ser finalizada para permitir o calculo do CEP, a totalização dos valores e a remoção de produtos da Sacola de Compras.
+  - **Painel de Itens da Sacola:** Componente exibido em todas as páginas da loja, listando as peças que já foram adicionadas à sacola de compras, podendo minimizar e maximizar.
 - **Login | Cadastro de cliente:** após fechar a compra, caso a Cliente não esteja autenticada aparece a página para login ou novo cadastro. O login deve oferecer opções de autenticação externas ao site (Google, Facebook, etc). No cabeçalho do site será exibido o nome da cliente autenticada.
+  - **Esqueci minha Senha:** página para efetuar a troca de senha, permitindo que a cliente informe seu e-mail e então o sistema cria uma nova senha aleatória para a cliente e envia essa nova senha por e-mail para a cliente. Posteriormente a cliente pode alterar a senha gerada automaticamente por uma nova senha.
+  - **Trocar de Senha:** página para efetuar a troca de senha, informando e-mail, senha atual e nova senha.
 - **Meus endereços:** após fechar a compra e com a Cliente autenticada, a Cliente então é redirecionada para a seleção de endereço de entrega ou cadastro de um novo endereço. Durante a seleção de endereço o frete deve ser recalculado.
 - **Pagamento:** página para realizar o pagamento, apresentando o resumo do pedido com os valores de cada peça, o valor total das peças, o valor do frete e o valor total do pedido.
 - **Compra concluída:** página de sucesso pela compra concluida, com links para a Home e para os Meus pedidos.
@@ -36,7 +39,7 @@ Durante o mês de setembro serão desenvolvidas todas as páginas da loja e da �
 - **Home:** Listagem dos últimos pedidos ainda não concluídos.
 - **Manutenção de produtos:** listagem, novo, atualizar, ativar/desativar a exibição no site.
 - **Manutenção dos clientes:** listagem, novo, atualizar.
-- **Manutenção dos compras:** listagem, atualizar dados, atualizar o status do pedido (em produção, postado nos correios, etc.).
+- **Manutenção dos compras:** listagem, atualizar dados, atualizar o status do pedido (em produção, postado na transportadora, etc.).
 
 
 #### Protótipo das áreas de conteúdo e de destaque do site - 1 semana
@@ -49,7 +52,7 @@ Durante o mês de setembro serão desenvolvidas todas as páginas da loja e da �
       - Formulário de Contato
 - **Área Administrativa - Manutenção das áreas de conteúdo do site:** listagem, novo, atualizar, ativar/desativar a exibição no site.
 
-### Outubro - Fase: Construção
+### Outubro - Construção
 Durante o mês de outubro serão desenvolvidas as ações do site, tanto as disparadas automaticamente (como o envio de emails de notificação para as Clientes e para a Administradora do site) quanto as disparadas manualmente (como o cadastro de produtos por parte da Administradora e as compras e adições de itens à sacola de compras por parte das Clientes da loja). A entrega desta fase é a loja e a área administrativa completamente finalizadas.
 
 #### Banco de Dados - 1 semana
@@ -61,23 +64,45 @@ Realizar as conexões da loja e da área administrativa com o banco de dados, de
 - **Sacola de compras:** criar as definições de banco de dados responsáveis por salvar, atualizar e buscar as informações dos itens nas Sacolas de Compras das Clientes do site. Realizar as conexões do site com o banco de dados de forma que seja possível para incluir e excluir itens da Sacola de Compras mesmo sem realizar a autenticação no site.
 - **Compras:**  criar as definições de banco de dados responsáveis por salvar, atualizar e buscar as informações das Compras das Clientes do site. Realizar as conexões da área administrativa com o banco de dados de forma que seja possível para a Administradora consultar as compras feitas no site e atualizar a situação das compras, e realizar as conexões da loja com o banco de dados de forma que seja possível para as Clientes consultar seu histórico de compras feitas no site.
 
-- Implementação da autenticação e OAuth
-- Implementação do rastreamento Correios
-- Implementação de notificações via e-mail
+#### Autenticação - 1 semana
+- **Autenticação via e-mail:** criar um mecanismo de autenticação no site utilizando o endereço de e-mail da Cliente e uma senha como credenciais, permitindo a compra de peças no site.
+- **Autenticação via Google e Facebook - OAuth:** criar um mecanismo para que seja possível o acesso das clientes ao site e a compra de peças no site sem a necessidade de cadastro, utilizando contas do Google e do Facebook.
+- **Esqueci minha Senha:** a cliente informa seu e-mail e então o sistema cria uma nova senha aleatória para a cliente e envia essa nova senha por e-mail para a cliente. Posteriormente a cliente pode alterar a senha gerada automaticamente por uma nova senha.
+- **Trocar de Senha:** com a cliente autenticada no site,  informando senha atual e nova senha o sistema efetua a atualização da senha da cliente.
+
+#### Entregas e Notificações  - 1 semana
+- **Cálculo de frete:** realizar o cálculo de frete de acordo com o endereço ou CEP da Cliente.
+- **Rastreamento:** permitir o rastreamento das peças compradas por parte das clientes.
+- **Envio de notificações via e-mail:** enviar mensagens via e-mail para as Clientes e para a Administradora dos site notificando das seguintes ações:
+  - Novo cadastro de cliente efetuado
+  - Esqueci minha senha
+  - Troca de senha
+  - Nova compra/pedido efetuada
+  - Alteração de situação da compra (em produção, enviada, etc.)
+
+> Para entregas será utilizado o serviço dos Correios ou será utilizada outra Transportadora? Dependendo da forma de entrega também muda o cálculo do frete e a forma de obter as informações de rastreamento, por isso estou reservando uma semana completa para essa etapa, para lidar com os imprevistos.
+
+#### Áreas de Conteúdo - 1 semana
 - Implementação das áreas dinâmicas
-
-### Novembro - Fases: Fim da Construção e Implantação
- - Finalização da construção
-  - Pesquisa e definição do provedor de pagamentos
-  - Implementação dos pagamentos
- - Criação dos scripts de deploy e seed de dados
- - Contratação do provedor de hospedagem
- - Definição dos Backups do provedor
- - Últimos ajustes da construção
- - Analytics
+- **Áreas de conteúdo:** implementação da exibição na loja e da administração das áreas de conteúdo do site, dando suporte ao uso de texto, imagens e vídeos. Considerar uma blog engine para estas áreas. Exemplos de áreas:
+    - Como se medir
+    - Políticas de entrega
+    - Formas de pagamento
+    - Formulário de Contato
 
 
-### Dezembro e Janeiro - Suporte
-- Lançamento do site
-- Correções de erros
-- Ajustes e melhorias
+### Novembro - Fim da Construção e Implantação
+Durante o mês de Novembro serão realizadas as atividades finais do projeto, finalizando a construção do Site, configurando e efetuando a instalação do site no provedor de hospedagem.
+
+#### Finalização da Construção  - 2 semanas
+Realizar a pesquisa e definição do provedor de pagamentos a ser utilizado (ex: PagSeguro) e adicionar a chamada ao provedor de pagamentos no fluxo de compra do site, permitindo assim que as Clientes realizem o pagamento das compras feitas no site.
+
+#### Analytics - 1 semana
+Inclusão do Google Analytics no projeto para que possamos ter informações de uso das Clientes do site, como por exemplo de que estado do Brasil o site está sendo mais acessado, se ele está sendo mais acessado via celular ou computador, etc. Essas informações podem ser utilizadas para definir estratégias de mercado para a loja.
+
+#### Hospedagem - 1 semana
+Realizar a pesquisa e definição do provedor de hospedagem a ser utilizado (ex: UolHost) e realizar o contrato do provedor definido. Configuração da rotina de backups do provedor de hospedagem como precaução para evitar a perda dos dados do site.
+Criação dos scripts de deploy e seed de dados, configurando as etapas de instalação do site no provedor de hospedagem e configurar os dados iniciais a serem cadastrados automaticamente no site (os produtos iniciais, destaques, etc).
+
+### Futuro
+Após o lançamento do site vamos realizando algumas possíveis correções e melhorias no site. Neste momento também podemos explorar novas possibilidades e novas funcionalidades para a loja e podemos conversar sobre uma próxima etapa de construção de novas funcionalidades.
