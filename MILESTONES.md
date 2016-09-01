@@ -104,5 +104,5 @@ Inclusão do Google Analytics no projeto para que possamos ter informações de 
 Realizar a pesquisa e definição do provedor de hospedagem a ser utilizado (ex: UolHost) e realizar o contrato do provedor definido. Configuração da rotina de backups do provedor de hospedagem como precaução para evitar a perda dos dados do site.
 Criação dos scripts de deploy e seed de dados, configurando as etapas de instalação do site no provedor de hospedagem e configurar os dados iniciais a serem cadastrados automaticamente no site (os produtos iniciais, destaques, etc).
 
-### Futuro
+## Futuro
 Após o lançamento do site vamos realizando algumas possíveis correções e melhorias no site. Neste momento também podemos explorar novas possibilidades e novas funcionalidades para a loja e podemos conversar sobre uma próxima etapa de construção de novas funcionalidades.
