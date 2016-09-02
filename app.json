@@ -1,15 +1,17 @@
 {
   "name": "safie",
-  "scripts": {
-  },
-  "env": {
-  },
+  "scripts": {},
+  "env": {},
   "formation": {
+    "web": {
+      "quantity": 1
+    }
   },
   "addons": [
 
   ],
-  "buildpacks": [
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }]
 
-  ]
 }

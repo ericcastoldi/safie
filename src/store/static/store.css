@@ -1,0 +1,183 @@
+/* SafieStore.jsx*/
+.safie-store a {
+  color          : #100D08;
+  text-decoration: none;
+}
+
+.safie-store a:hover {
+  color: #FFC107;
+}
+
+.safie-store .conteudo-loja {
+  margin-top   : 8rem;
+  margin-bottom: 3rem;
+}
+
+/* Header.jsx*/
+.header-container,
+.header-container h1 {
+  font-size     : 10rem;
+  height        : 20rem;
+  text-align    : center;
+  text-transform: lowercase;
+  line-height   : 20rem;
+  letter-spacing: -0.5rem;
+}
+
+/* Menu.jsx*/
+nav.menu {
+  text-transform: uppercase;
+  line-height   : 3.5rem;
+  text-align    : center;
+  border-top    : 1px solid #ccc;
+  border-bottom : 1px solid #ccc;
+}
+
+nav.menu a {
+  color       : #666;
+  margin-right: 3rem;
+}
+
+nav.menu a:last-child {
+  margin-right: 0;
+}
+
+/* Products.jsx*/
+.grid-produtos .linha {
+  float: left;
+  width: 100%;
+}
+
+/*ProductCard.jsx*/
+.card-produto {
+  text-align    : center;
+  padding-bottom: 4rem;
+}
+
+.card-produto p {
+  margin: 0;
+}
+
+.card-produto .foto-produto {
+  height: 40rem;
+}
+
+/* ProductPicture.jsx */
+.foto-produto {
+  margin-bottom: 2rem;
+}
+
+.foto-produto img {
+  max-width : 100%;
+  max-height: 100%;
+}
+
+/* ProductMainPicture.jsx */
+.foto-principal-produto img {
+  max-width: 100%;
+}
+
+/*ProductPicturesViewer.jsx*/
+.thumbnail-produto {
+  height            : 10rem;
+  width             : 10rem;
+  float             : left;
+  margin-right      : 2rem;
+  overflow          : hidden;
+  -webkit-filter: grayscale(100%);
+  -webkit-transition: all 1s ease;
+  -moz-transition   : all 1s ease;
+  -o-transition     : all 1s ease;
+  -ms-transition    : all 1s ease;
+  transition        : all 1s ease;
+}
+
+.thumbnail-produto:hover {
+  -webkit-filter: grayscale(0);
+}
+
+.thumbnail-produto img {
+  max-width : 100%;
+  max-height: 100%;
+}
+
+/* ProductDetails.jsx */
+.detalhes-produto {
+  border-left   : 1px solid #100D08;
+  min-height    : 25rem;
+  padding-left  : 3rem;
+  padding-bottom: 2rem;
+  padding-top   : 1rem;
+}
+
+/* ProductInfo.jsx */
+
+/* SizeForm.jsx */
+.form-medidas {
+  padding-bottom: 2rem;
+}
+
+.form-medidas input {
+  border-radius: 0;
+  width        : 100%;
+}
+
+.form-medidas input:focus {
+  border: 1px solid #100D08;
+}
+
+/* BuyButton.jsx */
+.comprar-produto button {
+  font-size    : 1.5rem;
+  height       : 4rem;
+  border-radius: 0;
+  border       : 0.2rem solid #100D08;
+  width        : 100%;
+}
+
+.comprar-produto button:hover {
+  color      : #FFC107;
+  font-weight: 600;
+}
+
+/* ShoppingBag.jsx */
+.sacola td {
+  vertical-align: top;
+}
+
+.sacola .comprar-produto {
+  float: right;
+}
+
+/* ProductCardHorizontal.jsx */
+.produto-sacola .foto-produto {
+  width       : 20rem;
+  margin-right: 2rem;
+  float       : left;
+}
+
+.produto-sacola .imagem {
+  max-width    : 20rem;
+  float        : left;
+  padding-right: 1rem;
+  margin-right : 2rem;
+}
+
+.produto-sacola-medidas p {
+  margin-bottom: 0;
+}
+
+.produto-sacola-medidas .medida {
+  font-weight  : bold;
+  padding-right: 0.5rem;
+}
+
+.produto-sacola-medidas .tamanho {
+  font-style: italic;
+}
+
+/* Footer.jsx */
+.footer-band {
+  height          : 30rem;
+  background-color: #100D08;
+}
