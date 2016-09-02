@@ -3,12 +3,13 @@
   color          : #100D08;
   text-decoration: none;
 }
+
 .safie-store a:hover {
   color: #FFC107;
 }
 
 .safie-store .conteudo-loja {
-  margin-top   : 3rem;
+  margin-top   : 8rem;
   margin-bottom: 3rem;
 }
 
@@ -19,47 +20,53 @@
   height        : 20rem;
   text-align    : center;
   text-transform: lowercase;
-  vertical-align: bottom;
   line-height   : 20rem;
+  letter-spacing: -0.5rem;
 }
 
 /* Menu.jsx*/
 nav.menu {
-  background-color: #100D08;
-  text-transform  : uppercase;
-  height          : 5rem;
-  line-height     : 5rem;
-  text-align      : center;
+  text-transform: uppercase;
+  line-height   : 3.5rem;
+  text-align    : center;
+  border-top    : 1px solid #ccc;
+  border-bottom : 1px solid #ccc;
 }
 
 nav.menu a {
-  color       : #FAFAFA;
+  color       : #666;
   margin-right: 3rem;
 }
+
 nav.menu a:last-child {
   margin-right: 0;
 }
 
 /* Products.jsx*/
 .grid-produtos .linha {
-  max-height: 50rem;
+  float: left;
+  width: 100%;
 }
 
 /*ProductCard.jsx*/
 .card-produto {
   text-align    : center;
-  padding-bottom: 8rem;
+  padding-bottom: 4rem;
 }
 
-.card-produto .foto {
-  max-height: 45rem;
+.card-produto p {
+  margin: 0;
 }
 
-/*.card-produto .foto img {
-  max-height: inherit;
-}*/
+.card-produto .foto-produto {
+  height: 40rem;
+}
 
 /* ProductPicture.jsx */
+.foto-produto {
+  margin-bottom: 2rem;
+}
+
 .foto-produto img {
   max-width : 100%;
   max-height: 100%;
@@ -75,6 +82,8 @@ nav.menu a:last-child {
   height            : 10rem;
   width             : 10rem;
   float             : left;
+  margin-right      : 2rem;
+  overflow          : hidden;
   -webkit-filter: grayscale(100%);
   -webkit-transition: all 1s ease;
   -moz-transition   : all 1s ease;
@@ -82,9 +91,11 @@ nav.menu a:last-child {
   -ms-transition    : all 1s ease;
   transition        : all 1s ease;
 }
+
 .thumbnail-produto:hover {
   -webkit-filter: grayscale(0);
 }
+
 .thumbnail-produto img {
   max-width : 100%;
   max-height: 100%;
@@ -100,9 +111,6 @@ nav.menu a:last-child {
 }
 
 /* ProductInfo.jsx */
-.informacoes-produto {
-  padding-bottom: 5rem;
-}
 
 /* SizeForm.jsx */
 .form-medidas {
@@ -113,6 +121,7 @@ nav.menu a:last-child {
   border-radius: 0;
   width        : 100%;
 }
+
 .form-medidas input:focus {
   border: 1px solid #100D08;
 }
@@ -125,6 +134,7 @@ nav.menu a:last-child {
   border       : 0.2rem solid #100D08;
   width        : 100%;
 }
+
 .comprar-produto button:hover {
   color      : #FFC107;
   font-weight: 600;
@@ -139,7 +149,13 @@ nav.menu a:last-child {
   float: right;
 }
 
-/* BagProduct.jsx */
+/* ProductCardHorizontal.jsx */
+.produto-sacola .foto-produto {
+  width       : 20rem;
+  margin-right: 2rem;
+  float       : left;
+}
+
 .produto-sacola .imagem {
   max-width    : 20rem;
   float        : left;
@@ -153,7 +169,7 @@ nav.menu a:last-child {
 
 .produto-sacola-medidas .medida {
   font-weight  : bold;
-  padding-right: 3rem;
+  padding-right: 0.5rem;
 }
 
 .produto-sacola-medidas .tamanho {

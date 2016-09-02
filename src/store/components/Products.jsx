@@ -85,7 +85,7 @@ var Products = React.createClass({
 
       var productRowContent = rowProducts.map(function (product, rowIndex) {
         return (
-          <div key={rowIndex} className="four columns">
+          <div key={rowIndex} className="one-third column">
             <ProductCard product={product}/>
           </div>
         );

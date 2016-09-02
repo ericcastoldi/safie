@@ -19,15 +19,9 @@ var ProductCard = React.createClass({
     return (
       <div className="card-produto">
         <Link to={product.route}>
-          <div className="foto">
-            <ProductPicture picture={product.picture} description={product.name} />
-          </div>
-          <div className="legenda">
-            <ProductTitleTiny name={product.name} />
-          </div>
-          <div className="preco">
-            <ProductPrice price={product.price} />
-          </div>
+          <ProductPicture picture={product.picture} description={product.name} />
+          <ProductTitleTiny name={product.name} />
+          <ProductPrice price={product.price} />
         </Link>
       </div>
     );
