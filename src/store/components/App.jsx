@@ -12,7 +12,8 @@ var ShoppingBag = require('./ShoppingBag.jsx');
 ReactDOM.render(
   <Router history={ReactRouter.browserHistory}>
     <Route component={SafieStore}>
-      <Route path="/" component={Products} />
+      <Route path="/" component={Landing} />
+      <Route path="/produtos" component={Products} />
       <Route path="/produtos/:id" component={Product} />
       <Route path="/bag" component={ShoppingBag} />
       <Redirect from="*" to="/" />
