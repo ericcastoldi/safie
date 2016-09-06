@@ -1,5 +1,4 @@
 var React = require('react');
-var Header = require('./Header.jsx');
 var Menu = require('./Menu.jsx');
 var Footer = require('./Footer.jsx');
 
@@ -13,14 +12,8 @@ var SafieStore = React.createClass({
     return (
       <div className="safie-store">
 
-        <Header />
-
+        {this.props.children}
         <Menu />
-
-        <div className="conteudo-loja">
-          {this.props.children}
-        </div>
-
         <Footer />
 
       </div>

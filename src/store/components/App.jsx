@@ -5,6 +5,7 @@ var Redirect = ReactRouter.Redirect;
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var SafieStore = require('./SafieStore.jsx');
+var Landing = require('./Landing.jsx');
 var Product = require('./Product.jsx');
 var Products = require('./Products.jsx');
 var ShoppingBag = require('./ShoppingBag.jsx');

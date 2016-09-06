@@ -1,23 +1,23 @@
 var React = require('react');
 var PolicyCard = require('./PolicyCard.jsx');
+var CreditCards = require('./CreditCards.jsx');
 
-var Policies = React.createClass({
+var Footer = React.createClass({
 
   propTypes: {
-    policies: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
+    policies: React
+      .PropTypes
+      .arrayOf(React.PropTypes.shape({
         name: React.PropTypes.string.isRequired,
-        items: React.PropTypes.arrayOf(
-          React.PropTypes.shape({
-            title: React.PropTypes.string.isRequired,
-            route: React.PropTypes.string
-          })
-        ).isRequired
-      })
-    ).isRequired
+        items: React
+          .PropTypes
+          .arrayOf(React.PropTypes.shape({title: React.PropTypes.string.isRequired, route: React.PropTypes.string}))
+          .isRequired
+      }))
+      .isRequired
   },
 
-  getDefaultProps: function() {
+  getDefaultProps: function () {
     return {
       policies: [
         {
@@ -26,49 +26,39 @@ var Policies = React.createClass({
             {
               title: 'Fale Conosco',
               route: ''
-            },
-            {
+            }, {
               title: 'atendimento@safie.com.br'
-            },
-            {
+            }, {
               title: 'Telefone: (47) 3321-6698'
-            },
-            {
+            }, {
               title: 'De segunda a sexta das 10 às 17'
             }
           ]
-        },
-        {
+        }, {
           name: 'Informações',
           items: [
             {
               title: 'Meus pedidos',
               route: '/meus-pedidos'
-            },
-            {
+            }, {
               title: 'Trocas e Devoluções',
               route: '/politica-de-trocas'
-            },
-            {
+            }, {
               title: 'Prazos de Entrega',
               route: '/prazos'
-            },
-            {
+            }, {
               title: 'Pagamentos',
               route: '/pagamentos'
             }
           ]
-        },
-        {
+        }, {
           name: 'Pagamentos e Segurança',
           items: [
             {
               title: 'Cartão de Crédito'
-            },
-            {
+            }, {
               title: 'Parcelamento em até 5x sem juros'
-            },
-            {
+            }, {
               title: 'Parcela mínima de R$ 300,00.'
             }
           ]
@@ -77,28 +67,22 @@ var Policies = React.createClass({
     };
   },
 
-  render: function(){
-    return (
-      <div>
-        <PolicyCard policy={this.props.policies[0]} />
-        <PolicyCard policy={this.props.policies[1]} />
-        <PolicyCard policy={this.props.policies[2]} />
-      </div>
-    );
-  }
-
-});
-
-var Footer = React.createClass({
-  render: function(){
+  render: function () {
     return (
       <div className="footer-band">
         <div className="container">
           <div className="row">
-            <div className="seven columns">
-              <Policies />
+            <div className="three columns">
+              <PolicyCard policy={this.props.policies[0]}/>
             </div>
-            <div className="five columns"></div>
+            <div className="three columns">
+              <PolicyCard policy={this.props.policies[1]}/>
+            </div>
+            <div className="three columns">
+              <PolicyCard policy={this.props.policies[2]}/>
+              <CreditCards />
+            </div>
+            <div className="three columns"></div>
           </div>
         </div>
       </div>

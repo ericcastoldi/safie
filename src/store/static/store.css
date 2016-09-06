@@ -1,3 +1,12 @@
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .container {
+    width    : 90vw;
+    max-width: 90vw;
+    margin   : 0;
+  }
+}
+
 /* SafieStore.jsx*/
 .safie-store a {
   color          : #100D08;
@@ -5,12 +14,57 @@
 }
 
 .safie-store a:hover {
-  color: #FFC107;
+  color: #555;
 }
 
-.safie-store .conteudo-loja {
-  margin-top   : 8rem;
-  margin-bottom: 3rem;
+.safie-store input {
+  border-radius: 0;
+}
+
+.safie-store input:focus {
+  border-color: #999;
+}
+
+.safie-store input[type="submit"] {
+  background-color: #555;
+  border          : 1px solid #555;
+  color           : white;
+}
+
+.safie-store .landing {
+  height                 : 100vh;
+
+  background             : url("img/landing.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size   : cover;
+  -o-background-size     : cover;
+  background-size        : cover;
+
+}
+
+/* Subscribe.jsx*/
+.subscribe {
+  height       : 20rem;
+  text-align   : center;
+  width        : 40vw;
+  padding-top  : 2rem;
+  padding-right: 1rem;
+  padding-left : 1rem;
+  margin       : 0 auto;
+}
+
+.subscribe h4 {
+  font-size     : 1.5rem;
+  text-transform: uppercase;
+  font-weight   : bold;
+  color         : #555;
+  margin-bottom : 15px;
+}
+
+.subscribe input {
+  width    : 100%;
+  margin   : 0 0 0.5rem;
+  font-size: 1.3rem;
 }
 
 /* Header.jsx*/
@@ -28,18 +82,23 @@
 nav.menu {
   text-transform: uppercase;
   line-height   : 3.5rem;
-  text-align    : center;
-  border-top    : 1px solid #ccc;
-  border-bottom : 1px solid #ccc;
+  width         : 20rem;
+  position      : absolute;
+  top           : 2rem;
+  margin-left   : 2rem;
 }
 
 nav.menu a {
-  color       : #666;
-  margin-right: 3rem;
+  color        : #444;
+  margin-right : 3rem;
+  display      : block;
+  border-bottom: 1px solid #444;
+  line-height  : 2.5rem;
+  margin-top   : 1.5rem;
 }
 
-nav.menu a:last-child {
-  margin-right: 0;
+nav.menu a:hover {
+  font-weight: bold;
 }
 
 /* Products.jsx*/
@@ -176,8 +235,35 @@ nav.menu a:last-child {
   font-style: italic;
 }
 
-/* Footer.jsx */
 .footer-band {
-  height          : 30rem;
-  background-color: #100D08;
+  padding-left  : 5rem;
+  border-bottom : 1rem solid #EEA682;
+  padding-bottom: 3rem;
+}
+
+.politicas {
+  font-size: 1.2rem;
+}
+
+.politicas h6 {
+  text-transform: uppercase;
+  font-size     : 1.2rem;
+  margin-bottom : 0.5rem;
+}
+
+.politicas ul {
+  list-style   : none;
+  margin-bottom: 0;
+}
+
+.politicas ul li {
+  margin-bottom: 0;
+}
+
+.cartoes-de-credito {
+  font-size: 3rem;
+}
+
+.cartoes-de-credito i {
+  margin-left: 1rem;
 }
