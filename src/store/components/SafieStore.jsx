@@ -1,27 +1,14 @@
 var React = require('react');
+var connect = require('react-redux').connect;
+var Dimmer = require('./Dimmer.jsx');
 var Menu = require('./Menu.jsx');
 var Footer = require('./Footer.jsx');
 var SubscribePopup = require('./SubscribePopup.jsx');
 
-var Dimmer = React.createClass({
-
-    propTypes: {
-      children: React.PropTypes.node.isRequired
-    },
-
-  render: function(){
-    return (
-        <div className="dimmer-content">
-          {this.props.children}
-        </div>
-    );
-  }
-
-});
-
 var SafieStore = React.createClass({
 
   propTypes: {
+    subscribePopupOn: React.PropTypes.bool.isRequired,
     children: React.PropTypes.node.isRequired
   },
 
@@ -29,8 +16,8 @@ var SafieStore = React.createClass({
     return (
       <div className="safie-store">
 
-        <Dimmer>
-          <SubscribePopup />
+        <Dimmer active={this.props.subscribePopupOn}>
+          <SubscribePopup dismiss={this.dismissPopup} />
         </Dimmer>
 
         {this.props.children}
@@ -44,4 +31,11 @@ var SafieStore = React.createClass({
   }
 });
 
-module.exports = SafieStore;
+function mapStateToProps(state) {
+  return {
+    subscribePopupOn: state.main.subscribePopupOn
+  };
+}
+
+
+module.exports = connect(mapStateToProps)(SafieStore);

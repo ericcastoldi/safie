@@ -7,6 +7,10 @@
   }
 }
 
+body.popup-open {
+  overflow: hidden;
+}
+
 /* SafieStore.jsx*/
 .safie-store {
 
@@ -75,21 +79,6 @@
 
 .dimmer {
   display         : none;
-  z-index         : 999;
-  position        : absolute;
-  left            : 0;
-  top             : 0;
-  right           : 0;
-  bottom          : 0;
-  background-color: #EEA682;
-  opacity         : 0.5;
-}
-
-.dimmer.active {
-  display: block;
-}
-
-.dimmer-content {
   text-align      : center;
   position        : fixed;
   z-index         : 20;
@@ -104,7 +93,7 @@
   right           : 0;
 }
 
-.dimmer-content:after {
+.dimmer:after {
   position        : fixed;
   content         : "";
   top             : 0;
@@ -115,7 +104,7 @@
   z-index         : -2;
 }
 
-.dimmer-content:before {
+.dimmer:before {
   position  : absolute;
   content   : "";
   top       : 0;
@@ -126,9 +115,14 @@
   z-index   : -1;
 }
 
+.dimmer.active {
+  display: block;
+}
+
 .subscribe-popup {
-  font-family: "Bree Serif", serif;
-  padding-top: 1rem;
+  font-family   : "Bree Serif", serif;
+  padding-top   : 1rem;
+  padding-bottom: 1rem;
 }
 
 .subscribe-popup h2 {
