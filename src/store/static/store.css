@@ -8,6 +8,12 @@
 }
 
 /* SafieStore.jsx*/
+.safie-store {
+
+  font-family: "Raleway", sans-serif;
+
+}
+
 .safie-store a {
   color          : #100D08;
   text-decoration: none;
@@ -65,6 +71,92 @@
   width    : 100%;
   margin   : 0 0 0.5rem;
   font-size: 1.3rem;
+}
+
+.dimmer {
+  display         : none;
+  z-index         : 999;
+  position        : absolute;
+  left            : 0;
+  top             : 0;
+  right           : 0;
+  bottom          : 0;
+  background-color: #EEA682;
+  opacity         : 0.5;
+}
+
+.dimmer.active {
+  display: block;
+}
+
+.dimmer-content {
+  text-align      : center;
+  position        : fixed;
+  z-index         : 20;
+  width           : 40vw;
+  height          : 50vh;
+  background-color: white;
+  margin          : auto;
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  bottom          : 0;
+  right           : 0;
+}
+
+.dimmer-content:after {
+  position        : fixed;
+  content         : "";
+  top             : 0;
+  left            : 0;
+  bottom          : 0;
+  right           : 0;
+  background-color: rgba(238,166,130,0.5);
+  z-index         : -2;
+}
+
+.dimmer-content:before {
+  position  : absolute;
+  content   : "";
+  top       : 0;
+  left      : 0;
+  bottom    : 0;
+  right     : 0;
+  background: #FFF;
+  z-index   : -1;
+}
+
+.subscribe-popup {
+  font-family: "Bree Serif", serif;
+  padding-top: 1rem;
+}
+
+.subscribe-popup h2 {
+  margin: 0;
+}
+
+.subscribe-popup .actions {
+  font-family: "Raleway", sans-serif;
+}
+
+.subscribe-popup input {
+  width: 60%;
+
+}
+
+.subscribe-popup button {
+  background-color: black;
+  color           : white;
+  text-transform  : capitalize;
+  border-radius   : 0;
+  width           : 60%;
+  border-color    : black;
+  font-size       : 1.5rem;
+}
+
+.subscribe-popup a {
+  text-decoration: underline;
+  display        : block;
 }
 
 /* Header.jsx*/
@@ -239,6 +331,8 @@ nav.menu a:hover {
   padding-left  : 5rem;
   border-bottom : 1rem solid #EEA682;
   padding-bottom: 3rem;
+  font-family   : "Open Sans", sans-serif;
+
 }
 
 .politicas {
@@ -262,6 +356,10 @@ nav.menu a:hover {
 
 .cartoes-de-credito {
   font-size: 3rem;
+}
+
+.politica {
+  margin: 0;
 }
 
 .cartoes-de-credito i {

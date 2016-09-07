@@ -72,17 +72,17 @@ var Footer = React.createClass({
       <div className="footer-band">
         <div className="container">
           <div className="row">
-            <div className="three columns">
+            <div className="two columns politica">
               <PolicyCard policy={this.props.policies[0]}/>
             </div>
-            <div className="three columns">
+            <div className="two columns politica">
               <PolicyCard policy={this.props.policies[1]}/>
             </div>
-            <div className="three columns">
+            <div className="three columns politica">
               <PolicyCard policy={this.props.policies[2]}/>
               <CreditCards />
             </div>
-            <div className="three columns"></div>
+            <div className="five columns"></div>
           </div>
         </div>
       </div>
