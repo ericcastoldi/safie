@@ -1,12 +1,3 @@
-/* Larger than tablet */
-@media (min-width: 750px) {
-  .container {
-    width    : 90vw;
-    max-width: 90vw;
-    margin   : 0;
-  }
-}
-
 body.popup-open {
   overflow: hidden;
 }
@@ -151,6 +142,7 @@ body.popup-open {
 .subscribe-popup a {
   text-decoration: underline;
   display        : block;
+  cursor         : pointer;
 }
 
 /* Header.jsx*/
@@ -353,9 +345,58 @@ nav.menu a:hover {
 }
 
 .politica {
-  margin: 0;
+  display    : block;
+  float      : left;
+  width      : 25rem;
+  margin     : 1.5rem 0;
+  font-family: "Open Sans", sans-serif;
+  font-size  : 1.2rem;
+  color      : #999;
+}
+
+.politica h6 {
+  font-family   : Open Sans;
+  font-size     : 1.2rem;
+  text-transform: uppercase;
+  font-weight   : bold;
+  color         : #555;
+  margin-bottom : 1.5rem;
+}
+
+.politica p {
+  margin-bottom: 0;
+}
+
+.politica a {
+  color: #999;
+}
+
+.politica a:hover {
+  color          : #444;
+  text-decoration: underline;
 }
 
 .cartoes-de-credito i {
   margin-left: 1rem;
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .container {
+    width    : 90vw;
+    max-width: 90vw;
+    margin   : 0;
+  }
+}
+@media (min-width: 320px) and (orientation:portrait) {
+  /* ====== */
+
+  .subscribe {
+    width: 75%;
+  }
+
+}
+
+* {
+  transition: all 200ms linear;
 }

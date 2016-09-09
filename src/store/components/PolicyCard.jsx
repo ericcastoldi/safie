@@ -39,9 +39,9 @@ var PolicyCard = React.createClass({
   renderPolicies: function(){
     return this.props.policy.items.map(function(item, index){
       return (
-        <li key={index}>
+        <p key={index}>
           <PolicyItem item={item} />
-        </li>
+        </p>
       );
     });
   },
@@ -51,11 +51,9 @@ var PolicyCard = React.createClass({
     var renderedPolicies = this.renderPolicies();
 
     return (
-      <div className="politicas">
+      <div>
         <h6>{this.props.policy.name}</h6>
-        <ul>
-          {renderedPolicies}
-        </ul>
+        {renderedPolicies}
       </div>
     );
   }
