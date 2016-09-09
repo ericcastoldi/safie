@@ -1,27 +1,39 @@
 /* global describe, before, it */
-require('./fakedom.js')('<html><body></body></html>');
+require('./fakedom.js')();
 var SafieStore = require('../../../src/store/components/SafieStore.jsx');
-
-var expect = require('chai').expect;
+var Dimmer = require('../../../src/store/components/Dimmer.jsx');
+var SubscribePopup = require('../../../src/store/components/SubscribePopup.jsx');
+var fakeStore = require('./fakeStore.js');
 var React = require('react');
-var ReactTestUtils = require('react-addons-test-utils');
+var enzyme = require('enzyme');
+var expect = require('chai').expect;
+
 
 describe('SafieStore - root component', function(){
 
-  before('render and locate element', function() {
+  describe('should render properly with the Subscribe Popup On.', function(){
 
-    var componentTree = ReactTestUtils.renderIntoDocument(
-      <SafieStore />
-    );
+    before('render component', function() {
 
-    this.safieStoreTitle = ReactTestUtils.findRenderedDOMComponentWithTag(componentTree, 'h1');
-  });
 
-  // TODO: Ajustar teste quando o componente for atualizado
-  it('should render an <h1> element with the name of the store.', function() {
+      this.componentTree = enzyme.shallow(
+        <SafieStore subscribePopupOn={true} store={fakeStore} >
+          <div id="safieStoreChildren"></div>
+        </SafieStore>
+      );
+    });
 
-    expect(this.safieStoreTitle.tagName).to.equal('H1');
-    expect(this.safieStoreTitle.textContent).to.equal('Safie');
+    it('should render an <div> element with the css class "safie-store".', function() {
+
+      expect(this.componentTree.find('.safie-store')).to.exist;
+
+    });
+
+    it('should render a <Dimmer>.', function() {
+      var dimmer = this.componentTree.find(Dimmer);
+      expect(dimmer).to.exist;
+    });
+
   });
 
 });

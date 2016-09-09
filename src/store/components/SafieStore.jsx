@@ -17,7 +17,7 @@ var SafieStore = React.createClass({
       <div className="safie-store">
 
         <Dimmer active={this.props.subscribePopupOn}>
-          <SubscribePopup dismiss={this.dismissPopup} />
+          <SubscribePopup />
         </Dimmer>
 
         {this.props.children}

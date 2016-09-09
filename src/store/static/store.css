@@ -1,12 +1,3 @@
-/* Larger than tablet */
-@media (min-width: 750px) {
-  .container {
-    width    : 90vw;
-    max-width: 90vw;
-    margin   : 0;
-  }
-}
-
 body.popup-open {
   overflow: hidden;
 }
@@ -86,7 +77,6 @@ body.popup-open {
   height          : 50vh;
   background-color: white;
   margin          : auto;
-  position        : absolute;
   top             : 0;
   left            : 0;
   bottom          : 0;
@@ -359,3 +349,26 @@ nav.menu a:hover {
 .cartoes-de-credito i {
   margin-left: 1rem;
 }
+
+/* Mobile first queries */
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .container {
+    width    : 90vw;
+    max-width: 90vw;
+    margin   : 0;
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
