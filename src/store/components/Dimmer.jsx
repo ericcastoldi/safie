@@ -7,13 +7,13 @@ var Dimmer = React.createClass({
     children: React.PropTypes.node.isRequired
   },
 
-  componentDidMount: function() {
-    document.body.classList.toggle('popup-open', this.props.active);
-  },
-
-  componentWillReceiveProps: function(nextProps) {
-    document.body.classList.toggle('popup-open', nextProps.active);
-  },
+  // componentDidMount: function() {
+  //   document.body.classList.toggle('popup-open', this.props.active);
+  // },
+  //
+  // componentWillReceiveProps: function(nextProps) {
+  //   document.body.classList.toggle('popup-open', nextProps.active);
+  // },
 
   render: function(){
     let cssClasses = ['dimmer'];
