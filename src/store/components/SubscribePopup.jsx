@@ -5,6 +5,7 @@ var bindActionCreators = require('redux').bindActionCreators;
 
 var SubscribePopup = React.createClass({
   propTypes: {
+    active: React.PropTypes.bool.isRequired,
     dismiss: React.PropTypes.func.isRequired
   },
 
@@ -13,8 +14,13 @@ var SubscribePopup = React.createClass({
   },
 
   render: function () {
+    let cssClasses = ['subscribe-popup', 'dimmer'];
+    if(this.props.active) {
+      cssClasses.push('active');
+    }
+
     return (
-      <div className="subscribe-popup">
+      <div className={cssClasses.join(' ')}>
         <h2>Aproveite nossa<br />AMAZING SALE!</h2>
         <p>Deixe seu e-mail e seja a primeira a receber todos os nossos descontos.</p>
         <div className="actions">

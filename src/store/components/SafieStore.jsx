@@ -16,15 +16,13 @@ var SafieStore = React.createClass({
     return (
       <div className="safie-store">
 
-        <Dimmer active={this.props.subscribePopupOn}>
-          <SubscribePopup />
-        </Dimmer>
-
         {this.props.children}
 
         <Menu />
 
         <Footer />
+
+        <SubscribePopup active={this.props.subscribePopupOn} />
 
       </div>
     );
