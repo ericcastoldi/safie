@@ -1,8 +1,8 @@
 var React = require('react');
 var connect = require('react-redux').connect;
-var Dimmer = require('./Dimmer.jsx');
-var Menu = require('./Menu.jsx');
+
 var Footer = require('./Footer.jsx');
+var Subscribe = require('./Subscribe.jsx');
 var SubscribePopup = require('./SubscribePopup.jsx');
 
 var SafieStore = React.createClass({
@@ -18,7 +18,7 @@ var SafieStore = React.createClass({
 
         {this.props.children}
 
-        <Menu />
+        <Subscribe />
 
         <Footer />
 

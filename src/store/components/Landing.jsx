@@ -1,6 +1,7 @@
 var React = require('react');
-var Subscribe = require('./Subscribe.jsx');
-
+var Menu = require('./Menu.jsx');
+var Logo = require('./Logo.jsx');
+var UnderstandButton = require('./UnderstandButton.jsx');
 
 var Landing = React.createClass({
 
@@ -9,8 +10,10 @@ var Landing = React.createClass({
     return (
       <div>
         <div className="landing">
+          <Menu />
+          <Logo />
+          <UnderstandButton />
         </div>
-        <Subscribe />
       </div>
     );
   }
