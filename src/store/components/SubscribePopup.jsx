@@ -2,7 +2,6 @@ var React = require('react');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
 
-
 var SubscribePopup = React.createClass({
   propTypes: {
     active: React.PropTypes.bool.isRequired,
@@ -21,14 +20,16 @@ var SubscribePopup = React.createClass({
 
     return (
       <div className={cssClasses.join(' ')}>
-        <h2>Aproveite nossa<br />AMAZING SALE!</h2>
-        <p>Deixe seu e-mail e seja a primeira a receber todos os nossos descontos.</p>
-        <div className="actions">
-          <input type="email" id="email" placeholder="E-MAIL" />
-          <button>Receber Descontos!</button>
-          <a onClick={this.dismissPopup}>
-            Não, obrigada. Não quero receber descontos.
-          </a>
+        <div className="content">
+          <h2>Aproveite nossa<br />AMAZING SALE!</h2>
+          <p>Deixe seu e-mail e seja a primeira a receber todos os nossos descontos.</p>
+          <div className="actions">
+            <input type="email" id="email" placeholder="E-MAIL" />
+            <button>Receber Descontos!</button>
+            <a onClick={this.dismissPopup}>
+              Não, obrigada. Não quero receber descontos.
+            </a>
+          </div>
         </div>
       </div>
     );
