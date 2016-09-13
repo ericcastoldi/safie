@@ -81,16 +81,15 @@ nav.menu a:hover {
 }
 
 .dimmer {
-  display         : none;
-  text-align      : center;
-  position        : fixed;
-  z-index         : 20;
-  background-color: white;
-  margin          : auto;
-  top             : 0;
-  left            : 0;
-  bottom          : 0;
-  right           : 0;
+  display   : none;
+  text-align: center;
+  position  : fixed;
+  z-index   : 20;
+  margin    : auto;
+  top       : 0;
+  left      : 0;
+  bottom    : 0;
+  right     : 0;
 }
 
 .dimmer:after {
@@ -105,14 +104,13 @@ nav.menu a:hover {
 }
 
 .dimmer:before {
-  position  : absolute;
-  content   : "";
-  top       : 0;
-  left      : 0;
-  bottom    : 0;
-  right     : 0;
-  background: #FFF;
-  z-index   : -1;
+  position: fixed;
+  content : "";
+  top     : 0;
+  left    : 0;
+  bottom  : 0;
+  right   : 0;
+  z-index : -1;
 }
 
 .dimmer.active {
@@ -121,8 +119,6 @@ nav.menu a:hover {
 
 .subscribe-popup {
   font-family: "Bree Serif", serif;
-  height     : 60vh;
-  width      : 90vw;
 }
 
 .subscribe-popup h2 {
@@ -130,13 +126,13 @@ nav.menu a:hover {
 }
 
 .subscribe-popup .content {
-  /*background-color: rgba(25,25,25,0.5);*/
-  position : absolute;
-  top      : 50%;
-  left     : 50%;
-  transform: translate(-50%,-50%);
-  width    : 95%;
-  padding  : 2rem 1rem;
+  background-color: white;
+  position        : fixed;
+  top             : 50%;
+  left            : 50%;
+  transform       : translate(-50%,-50%);
+  padding         : 3rem 5rem 4rem;
+  min-width       : 30rem;
 }
 
 .subscribe-popup .actions {
@@ -275,18 +271,14 @@ nav.menu a:hover {
   }
 
   .logo {
-    background     : url("img/logo.png") no-repeat center center;
+    display        : block;
+    background     : url("img/logo.png") no-repeat;
     background-size: contain;
-    width          : 30rem;
-    height         : 30rem;
+    height         : 45%;
+    width          : 45%;
     position       : relative;
-    left           : 30rem;
-    top            : 20rem;
-  }
-
-  .subscribe-popup {
-    width : 80vw;
-    height: 60vh;
+    left           : 20vw;
+    top            : 20vh;
   }
 
   .subscribe-popup .actions button,
@@ -444,111 +436,8 @@ nav.menu a:hover {
   }
 
 }
-/* Larger than desktop */
-@media (min-width: 1000px) {
-  .subscribe-popup {
-    width : 50vw;
-    height: 45vh;
-  }
-}
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {}
 
-/* Larger than Desktop HD */
-@media (min-width: 1200px) {
-  .subscribe-popup {
-    width : 40vw;
-    height: 30vh;
-  }
-}
-@media (min-width: 2500px) {
-  .subscribe-popup {
-    width : 30vw;
-    height: 20vh;
-  }
-}
-
-/* ----------- Galaxy S5 ----------- */
-
-/* Portrait */
-/*@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-  .subscribe-popup {
-    height: 45vh;
-  }
-
-}
-
-/* Landscape */
-/*@media screen and (device-width: 360px) and (device-height: 640px) and (orientation: landscape) {
-  .subscribe-popup {
-    height: 80vh;
-  }
-}
-
-/* Larger than mobile */
-@media (min-width: 400px) {}
-
-/* Larger than phablet */
-@media (min-width: 550px) {}
-
-/* ----------- iPhone 5 and 5S ----------- */
-
-/* Portrait and Landscape */
-/*@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {}*/
-
-/* Portrait */
-/*@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-  .subscribe-popup {
-    height: 55vh;
-  }
-}*/
-
-/* Landscape */
-/*@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {}*/
-
-/* ----------- iPhone 6 ----------- */
-
-/* Portrait and Landscape */
-/*@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {}
-
-/* Portrait
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-  .subscribe-popup {
-    height: 45vh;
-  }
-}*/
-
-/* Landscape */
-/*@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {}*/
-
-/* ----------- iPhone 6+ ----------- */
-
-/* Portrait and Landscape */
-/*@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {}*/
-
-/* Portrait */
-/*@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
-  .subscribe-popup {
-    height: 40vh;
-  }
-}*/
-
-/* Landscape */
-/*@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {}*/
-
-/* ----------- iPad mini ----------- */
-
-/* Portrait and Landscape */
-/*@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {}*/
-
-/* Portrait */
-/*@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
-  .subscribe-popup {
-    height: 30vh;
-  }
-}*/
-
-/* Landscape */
-/*@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
-  .subscribe-popup {
-    height: 35vh;
-  }
+/** {
+  transition: all 0.5s ease;
 }*/
