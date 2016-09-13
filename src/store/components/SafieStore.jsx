@@ -1,6 +1,4 @@
 var React = require('react');
-var Header = require('./Header.jsx');
-var Menu = require('./Menu.jsx');
 var Footer = require('./Footer.jsx');
 
 var SafieStore = React.createClass({
@@ -12,17 +10,8 @@ var SafieStore = React.createClass({
   render: function () {
     return (
       <div className="safie-store">
-
-        <Header />
-
-        <Menu />
-
-        <div className="conteudo-loja">
-          {this.props.children}
-        </div>
-
+        {this.props.children}
         <Footer />
-
       </div>
     );
   }

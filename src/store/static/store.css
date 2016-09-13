@@ -1,183 +1,443 @@
+/* All devices!!! */
+
 /* SafieStore.jsx*/
+.safie-store {
+  font-family: "Raleway", sans-serif;
+}
+
 .safie-store a {
   color          : #100D08;
   text-decoration: none;
 }
 
 .safie-store a:hover {
-  color: #FFC107;
+  color: #555;
 }
 
-.safie-store .conteudo-loja {
-  margin-top   : 8rem;
-  margin-bottom: 3rem;
+.safie-store input {
+  border-radius: 0;
 }
 
-/* Header.jsx*/
-.header-container,
-.header-container h1 {
-  font-size     : 10rem;
-  height        : 20rem;
-  text-align    : center;
-  text-transform: lowercase;
-  line-height   : 20rem;
-  letter-spacing: -0.5rem;
+.safie-store input:focus {
+  border-color: #999;
+}
+
+.safie-store input[type="submit"] {
+  background-color: #555;
+  border          : 1px solid #555;
+  color           : white;
+}
+
+.safie-store .landing {
+  height          : 100vh;
+  background-color: #E3F2FD;
+}
+
+.logo {
+  display: none;
+}
+
+.understand-button {
+  text-align      : center;
+  background-color: rgba(255,255,255,0.5);
+  font-size       : 1.2rem;
+  width           : 30rem;
+  border-radius   : 10rem;
+  margin-left     : -3rem;
+  position        : absolute;
+  bottom          : 4rem;
+}
+
+.understand-button a {
+  color: #EEA682;
+}
+
+.understand-button a:hover {
+  color          : #f0986c;
+  text-decoration: underline;
 }
 
 /* Menu.jsx*/
 nav.menu {
   text-transform: uppercase;
   line-height   : 3.5rem;
-  text-align    : center;
-  border-top    : 1px solid #ccc;
-  border-bottom : 1px solid #ccc;
+  width         : 20rem;
+  position      : absolute;
+  top           : 2rem;
+  margin-left   : 2rem;
 }
 
 nav.menu a {
-  color       : #666;
-  margin-right: 3rem;
+  color        : #444;
+  margin-right : 3rem;
+  display      : block;
+  border-bottom: 1px solid #444;
+  line-height  : 2.5rem;
+  margin-top   : 1.5rem;
 }
 
-nav.menu a:last-child {
-  margin-right: 0;
+nav.menu a:hover {
+  font-weight: bold;
 }
 
-/* Products.jsx*/
-.grid-produtos .linha {
-  float: left;
-  width: 100%;
+.dimmer {
+  display   : none;
+  text-align: center;
+  position  : fixed;
+  z-index   : 20;
+  margin    : auto;
+  top       : 0;
+  left      : 0;
+  bottom    : 0;
+  right     : 0;
 }
 
-/*ProductCard.jsx*/
-.card-produto {
-  text-align    : center;
-  padding-bottom: 4rem;
+.dimmer:after {
+  position        : fixed;
+  content         : "";
+  top             : 0;
+  left            : 0;
+  bottom          : 0;
+  right           : 0;
+  background-color: rgba(238,166,130,0.5);
+  z-index         : -2;
 }
 
-.card-produto p {
+.dimmer:before {
+  position: fixed;
+  content : "";
+  top     : 0;
+  left    : 0;
+  bottom  : 0;
+  right   : 0;
+  z-index : -1;
+}
+
+.dimmer.active {
+  display: block;
+}
+
+.subscribe-popup {
+  font-family: "Bree Serif", serif;
+}
+
+.subscribe-popup h2 {
   margin: 0;
 }
 
-.card-produto .foto-produto {
-  height: 40rem;
+.subscribe-popup .content {
+  background-color: white;
+  position        : fixed;
+  top             : 50%;
+  left            : 50%;
+  transform       : translate(-50%,-50%);
+  padding         : 3rem 5rem 4rem;
+  min-width       : 30rem;
 }
 
-/* ProductPicture.jsx */
-.foto-produto {
-  margin-bottom: 2rem;
+.subscribe-popup .actions {
+  font-family: "Raleway", sans-serif;
 }
 
-.foto-produto img {
-  max-width : 100%;
-  max-height: 100%;
-}
-
-/* ProductMainPicture.jsx */
-.foto-principal-produto img {
-  max-width: 100%;
-}
-
-/*ProductPicturesViewer.jsx*/
-.thumbnail-produto {
-  height            : 10rem;
-  width             : 10rem;
-  float             : left;
-  margin-right      : 2rem;
-  overflow          : hidden;
-  -webkit-filter: grayscale(100%);
-  -webkit-transition: all 1s ease;
-  -moz-transition   : all 1s ease;
-  -o-transition     : all 1s ease;
-  -ms-transition    : all 1s ease;
-  transition        : all 1s ease;
-}
-
-.thumbnail-produto:hover {
-  -webkit-filter: grayscale(0);
-}
-
-.thumbnail-produto img {
-  max-width : 100%;
-  max-height: 100%;
-}
-
-/* ProductDetails.jsx */
-.detalhes-produto {
-  border-left   : 1px solid #100D08;
-  min-height    : 25rem;
-  padding-left  : 3rem;
-  padding-bottom: 2rem;
-  padding-top   : 1rem;
-}
-
-/* ProductInfo.jsx */
-
-/* SizeForm.jsx */
-.form-medidas {
-  padding-bottom: 2rem;
-}
-
-.form-medidas input {
-  border-radius: 0;
+.subscribe-popup .actions input {
   width        : 100%;
+  margin-bottom: 0.5rem;
 }
 
-.form-medidas input:focus {
-  border: 1px solid #100D08;
+.subscribe-popup .actions button {
+  background-color: black;
+  color           : white;
+  text-transform  : capitalize;
+  border-radius   : 0;
+  width           : 100%;
+  border-color    : black;
+  font-size       : 1.5rem;
 }
 
-/* BuyButton.jsx */
-.comprar-produto button {
-  font-size    : 1.5rem;
-  height       : 4rem;
-  border-radius: 0;
-  border       : 0.2rem solid #100D08;
-  width        : 100%;
+.subscribe-popup .actions a {
+  text-decoration: underline;
+  display        : block;
+  cursor         : pointer;
 }
 
-.comprar-produto button:hover {
-  color      : #FFC107;
-  font-weight: 600;
-}
+/* Subscribe.jsx*/
+.subscribe {
+  height       : 20rem;
+  text-align   : center;
+  width        : 90vw;
 
-/* ShoppingBag.jsx */
-.sacola td {
-  vertical-align: top;
-}
-
-.sacola .comprar-produto {
-  float: right;
-}
-
-/* ProductCardHorizontal.jsx */
-.produto-sacola .foto-produto {
-  width       : 20rem;
-  margin-right: 2rem;
-  float       : left;
-}
-
-.produto-sacola .imagem {
-  max-width    : 20rem;
-  float        : left;
+  padding-top  : 2rem;
   padding-right: 1rem;
-  margin-right : 2rem;
+  padding-left : 1rem;
+  margin       : 0 auto;
 }
 
-.produto-sacola-medidas p {
+.subscribe h4 {
+  font-size     : 1.5rem;
+  text-transform: uppercase;
+  font-weight   : bold;
+  color         : #555;
+  margin-bottom : 15px;
+}
+
+.subscribe input {
+  width    : 100%;
+  margin   : 0 0 0.5rem;
+  font-size: 1.3rem;
+}
+
+.footer-band {
+  padding-left  : 5rem;
+  border-bottom : 1rem solid #EEA682;
+  padding-bottom: 3rem;
+  font-family   : "Open Sans", sans-serif;
+
+}
+
+.politicas {
+  font-size: 1.2rem;
+}
+
+.politicas h6 {
+  text-transform: uppercase;
+  font-size     : 1.2rem;
+  margin-bottom : 0.5rem;
+}
+
+.politicas ul {
+  list-style   : none;
   margin-bottom: 0;
 }
 
-.produto-sacola-medidas .medida {
-  font-weight  : bold;
-  padding-right: 0.5rem;
+.politicas ul li {
+  margin-bottom: 0;
 }
 
-.produto-sacola-medidas .tamanho {
-  font-style: italic;
+.cartoes-de-credito {
+  font-size: 3rem;
 }
 
-/* Footer.jsx */
-.footer-band {
-  height          : 30rem;
-  background-color: #100D08;
+.politica {
+  display    : block;
+  float      : left;
+  width      : 25rem;
+  margin     : 1.5rem 0;
+  font-family: "Open Sans", sans-serif;
+  font-size  : 1.2rem;
+  color      : #999;
 }
+
+.politica h6 {
+  font-family   : Open Sans;
+  font-size     : 1.2rem;
+  text-transform: uppercase;
+  font-weight   : bold;
+  color         : #555;
+  margin-bottom : 1.5rem;
+}
+
+.politica p {
+  margin-bottom: 0;
+}
+
+.politica a {
+  color: #999;
+}
+
+.politica a:hover {
+  color          : #444;
+  text-decoration: underline;
+}
+
+.cartoes-de-credito i {
+  margin-left: 1rem;
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .container {
+    width    : 95vw;
+    max-width: 95vw;
+    margin   : 0;
+  }
+
+  .safie-store .landing {
+    background             : url("img/landing.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size   : cover;
+    -o-background-size     : cover;
+    background-size        : cover;
+
+  }
+
+  .logo {
+    display        : block;
+    background     : url("img/logo.png") no-repeat;
+    background-size: contain;
+    height         : 45%;
+    width          : 45%;
+    position       : relative;
+    left           : 20vw;
+    top            : 20vh;
+  }
+
+  .subscribe-popup .actions button,
+  .subscribe-popup .actions input {
+    width: 75%;
+  }
+
+  .subscribe {
+    width: 40vw;
+  }
+
+  /* Header.jsx*/
+  .header-container,
+  .header-container h1 {
+    font-size     : 10rem;
+    height        : 20rem;
+    text-align    : center;
+    text-transform: lowercase;
+    line-height   : 20rem;
+    letter-spacing: -0.5rem;
+  }
+
+  /* Products.jsx*/
+  .grid-produtos .linha {
+    float: left;
+    width: 100%;
+  }
+
+  /*ProductCard.jsx*/
+  .card-produto {
+    text-align    : center;
+    padding-bottom: 4rem;
+  }
+
+  .card-produto p {
+    margin: 0;
+  }
+
+  .card-produto .foto-produto {
+    height: 40rem;
+  }
+
+  /* ProductPicture.jsx */
+  .foto-produto {
+    margin-bottom: 2rem;
+  }
+
+  .foto-produto img {
+    max-width : 100%;
+    max-height: 100%;
+  }
+
+  /* ProductMainPicture.jsx */
+  .foto-principal-produto img {
+    max-width: 100%;
+  }
+
+  /*ProductPicturesViewer.jsx*/
+  .thumbnail-produto {
+    height            : 10rem;
+    width             : 10rem;
+    float             : left;
+    margin-right      : 2rem;
+    overflow          : hidden;
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: all 1s ease;
+    -moz-transition   : all 1s ease;
+    -o-transition     : all 1s ease;
+    -ms-transition    : all 1s ease;
+    transition        : all 1s ease;
+  }
+
+  .thumbnail-produto:hover {
+    -webkit-filter: grayscale(0);
+  }
+
+  .thumbnail-produto img {
+    max-width : 100%;
+    max-height: 100%;
+  }
+
+  /* ProductDetails.jsx */
+  .detalhes-produto {
+    border-left   : 1px solid #100D08;
+    min-height    : 25rem;
+    padding-left  : 3rem;
+    padding-bottom: 2rem;
+    padding-top   : 1rem;
+  }
+
+  /* ProductInfo.jsx */
+
+  /* SizeForm.jsx */
+  .form-medidas {
+    padding-bottom: 2rem;
+  }
+
+  .form-medidas input {
+    border-radius: 0;
+    width        : 100%;
+  }
+
+  .form-medidas input:focus {
+    border: 1px solid #100D08;
+  }
+
+  /* BuyButton.jsx */
+  .comprar-produto button {
+    font-size    : 1.5rem;
+    height       : 4rem;
+    border-radius: 0;
+    border       : 0.2rem solid #100D08;
+    width        : 100%;
+  }
+
+  .comprar-produto button:hover {
+    color      : #FFC107;
+    font-weight: 600;
+  }
+
+  /* ShoppingBag.jsx */
+  .sacola td {
+    vertical-align: top;
+  }
+
+  .sacola .comprar-produto {
+    float: right;
+  }
+
+  /* ProductCardHorizontal.jsx */
+  .produto-sacola .foto-produto {
+    width       : 20rem;
+    margin-right: 2rem;
+    float       : left;
+  }
+
+  .produto-sacola .imagem {
+    max-width    : 20rem;
+    float        : left;
+    padding-right: 1rem;
+    margin-right : 2rem;
+  }
+
+  .produto-sacola-medidas p {
+    margin-bottom: 0;
+  }
+
+  .produto-sacola-medidas .medida {
+    font-weight  : bold;
+    padding-right: 0.5rem;
+  }
+
+  .produto-sacola-medidas .tamanho {
+    font-style: italic;
+  }
+
+}
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {}
+
+/** {
+  transition: all 0.5s ease;
+}*/

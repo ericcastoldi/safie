@@ -1,27 +1,36 @@
 /* global describe, before, it */
-require('./fakedom.js')('<html><body></body></html>');
+require('./fakedom.js')();
 var SafieStore = require('../../../src/store/components/SafieStore.jsx');
-
-var expect = require('chai').expect;
+var Footer = require('../../../src/store/components/Footer.jsx');
 var React = require('react');
-var ReactTestUtils = require('react-addons-test-utils');
+var enzyme = require('enzyme');
+//var expect = require('chai').expect;
+import {expect} from 'chai';
 
 describe('SafieStore - root component', function(){
 
-  before('render and locate element', function() {
+  describe('Should render properly.', function(){
 
-    var componentTree = ReactTestUtils.renderIntoDocument(
-      <SafieStore />
-    );
+    before('render component', function() {
+      this.wrapper = enzyme.shallow(
+        <SafieStore >
+          <div id="safieStoreChildren"></div>
+        </SafieStore>
+      );
+    });
 
-    this.safieStoreTitle = ReactTestUtils.findRenderedDOMComponentWithTag(componentTree, 'h1');
-  });
+    it('should render an <div> element with the css class "safie-store".', function() {
+      expect(this.wrapper.find('.safie-store')).to.exist;
+    });
 
-  // TODO: Ajustar teste quando o componente for atualizado
-  it('should render an <h1> element with the name of the store.', function() {
+    it('should render the children passed in.', function() {
+        expect(this.wrapper.find(<div className="safieStoreChildren"></div>)).to.exist;
+    });
 
-    expect(this.safieStoreTitle.tagName).to.equal('H1');
-    expect(this.safieStoreTitle.textContent).to.equal('Safie');
+    it('should render a <Footer />.', function() {
+      expect(this.wrapper.find(Footer)).to.exist;
+    });
+
   });
 
 });
