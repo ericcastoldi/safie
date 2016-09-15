@@ -10,6 +10,7 @@ var Provider = ReactRedux.Provider;
 var store = require('./state/store.js');
 var SafieStore = require('./SafieStore.jsx');
 var Landing = require('./Landing.jsx');
+var Layout = require('./Layout.jsx');
 var Product = require('./Product.jsx');
 var Products = require('./Products.jsx');
 var ShoppingBag = require('./ShoppingBag.jsx');
@@ -22,11 +23,16 @@ ReactDOM.render(
     <Router history={history}>
       <Route component={SafieStore}>
         <Route path="/" component={Landing} />
-        <Route path="/produtos" component={Products} />
-        <Route path="/produtos/:id" component={Product} />
-        <Route path="/bag" component={ShoppingBag} />
-        <Redirect from="*" to="/" />
+
+        <Route component={Layout}>
+          <Route path="/produtos" component={Products} />
+          <Route path="/produtos/:id" component={Product} />
+          <Route path="/bag" component={ShoppingBag} />
+
+        </Route>
+
       </Route>
+      <Redirect from="*" to="/" />
     </Router>
   </Provider>,
   document.getElementById('app'));
