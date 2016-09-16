@@ -4,8 +4,10 @@
   "description": "Portal de e-commerce para venda de coleções de peças de vestuário feminino feitas sob medida para as clientes do site.",
   "main": "app.js",
   "scripts": {
+    "prelaunch": "gulp deploy",
+    "launch": "npm run viewinbrowser && node app.js",
     "prestart": "gulp deploy",
-    "start": "npm run viewinbrowser && node app.js",
+    "start": "node app.js",
     "viewinbrowser": "opener http://localhost:8080/produtos",
     "prerefreshstatics": "npm run clean",
     "refreshstatics": "npm run copystatic",
