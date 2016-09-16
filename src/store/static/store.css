@@ -5,24 +5,24 @@
   font-family: "Raleway", sans-serif;
 }
 
-.safie-store a {
+a {
   color          : #100D08;
   text-decoration: none;
 }
 
-.safie-store a:hover {
+a:hover {
   color: #555;
 }
 
-.safie-store input {
+input {
   border-radius: 0;
 }
 
-.safie-store input:focus {
+input:focus {
   border-color: #999;
 }
 
-.safie-store input[type="submit"] {
+nput[type="submit"] {
   background-color: #555;
   border          : 1px solid #555;
   color           : white;
@@ -58,13 +58,16 @@
 }
 
 /* Menu.jsx*/
+.navigation {
+  transition: all 0.5s ease;
+  width     : 5rem;
+  text-align: center;
+  position  : fixed;
+  right     : 0;
+  top       : 0;
+}
+
 nav.menu {
-  /*text-transform: uppercase;
-  line-height   : 3.5rem;
-  width         : 20rem;
-  position      : absolute;
-  top           : 2rem;
-  margin-left   : 2rem;*/
   text-transform: uppercase;
   line-height   : 3.5rem;
   width         : 20rem;
@@ -73,7 +76,7 @@ nav.menu {
   padding-left  : 2rem;
   height        : 100vh;
   float         : left;
-
+  display       : none;
 }
 
 nav.menu a {
@@ -96,11 +99,9 @@ nav.menu a:hover {
   text-align: center;
   height    : 100vh;
   background: rgba(238,166,130,0.5);
-  text-align: center;
-  height    : 100vh;
-  background: rgba(238,166,130,0.5);
   position  : fixed;
   right     : 0;
+  top       : 0;
 }
 
 .quickbag.open {
@@ -113,12 +114,6 @@ nav.menu a:hover {
 
 .quickbag.open .items {
   display: block;
-}
-
-.layout-content {
-  float         : left;
-  padding-top   : 5rem;
-  padding-bottom: 10rem;
 }
 
 .dimmer {
@@ -296,12 +291,6 @@ nav.menu a:hover {
 
 /* Larger than tablet */
 @media (min-width: 750px) {
-  .container {
-    /*width    : 95vw;
-    max-width: 95vw;
-    margin: 0;*/
-  }
-
   .safie-store .landing {
     background             : url("img/landing.jpg") no-repeat center center;
     -webkit-background-size: cover;
@@ -350,22 +339,14 @@ nav.menu a:hover {
 
   /*ProductCard.jsx*/
   .card-produto {
-    text-align    : center;
-    padding-bottom: 4rem;
+    text-align: center;
   }
 
   .card-produto p {
     margin: 0;
   }
 
-  .card-produto .foto-produto {
-    height: 40rem;
-  }
-
   /* ProductPicture.jsx */
-  .foto-produto {
-    margin-bottom: 2rem;
-  }
 
   .foto-produto img {
     max-width : 100%;
@@ -477,7 +458,15 @@ nav.menu a:hover {
   }
 
 }
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {}
+@media screen and (min-width: 1000px) and (max-width: 1600px) {
+  .navigation i {
+    display: none;
+  }
+
+  .navigation nav.menu {
+    display: block;
+  }
+}
 
 /** {
   transition: all 0.5s ease;
