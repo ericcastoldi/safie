@@ -14,7 +14,6 @@
     "postrefreshstatics": "npm run transpile",
     "clean": "rimraf public",
     "copystatic": "copyfiles -u 2 ./src/store/static/* ./public/store/",
-    "postinstall": "npm run refreshstatics && npm run transpile",
     "test": "gulp test",
     "transpile": "browserify -t [ babelify --presets [ react ] ] src/store/components/App.jsx -o public/store/application.js"
   },
