@@ -23,14 +23,13 @@ ReactDOM.render(
     <Router history={history}>
       <Route component={SafieStore}>
         <Route path="/" component={Landing} />
+      </Route>
 
-        <Route component={Layout}>
-          <Route path="/produtos" component={Products} />
-          <Route path="/produtos/:id" component={Product} />
-          <Route path="/bag" component={ShoppingBag} />
 
-        </Route>
-
+      <Route component={Layout}>
+        <Route path="/produtos" component={Products} />
+        <Route path="/produtos/:id" component={Product} />
+        <Route path="/bag" component={ShoppingBag} />
       </Route>
       <Redirect from="*" to="/" />
     </Router>
