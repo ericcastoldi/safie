@@ -9,7 +9,8 @@ var loggerMiddleware = createLogger();
 var initialState = {
   main: {
     subscribePopupOn: true,
-    quickBagOpened: false
+    quickBagOpened: false,
+    mobileMenuOpened: false
   }
 };
 
@@ -34,6 +35,10 @@ var mainReducer = function (state = initialState, action) {
   case 'TOGGLE_QUICK_BAG':
     return Object.assign({}, state, {
       quickBagOpened: !state.quickBagOpened
+    });
+  case 'TOGGLE_MOBILE_MENU':
+    return Object.assign({}, state, {
+      mobileMenuOpened: !state.mobileMenuOpened
     });
   default:
     return state;
