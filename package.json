@@ -6,7 +6,7 @@
   "scripts": {
     "prelaunch": "gulp deploy",
     "launch": "npm run viewinbrowser && node app.js",
-    "prestart": "gulp deploy",
+    "postinstall": "gulp deploy",
     "start": "node app.js",
     "viewinbrowser": "opener http://localhost:8080/produtos",
     "prerefreshstatics": "npm run clean",
