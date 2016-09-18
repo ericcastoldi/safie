@@ -61,6 +61,53 @@ var initialState = {
         route: '/contato'
       }
     ]
+  },
+  footer: {
+    policies: [
+      {
+        name: 'Central de Atendimento',
+        items: [
+          {
+            title: 'Fale Conosco',
+            route: '/fale-conosco'
+          }, {
+            title: 'atendimento@safie.com.br'
+          }, {
+            title: 'Telefone: (47) 3321-6698'
+          }, {
+            title: 'De segunda a sexta das 10 às 17'
+          }
+        ]
+      }, {
+        name: 'Informações',
+        items: [
+          {
+            title: 'Meus pedidos',
+            route: '/meus-pedidos'
+          }, {
+            title: 'Trocas e Devoluções',
+            route: '/politicas/trocas'
+          }, {
+            title: 'Prazos de Entrega',
+            route: '/politicas/entregas'
+          }, {
+            title: 'Pagamentos',
+            route: '/politicas/pagamentos'
+          }
+        ]
+      }, {
+        name: 'Pagamentos e Segurança',
+        items: [
+          {
+            title: 'Cartão de Crédito'
+          }, {
+            title: 'Parcelamento em até 5x sem juros'
+          }, {
+            title: 'Parcela mínima de R$ 300,00.'
+          }
+        ]
+      }
+    ]
   }
 };
 
@@ -76,7 +123,12 @@ var initialState = {
 //   CANNOT_RECEIVE_FEATURED_ITEMS: 'CANNOT_RECEIVE_FEATURED_ITEMS'
 // };
 
-var menuReducer = function (state = initialState, action) {
+var footerReducer = function (state = initialState.footer, action) {
+  return state;
+}
+
+
+var menuReducer = function (state = initialState.menu, action) {
   switch (action.type) {
   case 'TOGGLE_MOBILE_MENU':
     return Object.assign({}, state, {
@@ -129,6 +181,7 @@ var mainReducer = function (state = initialState, action) {
 const rootReducer = Redux.combineReducers({
   main: mainReducer,
   menu: menuReducer,
+  footer: footerReducer,
   routing: ReactRouterRedux.routerReducer
 });
 

@@ -1,23 +1,24 @@
 var React = require('react');
+var ProductTitle = require('./ProductTitle.jsx');
 var ProductInfo = require('./ProductInfo.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
-var SizeForm = require('./SizeForm.jsx');
+//var SizeForm = require('./SizeForm.jsx');
 var BuyButton = require('./BuyButton.jsx');
 
 var ProductDetails = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string.isRequired,
-    price: React.PropTypes.number.isRequired,
+    price: React.PropTypes.string.isRequired,
     description: React.PropTypes.string,
     measures: React.PropTypes.object
   },
 
   getDefaultProps: function () {
     return {
-      name: 'Saia Mid Velvet',
-      price: 230.00,
-      description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
+      name: 'SAIA LÁPIS URBAN',
+      price: '230,90',
+      description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
       measures: {
         Cintura: null,
         Pernas: null
@@ -29,17 +30,20 @@ var ProductDetails = React.createClass({
 
     return (
       <div className="detalhes-produto">
-
-        <ProductInfo
-          name={this.props.name}
-          description={this.props.description} />
-
-        <ProductPrice price={this.props.price} />
-
-        <SizeForm measures={this.props.measures} />
-
-        <BuyButton label="Comprar" route="/bag" />
-
+        <div className="container">
+          <div className="row">
+            <div className="three columns">
+              <ProductTitle name={this.props.name} />
+              <ProductPrice price={this.props.price} />
+            </div>
+            <div className="four columns">
+              <ProductInfo description={this.props.description} />
+            </div>
+            <div className="five columns">
+              <BuyButton label="Comprar" route="/bag" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

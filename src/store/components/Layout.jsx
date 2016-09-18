@@ -14,8 +14,6 @@ var Layout = React.createClass({
         <Menu />
         <div className="layout-content">
           {this.props.children}
-
-
         </div>
         <QuickBag />
       </div>

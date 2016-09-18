@@ -24,12 +24,23 @@ var ProductPicturesViewer = React.createClass({
   render: function(){
 
     return (
-      <div>
-        <ProductPicture picture={this.state.activePicture} />
-
-        <ProductPicturesPicker
-          pictures={this.state.pictures}
-          picturePicked={this.changeActivePicture} />
+      <div className="picture-viewer">
+        <div className="container">
+          <div className="row">
+            <div className="three columns">
+              <ProductPicturesPicker
+                pictures={this.state.pictures}
+                picturePicked={this.changeActivePicture} />
+            </div>
+            <div className="nine columns">
+              <div className="foto-principal-produto">
+                <i className="fa fa-angle-double-left fa-2" aria-hidden="true"></i>
+                <ProductPicture picture={this.state.activePicture} />
+                <i className="fa fa-angle-double-right fa-2" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

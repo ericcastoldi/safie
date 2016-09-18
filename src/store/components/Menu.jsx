@@ -28,59 +28,6 @@ var Menu = React.createClass({
     this.props.toggle();
   },
 
-  // getDefaultProps: function () {
-  //   return {
-  //     items: [
-  //       {
-  //         title: 'Home',
-  //         route: '/'
-  //       },
-  //       {
-  //         id: 'colecoes',
-  //         expanded: false,
-  //         title: 'Coleções',
-  //         items: [
-  //           {
-  //             title: 'Safie Conceito',
-  //             route: '/produtos'
-  //           },
-  //           {
-  //             title: 'Barcelona',
-  //             route: '/produtos'
-  //           },
-  //           {
-  //             title: 'Coleções Cápsula',
-  //             route: '/produtos'
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         id: 'mysafie',
-  //         expanded: false,
-  //         title: 'My Safie',
-  //         items: [
-  //           {
-  //             title: 'Medidas',
-  //             route: '/medidas'
-  //           },
-  //           {
-  //             title: 'Login',
-  //             route: '/login'
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         title: 'Sobre Nós',
-  //         route: '/sobre'
-  //       },
-  //       {
-  //         title: 'Contato',
-  //         route: '/contato'
-  //       }
-  //     ]
-  //   };
-  // },
-
   renderItems: function(){
     return this.props.items.map(function (item, rowIndex) {
       if(item.items){

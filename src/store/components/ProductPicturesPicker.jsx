@@ -25,7 +25,7 @@ var ProductPicturesPicker = React.createClass({
     var thumbnails = this.renderThumbnails();
 
     return (
-        <div>
+        <div className="picture-picker">
           {thumbnails}
         </div>
     );

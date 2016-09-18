@@ -6,19 +6,9 @@ var Product = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="eight columns">
-
-            <ProductPicturesViewer />
-
-          </div>
-          <div className="four columns">
-
-            <ProductDetails />
-
-          </div>
-        </div>
+      <div>
+        <ProductPicturesViewer />
+        <ProductDetails />
       </div>
     );
   }
