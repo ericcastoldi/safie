@@ -59,10 +59,14 @@ input[type="submit"] {
 
 /* Menu.jsx*/
 .navigation {
-  transition: all 0.5s ease;
-  width     : 5rem;
-  text-align: center;
-  position  : relative;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition   : all 0.5s ease;
+  -o-transition     : all 0.5s ease;
+  -ms-transition    : all 0.5s ease;
+  transition        : all 0.5s ease;
+  width             : 5rem;
+  text-align        : center;
+  position          : relative;
 }
 
 .navigation i {
@@ -84,17 +88,51 @@ nav.menu {
   display       : none;
 }
 
-nav.menu a {
+nav.menu a,
+nav.menu span {
   color        : #444;
   margin-right : 3rem;
   display      : block;
   border-bottom: 1px solid #444;
   line-height  : 2.5rem;
   margin-top   : 1.5rem;
-
+  cursor       : pointer;
 }
 
-nav.menu a:hover {
+nav.menu .submenu a {
+  border      : none;
+  margin-top  : auto;
+  margin-right: auto;
+}
+
+.submenu {
+  visibility   : hidden;
+  opacity      : 0;
+  max-height   : 0;
+  margin-bottom: 0;
+}
+
+.submenu.open {
+  visibility        : visible;
+  opacity           : 1;
+  max-height        : 100%;
+  margin-top        : 2rem;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition   : all 0.5s ease;
+  -o-transition     : all 0.5s ease;
+  -ms-transition    : all 0.5s ease;
+  transition        : all 0.5s ease;
+}
+
+.submenu li {
+  margin-bottom : 0;
+  list-style    : none;
+  margin-left   : 1.5vw;
+  text-transform: capitalize;
+}
+
+nav.menu a:hover,
+nav.menu span:hover {
   font-weight: bold;
 }
 
@@ -112,33 +150,34 @@ nav.menu.open {
 }
 
 .quickbag {
-  transition: all 0.5s ease;
-  width     : 5rem;
-  text-align: center;
-  height    : 100vh;
-  background: rgba(238,166,130,0.5);
-  position  : absolute;
-  right     : 0;
-  top       : 0;
-}
+  -webkit-transition: all 0.5s ease;
+  -moz-transition   : all 0.5s ease;
+  -o-transition     : all 0.5s ease;
+  -ms-transition    : all 0.5s ease;
+  transition        : all 0.5s ease;
 
-/*mobile*/
-.quickbag {
-  height    : auto;
-  background: none;
+  width             : auto;
+  text-align        : center;
+  position          : absolute;
+  right             : 0;
+  top               : 0;
+  height            : auto;
+  background        : none;
+  cursor            : pointer;
 }
 
 .quickbag i {
+  font-size   : 3rem;
   margin-right: 3rem;
   margin-top  : 3rem;
 }
 
-.quickbag.open {
-  width: 15rem;
-}
-
 .quickbag .items {
   display: none;
+}
+
+.quickbag.open {
+  cursor: auto;
 }
 
 .quickbag.open .items {
@@ -487,7 +526,7 @@ nav.menu.open {
   }
 
 }
-@media screen and (min-width: 1000px) and (max-width: 1600px) {
+@media screen and (min-width: 1000px) {
   .navigation i {
     display: none;
   }
@@ -495,8 +534,25 @@ nav.menu.open {
   .navigation nav.menu {
     display: block;
   }
-}
 
-/** {
-  transition: all 0.5s ease;
-}*/
+  .quickbag {
+    height    : 100vh;
+    width     : 3.5%;
+    background: rgba(238,166,130,0.5);
+    position  : fixed;
+  }
+
+  .quickbag i {
+    margin-top  : 3vh;
+    margin-right: auto;
+  }
+
+  .quickbag.open {
+    width: 10%;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .quickbag i {
+    font-size: 300%;
+  }
+}

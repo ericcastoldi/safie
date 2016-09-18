@@ -9,8 +9,58 @@ var loggerMiddleware = createLogger();
 var initialState = {
   main: {
     subscribePopupOn: true,
-    quickBagOpened: false,
-    mobileMenuOpened: false
+    quickBagOpened: false
+  },
+  menu: {
+    mobileMenuOpened: false,
+    items: [
+      {
+        title: 'Home',
+        route: '/'
+      },
+      {
+        id: 'colecoes',
+        expanded: false,
+        title: 'Coleções',
+        items: [
+          {
+            title: 'Safie Conceito',
+            route: '/produtos'
+          },
+          {
+            title: 'Barcelona',
+            route: '/produtos'
+          },
+          {
+            title: 'Coleções Cápsula',
+            route: '/produtos'
+          }
+        ]
+      },
+      {
+        id: 'mysafie',
+        expanded: false,
+        title: 'My Safie',
+        items: [
+          {
+            title: 'Medidas',
+            route: '/medidas'
+          },
+          {
+            title: 'Login',
+            route: '/login'
+          }
+        ]
+      },
+      {
+        title: 'Sobre Nós',
+        route: '/sobre'
+      },
+      {
+        title: 'Contato',
+        route: '/contato'
+      }
+    ]
   }
 };
 
@@ -26,6 +76,40 @@ var initialState = {
 //   CANNOT_RECEIVE_FEATURED_ITEMS: 'CANNOT_RECEIVE_FEATURED_ITEMS'
 // };
 
+var menuReducer = function (state = initialState, action) {
+  switch (action.type) {
+  case 'TOGGLE_MOBILE_MENU':
+    return Object.assign({}, state, {
+      mobileMenuOpened: !state.mobileMenuOpened
+    });
+  case 'TOGGLE_MENU_SUBITEMS':
+    var item = state.items.find(function (it) {
+      return it.id === action.menuId;
+    });
+
+    if (!item) {
+      return state;
+    }
+
+    var index = state.items.indexOf(item);
+    var changedItem = Object.assign({}, item, {
+      expanded: !item.expanded
+    });
+
+    var newItems = [
+          ...state.items.slice(0, index),
+          changedItem,
+          ...state.items.slice(index + 1)
+    ];
+
+    return Object.assign({}, state, {
+      items: newItems
+    });
+  default:
+    return state;
+  }
+};
+
 var mainReducer = function (state = initialState, action) {
   switch (action.type) {
   case 'DISMISS_SUBSCRIBE_POPUP':
@@ -36,10 +120,6 @@ var mainReducer = function (state = initialState, action) {
     return Object.assign({}, state, {
       quickBagOpened: !state.quickBagOpened
     });
-  case 'TOGGLE_MOBILE_MENU':
-    return Object.assign({}, state, {
-      mobileMenuOpened: !state.mobileMenuOpened
-    });
   default:
     return state;
   }
@@ -48,6 +128,7 @@ var mainReducer = function (state = initialState, action) {
 // Combine Reducers
 const rootReducer = Redux.combineReducers({
   main: mainReducer,
+  menu: menuReducer,
   routing: ReactRouterRedux.routerReducer
 });
 

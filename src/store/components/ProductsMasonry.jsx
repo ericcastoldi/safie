@@ -1,8 +1,7 @@
 var React = require('react');
 var ProductCard = require('./ProductCard.jsx');
 
-
-var Products = React.createClass({
+var ProductsMasonry = React.createClass({
 
   propTypes: {
     products: React
@@ -62,11 +61,11 @@ var Products = React.createClass({
     },
 
   render: function () {
-
     var renderedProducts = this.renderProducts();
+
     return (
-      <div className="grid-produtos">
-        <div className="container">
+      <div className="masonry-wrapper">
+        <div className="masonry">
           {renderedProducts}
         </div>
       </div>
@@ -74,32 +73,15 @@ var Products = React.createClass({
   },
 
   renderProducts: function () {
-
-    var products = this.props.products;
-    var splittedProducts = [];
-
-    while (products.length) {
-      splittedProducts.push(products.splice(0, 3));
-    }
-
-    var renderedProducts = splittedProducts.map(function (rowProducts, index) {
-
-      var productRowContent = rowProducts.map(function (product, rowIndex) {
-        return (
-          <div key={rowIndex} className="one-third column">
-            <ProductCard product={product}/>
-          </div>
-        );
-      });
-
+    return this.props.products.map(function (product, rowIndex) {
       return (
-        <div key={index} className="row linha">{productRowContent}</div>
+        <div key={rowIndex} className="masonry-item">
+          <ProductCard product={product}/>
+        </div>
       );
     });
-
-    return renderedProducts;
   }
 
 });
 
-module.exports = Products;
+module.exports = ProductsMasonry;
