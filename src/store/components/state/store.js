@@ -124,8 +124,10 @@ var initialState = {
 // };
 
 var footerReducer = function (state = initialState.footer, action) {
-  return state;
-}
+  switch (action.type) {
+    default: return state;
+  }
+};
 
 
 var menuReducer = function (state = initialState.menu, action) {
