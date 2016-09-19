@@ -11,7 +11,7 @@ var ShoppingBag = React.createClass({
       name: React.PropTypes.string.isRequired,
       route: React.PropTypes.string,
       description: React.PropTypes.string,
-      price: React.PropTypes.number.isRequired,
+      price: React.PropTypes.string.isRequired,
       measures: React.PropTypes.object
     }))
   },
@@ -24,7 +24,7 @@ var ShoppingBag = React.createClass({
           name: 'Saia Mid Velvet',
           description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
           route: '/produtos/123',
-          price: 230,
+          price: '230,90',
           measures: {
             'Cintura': 50,
             'Pernas': 120
@@ -34,13 +34,13 @@ var ShoppingBag = React.createClass({
           name: 'Peça exemplo',
           description: 'Peça de exemplo à venda',
           route: '/produtos/123',
-          price: 10,
+          price: '10,99',
           measures: {}
         }, {
           picture: '/img/demo/lookbook03.jpg',
           name: 'Peça de exemplo à venda',
           route: '/produtos/123',
-          price: 10,
+          price: '10,25',
           measures: {
             'Pernas': null
           }
@@ -59,7 +59,6 @@ var ShoppingBag = React.createClass({
           <div className="row">
             <div className="twelve columns">
 
-              <h1>Sacola de compras</h1>
               <table>
                 <thead>
                   <tr>

@@ -420,13 +420,13 @@ nav.menu.open {
   margin-top   : 0;
   margin-bottom: 0;
   text-align   : left;
+  font-family  : "Open Sans", sans-serif;
 }
 
 .informacoes-produto h3 {
   margin-bottom : 1rem;
   font-size     : 1.3rem;
   text-transform: uppercase;
-
 }
 
 /* SizeForm.jsx */
@@ -449,8 +449,13 @@ nav.menu.open {
 }
 
 .measures-button {
+  background-color: #444;
+  color           : rgba(238,166,130,1);
+}
+
+.measures-button:hover {
   background-color: #333;
-  color           : rgba(238,166,130,0.8);
+  color           : rgba(238,166,130,1);
 }
 
 .comprar-produto button {
@@ -460,17 +465,67 @@ nav.menu.open {
   width    : 80%;
 }
 
-.buy-button {
+.comprar-produto button:hover {
+  font-weight: 600;
+}
+
+.comprar-produto .buy-button {
   background-color: #CCC;
 }
 
-.comprar-produto button:hover {
-  font-weight: 600;
+.comprar-produto .buy-button:hover {
+  background-color: rgba(238,166,130,0.8);
 }
 
 .social {
   font-size     : 2rem;
   letter-spacing: 1.5rem;
+}
+
+/* ShoppingBag.jsx */
+
+.sacola button.buy-button {
+  float           : right;
+  background-color: #555;
+  border          : 1px solid #555;
+  color           : white;
+}
+
+.sacola button.buy-button:hover {
+  background-color: #100D08;
+  border          : 1px solid #100D08;
+  color           : white;
+}
+
+.sacola td {
+  vertical-align: top;
+}
+
+/* ProductCardHorizontal.jsx */
+.produto-sacola .foto-produto {
+  width       : 20rem;
+  margin-right: 2rem;
+  float       : left;
+}
+
+.produto-sacola .imagem {
+  max-width    : 20rem;
+  float        : left;
+  padding-right: 1rem;
+  margin-right : 2rem;
+}
+
+.produto-sacola-medidas p {
+  margin-bottom: 0;
+}
+
+.produto-sacola-medidas .medida {
+  font-weight  : bold;
+  padding-right: 0.5rem;
+}
+
+.produto-sacola-medidas .tamanho {
+  font-style: italic;
 }
 
 .footer-band {
@@ -574,42 +629,6 @@ nav.menu.open {
     width: 40vw;
   }
 
-  /* ShoppingBag.jsx */
-  .sacola td {
-    vertical-align: top;
-  }
-
-  .sacola .comprar-produto {
-    float: right;
-  }
-
-  /* ProductCardHorizontal.jsx */
-  .produto-sacola .foto-produto {
-    width       : 20rem;
-    margin-right: 2rem;
-    float       : left;
-  }
-
-  .produto-sacola .imagem {
-    max-width    : 20rem;
-    float        : left;
-    padding-right: 1rem;
-    margin-right : 2rem;
-  }
-
-  .produto-sacola-medidas p {
-    margin-bottom: 0;
-  }
-
-  .produto-sacola-medidas .medida {
-    font-weight  : bold;
-    padding-right: 0.5rem;
-  }
-
-  .produto-sacola-medidas .tamanho {
-    font-style: italic;
-  }
-
 }
 @media screen and (min-width: 1000px) {
   .navigation i {
@@ -634,6 +653,10 @@ nav.menu.open {
 
   .quickbag.open {
     width: 10%;
+  }
+
+  .sacola .container {
+    float: left;
   }
 }
 @media screen and (min-width: 2000px) {

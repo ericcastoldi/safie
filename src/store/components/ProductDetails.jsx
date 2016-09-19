@@ -3,7 +3,9 @@ var ProductTitle = require('./ProductTitle.jsx');
 var ProductInfo = require('./ProductInfo.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
 //var SizeForm = require('./SizeForm.jsx');
+var MeasuresButton = require('./MeasuresButton.jsx');
 var BuyButton = require('./BuyButton.jsx');
+var SocialIcons = require('./SocialIcons.jsx');
 
 var ProductDetails = React.createClass({
 
@@ -40,7 +42,11 @@ var ProductDetails = React.createClass({
               <ProductInfo description={this.props.description} />
             </div>
             <div className="five columns">
-              <BuyButton label="Comprar" route="/bag" />
+              <div className="comprar-produto">
+                <MeasuresButton />
+                <BuyButton label="Comprar" route="/bag" />
+                <SocialIcons />
+              </div>
             </div>
           </div>
         </div>
