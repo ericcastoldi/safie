@@ -14,17 +14,47 @@ a:hover {
   color: #555;
 }
 
-input {
-  border-radius: 0;
+button,
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="submit"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+select,
+textarea {
+  border-radius     : 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition   : all 0.5s ease;
+  -o-transition     : all 0.5s ease;
+  -ms-transition    : all 0.5s ease;
+  transition        : all 0.5s ease;
 }
 
-input:focus {
-  border-color: #999;
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="submit"]:focus,
+input[type="tel"]:focus,
+input[type="text"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+  border: 1px solid #666;
 }
 
 input[type="submit"] {
   background-color: #555;
   border          : 1px solid #555;
+  color           : white;
+}
+
+input[type="submit"]:hover {
+  background-color: #100D08;
+  border          : 1px solid #100D08;
   color           : white;
 }
 
@@ -295,7 +325,10 @@ nav.menu.open {
   border-bottom : 1rem solid #EEA682;
   padding-bottom: 3rem;
   font-family   : "Open Sans", sans-serif;
+}
 
+.footer-band .container {
+  margin-left: 0;
 }
 
 .politicas {
