@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    opened: state.main.quickBagOpened
+    opened: state.bag.quickBagOpened
   };
 }
 

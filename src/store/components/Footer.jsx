@@ -45,7 +45,7 @@ var Footer = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    policies: state.footer.policies
+    policies: state.home.footer.policies
   };
 }
 

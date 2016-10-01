@@ -10,7 +10,10 @@ var ProductPicture = React.createClass({
   render: function(){
     return (
       <div className="foto-produto">
-        <img src={this.props.picture} alt={this.props.description} />
+        <img
+          src={this.props.picture}
+          alt={this.props.description}
+          title={this.props.description}/>
       </div>
     );
   }

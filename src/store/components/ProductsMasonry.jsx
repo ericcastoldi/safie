@@ -1,64 +1,22 @@
 var React = require('react');
 var ProductCard = require('./ProductCard.jsx');
+var connect = require('react-redux').connect;
 
 var ProductsMasonry = React.createClass({
 
   propTypes: {
-    products: React
-      .PropTypes
-      .arrayOf(
-        React.PropTypes.shape({
-          picture: React.PropTypes.string.isRequired,
-          name: React.PropTypes.string.isRequired,
-          route: React.PropTypes.string.isRequired,
-          price: React.PropTypes.number.isRequired
+    products: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired,
+        name: React.PropTypes.string.isRequired,
+        pictures: React.PropTypes.shape({
+          main: React.PropTypes.number.isRequired,
+          product: React.PropTypes.number.isRequired,
+          paths: React.PropTypes.arrayOf(React.PropTypes.object)
         })
-      )
+      })
+    )
   },
-
-
-    getDefaultProps: function () {
-      return {
-        products: [
-          {
-            picture: '/img/demo/lookbook01.jpg',
-            name: 'Peça de exemplo à venda',
-            route: '/produtos/123',
-            price: 10
-          },
-          {
-            picture: '/img/demo/lookbook02.jpg',
-            name: 'Peça de exemplo à venda',
-            route: '/produtos/123',
-            price: 10
-          },
-          {
-            picture: '/img/demo/lookbook03.jpg',
-            name: 'Peça de exemplo à venda',
-            route: '/produtos/123',
-            price: 10
-          },
-          {
-            picture: '/img/demo/lookbook04.jpg',
-            name: 'Peça de exemplo à venda',
-            route: '/produtos/123',
-            price: 10
-          },
-          {
-            picture: '/img/demo/lookbook05.jpg',
-            name: 'Peça de exemplo à venda',
-            route: '/produtos/123',
-            price: 10
-          },
-          {
-            picture: '/img/demo/lookbook06.jpg',
-            name: 'Peça de exemplo à venda',
-            route: '/produtos/123',
-            price: 10
-          }
-        ]
-      };
-    },
 
   render: function () {
     var renderedProducts = this.renderProducts();
@@ -84,4 +42,10 @@ var ProductsMasonry = React.createClass({
 
 });
 
-module.exports = ProductsMasonry;
+function mapStateToProps(state) {
+  return {
+    products: state.products.barcelona
+  };
+}
+
+module.exports = connect(mapStateToProps)(ProductsMasonry);

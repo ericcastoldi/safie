@@ -31,7 +31,7 @@ var Landing = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    subscribePopupOn: state.main.subscribePopupOn
+    subscribePopupOn: state.home.subscribePopupOn
   };
 }
 

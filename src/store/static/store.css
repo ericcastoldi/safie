@@ -387,7 +387,7 @@ nav.menu.open {
   margin-bottom     : 1rem;
 }
 
-/*.thumbnail-produto.active*/
+.thumbnail-produto.active,
 .thumbnail-produto:hover {
   -webkit-filter: grayscale(0);
 }
