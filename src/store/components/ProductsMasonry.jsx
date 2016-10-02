@@ -1,10 +1,13 @@
 var React = require('react');
 var ProductCard = require('./ProductCard.jsx');
 var connect = require('react-redux').connect;
+var bindActionCreators = require('redux').bindActionCreators;
 
 var ProductsMasonry = React.createClass({
 
   propTypes: {
+    params: React.PropTypes.object.isRequired,
+    fetchProducts: React.PropTypes.func.isRequired,
     products: React.PropTypes.arrayOf(
       React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
@@ -18,7 +21,27 @@ var ProductsMasonry = React.createClass({
     )
   },
 
+  componentDidMount: function() {
+    this.props.fetchProducts(this.props.params.collection);
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if(this.props.params.collection !== nextProps.params.collection){
+      this.props.fetchProducts(nextProps.params.collection);
+    }
+  },
+
   render: function () {
+
+    var noData = !this.props.products
+                || this.props.products.length === 0;
+
+    if(noData) {
+       return (
+          <div>Nenhuma peça nessa coleção :(</div>
+       );
+    }
+
     var renderedProducts = this.renderProducts();
 
     return (
@@ -42,10 +65,23 @@ var ProductsMasonry = React.createClass({
 
 });
 
+var fetchProducts = function(collection) {
+  return {
+    type: 'FETCH_PRODUCTS',
+    payload: { collection: collection }
+  };
+};
+
 function mapStateToProps(state) {
   return {
-    products: state.products.barcelona
+    products: state.products
   };
 }
 
-module.exports = connect(mapStateToProps)(ProductsMasonry);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchProducts: fetchProducts
+  }, dispatch);
+}
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductsMasonry);

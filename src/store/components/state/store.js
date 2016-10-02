@@ -18,6 +18,171 @@ var loggerMiddleware = createLogger();
 //   CANNOT_RECEIVE_FEATURED_ITEMS: 'CANNOT_RECEIVE_FEATURED_ITEMS'
 // };
 
+var collections = {
+  'barcelona': [
+    {
+      id: 'saia-lapis',
+      name: 'SAIA LÁPIS URBAN',
+      description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
+      price: '230,90',
+      measures: {
+        Cintura: null,
+        Pernas: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/saia-lapis-look-01.jpg',
+          2: '/img/demo/saia-lapis-detalhe.jpg',
+          3: '/img/demo/saia-lapis-look-02.jpg',
+          4: '/img/demo/saia-lapis-look-03.jpg'
+        }
+      }
+    },
+    {
+      id: 'blazer-soho',
+      name: 'Blazer soho',
+      description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
+      price: '1130,80',
+      measures: {
+        ombros: null,
+        bracos: null,
+        comprimento: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/blazer-look-01.jpg',
+          2: '/img/demo/blazer-detalhe.jpg',
+          3: '/img/demo/blazer-look-02.jpg'
+        }
+      }
+    },
+    {
+      id: 'calca-noelle',
+      name: 'calca noelle',
+      description: 'Calça reta com cós com passantes. Possui 4 bolsos sendo os dois posteriores falsos. Fechamento frontal em zíper e botões.',
+      price: '522,00',
+      measures: {
+        cintura: null,
+        quadril: null,
+        pernas: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/calca-look-01.jpg',
+          2: '/img/demo/calca-detalhe.jpg',
+          3: '/img/demo/calca-look-02.jpg'
+        }
+      }
+    },
+    {
+      id: 'camisa-alabama',
+      name: 'CAMISA ALABAMA',
+      description: 'Camisa cropped, gola de ponta, manga longa, punho fechado em botão, 2 bolsos e barra com faixa para amarração. Abotoamento frontal.',
+      price: '397,00',
+      measures: {
+        ombros: null,
+        bracos: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/camisa-look-01.jpg',
+          2: '/img/demo/camisa-detalhe.jpg',
+          3: '/img/demo/camisa-look-02.jpg'
+        }
+      }
+    },
+    {
+      id: 'camiseta-pop',
+      name: 'TOP POP NO STYLE',
+      description: 'Top reto em malha, decote arredondado, manga curta e 2 fendas laterais. Estampa frontal: "NAH POP NO STYLE AS STRICTLY ROOTS".',
+      price: '144,00',
+      measures: {
+        ombros: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/camiseta-look-01.jpg',
+          2: '/img/demo/camiseta-detalhe.jpg',
+          3: '/img/demo/camiseta-look-02.jpg',
+          4: '/img/demo/camiseta-look-03.jpg'
+        }
+      }
+    },
+    {
+      id: 'casaco-mirage',
+      name: 'CASAQUETO MIRAGE',
+      description: 'Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.',
+      price: '1244,00',
+      measures: {
+        ombros: null,
+        bracos: null,
+        comprimento: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/casaco-look-01.jpg',
+          2: '/img/demo/casaco-detalhe.jpg',
+          3: '/img/demo/casaco-look-02.jpg',
+          4: '/img/demo/casaco-look-03.jpg'
+        }
+      }
+    },
+    {
+      id: 'macacao-xai-xai',
+      name: 'macacao xai xai',
+      description: 'Top reto em seda, gola alta fechada em colchete e manga longa. Levemente transparente.',
+      price: '822,00',
+      measures: {
+        ombros: null,
+        bracos: null,
+        pernas: null,
+        quadril: null
+      },
+      pictures: {
+        main: 1,
+        product: 2,
+        paths: {
+          1: '/img/demo/macacao-look-01.jpg',
+          2: '/img/demo/macacao-detalhe.jpg',
+          3: '/img/demo/macacao-look-02.jpg'
+        }
+      }
+    },
+    {
+      id: 'vestido-elliot',
+      name: 'vestido elliot',
+      description: 'Vestido curto estilo kimono e decote V. Sem fechamento. Acompanha faixa no mesmo tecido para amarração.',
+      price: '689,60',
+      measures: {
+        ombros: null,
+        bracos: null,
+        pernas: null,
+        quadril: null
+      },
+      pictures: {
+        main: 3,
+        product: 2,
+        paths: {
+          1: '/img/demo/vestido-look-01.jpg',
+          2: '/img/demo/vestido-detalhe.jpg',
+          3: '/img/demo/vestido-look-02.jpg'
+        }
+      }
+    }
+  ]
+};
 
 var initialState = {
   home: {
@@ -125,173 +290,10 @@ var initialState = {
     ]
   },
   product: {
-    measuresPopupOpen: false
+    measuresPopupOpen: false,
+    current: {}
   },
-  products: {
-    'barcelona': [
-      {
-        id: 'saia-lapis',
-        name: 'SAIA LÁPIS URBAN',
-        description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
-        price: '230,90',
-        measures: {
-          Cintura: null,
-          Pernas: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/saia-lapis-look-01.jpg',
-            2: '/img/demo/saia-lapis-detalhe.jpg',
-            3: '/img/demo/saia-lapis-look-02.jpg',
-            4: '/img/demo/saia-lapis-look-03.jpg'
-          }
-        }
-      },
-      {
-        id: 'blazer-soho',
-        name: 'Blazer soho',
-        description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
-        price: '1130,80',
-        measures: {
-          ombros: null,
-          bracos: null,
-          comprimento: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/blazer-look-01.jpg',
-            2: '/img/demo/blazer-detalhe.jpg',
-            3: '/img/demo/blazer-look-02.jpg'
-          }
-        }
-      },
-      {
-        id: 'calca-noelle',
-        name: 'calca noelle',
-        description: 'Calça reta com cós com passantes. Possui 4 bolsos sendo os dois posteriores falsos. Fechamento frontal em zíper e botões.',
-        price: '522,00',
-        measures: {
-          cintura: null,
-          quadril: null,
-          pernas: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/calca-look-01.jpg',
-            2: '/img/demo/calca-detalhe.jpg',
-            3: '/img/demo/calca-look-02.jpg'
-          }
-        }
-      },
-      {
-        id: 'camisa-alabama',
-        name: 'CAMISA ALABAMA',
-        description: 'Camisa cropped, gola de ponta, manga longa, punho fechado em botão, 2 bolsos e barra com faixa para amarração. Abotoamento frontal.',
-        price: '397,00',
-        measures: {
-          ombros: null,
-          bracos: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/camisa-look-01.jpg',
-            2: '/img/demo/camisa-detalhe.jpg',
-            3: '/img/demo/camisa-look-02.jpg'
-          }
-        }
-      },
-      {
-        id: 'camiseta-pop',
-        name: 'TOP POP NO STYLE',
-        description: 'Top reto em malha, decote arredondado, manga curta e 2 fendas laterais. Estampa frontal: "NAH POP NO STYLE AS STRICTLY ROOTS".',
-        price: '144,00',
-        measures: {
-          ombros: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/camiseta-look-01.jpg',
-            2: '/img/demo/camiseta-detalhe.jpg',
-            3: '/img/demo/camiseta-look-02.jpg',
-            4: '/img/demo/camiseta-look-03.jpg'
-          }
-        }
-      },
-      {
-        id: 'casaco-mirage',
-        name: 'CASAQUETO MIRAGE',
-        description: 'Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.',
-        price: '1244,00',
-        measures: {
-          ombros: null,
-          bracos: null,
-          comprimento: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/casaco-look-01.jpg',
-            2: '/img/demo/casaco-detalhe.jpg',
-            3: '/img/demo/casaco-look-02.jpg',
-            4: '/img/demo/casaco-look-03.jpg'
-          }
-        }
-      },
-      {
-        id: 'macacao-xai-xai',
-        name: 'macacao xai xai',
-        description: 'Top reto em seda, gola alta fechada em colchete e manga longa. Levemente transparente.',
-        price: '822,00',
-        measures: {
-          ombros: null,
-          bracos: null,
-          pernas: null,
-          quadril: null
-        },
-        pictures: {
-          main: 1,
-          product: 2,
-          paths: {
-            1: '/img/demo/macacao-look-01.jpg',
-            2: '/img/demo/macacao-detalhe.jpg',
-            3: '/img/demo/macacao-look-02.jpg'
-          }
-        }
-      },
-      {
-        id: 'vestido-elliot',
-        name: 'vestido elliot',
-        description: 'Vestido curto estilo kimono e decote V. Sem fechamento. Acompanha faixa no mesmo tecido para amarração.',
-        price: '689,60',
-        measures: {
-          ombros: null,
-          bracos: null,
-          pernas: null,
-          quadril: null
-        },
-        pictures: {
-          main: 3,
-          product: 2,
-          paths: {
-            1: '/img/demo/vestido-look-01.jpg',
-            2: '/img/demo/vestido-detalhe.jpg',
-            3: '/img/demo/vestido-look-02.jpg'
-          }
-        }
-      }
-    ]
-  }
+  products: []
 };
 
 var menuReducer = function (state = initialState.menu, action) {
@@ -317,10 +319,10 @@ var menuReducer = function (state = initialState.menu, action) {
     });
 
     var newItems = [
-            ...state.items.slice(0, index),
-            changedItem,
-            ...state.items.slice(index + 1)
-      ];
+      ...state.items.slice(0, index),
+      changedItem,
+      ...state.items.slice(index + 1)
+    ];
 
     return Object.assign({}, state, {
       items: newItems
@@ -356,14 +358,31 @@ var bagReducer = function (state = initialState.bag, action) {
 
 var productsReducer = function (state = initialState.products, action) {
   switch (action.type) {
-    default: return state;
+  case 'FETCH_PRODUCTS':
+    if (action.payload.collection in collections) {
+      return [...collections[action.payload.collection]];
+    }
+
+    return [];
+  default:
+    return state;
   }
 };
 
 
 var productReducer = function (state = initialState.product, action) {
   switch (action.type) {
-    default: return state;
+  case 'FETCH_PRODUCT':
+    var product = collections.barcelona.find(function (piece) {
+      return piece.id === action.payload.id;
+    });
+
+    return Object.assign({}, state, {
+      current: product
+    });
+
+  default:
+    return state;
   }
 };
 

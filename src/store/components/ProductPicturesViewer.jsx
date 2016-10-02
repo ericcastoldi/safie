@@ -4,20 +4,28 @@ var ProductPicturesPicker = require('./ProductPicturesPicker.jsx');
 
 var ProductPicturesViewer = React.createClass({
 
+  propTypes: {
+    pictures: React.PropTypes.shape({
+      main: React.PropTypes.number.isRequired,
+      product: React.PropTypes.number.isRequired,
+      paths: React.PropTypes.arrayOf(React.PropTypes.object)
+    })
+  },
+
   getInitialState: function (){
+    if(this.props.pictures) {
+      return {
+        activePicture: this.props.pictures.main
+      };
+    }
+
     return {
-      activePicture: 1,
-      pictures: {
-        1: '/img/demo/lookbook13.jpg',
-        2: '/img/demo/lookbook14.jpg',
-        3: '/img/demo/lookbook15.jpg',
-        4: '/img/demo/detalhe-saia.jpg'
-      }
+      activePicture: 1
     };
   },
 
   nextPicture: function(){
-    if(Number(this.state.activePicture) === Object.keys(this.state.pictures).length)
+    if(Number(this.state.activePicture) === Object.keys(this.props.pictures.paths).length)
     {
       this.changeActivePicture(1);
       return;
@@ -30,7 +38,7 @@ var ProductPicturesViewer = React.createClass({
   previousPicture: function(){
     if(Number(this.state.activePicture) === 1)
     {
-      this.changeActivePicture(Object.keys(this.state.pictures).length);
+      this.changeActivePicture(Object.keys(this.props.pictures.paths).length);
       return;
     }
 
@@ -45,7 +53,11 @@ var ProductPicturesViewer = React.createClass({
 
   render: function(){
 
-    var activePicturePath = this.state.pictures[this.state.activePicture];
+    if(!this.props.pictures){
+      return (<div>Carregando imagens...</div>);
+    }
+
+    var activePicturePath = this.props.pictures.paths[this.state.activePicture];
 
     return (
       <div className="picture-viewer">
@@ -53,7 +65,7 @@ var ProductPicturesViewer = React.createClass({
           <div className="row">
             <div className="three columns">
               <ProductPicturesPicker
-                pictures={this.state.pictures}
+                pictures={this.props.pictures.paths}
                 activePicture={this.state.activePicture}
                 picturePicked={this.changeActivePicture} />
             </div>

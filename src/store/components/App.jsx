@@ -27,8 +27,8 @@ ReactDOM.render(
       </Route>
 
       <Route component={Layout}>
-        <Route path="/colecoes/barcelona" component={ProductsMasonry} />
-        <Route path="/colecoes/barcelona/:id" component={Product} />
+        <Route path="/colecoes/:collection" component={ProductsMasonry} />
+        <Route path="/colecoes/:collection/:product" component={Product} />
         <Route path="/bag" component={ShoppingBag} />
       </Route>
       <Redirect from="*" to="/" />
