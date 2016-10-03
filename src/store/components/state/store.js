@@ -29,6 +29,10 @@ var collections = {
         Cintura: null,
         Pernas: null
       },
+      colors: [{
+        name: 'Preto',
+        hex: '#000000'
+      }],
       pictures: {
         main: 1,
         product: 2,
@@ -50,6 +54,16 @@ var collections = {
         bracos: null,
         comprimento: null
       },
+      colors: [
+        {
+          name: 'Preto',
+          hex: '#000000'
+        },
+        {
+          name: 'Cinza',
+          hex: '#666666'
+        }
+      ],
       pictures: {
         main: 1,
         product: 2,
@@ -70,6 +84,12 @@ var collections = {
         quadril: null,
         pernas: null
       },
+      colors: [
+        {
+          name: 'Salmão',
+          hex: '#EEA682'
+        }
+      ],
       pictures: {
         main: 1,
         product: 2,
@@ -89,6 +109,16 @@ var collections = {
         ombros: null,
         bracos: null
       },
+      colors: [
+        {
+          name: 'Preto',
+          hex: '#000000'
+        },
+        {
+          name: 'Cinza',
+          hex: '#666666'
+        }
+      ],
       pictures: {
         main: 1,
         product: 2,
@@ -107,6 +137,16 @@ var collections = {
       measures: {
         ombros: null
       },
+      colors: [
+        {
+          name: 'Salmão',
+          hex: '#EEA682'
+        },
+        {
+          name: 'Azul',
+          hex: '#a8c9ff'
+        }
+      ],
       pictures: {
         main: 1,
         product: 2,
@@ -128,6 +168,12 @@ var collections = {
         bracos: null,
         comprimento: null
       },
+      colors: [
+        {
+          name: 'Bege',
+          hex: '#ffffe0'
+        }
+      ],
       pictures: {
         main: 1,
         product: 2,
@@ -150,6 +196,16 @@ var collections = {
         pernas: null,
         quadril: null
       },
+      colors: [
+        {
+          name: 'Bege',
+          hex: '#ffffe0'
+        },
+        {
+          name: 'Preto',
+          hex: '#000000'
+        }
+      ],
       pictures: {
         main: 1,
         product: 2,
@@ -171,6 +227,16 @@ var collections = {
         pernas: null,
         quadril: null
       },
+      colors: [
+        {
+          name: 'Salmão',
+          hex: '#EEA682'
+        },
+        {
+          name: 'Preto',
+          hex: '#000000'
+        }
+      ],
       pictures: {
         main: 3,
         product: 2,

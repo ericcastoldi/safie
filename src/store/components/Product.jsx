@@ -17,7 +17,13 @@ var Product = React.createClass({
         main: React.PropTypes.number.isRequired,
         product: React.PropTypes.number.isRequired,
         paths: React.PropTypes.arrayOf(React.PropTypes.object)
-      })
+      }),
+      colors: React.PropTypes.arrayOf(
+        React.PropTypes.shape({
+          name: React.PropTypes.string.isRequired,
+          hex: React.PropTypes.string.isRequired
+        })
+      )
     })
   },
 
@@ -38,8 +44,15 @@ var Product = React.createClass({
 
     return (
       <div>
-        <ProductPicturesViewer pictures={this.props.product.pictures} />
-        <ProductDetails name={product.name} description={product.description} price={product.price} />
+        <ProductPicturesViewer
+          pictures={product.pictures} />
+
+        <ProductDetails
+          name={product.name}
+          description={product.description}
+          price={product.price}
+          colors={product.colors}
+        />
       </div>
     );
   }

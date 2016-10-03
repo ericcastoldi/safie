@@ -397,6 +397,26 @@ nav.menu.open {
   max-height: 100%;
 }
 
+/* ProductColorPicker.jsx */
+.product-color {
+  height      : 2rem;
+  width       : 2rem;
+  padding     : 0.2rem;
+  margin-right: 0.5rem;
+  border      : 1px solid #ccc;
+  display     : inline-block;
+}
+
+.product-color:hover {
+  border: 1px solid #666;
+}
+
+.product-color-box {
+  width : 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
 /* ProductDetails.jsx */
 .detalhes-produto {
   padding-top: 10rem;
@@ -480,6 +500,14 @@ nav.menu.open {
 .social {
   font-size     : 2rem;
   letter-spacing: 1.5rem;
+}
+
+.social i {
+  cursor: pointer;
+}
+
+.social i:hover {
+  color: rgba(238,166,130,0.8);
 }
 
 /* ShoppingBag.jsx */
