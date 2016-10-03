@@ -1,6 +1,7 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var homeActions = require('./state/homeActions.js');
 
 var SubscribePopup = React.createClass({
   propTypes: {
@@ -21,14 +22,14 @@ var SubscribePopup = React.createClass({
     return (
       <div className={cssClasses.join(' ')}>
         <div className="content">
+          <div className="close-popup">
+            <i onClick={this.dismissPopup} className="fa fa-close" aria-hidden="true"></i>
+          </div>
           <h2>Aproveite nossa<br />AMAZING SALE!</h2>
           <p>Deixe seu e-mail e seja a primeira a receber todos os nossos descontos.</p>
           <div className="actions">
             <input type="email" id="email" placeholder="E-MAIL" />
             <button>Receber Descontos!</button>
-            <a onClick={this.dismissPopup}>
-              Não, obrigada. Não quero receber descontos.
-            </a>
           </div>
         </div>
       </div>
@@ -36,16 +37,9 @@ var SubscribePopup = React.createClass({
   }
 });
 
-
-var dismissSubscribePopup = function() {
-  return {
-    type: 'DISMISS_SUBSCRIBE_POPUP'
-  };
-};
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    dismiss: dismissSubscribePopup
+    dismiss: homeActions.dismissSubscribePopup
   }, dispatch);
 }
 

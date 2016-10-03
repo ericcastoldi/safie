@@ -3,6 +3,7 @@ var MenuItem = require('./MenuItem.jsx');
 var SubMenu = require('./SubMenu.jsx');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var menuActions = require('./state/menuActions.js');
 
 var Menu = React.createClass({
   propTypes: {
@@ -61,15 +62,9 @@ var Menu = React.createClass({
   }
 });
 
-var toggleMobileMenu = function() {
-  return {
-    type: 'TOGGLE_MOBILE_MENU'
-  };
-};
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    toggle: toggleMobileMenu
+    toggle: menuActions.toggleMobileMenu
   }, dispatch);
 }
 

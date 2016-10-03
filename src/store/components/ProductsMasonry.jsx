@@ -2,6 +2,7 @@ var React = require('react');
 var ProductCard = require('./ProductCard.jsx');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var productsActions = require('./state/productsActions.js');
 
 var ProductsMasonry = React.createClass({
 
@@ -65,12 +66,6 @@ var ProductsMasonry = React.createClass({
 
 });
 
-var fetchProducts = function(collection) {
-  return {
-    type: 'FETCH_PRODUCTS',
-    payload: { collection: collection }
-  };
-};
 
 function mapStateToProps(state) {
   return {
@@ -80,7 +75,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchProducts: fetchProducts
+    fetchProducts: productsActions.fetchProducts
   }, dispatch);
 }
 

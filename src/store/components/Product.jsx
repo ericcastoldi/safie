@@ -1,8 +1,10 @@
 var React = require('react');
 var ProductPicturesViewer = require('./ProductPicturesViewer.jsx');
 var ProductDetails = require('./ProductDetails.jsx');
+
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var productActions = require('./state/productActions.js');
 
 var Product = React.createClass({
 
@@ -58,13 +60,6 @@ var Product = React.createClass({
   }
 });
 
-var fetchProduct = function(id) {
-  return {
-    type: 'FETCH_PRODUCT',
-    payload: { id: id }
-  };
-};
-
 function mapStateToProps(state) {
   return {
     product: state.product.current
@@ -73,7 +68,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchProduct: fetchProduct
+    fetchProduct: productActions.fetchProduct
   }, dispatch);
 }
 

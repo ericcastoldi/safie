@@ -251,6 +251,13 @@ nav.menu.open {
   display: block;
 }
 
+.close-popup i {
+  position: absolute;
+  right   : 1rem;
+  top     : 1rem;
+  cursor  : pointer;
+}
+
 .subscribe-popup {
   font-family: "Bree Serif", serif;
 }
@@ -408,6 +415,10 @@ nav.menu.open {
 }
 
 .product-color:hover {
+  border: 1px solid #999;
+}
+
+.product-color.selected {
   border: 1px solid #666;
 }
 

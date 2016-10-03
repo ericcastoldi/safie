@@ -1,6 +1,7 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var bagActions = require('./state/bagActions.js');
 
 var QuickBag = React.createClass({
   propTypes: {
@@ -29,15 +30,11 @@ var QuickBag = React.createClass({
 });
 
 
-var toggleQuickBag = function() {
-  return {
-    type: 'TOGGLE_QUICK_BAG'
-  };
-};
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    toggle: toggleQuickBag
+    toggle: bagActions.toggleQuickBag
   }, dispatch);
 }
 
