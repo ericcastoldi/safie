@@ -266,7 +266,7 @@ nav.menu.open {
   margin: 0;
 }
 
-.subscribe-popup .content {
+.content {
   background-color: white;
   position        : fixed;
   top             : 50%;
@@ -461,10 +461,7 @@ nav.menu.open {
 }
 
 /* SizeForm.jsx */
-.form-medidas {
-  padding-bottom: 2rem;
-}
-
+.form-medidas button.buy-button,
 .form-medidas input {
   border-radius: 0;
   width        : 100%;

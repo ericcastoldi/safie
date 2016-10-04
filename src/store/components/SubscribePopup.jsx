@@ -1,6 +1,7 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var Popup = require('./Popup.jsx');
 var homeActions = require('./state/homeActions.js');
 
 var SubscribePopup = React.createClass({
@@ -14,14 +15,10 @@ var SubscribePopup = React.createClass({
   },
 
   render: function () {
-    let cssClasses = ['subscribe-popup', 'dimmer'];
-    if(this.props.active) {
-      cssClasses.push('active');
-    }
 
     return (
-      <div className={cssClasses.join(' ')}>
-        <div className="content">
+      <Popup active={this.props.active} >
+        <div className="subscribe-popup">
           <div className="close-popup">
             <i onClick={this.dismissPopup} className="fa fa-close" aria-hidden="true"></i>
           </div>
@@ -32,7 +29,7 @@ var SubscribePopup = React.createClass({
             <button>Receber Descontos!</button>
           </div>
         </div>
-      </div>
+      </Popup>
     );
   }
 });

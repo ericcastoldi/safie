@@ -6,13 +6,20 @@ var MeasuresButton = require('./MeasuresButton.jsx');
 var ProductColorPicker = require('./ProductColorPicker.jsx');
 var BuyButton = require('./BuyButton.jsx');
 var SocialIcons = require('./SocialIcons.jsx');
-//var Dimmer = require('./Dimmer.jsx');
-//var SizeForm = require('./SizeForm.jsx');
+var Popup = require('./Popup.jsx');
+var SizeForm = require('./SizeForm.jsx');
+
+var connect = require('react-redux').connect;
+var bindActionCreators = require('redux').bindActionCreators;
+var productActions = require('./state/productActions.js');
 
 
 var ProductDetails = React.createClass({
 
   propTypes: {
+    measuresPopupOpen: React.PropTypes.bool,
+    openMeasuresPopup: React.PropTypes.func,
+    closeMeasuresPopup: React.PropTypes.func,
     name: React.PropTypes.string.isRequired,
     price: React.PropTypes.string.isRequired,
     description: React.PropTypes.string,
@@ -23,6 +30,15 @@ var ProductDetails = React.createClass({
         hex: React.PropTypes.string.isRequired
       })
     )
+  },
+
+
+  closeMeasuresPopup: function(){
+    this.props.closeMeasuresPopup();
+  },
+
+  openMeasuresPopup: function(){
+    this.props.openMeasuresPopup();
   },
 
   render: function () {
@@ -41,7 +57,10 @@ var ProductDetails = React.createClass({
             </div>
             <div className="five columns">
               <div className="comprar-produto">
-                <MeasuresButton />
+                <MeasuresButton click={this.openMeasuresPopup} />
+                <Popup active={this.props.measuresPopupOpen}>
+                  <SizeForm dismiss={this.closeMeasuresPopup} measures={this.props.measures} />
+                </Popup>
                 <BuyButton label="Comprar" route="/bag" />
                 <SocialIcons />
               </div>
@@ -53,4 +72,15 @@ var ProductDetails = React.createClass({
   }
 });
 
-module.exports = ProductDetails;
+function mapStateToProps(state) {
+  return {
+    measuresPopupOpen: state.product.measuresPopupOpen
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    closeMeasuresPopup: productActions.closeMeasuresPopup,
+    openMeasuresPopup: productActions.openMeasuresPopup
+  }, dispatch);
+}
+module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
