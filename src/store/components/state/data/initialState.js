@@ -105,7 +105,11 @@ module.exports = {
   },
   product: {
     measuresPopupOpen: false,
-    current: {}
+    current: {},
+    options: {
+      measures: null,
+      color: 0
+    }
   },
   products: []
 };

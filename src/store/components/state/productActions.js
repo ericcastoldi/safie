@@ -6,7 +6,6 @@ var openMeasuresPopup = function () {
   };
 };
 
-
 var closeMeasuresPopup = function () {
   return {
     type: actionTypes.CLOSE_MEASURES_POPUP
@@ -22,8 +21,29 @@ var fetchProduct = function (id) {
   };
 };
 
+var pickProductColor = function (color) {
+  return {
+    type: actionTypes.PICK_PRODUCT_COLOR,
+    payload: {
+      color: color
+    }
+  };
+};
+
+var setProductMeasures = function (measures) {
+  return {
+    type: actionTypes.SET_PRODUCT_MEASURES,
+    payload: {
+      measures: measures
+    }
+  };
+};
+
+
 module.exports = {
   fetchProduct: fetchProduct,
   openMeasuresPopup: openMeasuresPopup,
-  closeMeasuresPopup: closeMeasuresPopup
+  closeMeasuresPopup: closeMeasuresPopup,
+  pickProductColor: pickProductColor,
+  setProductMeasures: setProductMeasures
 };
