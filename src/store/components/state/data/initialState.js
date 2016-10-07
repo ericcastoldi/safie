@@ -108,7 +108,7 @@ module.exports = {
     current: {},
     options: {
       measures: null,
-      color: 0
+      color: null
     }
   },
   products: []

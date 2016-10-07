@@ -9,10 +9,13 @@ module.exports = {
         Cintura: null,
         Pernas: null
       },
-      colors: [{
-        name: 'Preto',
-        hex: '#000000'
-      }],
+      defaultColor: 'preto',
+      colors: {
+        preto: {
+          name: 'Preto',
+          hex: '#000000'
+        }
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -34,16 +37,17 @@ module.exports = {
         bracos: null,
         comprimento: null
       },
-      colors: [
-        {
+      defaultColor: 'preto',
+      colors: {
+        preto: {
           name: 'Preto',
           hex: '#000000'
         },
-        {
+        cinza: {
           name: 'Cinza',
           hex: '#666666'
         }
-      ],
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -64,12 +68,13 @@ module.exports = {
         quadril: null,
         pernas: null
       },
-      colors: [
-        {
+      defaultColor: 'salmao',
+      colors: {
+        salmao: {
           name: 'Salmão',
           hex: '#EEA682'
         }
-      ],
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -89,16 +94,17 @@ module.exports = {
         ombros: null,
         bracos: null
       },
-      colors: [
-        {
+      defaultColor: 'cinza',
+      colors: {
+        preto: {
           name: 'Preto',
           hex: '#000000'
         },
-        {
+        cinza: {
           name: 'Cinza',
           hex: '#666666'
         }
-      ],
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -117,16 +123,17 @@ module.exports = {
       measures: {
         ombros: null
       },
-      colors: [
-        {
+      defaultColor: 'azul',
+      colors: {
+        salmao: {
           name: 'Salmão',
           hex: '#EEA682'
         },
-        {
+        azul: {
           name: 'Azul',
           hex: '#a8c9ff'
         }
-      ],
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -148,12 +155,13 @@ module.exports = {
         bracos: null,
         comprimento: null
       },
-      colors: [
-        {
+      defaultColor: 'bege',
+      colors: {
+        bege: {
           name: 'Bege',
           hex: '#ffffe0'
         }
-      ],
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -176,16 +184,17 @@ module.exports = {
         pernas: null,
         quadril: null
       },
-      colors: [
-        {
+      defaultColor: 'bege',
+      colors: {
+        bege: {
           name: 'Bege',
           hex: '#ffffe0'
         },
-        {
+        preto: {
           name: 'Preto',
           hex: '#000000'
         }
-      ],
+      },
       pictures: {
         main: 1,
         product: 2,
@@ -207,16 +216,17 @@ module.exports = {
         pernas: null,
         quadril: null
       },
-      colors: [
-        {
+      defaultColor: 'salmao',
+      colors: {
+        salmao: {
           name: 'Salmão',
           hex: '#EEA682'
         },
-        {
+        preto: {
           name: 'Preto',
           hex: '#000000'
         }
-      ],
+      },
       pictures: {
         main: 3,
         product: 2,

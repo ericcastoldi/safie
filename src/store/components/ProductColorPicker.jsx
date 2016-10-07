@@ -6,18 +6,14 @@ var productActions = require('./state/productActions.js');
 
 var ProductColorPicker = React.createClass({
   propTypes: {
-    colors: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        name: React.PropTypes.string.isRequired,
-        hex: React.PropTypes.string.isRequired
-      })
-    ),
+    colors: React.PropTypes.object.isRequired,
     pickProductColor: React.PropTypes.func.isRequired,
-    selectedColor: React.PropTypes.number.isRequired
+    defaultColor: React.PropTypes.string.isRequired,
+    selectedColor: React.PropTypes.string.isRequired
   },
 
-  pickColor: function(colorIndex){
-    this.props.pickProductColor(colorIndex);
+  pickColor: function(color){
+    this.props.pickProductColor(color);
   },
 
   render: function(){
@@ -25,30 +21,46 @@ var ProductColorPicker = React.createClass({
       return (<div>Carregando cores...</div>);
     }
 
+    var colors = this.props.colors;
 
-    var colorBoxes = this.props.colors.map(function(color, index){
+    var selectedColorId = this.props.selectedColor ?
+                    this.props.selectedColor :
+                    this.props.defaultColor;
+
+    var selectedColor = colors[selectedColorId];
+
+    var colorBoxes = Object.keys(colors).map(function(colorId, index){
+
+      var color = colors[colorId];
+      let cssClasses = ['product-color'];
+      if(colorId === selectedColorId) {
+        cssClasses.push('selected');
+      }
 
       var divStyle = {
         backgroundColor: color.hex
       };
 
       return (
-        <div onClick={this.pickColor(index)} className="product-color">
+        <div
+          className={cssClasses.join(' ')}
+          onClick={this.pickColor.bind(this, colorId)}>
+
           <div
             key={index}
             style={divStyle}
             title={color.name}
             className="product-color-box">
           </div>
+
         </div>
       );
     }.bind(this));
 
-    var selectedColorName = this.props.colors[this.props.selectedColor].name;
 
     return (
       <div className="product-colors">
-        Cor: <b>{selectedColorName}</b>
+        Cor: <b>{selectedColor.name}</b>
         <div>
           {colorBoxes}
         </div>

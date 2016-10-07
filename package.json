@@ -8,7 +8,7 @@
     "launch": "npm run viewinbrowser && node app.js",
     "postinstall": "gulp deploy",
     "start": "node app.js",
-    "viewinbrowser": "opener http://localhost:8080/produtos/123",
+    "viewinbrowser": "opener http://localhost:8080/colecoes/barcelona/camiseta-pop",
     "prerefreshstatics": "npm run clean",
     "refreshstatics": "npm run copystatic",
     "postrefreshstatics": "npm run transpile",

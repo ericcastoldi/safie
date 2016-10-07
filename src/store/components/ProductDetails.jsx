@@ -24,12 +24,8 @@ var ProductDetails = React.createClass({
     price: React.PropTypes.string.isRequired,
     description: React.PropTypes.string,
     measures: React.PropTypes.object,
-    colors: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        name: React.PropTypes.string.isRequired,
-        hex: React.PropTypes.string.isRequired
-      })
-    )
+    colors: React.PropTypes.object.isRequired,
+    defaultColor: React.PropTypes.string.isRequired
   },
 
 
@@ -50,7 +46,9 @@ var ProductDetails = React.createClass({
             <div className="three columns">
               <ProductTitle name={this.props.name} />
               <ProductPrice price={this.props.price} />
-              <ProductColorPicker colors={this.props.colors} />
+              <ProductColorPicker
+                defaultColor={this.props.defaultColor}
+                colors={this.props.colors} />
             </div>
             <div className="four columns">
               <ProductInfo description={this.props.description} />

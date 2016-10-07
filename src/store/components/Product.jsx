@@ -21,12 +21,8 @@ var Product = React.createClass({
         product: React.PropTypes.number.isRequired,
         paths: React.PropTypes.arrayOf(React.PropTypes.object)
       }),
-      colors: React.PropTypes.arrayOf(
-        React.PropTypes.shape({
-          name: React.PropTypes.string.isRequired,
-          hex: React.PropTypes.string.isRequired
-        })
-      )
+      colors: React.PropTypes.object.isRequired,
+      defaultColor: React.PropTypes.string.isRequired
     })
   },
 
@@ -55,6 +51,7 @@ var Product = React.createClass({
           description={product.description}
           price={product.price}
           colors={product.colors}
+          defaultColor={product.defaultColor}
           measures={product.measures}
         />
       </div>
