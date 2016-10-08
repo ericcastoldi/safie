@@ -50,7 +50,13 @@ module.exports = {
     }
   },
   bag: {
-    quickBagOpened: false
+    quickBagOpened: false,
+    items: {
+      // a: {
+      //   product: {}
+      //   options: {}
+      // }
+    }
   },
   menu: {
     mobileMenuOpened: false,
