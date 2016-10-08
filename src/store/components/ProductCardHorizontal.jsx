@@ -2,7 +2,7 @@ var React = require('react');
 var Link = require('react-router').Link;
 var ProductPicture = require('./ProductPicture.jsx');
 var ProductInfoSmall = require('./ProductInfoSmall.jsx');
-var SizeInfo = require('./SizeInfo.jsx');
+var MeasurementsInfo = require('./MeasurementsInfo.jsx');
 
 var ProductCardHorizontal = React.createClass({
 
@@ -12,7 +12,7 @@ var ProductCardHorizontal = React.createClass({
       name: React.PropTypes.string,
       route: React.PropTypes.string.isRequired,
       price: React.PropTypes.number.isRequired,
-      measures: React.PropTypes.object
+      measurements: React.PropTypes.object
     }).isRequired
   },
 
@@ -23,11 +23,11 @@ var ProductCardHorizontal = React.createClass({
     return (
       <div className="produto-sacola">
         <Link to={product.route}>
-            <ProductPicture picture={product.picture} description={product.name} />
-            <ProductInfoSmall
-              name={product.name}
-              description={product.description} />
-            <SizeInfo measures={product.measures}/>
+          <ProductPicture picture={product.picture} description={product.name} />
+          <ProductInfoSmall
+            name={product.name}
+            description={product.description} />
+          <MeasurementsInfo measurements={product.measurements}/>
         </Link>
       </div>
     );

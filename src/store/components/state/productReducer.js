@@ -4,29 +4,33 @@ var initialState = require('./data/initialState.js');
 
 module.exports = function (state = initialState.product, action) {
   switch (action.type) {
-  case actionTypes.OPEN_MEASURES_POPUP:
+
+  case actionTypes.OPEN_MEASUREMENTS_POPUP:
     return Object.assign({}, state, {
-      measuresPopupOpen: true
+      measurementsPopupOpen: true
     });
 
-  case actionTypes.CLOSE_MEASURES_POPUP:
+  case actionTypes.CLOSE_MEASUREMENTS_POPUP:
     return Object.assign({}, state, {
-      measuresPopupOpen: false
+      measurementsPopupOpen: false
     });
 
   case actionTypes.PICK_PRODUCT_COLOR:
     var updatedOptions = Object.assign({}, state.options, {
       color: action.payload.color
     });
+
     return Object.assign({}, state, {
       options: updatedOptions
     });
-  case actionTypes.SET_PRODUCT_MEASURES:
-    var updatedMeasureOptions = Object.assign({}, state.options, {
-      measures: action.payload.measures
+
+  case actionTypes.SET_PRODUCT_MEASUREMENTS:
+    var updatedMeasurementsOptions = Object.assign({}, state.options, {
+      measurements: action.payload.measurements
     });
+
     return Object.assign({}, state, {
-      options: updatedMeasureOptions
+      options: updatedMeasurementsOptions
     });
 
 
@@ -42,4 +46,5 @@ module.exports = function (state = initialState.product, action) {
   default:
     return state;
   }
+
 };

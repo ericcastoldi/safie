@@ -1,4 +1,3 @@
-/* All devices!!! */
 
 /* SafieStore.jsx*/
 .safie-store {
@@ -46,16 +45,46 @@ textarea:focus {
   border: 1px solid #666;
 }
 
-input[type="submit"] {
+button {
+  height   : 4rem;
+  font-size: 1.5rem;
+  width    : 100%;
+}
+
+.dark-button {
   background-color: #555;
   border          : 1px solid #555;
   color           : white;
+
 }
 
-input[type="submit"]:hover {
+.dark-button:hover {
   background-color: #100D08;
   border          : 1px solid #100D08;
   color           : white;
+  font-weight     : 600;
+
+}
+
+.light-button {
+  background-color: #CCC;
+  border          : none;
+}
+
+.light-button:hover {
+  font-weight     : 600;
+  background-color: rgba(238,166,130,0.8);
+}
+
+.medium-dark-button {
+  border          : none;
+  background-color: #444;
+  color           : rgba(238,166,130,1);
+}
+
+.medium-dark-button:hover {
+  background-color: #333;
+  color           : rgba(238,166,130,1);
 }
 
 .landing {
@@ -460,15 +489,11 @@ nav.menu.open {
   text-transform: uppercase;
 }
 
-/* SizeForm.jsx */
-.form-medidas button.buy-button,
+/* MeasurementsForm.jsx */
+.form-medidas button,
 .form-medidas input {
   border-radius: 0;
   width        : 100%;
-}
-
-.form-medidas input:focus {
-  border: 1px solid #100D08;
 }
 
 /* BuyButton.jsx */
@@ -476,33 +501,12 @@ nav.menu.open {
   text-align: center;
 }
 
-.measures-button {
-  background-color: #444;
-  color           : rgba(238,166,130,1);
-}
-
-.measures-button:hover {
-  background-color: #333;
-  color           : rgba(238,166,130,1);
-}
-
 .comprar-produto button {
-  font-size: 1.5rem;
-  height   : 4rem;
-  border   : none;
-  width    : 80%;
+  width: 80%;
 }
 
-.comprar-produto button:hover {
-  font-weight: 600;
-}
-
-.comprar-produto .buy-button {
-  background-color: #CCC;
-}
-
-.comprar-produto .buy-button:hover {
-  background-color: rgba(238,166,130,0.8);
+.form-medidas button {
+  width: 100%;
 }
 
 .social {
@@ -520,17 +524,9 @@ nav.menu.open {
 
 /* ShoppingBag.jsx */
 
-.sacola button.buy-button {
-  float           : right;
-  background-color: #555;
-  border          : 1px solid #555;
-  color           : white;
-}
-
-.sacola button.buy-button:hover {
-  background-color: #100D08;
-  border          : 1px solid #100D08;
-  color           : white;
+.sacola button {
+  width: auto;
+  float: right;
 }
 
 .sacola td {

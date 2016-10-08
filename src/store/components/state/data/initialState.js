@@ -103,13 +103,15 @@ module.exports = {
       }
     ]
   },
+  // TODO: Alterar para "productView" ou algo do genero e colocar as options dentro do current: {current: {product: {}, options: {}}}
   product: {
-    measuresPopupOpen: false,
+    measurementsPopupOpen: false,
     current: {},
     options: {
-      measures: null,
-      color: null
+      measurements: null,
+      color: null // TODO: Quando o initialState estiver vindo do server, essa color deve vir preenchida com a defaultColor do produto
     }
   },
+  /// TODO: Alterar para objeto, contendo um array de "data" dentro ou algo do genero.
   products: []
 };

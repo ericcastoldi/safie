@@ -15,13 +15,10 @@ var SubscribePopup = React.createClass({
   },
 
   render: function () {
-
+    // TODO: Renomear componente (para Sale, Featured ou algo do genero) e desacoplar da popup
     return (
-      <Popup active={this.props.active} >
+      <Popup dismiss={this.dismissPopup} active={this.props.active} >
         <div className="subscribe-popup">
-          <div className="close-popup">
-            <i onClick={this.dismissPopup} className="fa fa-close" aria-hidden="true"></i>
-          </div>
           <h2>Aproveite nossa<br />AMAZING SALE!</h2>
           <p>Deixe seu e-mail e seja a primeira a receber todos os nossos descontos.</p>
           <div className="actions">

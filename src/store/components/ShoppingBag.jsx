@@ -1,7 +1,8 @@
 var React = require('react');
+var Link = require('react-router').Link;
 var ProductCardHorizontal = require('./ProductCardHorizontal.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
-var BuyButton = require('./BuyButton.jsx');
+var DarkButton = require('./DarkButton.jsx');
 
 var ShoppingBag = React.createClass({
 
@@ -12,7 +13,7 @@ var ShoppingBag = React.createClass({
       route: React.PropTypes.string,
       description: React.PropTypes.string,
       price: React.PropTypes.string.isRequired,
-      measures: React.PropTypes.object
+      measurements: React.PropTypes.object
     }))
   },
 
@@ -25,7 +26,7 @@ var ShoppingBag = React.createClass({
           description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
           route: '/produtos/123',
           price: '230,90',
-          measures: {
+          measurements: {
             'Cintura': 50,
             'Pernas': 120
           }
@@ -35,13 +36,13 @@ var ShoppingBag = React.createClass({
           description: 'Peça de exemplo à venda',
           route: '/produtos/123',
           price: '10,99',
-          measures: {}
+          measurements: {}
         }, {
           picture: '/img/demo/lookbook03.jpg',
           name: 'Peça de exemplo à venda',
           route: '/produtos/123',
           price: '10,25',
-          measures: {
+          measurements: {
             'Pernas': null
           }
         }
@@ -76,8 +77,10 @@ var ShoppingBag = React.createClass({
           </div>
           <div className="row">
             <div className="twelve columns">
-              <BuyButton label="Finalizar Compra" route="/comprar"/>
-            </div>
+              <Link to="/comprar">
+                <DarkButton label="Finalizar Compra" />
+              </Link>
+              </div>
           </div>
         </div>
       </div>

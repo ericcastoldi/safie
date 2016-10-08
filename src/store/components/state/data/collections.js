@@ -5,7 +5,7 @@ module.exports = {
       name: 'SAIA LÁPIS URBAN',
       description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
       price: '230,90',
-      measures: {
+      measurements: {
         Cintura: null,
         Pernas: null
       },
@@ -32,7 +32,7 @@ module.exports = {
       name: 'Blazer soho',
       description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
       price: '1130,80',
-      measures: {
+      measurements: {
         ombros: null,
         bracos: null,
         comprimento: null
@@ -63,7 +63,7 @@ module.exports = {
       name: 'calca noelle',
       description: 'Calça reta com cós com passantes. Possui 4 bolsos sendo os dois posteriores falsos. Fechamento frontal em zíper e botões.',
       price: '522,00',
-      measures: {
+      measurements: {
         cintura: null,
         quadril: null,
         pernas: null
@@ -90,7 +90,7 @@ module.exports = {
       name: 'CAMISA ALABAMA',
       description: 'Camisa cropped, gola de ponta, manga longa, punho fechado em botão, 2 bolsos e barra com faixa para amarração. Abotoamento frontal.',
       price: '397,00',
-      measures: {
+      measurements: {
         ombros: null,
         bracos: null
       },
@@ -120,7 +120,7 @@ module.exports = {
       name: 'TOP POP NO STYLE',
       description: 'Top reto em malha, decote arredondado, manga curta e 2 fendas laterais. Estampa frontal: "NAH POP NO STYLE AS STRICTLY ROOTS".',
       price: '144,00',
-      measures: {
+      measurements: {
         ombros: null
       },
       defaultColor: 'azul',
@@ -150,7 +150,7 @@ module.exports = {
       name: 'CASAQUETO MIRAGE',
       description: 'Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.',
       price: '1244,00',
-      measures: {
+      measurements: {
         ombros: null,
         bracos: null,
         comprimento: null
@@ -178,7 +178,7 @@ module.exports = {
       name: 'macacao xai xai',
       description: 'Top reto em seda, gola alta fechada em colchete e manga longa. Levemente transparente.',
       price: '822,00',
-      measures: {
+      measurements: {
         ombros: null,
         bracos: null,
         pernas: null,
@@ -210,7 +210,7 @@ module.exports = {
       name: 'vestido elliot',
       description: 'Vestido curto estilo kimono e decote V. Sem fechamento. Acompanha faixa no mesmo tecido para amarração.',
       price: '689,60',
-      measures: {
+      measurements: {
         ombros: null,
         bracos: null,
         pernas: null,

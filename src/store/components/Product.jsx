@@ -15,7 +15,7 @@ var Product = React.createClass({
       id: React.PropTypes.string.isRequired,
       name: React.PropTypes.string.isRequired,
       description: React.PropTypes.string.isRequired,
-      measures: React.PropTypes.object,
+      measurements: React.PropTypes.object,
       pictures: React.PropTypes.shape({
         main: React.PropTypes.number.isRequired,
         product: React.PropTypes.number.isRequired,
@@ -52,7 +52,7 @@ var Product = React.createClass({
           price={product.price}
           colors={product.colors}
           defaultColor={product.defaultColor}
-          measures={product.measures}
+          measurements={product.measurements}
         />
       </div>
     );
@@ -62,7 +62,7 @@ var Product = React.createClass({
 function mapStateToProps(state) {
   return {
     product: state.product.current,
-    measuresPopupOpen: state.product.measuresPopupOpen
+    measurementsPopupOpen: state.product.measurementsPopupOpen
   };
 }
 

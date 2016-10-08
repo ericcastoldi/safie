@@ -1,14 +1,14 @@
 var actionTypes = require('./actionTypes.js');
 
-var openMeasuresPopup = function () {
+var openMeasurementsPopup = function () {
   return {
-    type: actionTypes.OPEN_MEASURES_POPUP
+    type: actionTypes.OPEN_MEASUREMENTS_POPUP
   };
 };
 
-var closeMeasuresPopup = function () {
+var closeMeasurementsPopup = function () {
   return {
-    type: actionTypes.CLOSE_MEASURES_POPUP
+    type: actionTypes.CLOSE_MEASUREMENTS_POPUP
   };
 };
 
@@ -30,11 +30,11 @@ var pickProductColor = function (color) {
   };
 };
 
-var setProductMeasures = function (measures) {
+var setProductMeasurements = function (measurements) {
   return {
-    type: actionTypes.SET_PRODUCT_MEASURES,
+    type: actionTypes.SET_PRODUCT_MEASUREMENTS,
     payload: {
-      measures: measures
+      measurements: measurements
     }
   };
 };
@@ -42,8 +42,8 @@ var setProductMeasures = function (measures) {
 
 module.exports = {
   fetchProduct: fetchProduct,
-  openMeasuresPopup: openMeasuresPopup,
-  closeMeasuresPopup: closeMeasuresPopup,
+  openMeasurementsPopup: openMeasurementsPopup,
+  closeMeasurementsPopup: closeMeasurementsPopup,
   pickProductColor: pickProductColor,
-  setProductMeasures: setProductMeasures
+  setProductMeasurements: setProductMeasurements
 };

@@ -1,13 +1,14 @@
 var React = require('react');
+var Link = require('react-router').Link;
 var ProductTitle = require('./ProductTitle.jsx');
 var ProductInfo = require('./ProductInfo.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
-var MeasuresButton = require('./MeasuresButton.jsx');
 var ProductColorPicker = require('./ProductColorPicker.jsx');
-var BuyButton = require('./BuyButton.jsx');
+var MediumDarkButton = require('./MediumDarkButton.jsx');
+var LightButton = require('./LightButton.jsx');
 var SocialIcons = require('./SocialIcons.jsx');
 var Popup = require('./Popup.jsx');
-var SizeForm = require('./SizeForm.jsx');
+var MeasurementsForm = require('./MeasurementsForm.jsx');
 
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
@@ -17,28 +18,24 @@ var productActions = require('./state/productActions.js');
 var ProductDetails = React.createClass({
 
   propTypes: {
-    measuresPopupOpen: React.PropTypes.bool,
-    openMeasuresPopup: React.PropTypes.func,
-    closeMeasuresPopup: React.PropTypes.func,
+    measurementsPopupOpen: React.PropTypes.bool,
+    openMeasurementsPopup: React.PropTypes.func,
+    closeMeasurementsPopup: React.PropTypes.func,
+    setProductMeasurements: React.PropTypes.func.isRequired,
     name: React.PropTypes.string.isRequired,
     price: React.PropTypes.string.isRequired,
     description: React.PropTypes.string,
-    measures: React.PropTypes.object,
+    measurements: React.PropTypes.object,
     colors: React.PropTypes.object.isRequired,
     defaultColor: React.PropTypes.string.isRequired
   },
 
-
-  closeMeasuresPopup: function(){
-    this.props.closeMeasuresPopup();
-  },
-
-  openMeasuresPopup: function(){
-    this.props.openMeasuresPopup();
+  setProductMeasurements: function(measurements){
+    this.props.setProductMeasurements(measurements);
+    this.props.closeMeasurementsPopup();
   },
 
   render: function () {
-
     return (
       <div className="detalhes-produto">
         <div className="container">
@@ -55,11 +52,17 @@ var ProductDetails = React.createClass({
             </div>
             <div className="five columns">
               <div className="comprar-produto">
-                <MeasuresButton click={this.openMeasuresPopup} />
-                <Popup active={this.props.measuresPopupOpen}>
-                  <SizeForm dismiss={this.closeMeasuresPopup} measures={this.props.measures} />
+                <MediumDarkButton label="Medidas" click={this.props.openMeasurementsPopup} />
+                <Popup
+                  dismiss={this.props.closeMeasurementsPopup}
+                  active={this.props.measurementsPopupOpen}>
+                  <MeasurementsForm
+                    setProductMeasurements={this.setProductMeasurements}
+                    measurements={this.props.measurements} />
                 </Popup>
-                <BuyButton label="Comprar" route="/bag" />
+                <Link to="/bag">
+                  <LightButton label="Comprar" route="/bag" />
+                </Link>
                 <SocialIcons />
               </div>
             </div>
@@ -72,13 +75,14 @@ var ProductDetails = React.createClass({
 
 function mapStateToProps(state) {
   return {
-    measuresPopupOpen: state.product.measuresPopupOpen
+    measurementsPopupOpen: state.product.measurementsPopupOpen
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    closeMeasuresPopup: productActions.closeMeasuresPopup,
-    openMeasuresPopup: productActions.openMeasuresPopup
+    closeMeasurementsPopup: productActions.closeMeasurementsPopup,
+    openMeasurementsPopup: productActions.openMeasurementsPopup,
+    setProductMeasurements: productActions.setProductMeasurements
   }, dispatch);
 }
 module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

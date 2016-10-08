@@ -1,5 +1,5 @@
 var React = require('react');
-
+var DarkButton = require('./DarkButton.jsx');
 
 var Subscribe = React.createClass({
 
@@ -9,7 +9,7 @@ var Subscribe = React.createClass({
         <h4>Receba as Novidades</h4>
         <input type="text" id="name" placeholder="NOME" />
         <input type="email" id="email" placeholder="E-MAIL" />
-        <input type="submit" value="Assinar" />
+        <DarkButton label="Assinar" />
       </div>
     );
   }
