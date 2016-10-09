@@ -7,6 +7,10 @@ var MeasurementsInfo = require('./MeasurementsInfo.jsx');
 var ProductCardHorizontal = React.createClass({
 
   propTypes: {
+    options: React.PropTypes.shape({
+      color: React.PropTypes.object,
+      measurements: React.PropTypes.object
+    }),
     product: React.PropTypes.shape({
       picture: React.PropTypes.string.isRequired,
       name: React.PropTypes.string,
@@ -18,16 +22,24 @@ var ProductCardHorizontal = React.createClass({
 
   render: function () {
 
+    var options = this.props.options;
     var product = this.props.product;
 
     return (
       <div className="produto-sacola">
         <Link to={product.route}>
-          <ProductPicture picture={product.picture} description={product.name} />
+
+          <ProductPicture
+            picture={product.picture}
+            description={product.name} />
+
           <ProductInfoSmall
             name={product.name}
             description={product.description} />
-          <MeasurementsInfo measurements={product.measurements}/>
+
+          <MeasurementsInfo
+            measurements={options.measurements} />
+
         </Link>
       </div>
     );

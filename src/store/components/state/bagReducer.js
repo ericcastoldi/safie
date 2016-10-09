@@ -11,8 +11,15 @@ module.exports = function (state = initialState.bag, action) {
 
 
   case actionTypes.ADD_PRODUCT_TO_BAG:
-    //state.items[]
-    return state;
+
+    var newItem = Object.assign({}, action.payload);
+    var newState = Object.assign({}, state);
+    var newItemId = new Date()
+      .getTime();
+
+    newState.items[newItemId] = newItem;
+    return newState;
+
   default:
     return state;
   }

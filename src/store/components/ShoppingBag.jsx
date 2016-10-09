@@ -1,53 +1,32 @@
 var React = require('react');
-var Link = require('react-router').Link;
 var ProductCardHorizontal = require('./ProductCardHorizontal.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
 var DarkButton = require('./DarkButton.jsx');
+var connect = require('react-redux').connect;
 
 var ShoppingBag = React.createClass({
 
   propTypes: {
-    products: React.PropTypes.arrayOf(React.PropTypes.shape({
-      picture: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
-      route: React.PropTypes.string,
-      description: React.PropTypes.string,
-      price: React.PropTypes.string.isRequired,
-      measurements: React.PropTypes.object
-    }))
-  },
-
-  getDefaultProps: function () {
-    return {
-      products: [
-        {
-          picture: '/img/demo/lookbook13.jpg',
-          name: 'Saia Mid Velvet',
-          description: 'Saia mid em veludo, na cor preta com acabamentos da barra à fio.',
-          route: '/produtos/123',
-          price: '230,90',
-          measurements: {
-            'Cintura': 50,
-            'Pernas': 120
-          }
-        }, {
-          picture: '/img/demo/lookbook02.jpg',
-          name: 'Peça exemplo',
-          description: 'Peça de exemplo à venda',
-          route: '/produtos/123',
-          price: '10,99',
-          measurements: {}
-        }, {
-          picture: '/img/demo/lookbook03.jpg',
-          name: 'Peça de exemplo à venda',
-          route: '/produtos/123',
-          price: '10,25',
-          measurements: {
-            'Pernas': null
-          }
-        }
-      ]
-    };
+    items: React.PropTypes.shape({
+      options: React.PropTypes.shape({
+        color: React.PropTypes.object,
+        measurements: React.PropTypes.object
+      }),
+      product: React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired,
+        name: React.PropTypes.string.isRequired,
+        description: React.PropTypes.string.isRequired,
+        price: React.PropTypes.string.isRequired,
+        measurements: React.PropTypes.object,
+        pictures: React.PropTypes.shape({
+          main: React.PropTypes.number.isRequired,
+          product: React.PropTypes.number.isRequired,
+          paths: React.PropTypes.arrayOf(React.PropTypes.object)
+        }),
+        colors: React.PropTypes.object.isRequired,
+        defaultColor: React.PropTypes.string.isRequired
+      })
+    })
   },
 
   render: function () {
@@ -77,10 +56,8 @@ var ShoppingBag = React.createClass({
           </div>
           <div className="row">
             <div className="twelve columns">
-              <Link to="/comprar">
-                <DarkButton label="Finalizar Compra" />
-              </Link>
-              </div>
+              <DarkButton label="Finalizar Compra" />
+            </div>
           </div>
         </div>
       </div>
@@ -88,11 +65,28 @@ var ShoppingBag = React.createClass({
   },
 
   renderDataRows: function () {
-    return this.props.products.map(function (product, index) {
+
+    if(Object.keys(this.props.items).length === 0){
+      return (
+        <div>
+          Nenhum produto na sacola :(
+        </div>
+      );
+    }
+
+    return Object.keys(this.props.items).map(function (itemId, index) {
+
+      var item = this.props.items[itemId];
+      var product = item.product;
+      var options = item.options;
+
       return (
         <tr key={index}>
           <td>
-            <ProductCardHorizontal product={product} />
+            <ProductCardHorizontal
+              product={product}
+              options={options}
+            />
           </td>
           <td>
             <ProductPrice price={product.price}/>
@@ -102,9 +96,17 @@ var ShoppingBag = React.createClass({
           </td>
         </tr>
       );
-    });
+    }.bind(this));
   }
 
 });
 
-module.exports = ShoppingBag;
+
+function mapStateToProps(state) {
+  return {
+    items: state.bag.items
+  };
+}
+
+
+module.exports = connect(mapStateToProps)(ShoppingBag);

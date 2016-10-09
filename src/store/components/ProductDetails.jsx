@@ -1,5 +1,4 @@
 var React = require('react');
-var Link = require('react-router').Link;
 var ProductTitle = require('./ProductTitle.jsx');
 var ProductInfo = require('./ProductInfo.jsx');
 var ProductPrice = require('./ProductPrice.jsx');
@@ -9,10 +8,10 @@ var LightButton = require('./LightButton.jsx');
 var SocialIcons = require('./SocialIcons.jsx');
 var Popup = require('./Popup.jsx');
 var MeasurementsForm = require('./MeasurementsForm.jsx');
-
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
 var productActions = require('./state/productActions.js');
+var bagActions = require('./state/bagActions.js');
 
 
 var ProductDetails = React.createClass({
@@ -22,12 +21,29 @@ var ProductDetails = React.createClass({
     openMeasurementsPopup: React.PropTypes.func,
     closeMeasurementsPopup: React.PropTypes.func,
     setProductMeasurements: React.PropTypes.func.isRequired,
-    name: React.PropTypes.string.isRequired,
-    price: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string,
-    measurements: React.PropTypes.object,
-    colors: React.PropTypes.object.isRequired,
-    defaultColor: React.PropTypes.string.isRequired
+    addProductToBag: React.PropTypes.func.isRequired,
+    options: React.PropTypes.shape({
+      color: React.PropTypes.object,
+      measurements: React.PropTypes.object
+    }),
+    product: React.PropTypes.shape({
+      id: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
+      description: React.PropTypes.string.isRequired,
+      price: React.PropTypes.string.isRequired,
+      measurements: React.PropTypes.object,
+      pictures: React.PropTypes.shape({
+        main: React.PropTypes.number.isRequired,
+        product: React.PropTypes.number.isRequired,
+        paths: React.PropTypes.arrayOf(React.PropTypes.object)
+      }),
+      colors: React.PropTypes.object.isRequired,
+      defaultColor: React.PropTypes.string.isRequired
+    })
+  },
+
+  addToBag: function(){
+    this.props.addProductToBag(this.props.product, this.props.options);
   },
 
   setProductMeasurements: function(measurements){
@@ -41,14 +57,14 @@ var ProductDetails = React.createClass({
         <div className="container">
           <div className="row">
             <div className="three columns">
-              <ProductTitle name={this.props.name} />
-              <ProductPrice price={this.props.price} />
+              <ProductTitle name={this.props.product.name} />
+              <ProductPrice price={this.props.product.price} />
               <ProductColorPicker
-                defaultColor={this.props.defaultColor}
-                colors={this.props.colors} />
+                defaultColor={this.props.product.defaultColor}
+                colors={this.props.product.colors} />
             </div>
             <div className="four columns">
-              <ProductInfo description={this.props.description} />
+              <ProductInfo description={this.props.product.description} />
             </div>
             <div className="five columns">
               <div className="comprar-produto">
@@ -58,11 +74,9 @@ var ProductDetails = React.createClass({
                   active={this.props.measurementsPopupOpen}>
                   <MeasurementsForm
                     setProductMeasurements={this.setProductMeasurements}
-                    measurements={this.props.measurements} />
+                    measurements={this.props.product.measurements} />
                 </Popup>
-                <Link to="/bag">
-                  <LightButton label="Comprar" route="/bag" />
-                </Link>
+                <LightButton click={this.addToBag} label="Comprar" />
                 <SocialIcons />
               </div>
             </div>
@@ -82,7 +96,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     closeMeasurementsPopup: productActions.closeMeasurementsPopup,
     openMeasurementsPopup: productActions.openMeasurementsPopup,
-    setProductMeasurements: productActions.setProductMeasurements
+    setProductMeasurements: productActions.setProductMeasurements,
+    addProductToBag: bagActions.addProductToBag
   }, dispatch);
 }
 module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
