@@ -16,7 +16,17 @@ var addProductToBag = function (product, options) {
   };
 };
 
+var removeProductFromBag = function (productId) {
+  return {
+    type: actionTypes.REMOVE_PRODUCT_FROM_BAG,
+    payload: {
+      productId: productId
+    }
+  };
+};
+
 module.exports = {
   toggleQuickBag: toggleQuickBag,
-  addProductToBag: addProductToBag
+  addProductToBag: addProductToBag,
+  removeProductFromBag: removeProductFromBag
 };

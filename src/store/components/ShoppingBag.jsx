@@ -1,12 +1,15 @@
-var React = require('react');
-var ProductCardHorizontal = require('./ProductCardHorizontal.jsx');
-var ProductPrice = require('./ProductPrice.jsx');
-var DarkButton = require('./DarkButton.jsx');
-var connect = require('react-redux').connect;
+import React from 'react';
+import DarkButton from './DarkButton.jsx';
+import ProductPrice from './ProductPrice.jsx';
+import ProductCardHorizontal from './ProductCardHorizontal.jsx';
+import bagActions from './state/bagActions.js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 var ShoppingBag = React.createClass({
 
   propTypes: {
+    removeProductFromBag: React.PropTypes.func,
     items: React.PropTypes.shape({
       options: React.PropTypes.shape({
         color: React.PropTypes.object,
@@ -93,7 +96,11 @@ var ShoppingBag = React.createClass({
             <ProductPrice price={product.price}/>
           </td>
           <td>
-            <a href="#">x</a>
+            <a href="#"
+              onClick={() => { this.props.removeProductFromBag(itemId); }}
+            >
+              x
+            </a>
           </td>
         </tr>
       );
@@ -108,6 +115,10 @@ function mapStateToProps(state) {
     items: state.bag.items
   };
 }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    removeProductFromBag: bagActions.removeProductFromBag
+  }, dispatch);
+}
 
-
-module.exports = connect(mapStateToProps)(ShoppingBag);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);

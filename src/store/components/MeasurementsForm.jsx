@@ -13,7 +13,7 @@ var MeasurementsForm = React.createClass({
   },
 
   onChange: function (event, measurement) {
-    var measurements = {};
+    var measurements = Object.assign({}, this.state.measurements);
     measurements[measurement] = event.target.value;
 
     this.setState({measurements: measurements});

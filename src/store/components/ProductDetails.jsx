@@ -1,18 +1,19 @@
-var React = require('react');
-var ProductTitle = require('./ProductTitle.jsx');
-var ProductInfo = require('./ProductInfo.jsx');
-var ProductPrice = require('./ProductPrice.jsx');
-var ProductColorPicker = require('./ProductColorPicker.jsx');
-var MediumDarkButton = require('./MediumDarkButton.jsx');
-var LightButton = require('./LightButton.jsx');
-var SocialIcons = require('./SocialIcons.jsx');
-var Popup = require('./Popup.jsx');
-var MeasurementsForm = require('./MeasurementsForm.jsx');
-var connect = require('react-redux').connect;
-var bindActionCreators = require('redux').bindActionCreators;
-var productActions = require('./state/productActions.js');
-var bagActions = require('./state/bagActions.js');
-import { browserHistory } from 'react-router'
+import React from 'react';
+import ProductTitle from './ProductTitle.jsx';
+import ProductInfo from './ProductInfo.jsx';
+import ProductPrice from './ProductPrice.jsx';
+import ProductColorPicker from './ProductColorPicker.jsx';
+import MediumDarkButton from './MediumDarkButton.jsx';
+import LightButton from './LightButton.jsx';
+import SocialIcons from './SocialIcons.jsx';
+import Popup from './Popup.jsx';
+import MeasurementsForm from './MeasurementsForm.jsx';
+import productActions from './state/productActions.js';
+import bagActions from './state/bagActions.js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
+
 
 
 
