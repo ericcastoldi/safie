@@ -52,52 +52,50 @@ module.exports = {
   bag: {
     quickBagOpened: false,
     items: {
-      1475971773639: {
-        options: {
-          color: {
-            cinza: {
-              name: 'Cinza',
-              hex: '#666666'
-            }
-          },
-          measurements: {
-            ombros: 123,
-            bracos: 456,
-            comprimento: 789
-          }
-        },
-        product: {
-          id: 'blazer-soho',
-          name: 'Blazer soho',
-          description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
-          price: '1130,80',
-          measurements: {
-            ombros: null,
-            bracos: null,
-            comprimento: null
-          },
-          defaultColor: 'preto',
-          colors: {
-            preto: {
-              name: 'Preto',
-              hex: '#000000'
-            },
-            cinza: {
-              name: 'Cinza',
-              hex: '#666666'
-            }
-          },
-          pictures: {
-            main: 1,
-            product: 2,
-            paths: {
-              1: '/img/demo/blazer-look-01.jpg',
-              2: '/img/demo/blazer-detalhe.jpg',
-              3: '/img/demo/blazer-look-02.jpg'
-            }
-          }
-        }
-      }
+      //   1475971773639: {
+      //     options: {
+      //       color: {
+      //         name: 'Cinza',
+      //         hex: '#666666'
+      //       },
+      //       measurements: {
+      //         ombros: 123,
+      //         bracos: 456,
+      //         comprimento: 789
+      //       }
+      //     },
+      //     product: {
+      //       id: 'blazer-soho',
+      //       name: 'Blazer soho',
+      //       description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
+      //       price: '1130,80',
+      //       measurements: {
+      //         ombros: null,
+      //         bracos: null,
+      //         comprimento: null
+      //       },
+      //       defaultColor: 'preto',
+      //       colors: {
+      //         preto: {
+      //           name: 'Preto',
+      //           hex: '#000000'
+      //         },
+      //         cinza: {
+      //           name: 'Cinza',
+      //           hex: '#666666'
+      //         }
+      //       },
+      //       pictures: {
+      //         main: 1,
+      //         product: 2,
+      //         paths: {
+      //           1: '/img/demo/blazer-look-01.jpg',
+      //           2: '/img/demo/blazer-detalhe.jpg',
+      //           3: '/img/demo/blazer-look-02.jpg'
+      //         }
+      //       }
+      //     }
+      //   }
     }
   },
   menu: {

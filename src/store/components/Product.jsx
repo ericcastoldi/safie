@@ -6,6 +6,8 @@ var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
 var productActions = require('./state/productActions.js');
 
+
+
 var Product = React.createClass({
 
   propTypes: {

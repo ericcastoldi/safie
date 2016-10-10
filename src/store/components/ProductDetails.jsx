@@ -12,6 +12,8 @@ var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
 var productActions = require('./state/productActions.js');
 var bagActions = require('./state/bagActions.js');
+import { browserHistory } from 'react-router'
+
 
 
 var ProductDetails = React.createClass({
@@ -44,6 +46,7 @@ var ProductDetails = React.createClass({
 
   addToBag: function(){
     this.props.addProductToBag(this.props.product, this.props.options);
+    browserHistory.push('/bag');
   },
 
   setProductMeasurements: function(measurements){

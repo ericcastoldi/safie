@@ -31,6 +31,14 @@ var ShoppingBag = React.createClass({
 
   render: function () {
 
+    if(Object.keys(this.props.items).length === 0){
+      return (
+        <div>
+          Nenhum produto na sacola :(
+        </div>
+      );
+    }
+
     var renderedRows = this.renderDataRows();
 
     return (
@@ -66,13 +74,6 @@ var ShoppingBag = React.createClass({
 
   renderDataRows: function () {
 
-    if(Object.keys(this.props.items).length === 0){
-      return (
-        <div>
-          Nenhum produto na sacola :(
-        </div>
-      );
-    }
 
     return Object.keys(this.props.items).map(function (itemId, index) {
 
