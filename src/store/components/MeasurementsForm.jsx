@@ -1,29 +1,19 @@
-var React = require('react');
-var DarkButton = require('./DarkButton.jsx');
+import React from 'react';
+import DarkButton from './DarkButton.jsx';
 
-var MeasurementsForm = React.createClass({
 
-  propTypes: {
-    measurements: React.PropTypes.object.isRequired,
-    setProductMeasurements: React.PropTypes.func.isRequired
-  },
+class MeasurementsForm extends React.Component {
 
-  getInitialState: function() {
-      return { measurements: this.props.measurements };
-  },
+  constructor() {
+    super();
 
-  onChange: function (event, measurement) {
-    var measurements = Object.assign({}, this.state.measurements);
-    measurements[measurement] = event.target.value;
+    this.state = {};
+    this.onChange = this.onChange.bind(this);
+    this.setMeasurements = this.setMeasurements.bind(this);
+    this.renderMeasurements = this.renderMeasurements.bind(this);
+  }
 
-    this.setState({measurements: measurements});
-  },
-
-  setMeasurements: function(){
-    this.props.setProductMeasurements(this.state.measurements);
-  },
-
-  render: function () {
+  render() {
 
     if(!this.props.measurements){
       return (<div>Carregando medidas...</div>);
@@ -32,27 +22,45 @@ var MeasurementsForm = React.createClass({
     var renderedMeasurements = this.renderMeasurements();
     return (
       <div className="form-medidas">
+        <h2>Medidas</h2>
         {renderedMeasurements}
         <DarkButton click={this.setMeasurements} label="Definir Medidas" />
       </div>
     );
-  },
+  }
 
-  renderMeasurements: function () {
+  renderMeasurements() {
 
-    var measurementsMap = Object.keys(this.props.measurements).map(function (measurement, index) {
+    var measurementsMap = Object.keys(this.props.measurements).map(function (measurementId, index) {
+      const measurement = this.props.measurements[measurementId];
+
       return (
         <input
-          type="text"
           key={index}
-          placeholder={measurement.toUpperCase()}
-          onChange={event => this.onChange(event, measurement)}
+          type="number"
+          title={measurement.description}
+          placeholder={measurement.name.toUpperCase()}
+          onChange={event => this.onChange(event, measurementId)}
         />
       );
     }.bind(this));
 
     return measurementsMap;
   }
-});
+
+  onChange(event, measurementId) {
+
+    this.setState({measurements: measurements});
+  }
+
+  setMeasurements(){
+    this.props.setProductMeasurements(this.state.measurements);
+  }
+}
+
+MeasurementsForm.propTypes = {
+  measurements: React.PropTypes.object.isRequired,
+  setProductMeasurements: React.PropTypes.func.isRequired
+};
 
 module.exports = MeasurementsForm;

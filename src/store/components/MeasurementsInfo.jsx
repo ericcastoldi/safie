@@ -1,26 +1,14 @@
-var React = require('react');
+import React from 'react';
+import productShape from './propTypes/productShape.js';
 
-var MeasurementsInfo = React.createClass({
+class MeasurementsInfo extends React.Component {
 
-  propTypes: {
-    measurements: React.PropTypes.object,
-    product: React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
-      description: React.PropTypes.string.isRequired,
-      price: React.PropTypes.string.isRequired,
-      measurements: React.PropTypes.object,
-      pictures: React.PropTypes.shape({
-        main: React.PropTypes.number.isRequired,
-        product: React.PropTypes.number.isRequired,
-        paths: React.PropTypes.arrayOf(React.PropTypes.object)
-      }),
-      colors: React.PropTypes.object.isRequired,
-      defaultColor: React.PropTypes.string.isRequired
-    })
-  },
+  constructor() {
+    super();
+    this.renderMeasurements = this.renderMeasurements.bind(this);
+  }
 
-  render: function () {
+  render() {
 
     var renderedMeasurements = this.renderMeasurements();
 
@@ -29,25 +17,31 @@ var MeasurementsInfo = React.createClass({
         {renderedMeasurements}
       </div>
     );
-  },
+  }
 
 
-  renderMeasurements: function(){
+  renderMeasurements(){
 
     if(!this.props.product.measurements){
       return 'Peça sem especificação de medidas';
     }
 
-    var measurementsMap = Object.keys(this.props.product.measurements).map(function(measurement, index){
+    var measurementsMap = Object.keys(this.props.product.measurements).map(function(measurementId, index){
 
-      var measurementValue = 'Medida não especificada';
-      if(this.props.measurements && (measurement in this.props.measurements)){
-        measurementValue = this.props.measurements[measurement] + 'cm';
+      let productMeasurement = this.props.product.measurements[measurementId];
+      let measurementValue = 'Medida não especificada';
+
+      if(measurementId in this.props.measurements) {
+        let measurement = this.props.measurements[measurementId];
+
+        if(measurement.value){
+          measurementValue = measurement.value + 'cm';
+        }
       }
 
       return (
-        <p key={index}>
-          <span className="medida">{measurement}</span>
+        <p key={index} title={productMeasurement.description}>
+          <span className="medida">{productMeasurement.name}:</span>
           <span className="tamanho">{measurementValue}</span>
         </p>
       );
@@ -55,7 +49,12 @@ var MeasurementsInfo = React.createClass({
 
     return measurementsMap;
   }
-});
 
+}
+
+MeasurementsInfo.propTypes = {
+  measurements: React.PropTypes.object,
+  product: React.PropTypes.shape(productShape)
+};
 
 module.exports = MeasurementsInfo;

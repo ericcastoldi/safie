@@ -1,7 +1,8 @@
-var React = require('react');
-var ProductPicture = require('./ProductPicture.jsx');
-var ProductInfoSmall = require('./ProductInfoSmall.jsx');
-var MeasurementsInfo = require('./MeasurementsInfo.jsx');
+import React from 'react';
+import ProductPicture from './ProductPicture.jsx';
+import ProductInfoSmall from './ProductInfoSmall.jsx';
+import MeasurementsInfo from './MeasurementsInfo.jsx';
+import productShape from './propTypes/productShape.js';
 
 var ProductCardHorizontal = React.createClass({
 
@@ -10,21 +11,7 @@ var ProductCardHorizontal = React.createClass({
       color: React.PropTypes.object,
       measurements: React.PropTypes.object
     }),
-    product: React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
-      description: React.PropTypes.string.isRequired,
-      price: React.PropTypes.string.isRequired,
-      measurements: React.PropTypes.object,
-      pictures: React.PropTypes.shape({
-        main: React.PropTypes.number.isRequired,
-        product: React.PropTypes.number.isRequired,
-        paths: React.PropTypes.arrayOf(React.PropTypes.object)
-      }),
-      colors: React.PropTypes.object.isRequired,
-      defaultColor: React.PropTypes.string.isRequired
-    })
-.isRequired
+    product: React.PropTypes.shape(productShape).isRequired
   },
 
   render: function () {

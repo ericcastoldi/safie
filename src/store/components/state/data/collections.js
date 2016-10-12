@@ -6,8 +6,16 @@ module.exports = {
       description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
       price: '230,90',
       measurements: {
-        Cintura: null,
-        Pernas: null
+        cintura: {
+          name: 'Cintura',
+          description: 'Medida da cintura',
+          value: 80
+        },
+        pernas: {
+          name: 'Pernas',
+          description: 'Medida das pernas',
+          value: 123
+        }
       },
       defaultColor: 'preto',
       colors: {
@@ -33,9 +41,21 @@ module.exports = {
       description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
       price: '1130,80',
       measurements: {
-        ombros: null,
-        bracos: null,
-        comprimento: null
+        ombros: {
+          name: 'Ombros',
+          description: 'Distância entre os ombros',
+          value: 60
+        },
+        bracos: {
+          name: 'Braços',
+          description: 'Comprimento dos braços',
+          value: 102
+        },
+        comprimento: {
+          name: 'Comprimento',
+          description: 'Altura da peça, medida da altura do ombro até a cintura',
+          value: 95
+        }
       },
       defaultColor: 'preto',
       colors: {
@@ -64,9 +84,21 @@ module.exports = {
       description: 'Calça reta com cós com passantes. Possui 4 bolsos sendo os dois posteriores falsos. Fechamento frontal em zíper e botões.',
       price: '522,00',
       measurements: {
-        cintura: null,
-        quadril: null,
-        pernas: null
+        cintura: {
+          name: 'Cintura',
+          description: 'Medida da cintura',
+          value: 75
+        },
+        quadril: {
+          name: 'Quadril',
+          description: 'Medida do quadril',
+          value: 88
+        },
+        pernas: {
+          name: 'Pernas',
+          description: 'Comprimento das pernas',
+          value: 110
+        }
       },
       defaultColor: 'salmao',
       colors: {
@@ -91,8 +123,16 @@ module.exports = {
       description: 'Camisa cropped, gola de ponta, manga longa, punho fechado em botão, 2 bolsos e barra com faixa para amarração. Abotoamento frontal.',
       price: '397,00',
       measurements: {
-        ombros: null,
-        bracos: null
+        ombros: {
+          name: 'Ombros',
+          description: 'Largura dos ombros',
+          value: 50
+        },
+        bracos: {
+          name: 'Braços',
+          description: 'Comprimento dos braços',
+          value: 99
+        }
       },
       defaultColor: 'cinza',
       colors: {
@@ -121,7 +161,11 @@ module.exports = {
       description: 'Top reto em malha, decote arredondado, manga curta e 2 fendas laterais. Estampa frontal: "NAH POP NO STYLE AS STRICTLY ROOTS".',
       price: '144,00',
       measurements: {
-        ombros: null
+        ombros: {
+          name: 'Ombros',
+          description: 'Largura dos ombros',
+          value: 50
+        }
       },
       defaultColor: 'azul',
       colors: {
@@ -151,9 +195,21 @@ module.exports = {
       description: 'Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.',
       price: '1244,00',
       measurements: {
-        ombros: null,
-        bracos: null,
-        comprimento: null
+        ombros: {
+          name: 'Ombros',
+          description: 'Largura dos ombros',
+          value: 50
+        },
+        bracos: {
+          name: 'Braços',
+          description: 'Comprimento dos braços',
+          value: 99
+        },
+        comprimento: {
+          name: 'Comprimento',
+          description: 'Altura da peça, medida da altura do ombro até a cintura',
+          value: 95
+        }
       },
       defaultColor: 'bege',
       colors: {
@@ -179,10 +235,26 @@ module.exports = {
       description: 'Top reto em seda, gola alta fechada em colchete e manga longa. Levemente transparente.',
       price: '822,00',
       measurements: {
-        ombros: null,
-        bracos: null,
-        pernas: null,
-        quadril: null
+        ombros: {
+          name: 'Ombros',
+          description: 'Largura dos ombros',
+          value: 50
+        },
+        bracos: {
+          name: 'Braços',
+          description: 'Comprimento dos braços',
+          value: 99
+        },
+        quadril: {
+          name: 'Quadril',
+          description: 'Medida do quadril',
+          value: 88
+        },
+        pernas: {
+          name: 'Pernas',
+          description: 'Comprimento das pernas',
+          value: 110
+        }
       },
       defaultColor: 'bege',
       colors: {
@@ -211,10 +283,26 @@ module.exports = {
       description: 'Vestido curto estilo kimono e decote V. Sem fechamento. Acompanha faixa no mesmo tecido para amarração.',
       price: '689,60',
       measurements: {
-        ombros: null,
-        bracos: null,
-        pernas: null,
-        quadril: null
+        ombros: {
+          name: 'Ombros',
+          description: 'Largura dos ombros',
+          value: 50
+        },
+        bracos: {
+          name: 'Braços',
+          description: 'Comprimento dos braços',
+          value: 99
+        },
+        quadril: {
+          name: 'Quadril',
+          description: 'Medida do quadril',
+          value: 88
+        },
+        pernas: {
+          name: 'Pernas',
+          description: 'Comprimento das pernas',
+          value: 110
+        }
       },
       defaultColor: 'salmao',
       colors: {

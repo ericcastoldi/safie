@@ -69,7 +69,6 @@ module.exports = {
       //       name: 'Blazer soho',
       //       description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
       //       price: '1130,80',
-      // TODO: Adicionar descrição das medidas
       //       measurements: {
       //         ombros: null,
       //         bracos: null,
