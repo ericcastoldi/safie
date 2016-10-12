@@ -49,6 +49,14 @@ class MeasurementsForm extends React.Component {
   }
 
   onChange(event, measurementId) {
+    let measurements = {};
+    measurements[measurementId] = {
+      value: event.target.value
+    };
+
+    if(this.state.measurements){
+      measurements = Object.assign({}, this.state.measurements, measurements);
+    }
 
     this.setState({measurements: measurements});
   }
