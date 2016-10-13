@@ -231,6 +231,14 @@ nav.menu.open {
   margin-top  : 3rem;
 }
 
+.fa-shopping-bag:after {
+  content    : "\f290";
+  position   : relative;
+  margin-left: -3rem;
+  color      : white;
+  top        : 1px;
+}
+
 .quickbag .items {
   display: none;
 }
@@ -403,7 +411,6 @@ nav.menu.open {
 }
 
 .picture-viewer .foto-principal-produto .foto-produto {
-  height    : 90vh;
   text-align: center;
 }
 
@@ -685,6 +692,10 @@ nav.menu.open {
 
   .quickbag.open {
     width: 10%;
+  }
+
+  .picture-viewer .foto-principal-produto .foto-produto {
+    height: 90vh;
   }
 
   .sacola .container {

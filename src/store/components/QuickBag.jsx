@@ -25,7 +25,7 @@ var QuickBag = React.createClass({
       <div className={cssClasses.join(' ')} onClick={this.toggle}>
 
         <Link to="/bag">
-          <i className="fa fa-shopping-cart fa-flip-horizontal fa-2x" aria-hidden="true"></i>
+          <i className="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
         </Link>
         <div className="items"></div>
       </div>

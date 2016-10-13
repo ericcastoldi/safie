@@ -31,7 +31,8 @@ class MeasurementsInfo extends React.Component {
       let productMeasurement = this.props.product.measurements[measurementId];
       let measurementValue = 'Medida não especificada';
 
-      if(measurementId in this.props.measurements) {
+      if(this.props.measurements &&
+        measurementId in this.props.measurements) {
         let measurement = this.props.measurements[measurementId];
 
         if(measurement.value){

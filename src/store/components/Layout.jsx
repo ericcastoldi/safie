@@ -9,6 +9,7 @@ var Layout = React.createClass({
     },
 
   render: function () {
+    // TODO: Criar faixa de entrega em todo o brasil
     return (
       <div>
         <Menu />
