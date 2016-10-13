@@ -1,4 +1,3 @@
-'use strict'
 var actionTypes = require('./actionTypes.js');
 var initialState = require('./data/initialState.js');
 
