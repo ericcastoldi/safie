@@ -30,7 +30,32 @@ describe('bagReducer', function () {
       expect(newState.quickBagOpened)
         .to.be.false;
     });
+  });
 
+  describe('addProductToBag', function () {
+
+    it('should add the product from the action payload to the items array.', function () {
+
+      var state = {};
+      var product = {
+        name: 'Produto'
+      };
+      var options = {
+        measurements: {}
+      };
+      var action = bagActions.addProductToBag(product, options);
+
+      var newState = bagReducer(state, action);
+
+      var productKeys = Object.keys(newState.items);
+
+      expect(productKeys.length)
+        .to.equal(1);
+
+      var newProduct = newState.items[productKeys[0]];
+      expect(newProduct)
+        .to.eql(product);
+    });
 
   });
 });
