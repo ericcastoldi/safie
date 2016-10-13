@@ -36,13 +36,18 @@ describe('bagReducer', function () {
 
     it('should add the product from the action payload to the items array.', function () {
 
-      var state = {};
+      var state = {
+        items: {}
+      };
+
       var product = {
         name: 'Produto'
       };
+
       var options = {
         measurements: {}
       };
+
       var action = bagActions.addProductToBag(product, options);
 
       var newState = bagReducer(state, action);
