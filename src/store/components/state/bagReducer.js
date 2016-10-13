@@ -1,3 +1,4 @@
+'use strict'
 var actionTypes = require('./actionTypes.js');
 var initialState = require('./data/initialState.js');
 
@@ -18,8 +19,7 @@ const addProductToBag = (state, action) => {
 };
 
 const removeProductFromBag = (state, action) => {
-  if(action.payload.productId in state.items)
-  {
+  if (action.payload.productId in state.items) {
     let newState = Object.assign({}, state);
     delete newState.items[action.payload.productId];
     return newState;
@@ -37,8 +37,8 @@ module.exports = function (state = initialState.bag, action) {
   case actionTypes.ADD_PRODUCT_TO_BAG:
     return addProductToBag(state, action);
 
-    case actionTypes.REMOVE_PRODUCT_FROM_BAG:
-      return removeProductFromBag(state, action);
+  case actionTypes.REMOVE_PRODUCT_FROM_BAG:
+    return removeProductFromBag(state, action);
 
   default:
     return state;
