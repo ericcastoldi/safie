@@ -45,7 +45,11 @@ describe('bagReducer', function () {
       };
 
       var options = {
-        measurements: {}
+        measurements: {
+          ombro: {
+            value: 12
+          }
+        }
       };
 
       var action = bagActions.addProductToBag(product, options);
@@ -57,9 +61,12 @@ describe('bagReducer', function () {
       expect(productKeys.length)
         .to.equal(1);
 
-      var newProduct = newState.items[productKeys[0]];
-      expect(newProduct)
+      var newItem = newState.items[productKeys[0]];
+      expect(newItem.product)
         .to.eql(product);
+
+      expect(newItem.options)
+        .to.eql(options);
     });
 
   });
