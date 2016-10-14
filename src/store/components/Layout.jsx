@@ -1,15 +1,10 @@
-var React = require('react');
-var Menu = require('./Menu.jsx');
-var QuickBag = require('./QuickBag.jsx');
+import React from 'react';
+import Menu from './Menu.jsx';
+import QuickBag from './QuickBag.jsx';
+import DeliveryBar from './DeliveryBar.jsx';
 
-var Layout = React.createClass({
-
-    propTypes: {
-      children: React.PropTypes.node.isRequired
-    },
-
-  render: function () {
-    // TODO: Criar faixa de entrega em todo o brasil
+class Layout extends React.Component {
+  render() {
     return (
       <div>
         <Menu />
@@ -17,9 +12,14 @@ var Layout = React.createClass({
           {this.props.children}
         </div>
         <QuickBag />
+        <DeliveryBar />
       </div>
     );
   }
-});
+}
+
+Layout.propTypes = {
+  children: React.PropTypes.node.isRequired
+};
 
 module.exports = Layout;

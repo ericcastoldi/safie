@@ -367,6 +367,7 @@ nav.menu.open {
 .layout-content {
   margin-top   : 5rem;
   margin-bottom: 3rem;
+  min-height   : 100vh;
 }
 
 /* Products.jsx*/
@@ -637,6 +638,20 @@ nav.menu.open {
   margin-left: 1rem;
 }
 
+.delivery-bar {
+  background-color: #333;
+  color           : #fff;
+  display         : none;
+  text-align      : right;
+  position        : relative;
+}
+
+.delivery-bar span {
+  padding-right : 1rem;
+  text-transform: uppercase;
+  font-size     : 1.3rem;
+}
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
@@ -700,6 +715,10 @@ nav.menu.open {
 
   .sacola .container {
     float: left;
+  }
+
+  .delivery-bar {
+    display: block;
   }
 }
 @media screen and (min-width: 2000px) {
