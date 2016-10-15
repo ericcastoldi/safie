@@ -1,6 +1,8 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
+var bagActions = require('./state/bagActions.js');
+var Link = require('react-router').Link;
 
 var QuickBag = React.createClass({
   propTypes: {
@@ -21,7 +23,10 @@ var QuickBag = React.createClass({
 
     return (
       <div className={cssClasses.join(' ')} onClick={this.toggle}>
-        <i className="fa fa-shopping-cart fa-flip-horizontal fa-2x" aria-hidden="true"></i>
+
+        <Link to="/bag">
+          <i className="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
+        </Link>
         <div className="items"></div>
       </div>
     );
@@ -29,21 +34,17 @@ var QuickBag = React.createClass({
 });
 
 
-var toggleQuickBag = function() {
-  return {
-    type: 'TOGGLE_QUICK_BAG'
-  };
-};
+
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    toggle: toggleQuickBag
+    toggle: bagActions.toggleQuickBag
   }, dispatch);
 }
 
 function mapStateToProps(state) {
   return {
-    opened: state.main.quickBagOpened
+    opened: state.bag.quickBagOpened
   };
 }
 

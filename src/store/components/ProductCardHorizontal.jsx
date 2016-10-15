@@ -1,34 +1,46 @@
-var React = require('react');
-var Link = require('react-router').Link;
-var ProductPicture = require('./ProductPicture.jsx');
-var ProductInfoSmall = require('./ProductInfoSmall.jsx');
-var SizeInfo = require('./SizeInfo.jsx');
+import React from 'react';
+import ProductPicture from './ProductPicture.jsx';
+import ProductInfoSmall from './ProductInfoSmall.jsx';
+import MeasurementsInfo from './MeasurementsInfo.jsx';
+import productShape from './propTypes/productShape.js';
 
 var ProductCardHorizontal = React.createClass({
 
   propTypes: {
-    product: React.PropTypes.shape({
-      picture: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string,
-      route: React.PropTypes.string.isRequired,
-      price: React.PropTypes.number.isRequired,
-      measures: React.PropTypes.object
-    }).isRequired
+    options: React.PropTypes.shape({
+      color: React.PropTypes.object,
+      measurements: React.PropTypes.object
+    }),
+    product: React.PropTypes.shape(productShape).isRequired
   },
 
   render: function () {
 
+    var options = this.props.options;
     var product = this.props.product;
+    var picture = product.pictures.paths[product.pictures.product];
+
+    var colorName = options.color ?
+      product.colors[options.color].name :
+      product.colors[product.defaultColor].name;
 
     return (
       <div className="produto-sacola">
-        <Link to={product.route}>
-            <ProductPicture picture={product.picture} description={product.name} />
-            <ProductInfoSmall
-              name={product.name}
-              description={product.description} />
-            <SizeInfo measures={product.measures}/>
-        </Link>
+
+        <ProductPicture
+          picture={picture}
+          description={product.name} />
+
+        <ProductInfoSmall
+          name={product.name}
+          description={product.description} />
+
+        <div><strong>Cor:</strong> {colorName}</div>
+
+        <MeasurementsInfo
+          product={product}
+          measurements={options.measurements} />
+
       </div>
     );
   }

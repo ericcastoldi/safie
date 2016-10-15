@@ -4,16 +4,46 @@ var ProductPicturesPicker = require('./ProductPicturesPicker.jsx');
 
 var ProductPicturesViewer = React.createClass({
 
+  propTypes: {
+    pictures: React.PropTypes.shape({
+      main: React.PropTypes.number.isRequired,
+      product: React.PropTypes.number.isRequired,
+      paths: React.PropTypes.arrayOf(React.PropTypes.object)
+    })
+  },
+
   getInitialState: function (){
+    if(this.props.pictures) {
+      return {
+        activePicture: this.props.pictures.main
+      };
+    }
+
     return {
-      activePicture: '/img/demo/lookbook13.jpg',
-      pictures: [
-        '/img/demo/lookbook13.jpg',
-        '/img/demo/lookbook14.jpg',
-        '/img/demo/lookbook15.jpg',
-        '/img/demo/detalhe-saia.jpg'
-      ]
+      activePicture: 1
     };
+  },
+
+  nextPicture: function(){
+    if(Number(this.state.activePicture) === Object.keys(this.props.pictures.paths).length)
+    {
+      this.changeActivePicture(1);
+      return;
+    }
+
+    var next = Number(this.state.activePicture) + 1;
+    this.changeActivePicture(next);
+  },
+
+  previousPicture: function(){
+    if(Number(this.state.activePicture) === 1)
+    {
+      this.changeActivePicture(Object.keys(this.props.pictures.paths).length);
+      return;
+    }
+
+    var next = Number(this.state.activePicture) - 1;
+    this.changeActivePicture(next);
   },
 
   changeActivePicture: function(pic){
@@ -23,13 +53,31 @@ var ProductPicturesViewer = React.createClass({
 
   render: function(){
 
-    return (
-      <div>
-        <ProductPicture picture={this.state.activePicture} />
+    if(!this.props.pictures){
+      return (<div>Carregando imagens...</div>);
+    }
 
-        <ProductPicturesPicker
-          pictures={this.state.pictures}
-          picturePicked={this.changeActivePicture} />
+    var activePicturePath = this.props.pictures.paths[this.state.activePicture];
+
+    return (
+      <div className="picture-viewer">
+        <div className="container">
+          <div className="row">
+            <div className="three columns">
+              <ProductPicturesPicker
+                pictures={this.props.pictures.paths}
+                activePicture={this.state.activePicture}
+                picturePicked={this.changeActivePicture} />
+            </div>
+            <div className="nine columns">
+              <div className="foto-principal-produto">
+                <i onClick={this.previousPicture} className="fa fa-angle-double-left fa-2" aria-hidden="true"></i>
+                <ProductPicture picture={activePicturePath} />
+                <i onClick={this.nextPicture} className="fa fa-angle-double-right fa-2" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

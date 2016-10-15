@@ -1,4 +1,5 @@
 var React = require('react');
+var connect = require('react-redux').connect;
 var PolicyCard = require('./PolicyCard.jsx');
 var CreditCards = require('./CreditCards.jsx');
 
@@ -17,55 +18,6 @@ var Footer = React.createClass({
       .isRequired
   },
 
-  getDefaultProps: function () {
-    return {
-      policies: [
-        {
-          name: 'Central de Atendimento',
-          items: [
-            {
-              title: 'Fale Conosco',
-              route: '/fale-conosco'
-            }, {
-              title: 'atendimento@safie.com.br'
-            }, {
-              title: 'Telefone: (47) 3321-6698'
-            }, {
-              title: 'De segunda a sexta das 10 às 17'
-            }
-          ]
-        }, {
-          name: 'Informações',
-          items: [
-            {
-              title: 'Meus pedidos',
-              route: '/meus-pedidos'
-            }, {
-              title: 'Trocas e Devoluções',
-              route: '/politicas/trocas'
-            }, {
-              title: 'Prazos de Entrega',
-              route: '/politicas/entregas'
-            }, {
-              title: 'Pagamentos',
-              route: '/politicas/pagamentos'
-            }
-          ]
-        }, {
-          name: 'Pagamentos e Segurança',
-          items: [
-            {
-              title: 'Cartão de Crédito'
-            }, {
-              title: 'Parcelamento em até 5x sem juros'
-            }, {
-              title: 'Parcela mínima de R$ 300,00.'
-            }
-          ]
-        }
-      ]
-    };
-  },
   render: function () {
     return (
       <div className="footer-band">
@@ -90,4 +42,11 @@ var Footer = React.createClass({
   }
 });
 
-module.exports = Footer;
+
+function mapStateToProps(state) {
+  return {
+    policies: state.home.footer.policies
+  };
+}
+
+module.exports = connect(mapStateToProps)(Footer);

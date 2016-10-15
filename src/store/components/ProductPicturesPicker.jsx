@@ -5,16 +5,26 @@ var ProductPicturesPicker = React.createClass({
 
   propTypes: {
     picturePicked: React.PropTypes.func,
-    pictures: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+    activePicture: React.PropTypes.number,
+    pictures: React.PropTypes.arrayOf(
+      React.PropTypes.object
+    ).isRequired
   },
 
   renderThumbnails: function(){
-    return this.props.pictures.map(function(pic, index) {
+
+    return Object.keys(this.props.pictures).map(function(pic, index) {
+      var thumbnailCssClasses = [ 'thumbnail-produto' ];
+
+      if(pic === this.props.activePicture){
+        thumbnailCssClasses.push('active');
+      }
+
       return (
         <div key={index}
-            onMouseEnter={this.props.picturePicked.bind(null, pic)}
-            className="thumbnail-produto">
-          <ProductPicture picture={pic} />
+          onMouseEnter={this.props.picturePicked.bind(null, pic)}
+          className={thumbnailCssClasses.join(' ')}>
+          <ProductPicture picture={this.props.pictures[pic]} />
         </div>
       );
     }.bind(this));
@@ -25,7 +35,7 @@ var ProductPicturesPicker = React.createClass({
     var thumbnails = this.renderThumbnails();
 
     return (
-        <div>
+        <div className="picture-picker">
           {thumbnails}
         </div>
     );

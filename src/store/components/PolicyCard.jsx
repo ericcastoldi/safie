@@ -14,28 +14,6 @@ var PolicyCard = React.createClass({
     }).isRequired
   },
 
-  getDefaultProps: function() {
-    return {
-      name: 'Central de Atendimento',
-      items: [
-        {
-          title: 'Fale Conosco',
-          route: ''
-        },
-        {
-          title: 'atendimento@safie.com.br'
-        },
-        {
-          title: 'Telefone: (47) 3321-6698'
-        },
-        {
-          title: 'De segunda a sexta das 10 às 17'
-        }
-      ]
-    };
-  },
-
-
   renderPolicies: function(){
     return this.props.policy.items.map(function(item, index){
       return (
