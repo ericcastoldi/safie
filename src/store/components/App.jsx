@@ -14,6 +14,7 @@ var Layout = require('./Layout.jsx');
 var Product = require('./Product.jsx');
 var ProductsMasonry = require('./ProductsMasonry.jsx');
 var ShoppingBag = require('./ShoppingBag.jsx');
+var CustomerForm = require('./CustomerForm.jsx');
 
 const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, store);
 
@@ -30,6 +31,7 @@ ReactDOM.render(
         <Route path="/colecoes/:collection" component={ProductsMasonry} />
         <Route path="/colecoes/:collection/:product" component={Product} />
         <Route path="/bag" component={ShoppingBag} />
+        <Route path="/customer" component={CustomerForm} />
       </Route>
       <Redirect from="*" to="/" />
     </Router>
