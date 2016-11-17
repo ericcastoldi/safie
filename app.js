@@ -31,6 +31,8 @@ app.get('*', function (request, response) {
 });
 
 app.post('/api/customers', function(req, res, next){
+  console.log(req.body);
+
   customers.add(req.body, function(err, result) {
     if(err) {
       next(new Error('Não foi possível realizar o cadastro :( ' + err.message));

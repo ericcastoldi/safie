@@ -47,57 +47,76 @@ class CustomerForm extends React.Component {
     this.save = this.save.bind(this);
   }
 
+  renderAdditionalInfo() {
+    if(this.props.saving) {
+      return (<div>Salvando...</div>);
+    }
+
+    if(this.props.error){
+      return (<div>Ocorreu um erro ao salvar... {this.props.error}</div>);
+    }
+
+    return (<span></span>);
+  }
+
   render() {
 
     if(!this.props.customer){
       return (<div>Carregando...</div>);
     }
 
+    let additionalInfo = this.renderAdditionalInfo();
+
     return (
       <div className="form-medidas">
-        <form onSubmit={this.save}>
-          <h2>Cadastre-se</h2>
-          <input
-            type="text"
-            placeholder="Nome"
-            onChange={e => this.fieldChanged({ name: e.target.value })}
-          />
+        <h2>Cadastre-se</h2>
+        <input
+          type="text"
+          placeholder="Nome"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ name: e.target.value })}
+        />
 
-          <input
-            type="email"
-            placeholder="E-mail"
-            onChange={e => this.fieldChanged({ email: e.target.value })}
-          />
+        <input
+          type="email"
+          placeholder="E-mail"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ email: e.target.value })}
+        />
 
-          <input
-            type="date"
-            placeholder="Data de nascimento"
-            onChange={e => this.fieldChanged({ birthday: e.target.value })}
-          />
+        <input
+          type="date"
+          placeholder="Data de nascimento"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ birthday: e.target.value })}
+        />
 
-          <input
-            type="password"
-            placeholder="Senha"
-            onChange={e => this.fieldChanged({ pwd: e.target.value })}
-          />
+        <input
+          type="password"
+          placeholder="Senha"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ pwd: e.target.value })}
+        />
 
-          <input
-            type="password"
-            placeholder="Nome"
-            onChange={e => this.fieldChanged({ pwdConfirmation: e.target.value })}
-          />
+        <input
+          type="password"
+          placeholder="Repita sua senha"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ pwdConfirmation: e.target.value })}
+        />
 
-          <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
+        <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
 
-          <DarkButton click={this.save} label="Cadastrar" />
+        {additionalInfo}
 
-        </form>
+        <DarkButton click={this.save} label="Cadastrar" />
+
       </div>
     );
   }
 
   fieldChanged(change) {
-      var updatedCustomer = Object.assign({}, this.props, change);
+      var updatedCustomer = Object.assign({}, this.props.customer, change);
       this.props.customerChanged(updatedCustomer);
   }
 
@@ -108,13 +127,13 @@ class CustomerForm extends React.Component {
 
 CustomerForm.propTypes = {
   customer: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    email: React.PropTypes.string.isRequired,
-    pwd: React.PropTypes.string.isRequired,
-    pwdConfirmation: React.PropTypes.string.isRequired,
-    birthday: React.PropTypes.string.isRequired
-  }),
+    id: React.PropTypes.string,
+    name: React.PropTypes.string,
+    email: React.PropTypes.string,
+    pwd: React.PropTypes.string,
+    pwdConfirmation: React.PropTypes.string,
+    birthday: React.PropTypes.string
+  }).isRequired,
   saving: React.PropTypes.bool,
   error: React.PropTypes.object,
   customerChanged: React.PropTypes.func.isRequired,
