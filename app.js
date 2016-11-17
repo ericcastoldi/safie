@@ -1,16 +1,17 @@
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
-var customers = require('./src/store/api/customers.json');
+var customers = require('./src/store/api/customers.js');
+var helmet = require('helmet');
 
 var app = express();
 
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 3000));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'public/store')));
 app.use('/img', express.static(path.join(__dirname, 'public/store/img')));
 
-
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -23,10 +24,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(function(err, req, res) {
-  console.error(err);
-  res.status(500).send();
-});
 
 app.get('*', function (request, response) {
   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');

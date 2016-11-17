@@ -9,6 +9,8 @@ var homeReducer = require('./homeReducer.js');
 var bagReducer = require('./bagReducer.js');
 var productsReducer = require('./productsReducer.js');
 var productReducer = require('./productReducer.js');
+var customerReducer = require('./customerReducer.js');
+
 
 const rootReducer = Redux.combineReducers({
   menu: menuReducer,
@@ -16,6 +18,7 @@ const rootReducer = Redux.combineReducers({
   bag: bagReducer,
   products: productsReducer,
   product: productReducer,
+  customer: customerReducer,
   routing: ReactRouterRedux.routerReducer
 });
 

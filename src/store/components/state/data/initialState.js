@@ -159,5 +159,10 @@ module.exports = {
     }
   },
   /// TODO: Alterar para objeto, contendo um array de "data" dentro ou algo do genero.
-  products: []
+  products: [],
+  customer: {
+    current: {},
+    saving: false,
+    error: null
+  }
 };

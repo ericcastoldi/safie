@@ -1,11 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import DarkButton from './DarkButton.jsx';
+import customerActions from './state/customerActions.js';
+
+class LoginForm extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="form-medidas">
+        <form onSubmit={this.save}>
+          <h2>Login</h2>
+
+          <input
+            type="email"
+            placeholder="E-mail"
+            onChange={e => this.fieldChanged({ email: e.target.value })}
+          />
+
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={e => this.fieldChanged({ pwd: e.target.value })}
+          />
+
+          <DarkButton click={this.save} label="Entrar" />
+
+        </form>
+      </div>
+    );
+  }
+}
 
 
 class CustomerForm extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.fieldChanged = this.fieldChanged.bind(this);
     this.save = this.save.bind(this);
@@ -46,14 +82,14 @@ class CustomerForm extends React.Component {
           />
 
           <input
-            type="text"
+            type="password"
             placeholder="Nome"
             onChange={e => this.fieldChanged({ pwdConfirmation: e.target.value })}
           />
 
-          <label>Cadastrando-se você aceita nossos termos e privacidade.</label>
+          <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
 
-          <DarkButton click={this.save} label="Definir Medidas" />
+          <DarkButton click={this.save} label="Cadastrar" />
 
         </form>
       </div>
@@ -66,7 +102,7 @@ class CustomerForm extends React.Component {
   }
 
   save(){
-    this.props.saveCustomer(this.state.measurements);
+    this.props.saveCustomer(this.props.customer);
   }
 }
 
@@ -79,8 +115,26 @@ CustomerForm.propTypes = {
     pwdConfirmation: React.PropTypes.string.isRequired,
     birthday: React.PropTypes.string.isRequired
   }),
+  saving: React.PropTypes.bool,
+  error: React.PropTypes.object,
   customerChanged: React.PropTypes.func.isRequired,
   saveCustomer: React.PropTypes.func.isRequired
 };
 
-module.exports = CustomerForm;
+
+const mapCustomerFormStateToProps = (state) => {
+    return {
+      customer: state.customer.current,
+      saving: state.customer.saving,
+      error: state.customer.error
+    };
+};
+
+const mapCustomerFormDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    saveCustomer: customerActions.saveCustomer,
+    customerChanged: customerActions.customerChanged
+  }, dispatch);
+};
+
+module.exports = connect(mapCustomerFormStateToProps, mapCustomerFormDispatchToProps)(CustomerForm);
