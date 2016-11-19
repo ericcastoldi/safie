@@ -78,13 +78,6 @@ class CustomerForm extends React.Component {
         />
 
         <input
-          type="email"
-          placeholder="E-mail"
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ email: e.target.value })}
-        />
-
-        <input
           type="date"
           placeholder="Data de nascimento"
           disabled={this.props.saving}
@@ -92,17 +85,25 @@ class CustomerForm extends React.Component {
         />
 
         <input
+          type="email"
+          placeholder="E-mail"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ email: e.target.value })}
+        />
+
+
+        <input
           type="password"
           placeholder="Senha"
           disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ pwd: e.target.value })}
+          onChange={e => this.fieldChanged({ password: e.target.value })}
         />
 
         <input
           type="password"
           placeholder="Repita sua senha"
           disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ pwdConfirmation: e.target.value })}
+          onChange={e => this.fieldChanged({ passwordConfirmation: e.target.value })}
         />
 
         <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
@@ -121,18 +122,22 @@ class CustomerForm extends React.Component {
   }
 
   save(){
-    this.props.saveCustomer(this.props.customer);
+    if(!this.props.saving){
+      this.props.saveCustomer(this.props.customer);
+    }
   }
 }
 
 CustomerForm.propTypes = {
   customer: React.PropTypes.shape({
-    id: React.PropTypes.string,
+    _id: React.PropTypes.string,
     name: React.PropTypes.string,
     email: React.PropTypes.string,
-    pwd: React.PropTypes.string,
-    pwdConfirmation: React.PropTypes.string,
-    birthday: React.PropTypes.string
+    password: React.PropTypes.string,
+    passwordConfirmation: React.PropTypes.string,
+    birthday: React.PropTypes.string,
+    cpf: React.PropTypes.string,
+    phone: React.PropTypes.string
   }).isRequired,
   saving: React.PropTypes.bool,
   error: React.PropTypes.object,
