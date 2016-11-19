@@ -1,0 +1,17 @@
+﻿- Login via facebook: colocar etapa na venda para informação do CPF e telefone
+- Milestone - 14/12
+- Sacola basico.com / btn continuar comprando
+- Sobre nós - pegar o texto e a foto - pag estática
+- Centralizar a entrega e tornar position: fixed
+- Campo de informação de CEP na ShoppingBag
+- Botão de cálculo de frete pelo CEP na ShoppingBag
+- Campo de subtotal/total na ShoppingBag,
+calculado somando os preços dos produtos e do Frete
+- Botão de finalizar compra leva para a tela de Login
+- Tela de login com campos de email e senha, campos de login com facebook
+e botao para novo cadastro.
+- Tela de novo cadastro com Nome, email, senha e data de nascimento
+- Tela My Safie
+  - Cadastro de endereços
+  - Consulta/cadastro de Medidas
+  - Consulta de compras feitas no site
