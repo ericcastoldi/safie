@@ -64,6 +64,8 @@
     "mocha": "^2.4.5",
     "mocha-lcov-reporter": "^1.2.0",
     "mock-require": "^1.2.1",
+    "mongodb": "^2.2.11",
+    "node-correios": "^2.1.1",
     "react": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
     "react-dom": "^15.0.1",
