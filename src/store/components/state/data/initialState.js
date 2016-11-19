@@ -51,6 +51,7 @@ module.exports = {
   },
   bag: {
     quickBagOpened: false,
+    subtotal: 0,
     items: {
       //   1475971773639: {
       //     options: {
