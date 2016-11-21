@@ -1,6 +1,8 @@
 /*eslint no-underscore-dangle: 1*/
+const bcrypt = require('bcrypt');
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/safie';
+
 
 const customerModel = {
   _id: null,
@@ -8,7 +10,6 @@ const customerModel = {
   email: null,
   password: null,
   birthday: null,
-  cpf: null,
   phone: null,
   measurements: []
 };
@@ -18,118 +19,77 @@ const validEmail = (email) => {
   return re.test(email);
 };
 
-const validCPF = (cpf) => {
-    var soma = 0;
-    var resto;
+const customerFactory = (customerCandidate, createdCallback) => {
 
-    if(!parseInt(cpf))
-    {
-      return false;
-    }
-
-    for(var i = 1; i <= 9; i++) {
-      soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-    }
-
-    resto = (soma * 10) % 11;
-
-    if((resto === 10) || (resto === 11)) {
-      resto = 0;
-    }
-
-    if(resto !== parseInt(cpf.substring(9, 10))) {
-      return false;
-    }
-
-    soma = 0;
-    for (i = 1; i <= 10; i++) {
-      soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-    }
-
-    resto = (soma * 10) % 11;
-
-    if((resto === 10) || (resto === 11)) {
-      resto = 0;
-    }
-
-    if(resto !== parseInt(cpf.substring(10, 11))) {
-      return false;
-    }
-    return true;
-};
-
-const customerFactory = (customer) => {
-
-  if(!customer){
+  if(!customerCandidate){
     throw new Error('Instancia vazia de cliente.');
   }
 
-  if(!customer.name){
+  if(!customerCandidate.name){
     throw new Error('Informe seu nome.');
   }
 
-  if(!customer.email){
+  if(!customerCandidate.email){
     throw new Error('Informe seu e-mail.');
   }
 
-  if(!validEmail(customer.email)){
+  if(!validEmail(customerCandidate.email)){
     throw new Error('Informe um e-mail valido.');
   }
 
-  if(!customer.password){
+  if(!customerCandidate.password){
     throw new Error('Informe sua senha.');
   }
 
-  if(!customer.passwordConfirmation){
+  if(!customerCandidate.passwordConfirmation){
     throw new Error('Repita sua senha.');
   }
 
-  if(!(customer.password === customer.passwordConfirmation)){
+  if(!(customerCandidate.password === customerCandidate.passwordConfirmation)){
     throw new Error('A senha e a confirmação da senha devem ser iguais.');
   }
 
-  if(!customer.birthday){
+  if(!customerCandidate.birthday){
     throw new Error('Informe sua data de nascimento.');
   }
 
-  if(!Date.parse(customer.birthday)) {
+  if(!Date.parse(customerCandidate.birthday)) {
     throw new Error('A data de nascimento deve ser uma data válida.');
   }
 
-  if(!customer.cpf){
-    throw new Error('Informe seu CPF.');
-  }
-
-  if(!validCPF(customer.cpf)){
-    throw new Error('Informe um CPF válido.');
-  }
-
-  if(!customer.phone){
+  if(!customerCandidate.phone){
     throw new Error('Informe seu telefone.');
   }
 
-  return Object.assign({}, customerModel, {
-    _id: customer._id,
-    name: customer.name.trim(),
-    email: customer.email.trim(),
-    password: customer.password, // TODO: gerar hash aqui
-    birthday: new Date(customer.birthday),
-    cpf: customer.cpf.trim(),
-    phone: customer.phone.trim()
+  const saltRounds = 10;
+
+  bcrypt.genSalt(saltRounds, function(saltError, salt) {
+      bcrypt.hash(customerCandidate.password, salt, function(hashError, hash) {
+        const customer = Object.assign({}, customerModel, {
+          _id: customerCandidate._id,
+          name: customerCandidate.name.trim(),
+          email: customerCandidate.email.trim(),
+          password: hash, // TODO: gerar hash aqui
+          birthday: new Date(customerCandidate.birthday),
+          phone: customerCandidate.phone.trim()
+        });
+
+        createdCallback(customer);
+      });
   });
 };
 
 const addCustomer = function(customerCandidate, callback){
 
-  var customer = customerFactory(customerCandidate);
+  customerFactory(customerCandidate, (customer) => {
+    MongoClient.connect(url, function(connectionError, db) {
 
-  MongoClient.connect(url, function(err, db) {
+      db.collection('customers').save(customer, function(insertError, result) {
+        callback(insertError, result);
+        db.close();
+      });
 
-    db.collection('customers').save(customer, function(insertErr, result) {
-      db.close();
-      callback(insertErr, result);
     });
-
   });
 };
 

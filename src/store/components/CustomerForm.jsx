@@ -68,7 +68,7 @@ class CustomerForm extends React.Component {
     let additionalInfo = this.renderAdditionalInfo();
 
     return (
-      <div className="form-medidas">
+      <div className="form-cadastro">
         <h2>Cadastre-se</h2>
         <input
           type="text"
@@ -91,6 +91,12 @@ class CustomerForm extends React.Component {
           onChange={e => this.fieldChanged({ email: e.target.value })}
         />
 
+        <input
+          type="text"
+          placeholder="Telefone"
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ phone: e.target.value })}
+        />
 
         <input
           type="password"

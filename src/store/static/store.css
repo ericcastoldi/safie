@@ -504,6 +504,14 @@ nav.menu.open {
   width        : 100%;
 }
 
+/* CustomerForm.jsx */
+.form-cadastro button,
+.form-cadastro input {
+  border-radius: 0;
+  display      : block;
+  width        : 50%;
+}
+
 /* BuyButton.jsx */
 .comprar-produto {
   text-align: center;
@@ -642,8 +650,8 @@ nav.menu.open {
   background-color: #333;
   color           : #fff;
   display         : none;
-  text-align      : right;
-  position        : relative;
+  text-align      : center;
+  position        : fixed;
 }
 
 .delivery-bar span {
