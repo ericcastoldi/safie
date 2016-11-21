@@ -6,7 +6,20 @@ customer: {
   saving: false,
   errorSavingSong: false
 }
-*/
+
+apiResult: {
+  "success":true,
+  "error":null,
+  "data":{
+    "name":"Abc Da Silva",
+    "email":"abc@silva.com",
+    "password":"$2a$10$xO3gtq.qU9Egb1SuFiN0ZeGm0YiEZaKdoVBDbfOUPGgVWpxGapyAK",
+    "birthday":"1998-12-12T00:00:00.000Z",
+    "phone":"47 99149 9985",
+    "measurements":[],
+    "_id":"5833110eae1ca9590492771e"
+  }
+}*/
 
 const customerChanged = (customer) => {
   return {
@@ -44,8 +57,15 @@ const saveCustomer = (customer) => {
     dispatch(startSavingCustomer());
 
     return axios.post('/api/customers', customer)
-        .then(function (response) {
-          dispatch(doneSavingCustomer());
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            dispatch(doneSavingCustomer());
+            dispatch(customerChanged(result.data));
+          }
+          else{
+            dispatch(cannotSaveCustomer(result.error));
+          }
         })
         .catch(function (response) {
           dispatch(cannotSaveCustomer(response));

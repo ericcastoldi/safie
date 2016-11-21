@@ -69,7 +69,9 @@ class CustomerForm extends React.Component {
 
     return (
       <div className="form-cadastro">
-        <h2>Cadastre-se</h2>
+
+        <h3>Cadastro</h3>
+
         <input
           type="text"
           placeholder="Nome"
@@ -92,7 +94,7 @@ class CustomerForm extends React.Component {
         />
 
         <input
-          type="text"
+          type="tel"
           placeholder="Telefone"
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ phone: e.target.value })}
@@ -107,7 +109,7 @@ class CustomerForm extends React.Component {
 
         <input
           type="password"
-          placeholder="Repita sua senha"
+          placeholder="Confirme sua senha"
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ passwordConfirmation: e.target.value })}
         />

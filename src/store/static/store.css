@@ -14,6 +14,7 @@ a:hover {
 }
 
 button,
+input[type="date"],
 input[type="email"],
 input[type="number"],
 input[type="password"],
@@ -505,11 +506,21 @@ nav.menu.open {
 }
 
 /* CustomerForm.jsx */
-.form-cadastro button,
+.form-cadastro {
+  float      : left;
+  width      : 35%;
+  margin-left: 8rem;
+}
+
+.form-cadastro label {
+  text-align: center;
+}
+
+.form-cadastro .form-cadastro button,
 .form-cadastro input {
   border-radius: 0;
   display      : block;
-  width        : 50%;
+  width        : 100%;
 }
 
 /* BuyButton.jsx */

@@ -1,11 +1,15 @@
 /*eslint no-underscore-dangle: 1*/
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/safie';
 
+const apiResultModel = {
+  success: false,
+  error: null,
+  data: null
+};
 
 const customerModel = {
-  _id: null,
   name: null,
   email: null,
   password: null,
@@ -19,81 +23,155 @@ const validEmail = (email) => {
   return re.test(email);
 };
 
-const customerFactory = (customerCandidate, createdCallback) => {
 
-  if(!customerCandidate){
-    throw new Error('Instancia vazia de cliente.');
-  }
-
-  if(!customerCandidate.name){
-    throw new Error('Informe seu nome.');
-  }
-
-  if(!customerCandidate.email){
-    throw new Error('Informe seu e-mail.');
-  }
-
-  if(!validEmail(customerCandidate.email)){
-    throw new Error('Informe um e-mail valido.');
-  }
-
-  if(!customerCandidate.password){
-    throw new Error('Informe sua senha.');
-  }
-
-  if(!customerCandidate.passwordConfirmation){
-    throw new Error('Repita sua senha.');
-  }
-
-  if(!(customerCandidate.password === customerCandidate.passwordConfirmation)){
-    throw new Error('A senha e a confirmação da senha devem ser iguais.');
-  }
-
-  if(!customerCandidate.birthday){
-    throw new Error('Informe sua data de nascimento.');
-  }
-
-  if(!Date.parse(customerCandidate.birthday)) {
-    throw new Error('A data de nascimento deve ser uma data válida.');
-  }
-
-  if(!customerCandidate.phone){
-    throw new Error('Informe seu telefone.');
-  }
-
+const encryptPassword = (password, passwordEncrypted) => {
   const saltRounds = 10;
 
-  bcrypt.genSalt(saltRounds, function(saltError, salt) {
-      bcrypt.hash(customerCandidate.password, salt, function(hashError, hash) {
-        const customer = Object.assign({}, customerModel, {
-          _id: customerCandidate._id,
-          name: customerCandidate.name.trim(),
-          email: customerCandidate.email.trim(),
-          password: hash, // TODO: gerar hash aqui
-          birthday: new Date(customerCandidate.birthday),
-          phone: customerCandidate.phone.trim()
-        });
+  bcrypt.genSalt(saltRounds, (saltError, salt) => {
 
-        createdCallback(customer);
+      if(saltError) {
+        passwordEncrypted(saltError);
+        return;
+      }
+
+      bcrypt.hash(password, salt, (hashError, hash) => {
+
+        if(hashError) {
+          passwordEncrypted(hashError);
+          return;
+        }
+
+        passwordEncrypted(null, hash);
       });
   });
 };
 
-const addCustomer = function(customerCandidate, callback){
+const apiResultFactory = (error, extractErrorMessage, extractData) => {
+  if(error){
 
-  customerFactory(customerCandidate, (customer) => {
-    MongoClient.connect(url, function(connectionError, db) {
+    if(extractErrorMessage){
+      return Object.assign({}, apiResultModel, { error: extractErrorMessage() });
+    }
 
-      db.collection('customers').save(customer, function(insertError, result) {
-        callback(insertError, result);
+    return Object.assign({}, apiResultModel, { error: error });
+  }
+
+  return Object.assign({}, apiResultModel, {
+    success: true,
+    data: extractData()
+  });
+};
+
+const customerFactory = (customerCandidate, createdCallback) => {
+  try{
+
+    if(!customerCandidate){
+      throw 'Instancia vazia de cliente.';
+    }
+
+    if(!customerCandidate.name){
+      throw 'Informe seu nome.';
+    }
+
+    if(!customerCandidate.email){
+      throw 'Informe seu e-mail.';
+    }
+
+    if(!validEmail(customerCandidate.email)){
+      throw 'Informe um e-mail valido.';
+    }
+
+    if(!customerCandidate.password){
+      throw 'Informe sua senha.';
+    }
+
+    if(!customerCandidate.passwordConfirmation){
+      throw 'Repita sua senha.';
+    }
+
+    if(!(customerCandidate.password === customerCandidate.passwordConfirmation)){
+      throw 'A senha e a confirmação da senha devem ser iguais.';
+    }
+
+    if(!customerCandidate.birthday){
+      throw 'Informe sua data de nascimento.';
+    }
+
+    if(!Date.parse(customerCandidate.birthday)) {
+      throw 'A data de nascimento deve ser uma data válida.';
+    }
+
+    if(!customerCandidate.phone){
+      throw 'Informe seu telefone.';
+    }
+  }
+  catch(validationError){
+    createdCallback(validationError, null);
+    return;
+  }
+
+  encryptPassword(customerCandidate.password, (encryptionError, encryptedPassword) => {
+
+    if(encryptionError){
+      createdCallback(encryptionError, null);
+      return;
+    }
+
+    const customer = Object.assign({}, customerModel, {
+      _id: customerCandidate._id,
+      name: customerCandidate.name.trim(),
+      email: customerCandidate.email.trim(),
+      password: encryptedPassword,
+      birthday: new Date(customerCandidate.birthday),
+      phone: customerCandidate.phone.trim()
+    });
+
+    createdCallback(null, customer);
+  });
+};
+
+const save = (customer, customerSaved) => {
+  MongoClient.connect(url, (connectionError, db) => {
+
+    db.collection('customers')
+      .save(customer, (saveError, saveResult) => {
+
+        if(saveError){
+          customerSaved(saveError, null);
+          return;
+        }
+
+        customerSaved(null, saveResult);
         db.close();
       });
 
+  });
+};
+
+const saveCustomer = (customerCandidate, customerSaved) => {
+
+  customerFactory(customerCandidate, (customerFactoryError, createdCustomer) => {
+    if(customerFactoryError){
+      customerSaved(apiResultFactory(customerFactoryError));
+      return;
+    }
+
+    save(createdCustomer, (saveError, saveResult) => {
+
+      customerSaved(apiResultFactory(saveError, () => {
+        return saveError.message;
+      }, () => {
+        var customer = saveResult.ops[0];
+        delete customer.password;
+        return customer;
+      }));
+
     });
+
   });
 };
 
 
 module.exports = {
-  add: addCustomer
+  save: saveCustomer
 };
