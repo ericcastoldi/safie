@@ -163,6 +163,7 @@ module.exports = {
   customer: {
     current: {},
     saving: false,
+    doneSaving: false,
     error: null
   }
 };

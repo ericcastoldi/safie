@@ -73,6 +73,18 @@ const customerFactory = (customerCandidate, createdCallback) => {
       throw 'Informe seu nome.';
     }
 
+    if(!customerCandidate.birthday){
+      throw 'Informe sua data de nascimento.';
+    }
+
+    if(!Date.parse(customerCandidate.birthday)) {
+      throw 'A data de nascimento deve ser uma data válida.';
+    }
+
+    if(!customerCandidate.phone){
+      throw 'Informe seu telefone.';
+    }
+
     if(!customerCandidate.email){
       throw 'Informe seu e-mail.';
     }
@@ -91,18 +103,6 @@ const customerFactory = (customerCandidate, createdCallback) => {
 
     if(!(customerCandidate.password === customerCandidate.passwordConfirmation)){
       throw 'A senha e a confirmação da senha devem ser iguais.';
-    }
-
-    if(!customerCandidate.birthday){
-      throw 'Informe sua data de nascimento.';
-    }
-
-    if(!Date.parse(customerCandidate.birthday)) {
-      throw 'A data de nascimento deve ser uma data válida.';
-    }
-
-    if(!customerCandidate.phone){
-      throw 'Informe seu telefone.';
     }
   }
   catch(validationError){

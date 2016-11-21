@@ -4,7 +4,8 @@ var initialState = require('./data/initialState.js');
 
 const customerChanged = (state, action) => {
   return Object.assign({}, state, {
-    current: action.payload.customer
+    current: action.payload.customer,
+    doneSaving: false
   });
 };
 
@@ -17,6 +18,7 @@ const startSavingCustomer = (state) => {
 
 const doneSavingCustomer = (state) => {
   return Object.assign({}, state, {
+    doneSaving: true,
     saving: false,
     error: null
   });

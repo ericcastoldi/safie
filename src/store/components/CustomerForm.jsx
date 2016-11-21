@@ -5,37 +5,6 @@ import { bindActionCreators } from 'redux';
 import DarkButton from './DarkButton.jsx';
 import customerActions from './state/customerActions.js';
 
-class LoginForm extends React.Component {
-
-  constructor(props){
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="form-medidas">
-        <form onSubmit={this.save}>
-          <h2>Login</h2>
-
-          <input
-            type="email"
-            placeholder="E-mail"
-            onChange={e => this.fieldChanged({ email: e.target.value })}
-          />
-
-          <input
-            type="password"
-            placeholder="Senha"
-            onChange={e => this.fieldChanged({ pwd: e.target.value })}
-          />
-
-          <DarkButton click={this.save} label="Entrar" />
-
-        </form>
-      </div>
-    );
-  }
-}
 
 
 class CustomerForm extends React.Component {
@@ -48,15 +17,22 @@ class CustomerForm extends React.Component {
   }
 
   renderAdditionalInfo() {
-    if(this.props.saving) {
-      return (<div>Salvando...</div>);
+
+
+    if(this.props.doneSaving) {
+      return (<div className="mensagem sucesso">Cadastro realizado com sucesso!</div>);
     }
+
+    if(this.props.saving) {
+      return (<div className="mensagem info">Salvando...</div>);
+    }
+
 
     if(this.props.error){
-      return (<div>Ocorreu um erro ao salvar... {this.props.error}</div>);
+      return (<div className="mensagem erro">{this.props.error}</div>);
     }
 
-    return (<span></span>);
+    return null;
   }
 
   render() {
@@ -72,9 +48,12 @@ class CustomerForm extends React.Component {
 
         <h3>Cadastro</h3>
 
+        {additionalInfo}
+
         <input
           type="text"
           placeholder="Nome"
+          value={this.props.customer.name}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ name: e.target.value })}
         />
@@ -82,22 +61,26 @@ class CustomerForm extends React.Component {
         <input
           type="date"
           placeholder="Data de nascimento"
+          value={this.props.customer.birthday}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ birthday: e.target.value })}
+        />
+
+
+        <input
+          type="tel"
+          placeholder="Telefone"
+          value={this.props.customer.phone}
+          disabled={this.props.saving}
+          onChange={e => this.fieldChanged({ phone: e.target.value })}
         />
 
         <input
           type="email"
           placeholder="E-mail"
+          value={this.props.customer.email}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ email: e.target.value })}
-        />
-
-        <input
-          type="tel"
-          placeholder="Telefone"
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ phone: e.target.value })}
         />
 
         <input
@@ -116,9 +99,11 @@ class CustomerForm extends React.Component {
 
         <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
 
-        {additionalInfo}
-
-        <DarkButton click={this.save} label="Cadastrar" />
+        <DarkButton
+          click={this.save}
+          label="Cadastrar"
+          disabled={this.props.saving}
+        />
 
       </div>
     );
@@ -148,18 +133,20 @@ CustomerForm.propTypes = {
     phone: React.PropTypes.string
   }).isRequired,
   saving: React.PropTypes.bool,
-  error: React.PropTypes.object,
+  doneSaving: React.PropTypes.bool,
+  error: React.PropTypes.string,
   customerChanged: React.PropTypes.func.isRequired,
   saveCustomer: React.PropTypes.func.isRequired
 };
 
 
 const mapCustomerFormStateToProps = (state) => {
-    return {
-      customer: state.customer.current,
-      saving: state.customer.saving,
-      error: state.customer.error
-    };
+  return {
+    doneSaving: state.customer.doneSaving,
+    customer: state.customer.current,
+    saving: state.customer.saving,
+    error: state.customer.error
+  };
 };
 
 const mapCustomerFormDispatchToProps = (dispatch) => {

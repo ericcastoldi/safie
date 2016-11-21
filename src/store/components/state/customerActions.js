@@ -60,8 +60,8 @@ const saveCustomer = (customer) => {
         .then(function (apiResult) {
           var result = apiResult.data;
           if(result.success){
-            dispatch(doneSavingCustomer());
             dispatch(customerChanged(result.data));
+            dispatch(doneSavingCustomer());
           }
           else{
             dispatch(cannotSaveCustomer(result.error));
