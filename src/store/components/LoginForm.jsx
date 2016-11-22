@@ -9,9 +9,9 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="form-medidas">
+      <div className="form-cadastro">
         <form onSubmit={this.save}>
-          <h2>Login</h2>
+          <h3>Login</h3>
 
           <input
             type="email"
@@ -26,6 +26,8 @@ class LoginForm extends React.Component {
           />
 
           <DarkButton click={this.save} label="Entrar" />
+
+          <button className="login-facebook">Entrar com o Facebook</button>
 
         </form>
       </div>

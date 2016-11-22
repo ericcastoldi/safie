@@ -1,20 +1,21 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var ReactRedux = require('react-redux');
-var ReactRouter = require('react-router');
-var ReactRouterRedux = require('react-router-redux');
-var Redirect = ReactRouter.Redirect;
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
-var Provider = ReactRedux.Provider;
-var store = require('./state/store.js');
-var SafieStore = require('./SafieStore.jsx');
-var Landing = require('./Landing.jsx');
-var Layout = require('./Layout.jsx');
-var Product = require('./Product.jsx');
-var ProductsMasonry = require('./ProductsMasonry.jsx');
-var ShoppingBag = require('./ShoppingBag.jsx');
-var CustomerForm = require('./CustomerForm.jsx');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const ReactRedux = require('react-redux');
+const ReactRouter = require('react-router');
+const ReactRouterRedux = require('react-router-redux');
+const Redirect = ReactRouter.Redirect;
+const Router = ReactRouter.Router;
+const Route = ReactRouter.Route;
+const Provider = ReactRedux.Provider;
+const store = require('./state/store.js');
+const SafieStore = require('./SafieStore.jsx');
+const Landing = require('./Landing.jsx');
+const Layout = require('./Layout.jsx');
+const Product = require('./Product.jsx');
+const ProductsMasonry = require('./ProductsMasonry.jsx');
+const ShoppingBag = require('./ShoppingBag.jsx');
+const CustomerForm = require('./CustomerForm.jsx');
+const LoginForm = require('./LoginForm.jsx');
 
 const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, store);
 
@@ -32,6 +33,7 @@ ReactDOM.render(
         <Route path="/colecoes/:collection/:product" component={Product} />
         <Route path="/bag" component={ShoppingBag} />
         <Route path="/customer" component={CustomerForm} />
+        <Route path="/login" component={LoginForm} />
       </Route>
       <Redirect from="*" to="/" />
     </Router>

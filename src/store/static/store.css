@@ -505,6 +505,25 @@ nav.menu.open {
   width        : 100%;
 }
 
+.login-facebook {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition   : all 0.30s ease-in-out;
+  -ms-transition    : all 0.30s ease-in-out;
+  -o-transition     : all 0.30s ease-in-out;
+  color             : #fff;
+  cursor            : pointer;
+  background-color  : #335483;
+  text-decoration   : none;
+  border            : 1px solid #335483;
+  text-transform    : uppercase;
+  display           : block;
+}
+
+.login-facebook:hover {
+  color           : #335483;
+  background-color: #fff;
+}
+
 /* CustomerForm.jsx */
 .form-cadastro {
   float      : left;
