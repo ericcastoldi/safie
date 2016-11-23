@@ -1,6 +1,7 @@
 module.exports = {
   'barcelona': [
     {
+      // TODO: Adicionar peso nos itens
       id: 'saia-lapis',
       name: 'SAIA LÁPIS URBAN',
       description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',

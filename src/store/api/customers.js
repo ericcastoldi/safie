@@ -1,7 +1,7 @@
 /*eslint no-underscore-dangle: 1*/
 const bcrypt = require('bcryptjs');
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/safie';
+const dbConfig = require('../config/database.js');
 
 const apiResultModel = {
   success: false,
@@ -131,7 +131,7 @@ const customerFactory = (customerCandidate, createdCallback) => {
 };
 
 const save = (customer, customerSaved) => {
-  MongoClient.connect(url, (connectionError, db) => {
+  MongoClient.connect(dbConfig.url, (connectionError, db) => {
 
     db.collection('customers')
       .save(customer, (saveError, saveResult) => {

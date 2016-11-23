@@ -4,15 +4,18 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const customers = require('./src/store/api/customers.js');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const FacebookStrategy = require('passport-facebook').Strategy;
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+const configurePassport = require('./src/store/config/passport.js');
 const dbConfig = require('./src/store/config/database.js');
+
+mongoose.Promise = global.Promise;
+mongoose.connect(dbConfig.url);
+configurePassport(passport);
+
 
 // https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 // https://scotch.io/tutorials/easy-node-authentication-facebook
@@ -33,25 +36,15 @@ const dbConfig = require('./src/store/config/database.js');
 8 - Configurar o mongo para limpar as sessões de tempos em tempos
 */
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-
 
 const app = express();
 
-app.use(favicon(__dirname + '/public/store/img/favicon.ico'));
-
-app.use(morgan('dev'));
-
+app.use(favicon(__dirname + '/public/store/img/favicon.png'));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'public/store')));
 app.use('/img', express.static(path.join(__dirname, 'public/store/img')));
+
+app.use(morgan('dev'));
 
 app.use(helmet());
 app.use(cookieParser());
@@ -72,8 +65,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 'no-cache');
@@ -87,11 +78,13 @@ app.get('*', (request, response) => {
   response.sendFile(indexHtml);
 });
 
-app.post('/api/customers', (request, response) => {
-  customers.save(request.body, (apiResult) => {
-    response.json(apiResult);
-  });
-});
+
+app.post('/api/customers',
+  passport.authenticate('local-signup'),
+  function(req, res) {
+    res.json(req.user);
+  }
+);
 
 app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), () => {
