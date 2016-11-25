@@ -129,7 +129,6 @@ CustomerForm.propTypes = {
     password: React.PropTypes.string,
     passwordConfirmation: React.PropTypes.string,
     birthday: React.PropTypes.string,
-    cpf: React.PropTypes.string,
     phone: React.PropTypes.string
   }).isRequired,
   saving: React.PropTypes.bool,
