@@ -31,15 +31,15 @@ let customerSchema = new Schema({
   ]
 });
 
-customerSchema.methods.encryptPassword = (password) => {
+const encryptPassword = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-customerSchema.methods.validPassword = (password) => {
+const validPassword = (password) => {
     return bcrypt.compareSync(password, this.password);
 };
 
-customerSchema.methods.create = (customerCandidate) => {
+const create = (customerCandidate) => {
   if(!customerCandidate){
     throw 'Instancia vazia de cliente.';
   }
@@ -89,7 +89,7 @@ customerSchema.methods.create = (customerCandidate) => {
   });
 };
 
-customerSchema.methods.whithoutSensitiveInfo = () => {
+const whithoutSensitiveInfo = () => {
   return Object.assign({}, customerModel, {
     id: this.id,
     name: this.name,
@@ -99,15 +99,22 @@ customerSchema.methods.whithoutSensitiveInfo = () => {
   });
 };
 
-customerSchema.methods.from = (customerCandidate) => {
-  const customer = this.create(customerCandidate);
+const from = (customerCandidate) => {
+  const customer = create(customerCandidate);
 
   this.name = customer.name;
   this.email = customer.email;
   this.phone = customer.phone;
   this.birthday = customer.birthday;
-  this.password = this.encryptPassword(customer.password);
+  this.password = encryptPassword(customer.password);
 };
+
+
+customerSchema.methods.encryptPassword = encryptPassword;
+customerSchema.methods.validPassword = validPassword;
+customerSchema.methods.create = create;
+customerSchema.methods.from = from;
+customerSchema.methods.whithoutSensitiveInfo = whithoutSensitiveInfo;
 
 
 module.exports = mongoose.model('Customer', customerSchema);
