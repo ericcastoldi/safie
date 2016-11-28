@@ -51,6 +51,95 @@ const cannotSaveCustomer = (err) => {
   };
 };
 
+const startLoggingIn = () => {
+  return {
+    type: actionTypes.START_LOGGING_IN
+  };
+};
+
+const doneLoggingIn = (customer) => {
+  return {
+    type: actionTypes.DONE_LOGGING_IN,
+    payload: {
+      customer: customer
+    }
+  };
+};
+
+const cannotLogIn = (err) => {
+  return {
+    type: actionTypes.CANNOT_LOG_IN,
+    payload: {
+      error: err
+    }
+  };
+};
+
+const startLoggingOut = () => {
+  return {
+    type: actionTypes.START_LOGGING_OUT
+  };
+};
+
+const doneLoggingOut = () => {
+  return {
+    type: actionTypes.DONE_LOGGING_OUT
+  };
+};
+
+const cannotLogOut = (err) => {
+  return {
+    type: actionTypes.CANNOT_LOG_OUT,
+    payload: {
+      error: err
+    }
+  };
+};
+
+const logIn = (customer) => {
+  return (dispatch) => {
+    dispatch(startLoggingIn());
+
+    return axios.post('/api/login', customer)
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            dispatch(doneLoggingIn(result.data));
+          }
+          else{
+            dispatch(cannotLogIn(result.error));
+          }
+        })
+        .catch(function (response) {
+          dispatch(cannotLogIn(response));
+        });
+
+  };
+};
+
+
+const logOut = () => {
+  return (dispatch) => {
+    dispatch(startLoggingOut());
+
+    return axios.post('/api/logout')
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            dispatch(doneLoggingOut());
+          }
+          else{
+            dispatch(cannotLogOut('Ocorreu um erro inesperado ao tentar sair da Safie. Por favor, tente novamente.'));
+          }
+        })
+        .catch(function (response) {
+          dispatch(cannotLogOut(response));
+        });
+
+  };
+};
+
+
 const saveCustomer = (customer) => {
 
   return (dispatch) => {
@@ -77,8 +166,7 @@ const saveCustomer = (customer) => {
 
 module.exports = {
   customerChanged: customerChanged,
-  startSavingCustomer: startSavingCustomer,
-  doneSavingCustomer: doneSavingCustomer,
-  cannotSaveCustomer: cannotSaveCustomer,
-  saveCustomer: saveCustomer
+  saveCustomer: saveCustomer,
+  logIn: logIn,
+  logOut: logOut
 };

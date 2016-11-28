@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const configurePassport = require('./src/store/config/passport.js');
+const configureRoutes = require('./src/store/api/routes.js');
 const dbConfig = require('./src/store/config/database.js');
 
 mongoose.Promise = global.Promise;
@@ -78,15 +79,10 @@ app.get('*', (request, response) => {
   response.sendFile(indexHtml);
 });
 
-
-app.post('/api/customers',
-  passport.authenticate('local-signup'),
-  function(req, res) {
-    res.json(req.user);
-  }
-);
+configureRoutes(app, passport);
 
 app.set('port', (process.env.PORT || 3000));
+
 app.listen(app.get('port'), () => {
   console.log('Server up and running! http://localhost:' + app.get('port') + '/');
 });

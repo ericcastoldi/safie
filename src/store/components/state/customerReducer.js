@@ -31,22 +31,84 @@ const cannotSaveCustomer = (state, action) => {
   });
 };
 
+const startLoggingIn = (state) => {
+  return Object.assign({}, state, {
+    loggingIn: true,
+    error: null
+  });
+};
+
+const doneLoggingIn = (state, action) => {
+  return Object.assign({}, state, {
+    loggingIn: false,
+    current: action.payload.customer
+  });
+};
+
+const cannotLogIn = (state, action) => {
+  return Object.assign({}, state, {
+    loggingIn: false,
+    error: action.payload.error,
+    current: {}
+  });
+};
+
+const startLoggingOut = (state) => {
+  return Object.assign({}, state, {
+    loggingOut: true,
+    error: null
+  });
+};
+
+const doneLoggingOut = (state) => {
+  return Object.assign({}, state, {
+    loggingOut: false,
+    current: {}
+  });
+};
+
+const cannotLogOut = (state, action) => {
+  return Object.assign({}, state, {
+    loggingOut: false,
+    error: action.payload.error
+  });
+};
+
+
 module.exports = function (state = initialState.customer, action) {
   switch (action.type) {
 
-  case actionTypes.CHANGE_CUSTOMER:
-    return customerChanged(state, action);
+    case actionTypes.CHANGE_CUSTOMER:
+      return customerChanged(state, action);
 
-  case actionTypes.START_SAVING_CUSTOMER:
-    return startSavingCustomer(state, action);
+    case actionTypes.START_SAVING_CUSTOMER:
+      return startSavingCustomer(state, action);
 
-  case actionTypes.DONE_SAVING_CUSTOMER:
-    return doneSavingCustomer(state, action);
+    case actionTypes.DONE_SAVING_CUSTOMER:
+      return doneSavingCustomer(state, action);
 
-  case actionTypes.CANNOT_SAVE_CUSTOMER:
-    return cannotSaveCustomer(state, action);
+    case actionTypes.CANNOT_SAVE_CUSTOMER:
+      return cannotSaveCustomer(state, action);
 
-  default:
-    return state;
+    case actionTypes.START_LOGGING_IN:
+      return startLoggingIn(state, action);
+
+    case actionTypes.DONE_LOGGING_IN:
+      return doneLoggingIn(state, action);
+
+    case actionTypes.CANNOT_LOG_IN:
+      return cannotLogIn(state, action);
+
+    case actionTypes.START_LOGGING_OUT:
+      return startLoggingOut(state, action);
+
+    case actionTypes.DONE_LOGGING_OUT:
+      return doneLoggingOut(state, action);
+
+    case actionTypes.CANNOT_LOG_OUT:
+      return cannotLogOut(state, action);
+
+    default:
+      return state;
   }
 };

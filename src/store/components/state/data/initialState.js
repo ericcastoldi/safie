@@ -164,6 +164,8 @@ module.exports = {
     current: {},
     saving: false,
     doneSaving: false,
+    loggingIn: false,
+    loggingOut: false,
     error: null
   }
 };

@@ -1,5 +1,8 @@
 import React from 'react';
 import DarkButton from './DarkButton.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import customerActions from './state/customerActions.js';
 
 class LoginForm extends React.Component {
 
@@ -10,22 +13,24 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="form-cadastro">
-        <form onSubmit={this.save}>
+        <form>
           <h3>Login</h3>
 
           <input
             type="email"
             placeholder="E-mail"
+            value={this.state.email}
             onChange={e => this.fieldChanged({ email: e.target.value })}
           />
 
           <input
             type="password"
             placeholder="Senha"
-            onChange={e => this.fieldChanged({ pwd: e.target.value })}
+            value={this.state.password}
+            onChange={e => this.fieldChanged({ password: e.target.value })}
           />
 
-          <DarkButton click={this.save} label="Entrar" />
+          <DarkButton click={this.login} label="Entrar" />
 
           <button className="login-facebook">Entrar com o Facebook</button>
 
@@ -33,6 +38,37 @@ class LoginForm extends React.Component {
       </div>
     );
   }
+
+
+  fieldChanged(change) {
+     this.setState(change);
+  }
+
+  login(){
+    if(!this.props.loggingIn){
+      this.props.logIn(this.state);
+    }
+  }
 }
 
-module.exports = LoginForm;
+LoginForm.propTypes = {
+  loggingIn: React.PropTypes.bool,
+  error: React.PropTypes.string,
+  logIn: React.PropTypes.func.isRequired
+};
+
+
+const mapLoginFormStateToProps = (state) => {
+  return {
+    loggingIn: state.customer.loggingIn,
+    error: state.customer.error
+  };
+};
+
+const mapLoginFormDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    logIn: customerActions.logIn
+  }, dispatch);
+};
+
+module.exports = connect(mapLoginFormStateToProps, mapLoginFormDispatchToProps)(LoginForm);
