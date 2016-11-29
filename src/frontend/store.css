@@ -689,6 +689,22 @@ nav.menu.open {
   font-size     : 1.3rem;
 }
 
+
+.frete h4,.total h4{
+  font-size: 20px;
+  margin-top: 15px;
+  font-weight: 700;
+}
+
+.frete input{
+  width: 50%;
+}
+
+.subtotal td{
+  border: none;
+}
+
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
