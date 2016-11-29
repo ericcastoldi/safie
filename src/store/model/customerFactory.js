@@ -1,11 +1,10 @@
 const bcrypt = require('bcryptjs');
 
 const customerModel = {
-  name: null,
-  email: null,
-  password: null,
-  birthday: null,
-  phone: null,
+  name: '',
+  email: '',
+  birthday: '',
+  phone: '',
   measurements: []
 };
 
@@ -87,6 +86,7 @@ const whithoutSensitiveInfo = (customer) => {
 
 module.exports = {
   from: from,
+  model: customerModel,
   validPassword: validPassword,
   whithoutSensitiveInfo: whithoutSensitiveInfo
 };

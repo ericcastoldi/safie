@@ -1,4 +1,5 @@
 import React from 'react';
+import customerFactory from '../model/customerFactory.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,8 +13,12 @@ class CustomerForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.fieldChanged = this.fieldChanged.bind(this);
+    this.state = props.customer && props.customer.id ?
+      Object.assign({}, props.customer) :
+      Object.assign({}, customerFactory.model);
+
     this.save = this.save.bind(this);
+    this.fieldChanged = this.fieldChanged.bind(this);
   }
 
   renderAdditionalInfo() {
@@ -37,10 +42,6 @@ class CustomerForm extends React.Component {
 
   render() {
 
-    if(!this.props.customer){
-      return (<div>Carregando...</div>);
-    }
-
     let additionalInfo = this.renderAdditionalInfo();
 
     return (
@@ -53,7 +54,7 @@ class CustomerForm extends React.Component {
         <input
           type="text"
           placeholder="Nome"
-          value={this.props.customer.name}
+          value={this.state.name}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ name: e.target.value })}
         />
@@ -61,7 +62,7 @@ class CustomerForm extends React.Component {
         <input
           type="date"
           placeholder="Data de nascimento"
-          value={this.props.customer.birthday}
+          value={this.state.birthday}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ birthday: e.target.value })}
         />
@@ -70,7 +71,7 @@ class CustomerForm extends React.Component {
         <input
           type="tel"
           placeholder="Telefone"
-          value={this.props.customer.phone}
+          value={this.state.phone}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ phone: e.target.value })}
         />
@@ -78,7 +79,7 @@ class CustomerForm extends React.Component {
         <input
           type="email"
           placeholder="E-mail"
-          value={this.props.customer.email}
+          value={this.state.email}
           disabled={this.props.saving}
           onChange={e => this.fieldChanged({ email: e.target.value })}
         />
@@ -100,8 +101,8 @@ class CustomerForm extends React.Component {
         <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
 
         <DarkButton
-          click={this.save}
           label="Cadastrar"
+          click={this.save}
           disabled={this.props.saving}
         />
 
@@ -110,20 +111,19 @@ class CustomerForm extends React.Component {
   }
 
   fieldChanged(change) {
-      var updatedCustomer = Object.assign({}, this.props.customer, change);
-      this.props.customerChanged(updatedCustomer);
+      this.setState(change);
   }
 
   save(){
     if(!this.props.saving){
-      this.props.saveCustomer(this.props.customer);
+      this.props.saveCustomer(this.state);
     }
   }
 }
 
 CustomerForm.propTypes = {
   customer: React.PropTypes.shape({
-    _id: React.PropTypes.string,
+    id: React.PropTypes.string,
     name: React.PropTypes.string,
     email: React.PropTypes.string,
     password: React.PropTypes.string,
@@ -134,7 +134,7 @@ CustomerForm.propTypes = {
   saving: React.PropTypes.bool,
   doneSaving: React.PropTypes.bool,
   error: React.PropTypes.string,
-  customerChanged: React.PropTypes.func.isRequired,
+//  customerChanged: React.PropTypes.func.isRequired,
   saveCustomer: React.PropTypes.func.isRequired
 };
 
@@ -150,8 +150,8 @@ const mapCustomerFormStateToProps = (state) => {
 
 const mapCustomerFormDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    saveCustomer: customerActions.saveCustomer,
-    customerChanged: customerActions.customerChanged
+    saveCustomer: customerActions.saveCustomer
+//    customerChanged: customerActions.customerChanged
   }, dispatch);
 };
 

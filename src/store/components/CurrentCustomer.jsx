@@ -29,7 +29,7 @@ class CurrentCustomer extends React.Component {
       <div className="usuario-atual">
         <Link to={route}>{description}</Link>
         <span> | </span>
-        <a onClick={this.logout}>{out}</a>
+        <a href="#" onClick={this.logout}>{out}</a>
       </div>
     );
   }

@@ -8,7 +8,11 @@ class LoginForm extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {};
+
+    this.state = {
+      email: '',
+      password: ''
+    };
 
     this.login = this.login.bind(this);
   }
