@@ -10,23 +10,31 @@ import customerActions from './state/customerActions.js';
 class CurrentCustomer extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  renderLink() {
-    if(this.props.customer && this.props.customer.id){
-      return (<Link to="/my-safie">{this.props.customer.name}</Link> - <a onClick={this.logout}>Sair</a>);
-    }
-
-    return (<Link to="/login">Entrar</Link>);
+    this.logout = this.logout.bind(this);
   }
 
   render() {
-    var link = this.renderLink();
 
-    return (<div className="usuario-atual">{link}</div>);
+    let out = '';
+    let route = '/login';
+    let description = 'Entrar';
+
+    if(this.props.customer && this.props.customer.id){
+      out = 'Sair';
+      route = '/my-safie';
+      description = this.props.customer.name;
+    }
+
+    return (
+      <div className="usuario-atual">
+        <Link to={route}>{description}</Link>
+        <span> | </span>
+        <a onClick={this.logout}>{out}</a>
+      </div>
+    );
   }
 
-  login(){
+  logout(){
     if(!this.props.loggingOut){
       this.props.logOut();
     }

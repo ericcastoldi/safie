@@ -1,5 +1,6 @@
 /*eslint consistent-return: 1*/
 const Customer = require('../model/customer.js');
+const customerFactory = require('../model/customerFactory.js');
 const LocalStrategy = require('passport-local').Strategy;
 //const FacebookStrategy = require('passport-facebook').Strategy;
 
@@ -31,7 +32,7 @@ module.exports = (passport) => {
           return done(null, false, { message: 'Não foi encontrado um usuario com o email' + username + '.' });
         }
 
-        if (!customer.validPassword(password)) {
+        if (!customerFactory.validPassword(password, customer)) {
           return done(null, false, { message: 'Senha incorreta.' });
         }
 
@@ -39,7 +40,7 @@ module.exports = (passport) => {
           id: customer.id,
           success: true,
           error: null,
-          data: customer.whithoutSensitiveInfo()
+          data: customerFactory.whithoutSensitiveInfo(customer)
         };
 
         return done(null, response);
@@ -66,7 +67,8 @@ module.exports = (passport) => {
             return done(null, false, { message: 'Esse email já está em uso.' });
           }
 
-          var newCustomer = new Customer().from(req.body);
+          var newCustomer = new Customer();
+          customerFactory.from(req.body, newCustomer);
 
           newCustomer.save((saveError, savedCustomer) => {
             if (saveError){
@@ -77,7 +79,7 @@ module.exports = (passport) => {
               id: savedCustomer.id,
               success: true,
               error: null,
-              data: newCustomer.whithoutSensitiveInfo()
+              data: customerFactory.whithoutSensitiveInfo(newCustomer)
             };
 
             return done(null, response);
