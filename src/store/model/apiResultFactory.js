@@ -10,9 +10,11 @@ const createResult = (nativeOptions, extendedOptions) => {
 };
 
 const successResult = (data, extendedOptions) => {
+  var resultData = data ? data : {};
+
   return createResult({
     success: true,
-    data: data
+    data: resultData
   }, extendedOptions);
 };
 

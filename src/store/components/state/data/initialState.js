@@ -1,6 +1,6 @@
 module.exports = {
   home: {
-    subscribePopupOn: true,
+    subscribePopupOn: false,
     footer: {
       policies: [
         {

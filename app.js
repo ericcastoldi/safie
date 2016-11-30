@@ -12,29 +12,25 @@ const mongoose = require('mongoose');
 const configurePassport = require('./src/store/config/passport.js');
 const configureRoutes = require('./src/store/api/routes.js');
 const dbConfig = require('./src/store/config/database.js');
+const renderMiddleware = require('./src/store/components/state/data/ServerRendering.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url);
 configurePassport(passport);
 
 
-// https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 // https://scotch.io/tutorials/easy-node-authentication-facebook
+// https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md
 /*
-1 - Configurar o mongooose
-2 - Configurar o sign-up local do passport
-3 - Configurar o login local do passport
-4 - Testar e ajustar o login local
+1 - Configurar o ServerRendering do react/redux
+2 - Configurar a base de dados de produtos
+3 - Implementar regras mais robustas na shopping bag
 
 ===
 
-5 - Configurar o sign-up via Facebook
-6 - Configurar o login via Facebook
-7 - Testar e ajustar o login via Facebook
-
-===
-
-8 - Configurar o mongo para limpar as sessões de tempos em tempos
+4 - Configurar o sign-up via Facebook
+5 - Configurar o login via Facebook
+6 - Testar e ajustar o login via Facebook
 */
 
 
@@ -59,12 +55,15 @@ app.use(session({
 	proxy: true,
 	resave: false,
 	saveUninitialized: false,
-	store: new MongoStore({ url: dbConfig.url })
+  cookie: { maxAge: 180 * 60 * 1000 }, // 3hrs
+	store: new MongoStore({ mongooseConnection: mongoose.connection })
 	})
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -73,6 +72,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(renderMiddleware);
 
 app.get('*', (request, response) => {
   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');

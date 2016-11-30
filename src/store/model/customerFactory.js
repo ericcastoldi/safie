@@ -13,8 +13,6 @@ const validEmail = (email) => {
   return re.test(email);
 };
 
-
-
 const encryptPassword = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };

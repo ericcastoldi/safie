@@ -3,7 +3,7 @@ var ReactRouterRedux = require('react-router-redux');
 var thunkMiddleware = require('redux-thunk');
 var createLogger = require('redux-logger');
 var loggerMiddleware = createLogger();
-var initialState = require('./data/initialState.js');
+//var initialState = require('./data/initialState.js');
 var menuReducer = require('./menuReducer.js');
 var homeReducer = require('./homeReducer.js');
 var bagReducer = require('./bagReducer.js');
@@ -11,6 +11,7 @@ var productsReducer = require('./productsReducer.js');
 var productReducer = require('./productReducer.js');
 var customerReducer = require('./customerReducer.js');
 
+const preloadedState = window.SAFIE_PRELOADED_STATE;
 
 const rootReducer = Redux.combineReducers({
   menu: menuReducer,
@@ -26,7 +27,8 @@ var store = Redux.createStore(
 
   rootReducer,
 
-  initialState,
+  //initialState,
+  preloadedState,
 
   Redux.compose(
     Redux.applyMiddleware(

@@ -11,20 +11,6 @@ const strategyOptions = {
   passReqToCallback: true
 };
 
-// const localAuth = (req, email, password, done, customDone) => {
-//   process.nextTick(() => {
-//
-//     Customer.findOne({ 'email': email }, (err, customer) => {
-//
-//       if (err){
-//         return done(err);
-//       }
-//
-//       return customDone(customer);
-//     });
-//   });
-// };
-
 module.exports = (passport) => {
 
   passport.serializeUser((user, done) => {
