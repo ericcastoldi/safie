@@ -95,6 +95,16 @@ const addToBag = (product, bag) => {
 
 module.exports = function(app, passport) {
 
+  app.get('/api/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook'),
+    function(req, res) {
+      res.json(req.user);
+    }
+  );
+
+
   app.post('/api/customers',
     passport.authenticate('local-signup'),
     function(req, res) {

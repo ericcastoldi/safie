@@ -8,6 +8,8 @@ const customerSchema = new Schema({
   password: String,
   birthday: Date,
   phone: String,
+  facebookId: String,
+  facebookToken: String,
   measurements: [
     {
       name: String,

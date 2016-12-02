@@ -70,7 +70,7 @@ module.exports = (passport) => {
               return done(saveError);
             }
 
-            let response = apiResultFactory.successResult(customerFactory.whithoutSensitiveInfo(newCustomer), {id: savedCustomer.id});
+            let response = apiResultFactory.successResult(customerFactory.whithoutSensitiveInfo(savedCustomer), {id: savedCustomer.id});
             return done(null, response);
           });
         });
@@ -78,21 +78,23 @@ module.exports = (passport) => {
     })
   );
 
-  passport.use(new FacebookStrategy({
+  passport.use('facebook', new FacebookStrategy({
 
         clientID: 'configAuth.facebookAuth.clientID',
         clientSecret: 'configAuth.facebookAuth.clientSecret',
-        callbackURL: 'configAuth.facebookAuth.callbackURL'
+        callbackURL: 'http://localhost:3000/auth/facebook/callback',
+        profileFields: ['id', 'displayName', 'email', 'birthday'],
+        passReqToCallback: true
     },
 
     // facebook will send back the token and profile
-    function(token, refreshToken, profile, done) {
+    function(req, token, refreshToken, profile, done) {
 
         // asynchronous
         process.nextTick(function() {
 
             // find the user in the database based on their facebook id
-            Customer.findOne({ 'facebook.id': profile.id }, function(err, user) {
+            Customer.findOne({ 'facebookId': profile.id }, function(err, user) {
 
                 // if there is an error, stop everything and return that
                 // ie an error connecting to the database
@@ -104,22 +106,21 @@ module.exports = (passport) => {
                 if (user) {
                     return done(null, user); // user found, return that user
                 } else {
-                    // if there is no user found with that facebook id, create them
+
                     var customer = new Customer();
+                    customer.name = profile.displayName;
+                    customer.email = profile.email;
+                    customer.birthday = profile.birthday ? new Date(profile.birthday) : null;
+                    customer.facebookId = profile.id;
+                    customer.facebookToken = token;
 
-                    // set all of the facebook information in our user model
-                    // newUser.facebook.id    = profile.id; // set the users facebook id
-                    // newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                    // newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                    // newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-
-                    // save our user to the database
-                    customer.save(function(saveError) {
+                    customer.save(function(saveError, savedCustomer) {
                         if (saveError) {
                             throw saveError;
                         }
 
-                        return done(null, customer);
+                        let response = apiResultFactory.successResult(customerFactory.whithoutSensitiveInfo(savedCustomer), {id: savedCustomer.id});
+                        return done(null, response);
                     });
                 }
 

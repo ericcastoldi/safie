@@ -98,6 +98,28 @@ const logIn = (customer) => {
   };
 };
 
+const facebookLogin = () => {
+  return (dispatch) => {
+    dispatch(startLoggingIn());
+
+    return axios.get('/api/auth/facebook')
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            dispatch(doneLoggingIn(result.data));
+          }
+          else{
+            dispatch(cannotLogIn(result.error));
+          }
+        })
+        .catch(function (response) {
+          dispatch(cannotLogIn(response));
+        });
+
+  };
+};
+
+
 
 const logOut = () => {
   return (dispatch) => {
@@ -149,5 +171,6 @@ module.exports = {
   customerChanged: customerChanged,
   saveCustomer: saveCustomer,
   logIn: logIn,
+  facebookLogin: facebookLogin,
   logOut: logOut
 };

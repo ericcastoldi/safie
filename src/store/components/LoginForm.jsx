@@ -15,6 +15,7 @@ class LoginForm extends React.Component {
     };
 
     this.login = this.login.bind(this);
+    this.facebookLogin = this.facebookLogin.bind(this);
   }
 
   render() {
@@ -39,7 +40,7 @@ class LoginForm extends React.Component {
 
           <DarkButton click={this.login} label="Entrar" />
 
-          <button className="login-facebook">Entrar com o Facebook</button>
+          <button onClick={this.facebookLogin} className="login-facebook">Entrar com o Facebook</button>
 
         </form>
       </div>
@@ -56,12 +57,19 @@ class LoginForm extends React.Component {
       this.props.logIn(this.state);
     }
   }
+
+  facebookLogin(){
+    if(!this.props.loggingIn){
+      this.props.facebookLogin();
+    }
+  }
 }
 
 LoginForm.propTypes = {
   loggingIn: React.PropTypes.bool,
   error: React.PropTypes.string,
-  logIn: React.PropTypes.func.isRequired
+  logIn: React.PropTypes.func.isRequired,
+  facebookLogin: React.PropTypes.func.isRequired
 };
 
 
@@ -74,7 +82,8 @@ const mapLoginFormStateToProps = (state) => {
 
 const mapLoginFormDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logIn: customerActions.logIn
+    logIn: customerActions.logIn,
+    facebookLogin: customerActions.facebookLogin
   }, dispatch);
 };
 

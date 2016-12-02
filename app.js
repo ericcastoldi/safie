@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const configurePassport = require('./src/store/config/passport.js');
 const configureRoutes = require('./src/store/api/routes.js');
 const dbConfig = require('./src/store/config/database.js');
-const renderMiddleware = require('./src/store/components/state/data/ServerRendering.js');
+//const renderMiddleware = require('./src/store/components/state/data/ServerRendering.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url);
@@ -72,14 +72,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(renderMiddleware);
+//app.use(renderMiddleware);
+
+configureRoutes(app, passport);
 
 app.get('*', (request, response) => {
   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
   response.sendFile(indexHtml);
 });
-
-configureRoutes(app, passport);
 
 app.set('port', (process.env.PORT || 3000));
 
