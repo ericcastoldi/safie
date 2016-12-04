@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import DarkButton from './DarkButton.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,32 +21,54 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="form-cadastro">
-        <form>
-          <h3>Login</h3>
+      <div className="login-form">
+        <div className="container">
+          <div className="row">
+            <div className='box-login'>
 
-          <input
-            type="email"
-            placeholder="E-mail"
-            value={this.state.email}
-            onChange={e => this.fieldChanged({ email: e.target.value })}
-          />
+              <div className='assinatura'>
+                <img src='/img/logo.png' width="200" />
+              </div>
 
-          <input
-            type="password"
-            placeholder="Senha"
-            value={this.state.password}
-            onChange={e => this.fieldChanged({ password: e.target.value })}
-          />
+              <button
+                onClick={this.facebookLogin}
+                className="button facebook-button">
+                <i className="fa fa-facebook" aria-hidden="true"></i> Entrar com o Facebook
+              </button>
 
-          <DarkButton click={this.login} label="Entrar" />
+              <Link to="/customer">
+                <button className="button orange-button">Novo Cadastro</button>
+              </Link>
 
-          <button onClick={this.facebookLogin} className="login-facebook">Entrar com o Facebook</button>
+              <input
+                type="email"
+                placeholder="E-mail"
+                value={this.state.email}
+                onChange={e => this.fieldChanged({ email: e.target.value })}
+              />
 
-        </form>
+              <input
+                type="password"
+                placeholder="Senha"
+                value={this.state.password}
+                onChange={e => this.fieldChanged({ password: e.target.value })}
+              />
+
+              <p><a href='#'>Esqueci minha senha</a></p>
+
+              <button
+                onClick={this.login}
+                className="button light-button entrar">
+                Entrar
+              </button>
+
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
+
 
 
   fieldChanged(change) {

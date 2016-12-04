@@ -2,11 +2,7 @@ import React from 'react';
 import customerFactory from '../model/customerFactory.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import DarkButton from './DarkButton.jsx';
 import customerActions from './state/customerActions.js';
-
-
 
 class CustomerForm extends React.Component {
 
@@ -40,71 +36,103 @@ class CustomerForm extends React.Component {
     return null;
   }
 
+
   render() {
 
     let additionalInfo = this.renderAdditionalInfo();
 
+
     return (
-      <div className="form-cadastro">
+      <div className="login-form">
+        <div className="container">
+          <div className='box-login'>
+            <div className='assinatura'>
+              <img src='/img/logo.png' width="200" />
+            </div>
+            <h4>Criar nova conta</h4>
+            <div className='row'>
+              <div className='twelve columns'>
 
-        <h3>Cadastro</h3>
+                <input
+                  type="text"
+                  placeholder="Nome"
+                  value={this.state.name}
+                  disabled={this.props.saving}
+                  onChange={e => this.fieldChanged({ name: e.target.value })}
+                />
 
-        {additionalInfo}
+              </div>
+            </div>
+            <div className='row'>
+              <div className='six columns'>
 
-        <input
-          type="text"
-          placeholder="Nome"
-          value={this.state.name}
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ name: e.target.value })}
-        />
+                <input
+                  type="text"
+                  placeholder="Data de Nascimento"
+                  value={this.state.birthday}
+                  disabled={this.props.saving}
+                  onChange={e => this.fieldChanged({ birthday: e.target.value })}
+                />
 
-        <input
-          type="date"
-          placeholder="Data de nascimento"
-          value={this.state.birthday}
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ birthday: e.target.value })}
-        />
+              </div>
+              <div className='six columns'>
 
+                <input
+                  type="tel"
+                  placeholder="Telefone"
+                  value={this.state.phone}
+                  disabled={this.props.saving}
+                  onChange={e => this.fieldChanged({ phone: e.target.value })}
+                />
 
-        <input
-          type="tel"
-          placeholder="Telefone"
-          value={this.state.phone}
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ phone: e.target.value })}
-        />
+              </div>
+            </div>
+            <div className='row'>
 
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={this.state.email}
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ email: e.target.value })}
-        />
+              <input
+                type="email"
+                placeholder="Email"
+                value={this.state.email}
+                disabled={this.props.saving}
+                onChange={e => this.fieldChanged({ email: e.target.value })}
+              />
 
-        <input
-          type="password"
-          placeholder="Senha"
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ password: e.target.value })}
-        />
+            </div>
+            <div className='row'>
+              <div className='six columns'>
 
-        <input
-          type="password"
-          placeholder="Confirme sua senha"
-          disabled={this.props.saving}
-          onChange={e => this.fieldChanged({ passwordConfirmation: e.target.value })}
-        />
+                <input
+                  type="password"
+                  placeholder="Senha"
+                  disabled={this.props.saving}
+                  onChange={e => this.fieldChanged({ password: e.target.value })}
+                />
 
-        <label>* Cadastrando-se você aceita nossos <a>termos</a> e <a>privacidade</a>.</label>
+              </div>
+              <div className='six columns'>
 
-        <DarkButton
-          label="Cadastrar"
-          click={this.save}
-          disabled={this.props.saving}
-        />
+                <input
+                  type="password"
+                  placeholder="Digite a senha novamente"
+                  disabled={this.props.saving}
+                  onChange={e => this.fieldChanged({ passwordConfirmation: e.target.value })}
+                />
+
+              </div>
+            </div>
+            <p><a href='#'>Cadastrando-se voce aceita nossos termos e privacidade</a></p>
+
+            <button
+              onClick={this.save}
+              disabled={this.props.saving}
+              className="button orange-button">
+              Cadastrar
+            </button>
+
+            {additionalInfo}
+
+          </div>
+        </div>
 
       </div>
     );
@@ -134,7 +162,6 @@ CustomerForm.propTypes = {
   saving: React.PropTypes.bool,
   doneSaving: React.PropTypes.bool,
   error: React.PropTypes.string,
-//  customerChanged: React.PropTypes.func.isRequired,
   saveCustomer: React.PropTypes.func.isRequired
 };
 
@@ -151,7 +178,6 @@ const mapCustomerFormStateToProps = (state) => {
 const mapCustomerFormDispatchToProps = (dispatch) => {
   return bindActionCreators({
     saveCustomer: customerActions.saveCustomer
-//    customerChanged: customerActions.customerChanged
   }, dispatch);
 };
 

@@ -144,7 +144,6 @@ nav.menu {
   padding-left  : 2rem;
   float         : left;
   text-align    : left;
-  display       : none;
 }
 
 nav.menu a,
@@ -690,6 +689,113 @@ nav.menu.open {
   font-size     : 1.3rem;
 }
 
+.frete h4,
+.total h4 {
+  font-size  : 20px;
+  margin-top : 15px;
+  font-weight: 700;
+}
+
+.frete input {
+  width: 50%;
+}
+
+.subtotal td {
+  border: none;
+}
+
+/*Diego*/
+.login-form {
+  margin-top : 0;
+  font-family: "Raleway";
+}
+
+.login-form button {
+  border       : none;
+  border-radius: 0;
+  width        : 100%;
+}
+
+.login-form .box-login {
+  position: relative;
+  margin  : 0 auto;
+  width   : 500px;
+}
+
+.login-form .orange-button {
+  background-color: rgba(238,166,130,0.8);
+  font-size       : 16px;
+  text-transform  : none;
+}
+
+.login-form input {
+  width           : 100%;
+  background-color: #efefef;
+  border          : none;
+  color           : #000;
+}
+
+.login-form .light-button {
+  width           : 200px;
+  margin          : 0 auto;
+  background-color: #efefef;
+}
+
+.login-form a {
+  font-size      : 12px;
+  text-decoration: underline;
+  color          : #fa2e2e;
+}
+
+.login-form .entrar {
+  color         : rgb(238,166,130);
+  text-transform: none;
+  font-size     : 17px;
+  position      : relative;
+  left          : 30%;
+}
+
+.login-form .light-button:hover {
+  background-color: #efefef;
+}
+
+.facebook-button i {
+  float     : left;
+  font-size : 25px;
+  margin-top: 7px;
+}
+
+.facebook-button {
+  background-color: #7daace;
+  color           : #fff;
+  font-size       : 16px;
+  text-transform  : none;
+}
+
+.facebook-button:hover {
+  color: #fff;
+}
+
+.box-login h4 {
+  font-weight: 700;
+  text-align : center;
+  font-size  : 25px;
+}
+
+.delivery-bar {
+  display: block;
+}
+
+.login-form::-webkit-input-placeholder {
+  color: #000;
+}
+
+.assinatura {
+  margin-bottom: 30px;
+  position     : relative;
+  left         : 25%;
+}
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
@@ -755,9 +861,6 @@ nav.menu.open {
     float: left;
   }
 
-  .delivery-bar {
-    display: block;
-  }
 }
 @media screen and (min-width: 2000px) {
   .quickbag i {
