@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="Safie">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safie</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Open+Sans|Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="skeleton.css">
+  <link rel="stylesheet" href="store.css">
+  <link rel="stylesheet" href="tables.css">
+  <link rel="stylesheet" href="masonry.css">
+
+  <link rel="icon" type="image/png" href="img/favicon.png">
+
+</head>
+
+<body>
+  <div id="app">
+
+    <div>
+      <nav class="menu">
+        <a href="/">Home</a>
+        <div>
+          <span>Coleções</span>
+          <ul class="submenu open">
+            <li>
+              <a href="/colecoes/safie-conceito">Safie Conceito</a>
+            </li>
+            <li>
+              <a href="/colecoes/barcelona">Barcelona</a>
+            </li>
+            <li>
+              <a href="/colecoes/capsula">Coleções Cápsula</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <span>My Safie</span>
+          <ul class="submenu">
+            <li>
+              <a href="/medidas">Medidas</a>
+            </li>
+            <li>
+              <a href="/login">Login</a>
+            </li>
+          </ul>
+        </div>
+        <a href="/sobre">Sobre Nós</a>
+        <a href="/contato">Contato</a>
+      </nav>
+      <div class="layout-content">
+        <div class="sacola">
+          <div class="container">
+            <div class="row">
+              <div class="twelve columns">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Peça</th>
+                      <th>Preço</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="produto-sacola">
+                          <div class="foto-produto">
+                            <img src="img/demo/casaco-detalhe.jpg" alt="CASAQUETO MIRAGE" title="CASAQUETO MIRAGE">
+                          </div>
+                          <div class="informacoes-produto">
+                            <h5>CASAQUETO MIRAGE</h5>
+                            <p>Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.</p>
+                          </div>
+                          <div>
+                            <strong>Cor:</strong>Bege
+                          </div>
+                          <div class="produto-sacola-medidas">
+                            <p title="Largura dos ombros">
+                              <span class="medida">
+                                Ombros:
+                              </span>
+                              <span class="tamanho">Medida não especificada</span>
+                            </p>
+                            <p title="Comprimento dos braços">
+                              <span class="medida">Braços:</span>
+                              <span class="tamanho">Medida não especificada</span>
+                            </p>
+                            <p title="Altura da peça, medida da altura do ombro até a cintura">
+                              <span class="medida">
+                                Comprimento:
+                              </span>
+                              <span class="tamanho">Medida não especificada</span>
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td><span class="produto-preco"><h5>R$ 1244,00</h5></span></td>
+                      <td><a href="#">x</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="six columns">
+                 <div class="frete">
+                    <h4>Frete</h4>
+                    <input type="text" placeholder="Informe seu cep">
+                    <button class="light-button">Calcular</button>
+                    <p> O frete para o cep <strong>36204-392</strong> é <strong>R$20,00</strong> </p>
+                  </div>
+              </div>
+              <div class="six columns">
+                <div class="total">
+                  <h4>
+                      Valor da compra
+                  </h4>
+                  <table>
+                    <tr>
+                      <td><strong>Casaqueto Mirage</strong></td>
+                      <td>R$1244,00</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Frete</strong></td>
+                      <td>R$20,00</td>
+                    </tr>
+                    <tr class="subtotal">
+                      <td><h4>Total</h4></td>
+                      <td><h4>$1264,00</td>
+                    </tr>
+                  </table>
+                  <br/>
+                  <button class="dark-button">Finalizar Compra</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="quickbag">
+        <a href="/bag"><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i></a>
+        <div class="items"></div>
+      </div>
+      <div class="delivery-bar">
+        <div class="container">
+          <div class="row">
+            <div class="twelve columns">
+              <span>Entrega em todo o Brasil</span>
+              <i class="fa fa-truck fa-flip-horizontal" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+</html>
