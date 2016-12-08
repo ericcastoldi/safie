@@ -795,7 +795,86 @@ nav.menu.open {
   left: 25%; 
 }
 
+/* My Safie */
 
+.my-safie h2{
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center; 
+}
+
+.my-safie hr{
+  margin-top: 0px;
+  border:2px solid #000;
+}
+
+.my-safie .minhas-medidas p{
+  text-align: center;
+}
+
+.my-safie .cerca{
+  border:solid 1px #000;
+  margin-bottom: 30px;
+}
+.my-safie table{
+  margin-top: 20px;
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+.my-safie table tr td:first-child{
+  font-weight: 700;
+}
+.my-safie table tr td{
+  background-color: rgba(238,166,130,0.4);
+  border: none;
+  margin-right:10px;
+  padding: 5px;
+}
+
+.my-safie .meus-pedidos,.my-address{
+  padding: 10px;
+}
+
+.my-safie .meus-pedidos .peca{
+  background-color: rgba(238,166,130,0.4);
+  padding: 15px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.my-safie .meus-pedidos p strong{
+  font-weight: 700;
+} 
+.my-safie .meus-pedidos p{
+  font-size: 13px;
+  margin: 0px;
+}
+
+.my-safie .my-address .address{
+ background-color: rgba(238,166,130,0.4);
+ margin-bottom: 10px;
+ padding: 10px;
+ position: relative;
+}
+
+.my-safie .my-address .address i{
+  color: rgba(238,166,130,0.8);
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.my-safie .my-address p{
+  margin: 0px;
+}
+
+.my-safie .new-address button{
+  background-color: rgba(238,166,130,0.7);
+  border: none;
+  float: right;
+  width: 300px;
+}
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
