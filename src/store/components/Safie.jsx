@@ -5,7 +5,6 @@ const Redirect = ReactRouter.Redirect;
 const Router = ReactRouter.Router;
 const Route = ReactRouter.Route;
 const store = require('./state/store.js');
-const SafieStore = require('./SafieStore.jsx');
 const Landing = require('./Landing.jsx');
 const Layout = require('./Layout.jsx');
 const Product = require('./Product.jsx');
@@ -24,11 +23,7 @@ class Safie extends React.Component {
   render() {
     return (
         <Router history={history}>
-
-          <Route component={SafieStore}>
-            <Route path="/" component={Landing} />
-          </Route>
-
+          <Route path="/" component={Landing} />
           <Route component={Layout}>
             <Route path="/colecoes/:collection" component={ProductsMasonry} />
             <Route path="/colecoes/:collection/:product" component={Product} />

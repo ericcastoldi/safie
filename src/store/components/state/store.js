@@ -23,6 +23,11 @@ const rootReducer = Redux.combineReducers({
   routing: ReactRouterRedux.routerReducer
 });
 
+
+// window && window.devToolsExtension ? window.devToolsExtension() : function (f) {
+//   return f;
+// }
+
 var store = Redux.createStore(
 
   rootReducer,
@@ -33,22 +38,19 @@ var store = Redux.createStore(
     Redux.applyMiddleware(
       thunkMiddleware.default,
       loggerMiddleware
-    ),
-    window.devToolsExtension ? window.devToolsExtension() : function (f) {
-      return f;
-    }
+    )
   )
 );
 
-if (module.onReload) {
-  module.onReload(() => {
-
-    store.replaceReducer(rootReducer.default || rootReducer);
-
-    // return true to indicate that this module is accepted and
-    // there is no need to reload its parent modules
-    return true;
-  });
-}
+// if (module.onReload) {
+//   module.onReload(() => {
+//
+//     store.replaceReducer(rootReducer.default || rootReducer);
+//
+//     // return true to indicate that this module is accepted and
+//     // there is no need to reload its parent modules
+//     return true;
+//   });
+// }
 
 module.exports = store;

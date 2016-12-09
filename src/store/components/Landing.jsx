@@ -4,7 +4,7 @@ var Logo = require('./Logo.jsx');
 var UnderstandButton = require('./UnderstandButton.jsx');
 var Subscribe = require('./Subscribe.jsx');
 var SubscribePopup = require('./SubscribePopup.jsx');
-
+var Footer = require('./Footer.jsx');
 var connect = require('react-redux').connect;
 
 var Landing = React.createClass({
@@ -16,7 +16,7 @@ var Landing = React.createClass({
   render: function () {
 
     return (
-      <div>
+      <div className="safie-store">
         <div className="landing">
           <Menu />
           <Logo />
@@ -24,6 +24,7 @@ var Landing = React.createClass({
         </div>
         <Subscribe />
         <SubscribePopup active={this.props.subscribePopupOn} />
+        <Footer />
       </div>
     );
   }

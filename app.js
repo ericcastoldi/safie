@@ -1,3 +1,9 @@
+require('babel-register')({
+  presets: ['react']
+});
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const Safie = require('./src/store/components/Safie.jsx');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -36,10 +42,10 @@ configurePassport(passport);
 
 const app = express();
 
-app.use(favicon(__dirname + '/public/store/img/favicon.png'));
-app.use(express.static(path.join(__dirname, 'node_modules')));
-app.use(express.static(path.join(__dirname, 'public/store')));
-app.use('/img', express.static(path.join(__dirname, 'public/store/img')));
+// app.use(favicon(__dirname + '/public/store/img/favicon.png'));
+// app.use(express.static(path.join(__dirname, 'node_modules')));
+// app.use(express.static(path.join(__dirname, 'public/store')));
+// app.use('/img', express.static(path.join(__dirname, 'public/store/img')));
 
 app.use(morgan('dev'));
 
@@ -72,14 +78,22 @@ app.use((req, res, next) => {
   next();
 });
 
+//https://www.youtube.com/watch?v=Uf1Vk3RnXsk&list=PLVgOtoUBG2md5HxaABCcnfstF88CPzUeD&index=2
 //app.use(renderMiddleware);
 
-configureRoutes(app, passport);
+
+
+//configureRoutes(app, passport);
 
 app.get('*', (request, response) => {
-  var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
-  response.sendFile(indexHtml);
+  const html = ReactDOMServer.renderToString(React.createElement(Safie));
+  response.send(html);
 });
+
+// app.get('*', (request, response) => {
+//   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');
+//   response.sendFile(indexHtml);
+// });
 
 app.set('port', (process.env.PORT || 3000));
 

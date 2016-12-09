@@ -1,8 +1,5 @@
-require('babel-core/register')({
-    presets: ['es2015', 'react']
-});
 const React = require('react');
-const renderToString = require('react-dom/server').renderToString;
+const ReactDOMServer = require('react-dom/server');
 const Redux = require('redux');
 const ReactRouterRedux = require('react-router-redux');
 const ReactRedux = require('react-redux');
@@ -82,7 +79,7 @@ function handleRender(req, res) {
 
 
   // Render the component to a string
-  const html = renderToString(
+  const html = ReactDOMServer.renderToString(
     <Provider store={store}>
       <Safie />
     </Provider>
