@@ -808,6 +808,26 @@ nav.menu.open {
   border:2px solid #000;
 }
 
+.boas-vindas{
+  text-align: center;
+}
+
+.titulo-mysafie{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 15px;
+  color: #000;
+  text-align: center;
+  background: #fff;
+  border:1px solid;
+  margin:0 auto;
+  margin-bottom: 20px;
+}
+
+.titulo-mysafie p{
+  margin-top: 25px;
+}
 .my-safie .minhas-medidas p{
   text-align: center;
 }
@@ -825,7 +845,7 @@ nav.menu.open {
   font-weight: 700;
 }
 .my-safie table tr td{
-  background-color: rgba(238,166,130,0.4);
+  background-color: #fbeee8;
   border: none;
   margin-right:10px;
   padding: 5px;
@@ -836,10 +856,10 @@ nav.menu.open {
 }
 
 .my-safie .meus-pedidos .peca{
-  background-color: rgba(238,166,130,0.4);
-  padding: 15px;
+   background-color: #fbeee8;
   height: 150px;
   margin-bottom: 10px;
+  padding:10px;
 }
 
 .my-safie .meus-pedidos p strong{
@@ -851,18 +871,19 @@ nav.menu.open {
 }
 
 .my-safie .my-address .address{
- background-color: rgba(238,166,130,0.4);
+  background-color: #fbeee8;
  margin-bottom: 10px;
  padding: 10px;
  position: relative;
 }
 
 .my-safie .my-address .address i{
-  color: rgba(238,166,130,0.8);
+  color: #f5c2a2;
   position: absolute;
   right: 5px;
   top: 5px;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .my-safie .my-address p{
@@ -870,10 +891,54 @@ nav.menu.open {
 }
 
 .my-safie .new-address button{
-  background-color: rgba(238,166,130,0.7);
+  background-color: #f8dacc;
   border: none;
   float: right;
-  width: 300px;
+  width: 400px;
+}
+
+.meu-carrinho{
+  padding: 10px;
+}
+.meu-carrinho img{
+  -webkit-box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  -moz-box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  margin-right: 10px;
+}
+
+.meu-carrinho p{
+  margin:0px;
+}
+.meu-carrinho .three {
+  position: relative;
+
+}
+
+.meu-carrinho .three i{
+  position: absolute;
+  right: 38px;
+  top: 7px;
+  color: #f5c2a2;
+  cursor: pointer;
+  font-size: 20px;
+}
+.meu-carrinho .three p{
+  text-align: center;
+  font-weight: 700;
+}
+
+.limpar{
+  clear: both;
+}
+.meu-carrinho .pedido-info{
+   background-color: #fae6db;
+  border: none;
+  float: right;
+  width: 400px;
+  margin-bottom: 20px;
+  padding: 5px;
+  margin-top: 20px;
 }
 /* Larger than tablet */
 @media (min-width: 750px) {
