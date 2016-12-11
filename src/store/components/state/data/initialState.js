@@ -51,6 +51,10 @@ module.exports = {
   },
   bag: {
     quickBagOpened: false,
+    shipping: {
+      code: null,
+      price: 0
+    },
     items: {
       //   1475971773639: {
       //     options: {

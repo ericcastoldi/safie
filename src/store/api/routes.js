@@ -93,6 +93,17 @@ const addToBag = (product, bag) => {
   return actualBag;
 };
 
+const removeFromBag = (product, bag) => {
+  if(!product){
+    throw 'Item inválido.';
+  }
+
+  bag.total -= product.price;
+  delete bag.items[product.id];
+
+  return bag;
+};
+
 module.exports = function(app, passport) {
 
   app.get('/api/auth/facebook', passport.authenticate('facebook', { scope: 'email' }));
@@ -126,11 +137,38 @@ module.exports = function(app, passport) {
     res.json(response);
   });
 
-  app.post('/api/add-to-bag', function(req, res) {
+
+  // Shopping bag
+  // 1. Alterar ShoppingBag e QuickBag para buscarem da api os itens da sacola
+  // no carregamento (ShoppingBag) e ao abrir (QuickBag);
+  //
+  // 2. Alterar Product para adicionar item na sacola utilizando a api
+  //
+  // 3. Adicionar exibição dos produtos na QuickBag
+  //
+  // 4. Implementar calculo de frete na sacola de compras
+  app.get('/api/bag', function(req, res) {
+    var bag = req.session.shoppingBag;
+    var actualBag = bag || Object.assign({}, shoppingBagModel);
+
+    let response = apiResultFactory.successResult(actualBag);
+    res.json(response);
+  });
+
+  app.post('/api/bag', function(req, res) {
     let bag = addToBag(req.body, req.session.shoppingBag);
     req.session.shoppingBag = bag;
 
     let response = apiResultFactory.successResult(bag);
     res.json(response);
   });
+
+  app.delete('/api/bag', function(req, res) {
+    let bag = removeFromBag(req.body, req.session.shoppingBag);
+    req.session.shoppingBag = bag;
+
+    let response = apiResultFactory.successResult(bag);
+    res.json(response);
+  });
+
 };
