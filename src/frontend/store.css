@@ -795,7 +795,194 @@ nav.menu.open {
   left: 25%; 
 }
 
+/* My Safie */
 
+.my-safie h2{
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center; 
+}
+
+.my-safie hr{
+  margin-top: 0px;
+  border:2px solid #000;
+}
+
+.boas-vindas{
+  text-align: center;
+  margin-bottom: 100px;
+  margin-top: -20px;
+}
+
+.titulo-mysafie{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  font-size: 15px;
+  color: #000;
+  text-align: center;
+  background: #fff;
+  border:1px solid;
+  margin:0 auto;
+  margin-bottom: 20px;
+  position: relative;
+  
+}
+.titulo-mysafie p{
+  margin-top: 25px;
+  position: relative;
+}
+
+.titulo-mysafie:before{
+  content:'';
+  border-left:1px solid #000;
+  border-bottom:1px solid #000;
+  position:absolute;
+  width:100px;
+  height:20px;
+  right:-40px;
+  bottom: -20px;
+  z-index: -1;
+
+}
+.my-safie .minhas-medidas p{
+  text-align: center;
+}
+
+.peca.six.columns{
+  margin-left:5px;
+}
+
+.my-safie .cerca{
+  border:solid 1px #000;
+  margin-bottom: 50px;
+}
+.my-safie table{
+  margin-top: 20px;
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+.my-safie table tr td:first-child{
+  font-weight: 700;
+}
+.my-safie table tr td{
+  background-color: #fbeee8;
+  border: none;
+  margin-right:10px;
+  padding: 5px;
+}
+
+.my-safie .meus-pedidos,.my-address{
+  padding: 10px;
+}
+
+.my-safie .meus-pedidos .peca{
+   background-color: #fbeee8;
+  height: 150px;
+  margin-bottom: 20px;
+  padding:10px;
+  position: relative;
+}
+.my-safie .meus-pedidos .peca .obs p span{
+  color: rgba(238,166,130,1);
+}
+
+.my-safie .meus-pedidos .peca .obs p:last-child{
+  position: absolute;
+  bottom: 5px;
+}
+
+.my-safie .meus-pedidos .peca:last-child{
+  /*margin-left: -10px;*/
+}
+
+.my-safie .meus-pedidos p strong{
+  font-weight: 700;
+} 
+.my-safie .meus-pedidos p{
+  font-size: 13px;
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.my-safie .my-address .address{
+  background-color: #fbeee8;
+ margin-bottom: 10px;
+ padding: 10px;
+ position: relative;
+}
+
+.my-safie .my-address .address i{
+  color: #f5c2a2;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.my-safie .my-address p{
+  margin: 0px;
+}
+
+.my-safie .my-address input{
+  margin-top: 70px;
+  margin-left: 20px;
+}
+
+.my-safie .new-address button{
+  background-color: #f8dacc;
+  border: none;
+  float: right;
+  width: 250px;
+  font-size: 13px;
+  padding: 10px;
+  line-height: 0px;
+}
+
+.meu-carrinho{
+  padding: 10px;
+}
+.meu-carrinho img{
+  -webkit-box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  -moz-box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  margin-right: 10px;
+}
+
+.meu-carrinho p{
+  margin:0px;
+}
+.meu-carrinho .three {
+  position: relative;
+
+}
+
+.meu-carrinho .three i{
+  position: absolute;
+  right: 0;
+  top: 7px;
+  color: #f5c2a2;
+  cursor: pointer;
+  font-size: 20px;
+}
+.meu-carrinho .three p{
+  text-align: center;
+  font-weight: 700;
+}
+
+.limpar{
+  clear: both;
+}
+.meu-carrinho .pedido-info{
+   background-color: #fae6db;
+  border: none;
+  float: right;
+  width: 230px;
+  margin-bottom: 20px;
+  padding: 10px;
+  margin-top: 20px;
+}
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
