@@ -47,63 +47,68 @@ const apiResultFactory = require('../model/apiResultFactory.js');
 //     }
 //   }
 
-const productModel = {
-  id: null,
-  name: null,
-  description: null,
-  price: null,
-  measurements: {},
-  defaultColor: null,
-  colors: null,
-  pictures: {
-    main: null,
-    product: null,
-    paths: null
-  }
-};
+// const productModel = {
+//   id: null,
+//   name: null,
+//   description: null,
+//   price: null,
+//   measurements: {},
+//   defaultColor: null,
+//   colors: null,
+//   pictures: {
+//     main: null,
+//     product: null,
+//     paths: null
+//   }
+// };
 
-const shoppingBagItemOptionsModel = {
-  color: {
-    name: null,
-    hex: null
-  },
-  measurements: {}
-};
+// const shoppingBagItemOptionsModel = {
+//   color: {
+//     name: null,
+//     hex: null
+//   },
+//   measurements: {}
+// };
 
-const shoppingBagItemModel = {
-  options: shoppingBagItemOptionsModel,
-  product: productModel
-};
+// const shoppingBagItemModel = {
+//   options: shoppingBagItemOptionsModel,
+//   product: productModel
+// };
 
 const shoppingBagModel = {
-  shipping: {
-    code: null,
-    price: 0
-  },
-  items: {},
+  shipping: null,
+  items: null,
   total: 0
 };
 
-const addToBag = (product, bag) => {
-  if(!product){
+const addToBag = (item, bag) => {
+  if(!item){
     throw 'Item inválido.';
   }
 
+  var product = item.product;
+  var newItemId = new Date().getTime();
   var actualBag = bag || Object.assign({}, shoppingBagModel);
 
-  actualBag.items[product.id] = product;
-  actualBag.total += product.price;
+  actualBag.items = actualBag.items || {};
+  actualBag.items[newItemId] = item;
+  actualBag.total = parseFloat(actualBag.total) + parseFloat(product.price.replace(',', '.'));
 
   return actualBag;
 };
 
-const removeFromBag = (product, bag) => {
-  if(!product){
+const removeFromBag = (itemId, bag) => {
+  if(!itemId){
     throw 'Item inválido.';
   }
 
-  bag.total -= product.price;
-  delete bag.items[product.id];
+  if(!bag.items || !(itemId in bag.items)) {
+    return bag;
+  }
+
+  const item = bag.items[itemId];
+  bag.total = parseFloat(bag.total) - parseFloat(item.product.price.replace(',', '.'));
+  delete bag.items[itemId];
 
   return bag;
 };
@@ -167,8 +172,8 @@ module.exports = function(app, passport) {
     res.json(response);
   });
 
-  app.delete('/api/bag', function(req, res) {
-    let bag = removeFromBag(req.body, req.session.shoppingBag);
+  app.delete('/api/bag/:itemId', function(req, res) {
+    let bag = removeFromBag(req.params.itemId, req.session.shoppingBag);
     req.session.shoppingBag = bag;
 
     let response = apiResultFactory.successResult(bag);

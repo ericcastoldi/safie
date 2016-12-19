@@ -1,7 +1,6 @@
 import React from 'react';
 import Menu from './Menu.jsx';
 import QuickBag from './QuickBag.jsx';
-import DeliveryBar from './DeliveryBar.jsx';
 import CurrentCustomer from './CurrentCustomer.jsx';
 
 class Layout extends React.Component {
@@ -14,7 +13,6 @@ class Layout extends React.Component {
           {this.props.children}
         </div>
         <QuickBag />
-        <DeliveryBar />
       </div>
     );
   }

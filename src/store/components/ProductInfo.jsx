@@ -19,7 +19,7 @@ var React = require('react');
 
 var ProductInfo = React.createClass({
   propTypes: {
-    description: React.PropTypes.string.isRequired
+    description: React.PropTypes.string
   },
 
   render: function () {

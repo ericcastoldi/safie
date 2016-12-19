@@ -18,18 +18,18 @@ var Product = React.createClass({
       measurements: React.PropTypes.object
     }),
     product: React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
-      description: React.PropTypes.string.isRequired,
-      price: React.PropTypes.string.isRequired,
+      id: React.PropTypes.string,
+      name: React.PropTypes.string,
+      description: React.PropTypes.string,
+      price: React.PropTypes.string,
       measurements: React.PropTypes.object,
       pictures: React.PropTypes.shape({
-        main: React.PropTypes.number.isRequired,
-        product: React.PropTypes.number.isRequired,
-        paths: React.PropTypes.arrayOf(React.PropTypes.object)
+        main: React.PropTypes.number,
+        product: React.PropTypes.number,
+        paths: React.PropTypes.object
       }),
-      colors: React.PropTypes.object.isRequired,
-      defaultColor: React.PropTypes.string.isRequired
+      colors: React.PropTypes.object,
+      defaultColor: React.PropTypes.string
     })
   },
 

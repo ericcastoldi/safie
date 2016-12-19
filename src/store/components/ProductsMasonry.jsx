@@ -16,7 +16,7 @@ var ProductsMasonry = React.createClass({
         pictures: React.PropTypes.shape({
           main: React.PropTypes.number.isRequired,
           product: React.PropTypes.number.isRequired,
-          paths: React.PropTypes.arrayOf(React.PropTypes.object)
+          paths: React.PropTypes.object
         })
       })
     )

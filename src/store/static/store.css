@@ -225,7 +225,7 @@ nav.menu.open {
   cursor            : pointer;
 }
 
-.quickbag i {
+.quickbag a i {
   font-size   : 3rem;
   margin-right: 3rem;
   margin-top  : 3rem;
@@ -240,7 +240,8 @@ nav.menu.open {
 }
 
 .quickbag .items {
-  display: none;
+  display    : none;
+  padding-top: 3rem;
 }
 
 .quickbag.open {
@@ -249,6 +250,30 @@ nav.menu.open {
 
 .quickbag.open .items {
   display: block;
+}
+
+.quickbag .items img {
+  box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  width     : 60%;
+}
+
+.quickbag .items i {
+  position : absolute;
+  right    : 2.5rem;
+  margin   : 0 3px 0 0;
+  color    : #999;
+  cursor   : pointer;
+  font-size: 20px;
+}
+
+.quickbag .items i:hover {
+  color: #f5c2a2;
+}
+
+.quickbag .items .quickbag-item p {
+  text-transform: capitalize;
+  font-size     : small;
+  color         : #666;
 }
 
 .dimmer {
@@ -578,6 +603,11 @@ nav.menu.open {
   vertical-align: top;
 }
 
+.sacola td h5,
+.total td strong {
+  text-transform: uppercase;
+}
+
 /* ProductCardHorizontal.jsx */
 .produto-sacola .foto-produto {
   width       : 20rem;
@@ -838,13 +868,13 @@ nav.menu.open {
   }
 
   .quickbag {
-    height    : 100vh;
+    min-height: 100vh;
     width     : 3.5%;
     background: rgba(238,166,130,0.5);
-    position  : fixed;
+    /*position  : fixed;*/
   }
 
-  .quickbag i {
+  .quickbag a i {
     margin-top  : 3vh;
     margin-right: auto;
   }

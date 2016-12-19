@@ -58,10 +58,12 @@ module.exports = {
     removing: false,
     doneRemoving: false,
     quickBagOpened: false,
-    shipping: {
-      code: null,
-      price: 0
-    },
+    shipping: null,
+    total: 0,
+    //           {
+    //   code: null,
+    //   price: 0
+    // },
     items: {
       //   1475971773639: {
       //     options: {

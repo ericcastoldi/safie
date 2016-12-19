@@ -1,4 +1,5 @@
 var actionTypes = require('./actionTypes.js');
+const axios = require('axios');
 
 var toggleQuickBag = function () {
   return {
@@ -6,43 +7,25 @@ var toggleQuickBag = function () {
   };
 };
 
-var _addProductToBag = function (product, options) {
-  return {
-    type: actionTypes.ADD_PRODUCT_TO_BAG,
-    payload: {
-      product: product,
-      options: options
-    }
-  };
-};
+// var _addProductToBag = function (product, options) {
+//   return {
+//     type: actionTypes.ADD_PRODUCT_TO_BAG,
+//     payload: {
+//       product: product,
+//       options: options
+//     }
+//   };
+// };
 
 const handleApiResult = (apiResult, dispatch, success, fail) => {
   var result = apiResult.data;
   if(result.success){
-    dispatch(success(result));
+    dispatch(success(result.data));
   }
   else{
     dispatch(fail(result.error));
   }
 };
-
-const fetchBag = () => {
-
-  return (dispatch) => {
-    dispatch(startFetchingBag());
-
-    return axios.get('/api/bag')
-        .then((apiResult) => {
-          handleApiResult(apiResult,
-            dispatch,
-            doneFetchingBag,
-            cannotFetchBag);
-        })
-        .catch((response) => {
-          dispatch(cannotFetchBag(response));
-        });
-
-  };
 
 
 const startFetchingBag = () => {
@@ -69,28 +52,24 @@ const cannotFetchBag = (err) => {
   };
 };
 
-
-const addProductToBag = (product, options) => {
+const fetchBag = () => {
 
   return (dispatch) => {
-    dispatch(startAddingProductToBag());
+    dispatch(startFetchingBag());
 
-    var item = {
-      product: product,
-      options: options
-    };
-
-    return axios.post('/api/bag', item)
+    return axios.get('/api/bag')
         .then((apiResult) => {
           handleApiResult(apiResult,
             dispatch,
-            doneAddingProductToBag,
-            cannotAddProductToBag);
+            doneFetchingBag,
+            cannotFetchBag);
         })
         .catch((response) => {
-          dispatch(cannotAddProductToBag(response));
+          dispatch(cannotFetchBag(response));
         });
+
   };
+};
 
 
 const startAddingProductToBag = () => {
@@ -117,37 +96,42 @@ const cannotAddProductToBag = (err) => {
   };
 };
 
-
-
-
-
-var _removeProductFromBag = function (productId) {
-  return {
-    type: actionTypes.REMOVE_PRODUCT_FROM_BAG,
-    payload: {
-      productId: productId
-    }
-  };
-};
-
-const removeProductFromBag = (product) => {
+const addProductToBag = (product, options) => {
 
   return (dispatch) => {
-    dispatch(startRemovingProductFromBag());
+    dispatch(startAddingProductToBag());
 
-    return axios.delete('/api/bag', product)
+    var item = {
+      product: product,
+      options: options
+    };
+
+    return axios.post('/api/bag', item)
         .then((apiResult) => {
           handleApiResult(apiResult,
             dispatch,
-            doneRemovingProductFromBag,
-            cannotRemoveProductFromBag);
+            doneAddingProductToBag,
+            cannotAddProductToBag);
         })
         .catch((response) => {
-          dispatch(cannotRemoveProductFromBag(response));
+          dispatch(cannotAddProductToBag(response));
         });
-
   };
+};
 
+
+
+
+
+
+// var _removeProductFromBag = function (productId) {
+//   return {
+//     type: actionTypes.REMOVE_PRODUCT_FROM_BAG,
+//     payload: {
+//       productId: productId
+//     }
+//   };
+// };
 
 const startRemovingProductFromBag = () => {
   return {
@@ -172,6 +156,27 @@ const cannotRemoveProductFromBag = (err) => {
     }
   };
 };
+
+const removeProductFromBag = (itemId) => {
+
+  return (dispatch) => {
+    dispatch(startRemovingProductFromBag());
+
+    return axios.delete('/api/bag/' + itemId)
+        .then((apiResult) => {
+          handleApiResult(apiResult,
+            dispatch,
+            doneRemovingProductFromBag,
+            cannotRemoveProductFromBag);
+        })
+        .catch((response) => {
+          dispatch(cannotRemoveProductFromBag(response));
+        });
+
+  };
+};
+
+
 
 
 

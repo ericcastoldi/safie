@@ -6,9 +6,7 @@ var ProductPicturesPicker = React.createClass({
   propTypes: {
     picturePicked: React.PropTypes.func,
     activePicture: React.PropTypes.number,
-    pictures: React.PropTypes.arrayOf(
-      React.PropTypes.object
-    ).isRequired
+    pictures: React.PropTypes.object
   },
 
   renderThumbnails: function(){

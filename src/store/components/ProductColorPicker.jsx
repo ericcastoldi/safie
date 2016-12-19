@@ -6,10 +6,10 @@ var productActions = require('./state/productActions.js');
 
 var ProductColorPicker = React.createClass({
   propTypes: {
-    colors: React.PropTypes.object.isRequired,
-    pickProductColor: React.PropTypes.func.isRequired,
-    defaultColor: React.PropTypes.string.isRequired,
-    selectedColor: React.PropTypes.string.isRequired
+    colors: React.PropTypes.object,
+    pickProductColor: React.PropTypes.func,
+    defaultColor: React.PropTypes.string,
+    selectedColor: React.PropTypes.string
   },
 
   pickColor: function(color){
@@ -43,11 +43,12 @@ var ProductColorPicker = React.createClass({
 
       return (
         <div
+          key={index}
           className={cssClasses.join(' ')}
           onClick={this.pickColor.bind(this, colorId)}>
 
           <div
-            key={index}
+
             style={divStyle}
             title={color.name}
             className="product-color-box">

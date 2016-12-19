@@ -3,7 +3,7 @@ var React = require('react');
 
 var ProductTitle = React.createClass({
   propTypes: {
-    name: React.PropTypes.string.isRequired
+    name: React.PropTypes.string
   },
 
   render: function () {

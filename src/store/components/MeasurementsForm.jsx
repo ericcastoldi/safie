@@ -67,7 +67,7 @@ class MeasurementsForm extends React.Component {
 }
 
 MeasurementsForm.propTypes = {
-  measurements: React.PropTypes.object.isRequired,
+  measurements: React.PropTypes.object,
   setProductMeasurements: React.PropTypes.func.isRequired
 };
 
