@@ -810,6 +810,8 @@ nav.menu.open {
 
 .boas-vindas{
   text-align: center;
+  margin-bottom: 100px;
+  margin-top: -20px;
 }
 
 .titulo-mysafie{
@@ -823,18 +825,37 @@ nav.menu.open {
   border:1px solid;
   margin:0 auto;
   margin-bottom: 20px;
+  position: relative;
+  
 }
-
 .titulo-mysafie p{
   margin-top: 25px;
+  position: relative;
+}
+
+.titulo-mysafie:before{
+  content:'';
+  border-left:1px solid #000;
+  border-bottom:1px solid #000;
+  position:absolute;
+  width:100px;
+  height:20px;
+  right:-40px;
+  bottom: -20px;
+  z-index: -1;
+
 }
 .my-safie .minhas-medidas p{
   text-align: center;
 }
 
+.peca.six.columns{
+  margin-left:5px;
+}
+
 .my-safie .cerca{
   border:solid 1px #000;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 .my-safie table{
   margin-top: 20px;
@@ -858,8 +879,21 @@ nav.menu.open {
 .my-safie .meus-pedidos .peca{
    background-color: #fbeee8;
   height: 150px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding:10px;
+  position: relative;
+}
+.my-safie .meus-pedidos .peca .obs p span{
+  color: rgba(238,166,130,1);
+}
+
+.my-safie .meus-pedidos .peca .obs p:last-child{
+  position: absolute;
+  bottom: 5px;
+}
+
+.my-safie .meus-pedidos .peca:last-child{
+  /*margin-left: -10px;*/
 }
 
 .my-safie .meus-pedidos p strong{
@@ -868,6 +902,7 @@ nav.menu.open {
 .my-safie .meus-pedidos p{
   font-size: 13px;
   margin: 0px;
+  margin-left: 10px;
 }
 
 .my-safie .my-address .address{
@@ -890,11 +925,19 @@ nav.menu.open {
   margin: 0px;
 }
 
+.my-safie .my-address input{
+  margin-top: 70px;
+  margin-left: 20px;
+}
+
 .my-safie .new-address button{
   background-color: #f8dacc;
   border: none;
   float: right;
-  width: 400px;
+  width: 250px;
+  font-size: 13px;
+  padding: 10px;
+  line-height: 0px;
 }
 
 .meu-carrinho{
@@ -917,7 +960,7 @@ nav.menu.open {
 
 .meu-carrinho .three i{
   position: absolute;
-  right: 38px;
+  right: 0;
   top: 7px;
   color: #f5c2a2;
   cursor: pointer;
@@ -935,9 +978,9 @@ nav.menu.open {
    background-color: #fae6db;
   border: none;
   float: right;
-  width: 400px;
+  width: 230px;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 10px;
   margin-top: 20px;
 }
 /* Larger than tablet */
