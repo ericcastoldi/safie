@@ -76,6 +76,10 @@ const shoppingBagItemModel = {
 };
 
 const shoppingBagModel = {
+  shipping: {
+    code: null,
+    price: 0
+  },
   items: {},
   total: 0
 };

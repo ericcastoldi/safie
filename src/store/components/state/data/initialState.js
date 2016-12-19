@@ -50,6 +50,13 @@ module.exports = {
     }
   },
   bag: {
+    error: null,
+    fetching: false,
+    doneFetching: false,
+    adding: false,
+    doneAdding: false,
+    removing: false,
+    doneRemoving: false,
     quickBagOpened: false,
     shipping: {
       code: null,
