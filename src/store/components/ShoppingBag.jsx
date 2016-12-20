@@ -5,6 +5,7 @@ import ProductCardHorizontal from './ProductCardHorizontal.jsx';
 import bagActions from './state/bagActions.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { browserHistory } from 'react-router';
 
 var ShoppingBag = React.createClass({
 
@@ -105,7 +106,11 @@ var ShoppingBag = React.createClass({
 
               <br/>
 
-              <DarkButton label="Finalizar Compra"/>
+              <DarkButton
+                click={() => {
+                  browserHistory.push('/login');
+                }}
+                label="Finalizar Compra"/>
 
             </div>
           </div>

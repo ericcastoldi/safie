@@ -10,6 +10,7 @@ var bagReducer = require('./bagReducer.js');
 var productsReducer = require('./productsReducer.js');
 var productReducer = require('./productReducer.js');
 var customerReducer = require('./customerReducer.js');
+var mysafieReducer = require('./mysafieReducer.js');
 
 //const initialState = window.SAFIE_PRELOADED_STATE;
 
@@ -20,6 +21,7 @@ const rootReducer = Redux.combineReducers({
   products: productsReducer,
   product: productReducer,
   customer: customerReducer,
+  mysafie: mysafieReducer,
   routing: ReactRouterRedux.routerReducer
 });
 

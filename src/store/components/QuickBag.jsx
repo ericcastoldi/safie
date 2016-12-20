@@ -46,16 +46,25 @@ var QuickBag = React.createClass({
 
   toggle: function(){
     this.props.toggle();
-    /*
-    var body = document.body,
-        html = document.documentElement;
-
-    var height = Math.max( body.scrollHeight, body.offsetHeight,
-                           html.clientHeight, html.scrollHeight, html.offsetHeight );
-    var qb = document.getElementsByClassName("quickbag");
-    qb[0].setAttribute("style","height:" + height + "px");
-    */
   },
+
+  // setHeight: function() {
+  //   var height = this.getViewportHeight();
+  //   var quickbag = document.getElementById('quickbag');
+  //   if(quickbag){
+  //     quickbag.setAttribute('style', 'height:' + height + 'px');
+  //   }
+  // },
+  //
+  // getViewportHeight: function() {
+  //   var body = document.body,
+  //       html = document.documentElement;
+  //
+  //   var height = Math.max( body.scrollHeight, body.offsetHeight,
+  //                          html.clientHeight, html.scrollHeight, html.offsetHeight );
+  //
+  //   return height;
+  // },
 
   render: function () {
     let cssClasses = ['quickbag'];
@@ -65,7 +74,7 @@ var QuickBag = React.createClass({
 
     const items = this.renderItems();
     return (
-      <div className={cssClasses.join(' ')} onClick={this.toggle}>
+      <div id="quickbag" className={cssClasses.join(' ')} onClick={this.toggle}>
 
         <Link to="/bag">
           <i className="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>

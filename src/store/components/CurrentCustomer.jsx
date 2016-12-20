@@ -1,3 +1,4 @@
+/*eslint no-underscore-dangle: 1*/
 import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -13,13 +14,17 @@ class CurrentCustomer extends React.Component {
     this.logout = this.logout.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchCurrentCustomer();
+  }
+
   render() {
 
     let out = '';
     let route = '/login';
     let description = 'Entrar';
 
-    if(this.props.customer && this.props.customer.id){
+    if(this.props.customer && this.props.customer._id){
       out = ' | Sair';
       route = '/my-safie';
       description = this.props.customer.name;
@@ -43,11 +48,12 @@ class CurrentCustomer extends React.Component {
 
 CurrentCustomer.propTypes = {
   customer: React.PropTypes.shape({
-    id: React.PropTypes.string,
+    _id: React.PropTypes.string,
     name: React.PropTypes.string
   }),
   logOut: React.PropTypes.func.isRequired,
-  loggingOut: React.PropTypes.bool
+  loggingOut: React.PropTypes.bool,
+  fetchCurrentCustomer: React.PropTypes.func.isRequired
 };
 
 
@@ -61,7 +67,8 @@ const mapCurrentCustomerStateToProps = (state) => {
 
 const mapCurrentCustomerDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logOut: customerActions.logOut
+    logOut: customerActions.logOut,
+    fetchCurrentCustomer: customerActions.fetchCurrentCustomer
   }, dispatch);
 };
 

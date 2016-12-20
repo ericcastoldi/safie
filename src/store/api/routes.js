@@ -124,8 +124,12 @@ module.exports = function(app, passport) {
     }
   );
 
+  app.get('/api/customer', (req, res) => {
+    let response = apiResultFactory.successResult(req.user);
+    res.json(response);
+  });
 
-  app.post('/api/customers',
+  app.post('/api/customer',
     passport.authenticate('local-signup'),
     function(req, res) {
       res.json(req.user);

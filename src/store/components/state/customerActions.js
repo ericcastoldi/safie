@@ -113,7 +113,7 @@ const facebookLogin = () => {
           }
         })
         .catch(function (response) {
-          dispatch(cannotLogIn(response));
+          dispatch(cannotLogIn('Não foi possível realizar o login com o Facebook.'));
         });
 
   };
@@ -148,7 +148,7 @@ const saveCustomer = (customer) => {
   return (dispatch) => {
     dispatch(startSavingCustomer());
 
-    return axios.post('/api/customers', customer)
+    return axios.post('/api/customer', customer)
         .then(function (apiResult) {
           var result = apiResult.data;
           if(result.success){
@@ -167,10 +167,57 @@ const saveCustomer = (customer) => {
 
 };
 
+const startFetchingCurrentCustomer = () => {
+  return {
+    type: actionTypes.START_FETCHING_CURRENT_CUSTOMER
+  };
+};
+
+const doneFetchingCurrentCustomer = (customer) => {
+  return {
+    type: actionTypes.DONE_FETCHING_CURRENT_CUSTOMER,
+    payload: {
+      customer: customer
+    }
+  };
+};
+
+
+const cannotFetchCurrentCustomer = (err) => {
+  return {
+    type: actionTypes.CANNOT_FETCH_CURRENT_CUSTOMER,
+    payload: {
+      error: err
+    }
+  };
+};
+
+const fetchCurrentCustomer = () => {
+  return (dispatch) => {
+    dispatch(startFetchingCurrentCustomer());
+
+    return axios.get('/api/customer')
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            dispatch(doneFetchingCurrentCustomer(result.data));
+          }
+          else{
+            dispatch(cannotFetchCurrentCustomer(result.error));
+          }
+        })
+        .catch(function (response) {
+          dispatch(cannotFetchCurrentCustomer(response.message));
+        });
+
+  };
+};
+
 module.exports = {
   customerChanged: customerChanged,
   saveCustomer: saveCustomer,
   logIn: logIn,
   facebookLogin: facebookLogin,
-  logOut: logOut
+  logOut: logOut,
+  fetchCurrentCustomer: fetchCurrentCustomer
 };

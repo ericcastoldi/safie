@@ -15,7 +15,7 @@ export default routes;
     <Route path="/colecoes/:collection" component={ProductsMasonry} />
     <Route path="/colecoes/:collection/:product" component={Product} />
     <Route path="/bag" component={ShoppingBag} />
-    <Route path="/customer" component={CustomerForm} />
+    <Route path="/cadastro" component={CustomerForm} />
     <Route path="/login" component={LoginForm} />
   </Route>
   <Redirect from="*" to="/" />

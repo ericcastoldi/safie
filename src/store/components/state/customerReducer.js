@@ -74,6 +74,11 @@ const cannotLogOut = (state, action) => {
   });
 };
 
+const doneFetchingCurrentCustomer = (state, action) => {
+  return Object.assign({}, state, {
+    current: action.payload.customer
+  });
+};
 
 module.exports = function (state = initialState.customer, action) {
   switch (action.type) {
@@ -107,6 +112,9 @@ module.exports = function (state = initialState.customer, action) {
 
     case actionTypes.CANNOT_LOG_OUT:
       return cannotLogOut(state, action);
+
+    case actionTypes.DONE_FETCHING_CURRENT_CUSTOMER:
+      return doneFetchingCurrentCustomer(state, action);
 
     default:
       return state;

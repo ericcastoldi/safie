@@ -1,9 +1,10 @@
+/*eslint no-underscore-dangle: 1*/
 import React from 'react';
 import { Link } from 'react-router';
-import DarkButton from './DarkButton.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import customerActions from './state/customerActions.js';
+import { browserHistory } from 'react-router';
 
 class LoginForm extends React.Component {
 
@@ -19,7 +20,17 @@ class LoginForm extends React.Component {
     this.facebookLogin = this.facebookLogin.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchCurrentCustomer();
+  }
+
   render() {
+
+    if(this.props.customer && this.props.customer._id){
+      browserHistory.push('/my-safie');
+      return null;
+    }
+
     return (
       <div className="login-form">
         <div className="container">
@@ -27,7 +38,7 @@ class LoginForm extends React.Component {
             <div className='box-login'>
 
               <div className='assinatura'>
-                <img src='/img/logo.png' width="200" />
+                <img src='/img/logo.jpg' width="200" />
               </div>
 
               <button
@@ -36,7 +47,7 @@ class LoginForm extends React.Component {
                 <i className="fa fa-facebook" aria-hidden="true"></i> Entrar com o Facebook
               </button>
 
-              <Link to="/customer">
+              <Link to="/cadastro">
                 <button className="button orange-button">Novo Cadastro</button>
               </Link>
 
@@ -78,26 +89,34 @@ class LoginForm extends React.Component {
   login(){
     if(!this.props.loggingIn){
       this.props.logIn(this.state);
+      browserHistory.push('/my-safie');
     }
   }
 
   facebookLogin(){
     if(!this.props.loggingIn){
       this.props.facebookLogin();
+      browserHistory.push('/my-safie');
     }
   }
 }
 
 LoginForm.propTypes = {
+  customer: React.PropTypes.shape({
+    _id: React.PropTypes.string,
+    name: React.PropTypes.string
+  }),
   loggingIn: React.PropTypes.bool,
   error: React.PropTypes.string,
   logIn: React.PropTypes.func.isRequired,
-  facebookLogin: React.PropTypes.func.isRequired
+  facebookLogin: React.PropTypes.func.isRequired,
+  fetchCurrentCustomer: React.PropTypes.func.isRequired
 };
 
 
 const mapLoginFormStateToProps = (state) => {
   return {
+    customer: state.customer.current,
     loggingIn: state.customer.loggingIn,
     error: state.customer.error
   };
@@ -106,7 +125,8 @@ const mapLoginFormStateToProps = (state) => {
 const mapLoginFormDispatchToProps = (dispatch) => {
   return bindActionCreators({
     logIn: customerActions.logIn,
-    facebookLogin: customerActions.facebookLogin
+    facebookLogin: customerActions.facebookLogin,
+    fetchCurrentCustomer: customerActions.fetchCurrentCustomer
   }, dispatch);
 };
 

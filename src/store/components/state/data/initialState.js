@@ -180,5 +180,11 @@ module.exports = {
     loggingIn: false,
     loggingOut: false,
     error: null
+  },
+  mysafie: {
+    measurementsOpened: true,
+    ordersOpened: true,
+    addressesOpened: true,
+    bagOpened: true
   }
 };

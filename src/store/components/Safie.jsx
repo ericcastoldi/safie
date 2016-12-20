@@ -12,6 +12,7 @@ const ProductsMasonry = require('./ProductsMasonry.jsx');
 const ShoppingBag = require('./ShoppingBag.jsx');
 const CustomerForm = require('./CustomerForm.jsx');
 const LoginForm = require('./LoginForm.jsx');
+const MySafie = require('./MySafie.jsx');
 
 const history = ReactRouterRedux.syncHistoryWithStore(ReactRouter.browserHistory, store);
 
@@ -28,8 +29,9 @@ class Safie extends React.Component {
             <Route path="/colecoes/:collection" component={ProductsMasonry} />
             <Route path="/colecoes/:collection/:product" component={Product} />
             <Route path="/bag" component={ShoppingBag} />
-            <Route path="/customer" component={CustomerForm} />
+            <Route path="/cadastro" component={CustomerForm} />
             <Route path="/login" component={LoginForm} />
+            <Route path="/my-safie" component={MySafie} />
           </Route>
           <Redirect from="*" to="/" />
         </Router>
