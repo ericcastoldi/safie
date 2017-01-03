@@ -994,6 +994,17 @@ nav.menu.open {
   padding         : 10px;
   margin-top      : 20px;
 }
+
+  .conteudo-c{
+    margin-top: 0px;
+    font-family:'Raleway';
+  }
+
+  .conteudo-c .conteudo-p{
+    position: relative;
+    text-align: center;
+  }
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
