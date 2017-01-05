@@ -737,7 +737,7 @@ nav.menu.open {
   .login-form .light-button{
     width: 200px;
     margin: 0 auto;
-    background-color:#efefef; 
+    background-color:#efefef;
   }
 
   .login-form a{
@@ -757,13 +757,13 @@ nav.menu.open {
   .login-form .light-button:hover{
     background-color: #efefef;
   }
-  
+
   .facebook-button i{
       float: left;
       font-size: 25px;
       margin-top: 7px;
   }
-  
+
   .facebook-button{
     background-color: #7daace;
     color: #fff;
@@ -790,9 +790,7 @@ nav.menu.open {
 }
 
 .assinatura{
-  margin-bottom:30px;
   position: relative;
-  left: 25%; 
 }
 
 /* My Safie */
@@ -800,7 +798,7 @@ nav.menu.open {
 .my-safie h2{
   text-transform: uppercase;
   font-weight: 700;
-  text-align: center; 
+  text-align: center;
 }
 
 .my-safie hr{
@@ -826,7 +824,7 @@ nav.menu.open {
   margin:0 auto;
   margin-bottom: 20px;
   position: relative;
-  
+
 }
 .titulo-mysafie p{
   margin-top: 25px;
@@ -898,7 +896,7 @@ nav.menu.open {
 
 .my-safie .meus-pedidos p strong{
   font-weight: 700;
-} 
+}
 .my-safie .meus-pedidos p{
   font-size: 13px;
   margin: 0px;
