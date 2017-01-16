@@ -1,9 +1,6 @@
-/*eslint no-underscore-dangle: 1*/
 import React from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import customerActions from './state/customerActions.js';
+import customer from './state/customer.js';
 import { browserHistory } from 'react-router';
 
 class LoginForm extends React.Component {
@@ -20,13 +17,10 @@ class LoginForm extends React.Component {
     this.facebookLogin = this.facebookLogin.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchCurrentCustomer();
-  }
 
   render() {
 
-    if(this.props.customer && this.props.customer._id){
+    if(this.props.customer && this.props.customer.id){
       browserHistory.push('/my-safie');
       return null;
     }
@@ -101,33 +95,5 @@ class LoginForm extends React.Component {
   }
 }
 
-LoginForm.propTypes = {
-  customer: React.PropTypes.shape({
-    _id: React.PropTypes.string,
-    name: React.PropTypes.string
-  }),
-  loggingIn: React.PropTypes.bool,
-  error: React.PropTypes.string,
-  logIn: React.PropTypes.func.isRequired,
-  facebookLogin: React.PropTypes.func.isRequired,
-  fetchCurrentCustomer: React.PropTypes.func.isRequired
-};
-
-
-const mapLoginFormStateToProps = (state) => {
-  return {
-    customer: state.customer.current,
-    loggingIn: state.customer.loggingIn,
-    error: state.customer.error
-  };
-};
-
-const mapLoginFormDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    logIn: customerActions.logIn,
-    facebookLogin: customerActions.facebookLogin,
-    fetchCurrentCustomer: customerActions.fetchCurrentCustomer
-  }, dispatch);
-};
-
-module.exports = connect(mapLoginFormStateToProps, mapLoginFormDispatchToProps)(LoginForm);
+LoginForm.propTypes = customer.shape;
+module.exports = customer.connect(LoginForm);

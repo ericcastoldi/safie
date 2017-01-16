@@ -1,3 +1,8 @@
+.app,
+body,
+html {
+  height: 100%;
+}
 
 /* SafieStore.jsx*/
 .safie-store {
@@ -259,7 +264,6 @@ nav.menu.open {
 }
 
 .quickbag .items i {
-  position : absolute;
   right    : 2.5rem;
   margin   : 0 3px 0 0;
   color    : #999;
@@ -896,14 +900,17 @@ nav.menu.open {
 }
 
 .my-safie .cerca {
-  border       : solid 1px #000;
-  margin-bottom: 50px;
-  display      : none;
+  margin-bottom     : 50px;
+  opacity           : 0;
+  height            : 0;
+  margin-left       : 3rem;
+  -webkit-transition: all 0.5s ease;
 }
 
 .my-safie .cerca.aberto {
-  display    : block;
-  margin-left: 3rem;
+  height : auto;
+  opacity: 1;
+  border : solid 1px #000;
 }
 
 .my-safie table {
@@ -1086,7 +1093,7 @@ nav.menu.open {
     min-height: 100vh;
     width     : 3.5%;
     background: rgba(238,166,130,0.5);
-    /*position  : fixed;*/
+    position  : fixed;
   }
 
   .quickbag a i {

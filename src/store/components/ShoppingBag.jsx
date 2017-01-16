@@ -2,10 +2,9 @@ import React from 'react';
 import DarkButton from './DarkButton.jsx';
 import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
-import bagActions from './state/bagActions.js';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { browserHistory } from 'react-router';
+import bag from './state/bag.js';
+import {browserHistory} from 'react-router';
+
 
 var ShoppingBag = React.createClass({
 
@@ -17,46 +16,16 @@ var ShoppingBag = React.createClass({
     doneFetching: React.PropTypes.bool,
     removing: React.PropTypes.bool,
     doneRemoving: React.PropTypes.bool,
+    adding: React.PropTypes.bool,
+    doneAdding: React.PropTypes.bool,
     shipping: React.PropTypes.object,
     total: React.PropTypes.number,
-    items: React
-      .PropTypes
-      .shape({
-        options: React
-          .PropTypes
-          .shape({color: React.PropTypes.object, measurements: React.PropTypes.object}),
-        product: React
-          .PropTypes
-          .shape({
-            id: React.PropTypes.string.isRequired,
-            name: React.PropTypes.string.isRequired,
-            description: React.PropTypes.string.isRequired,
-            price: React.PropTypes.string.isRequired,
-            measurements: React.PropTypes.object,
-            pictures: React
-              .PropTypes
-              .shape({
-                main: React.PropTypes.number.isRequired,
-                product: React.PropTypes.number.isRequired,
-                paths: React
-                  .PropTypes
-                  .arrayOf(React.PropTypes.object)
-              }),
-            colors: React.PropTypes.object.isRequired,
-            defaultColor: React.PropTypes.string.isRequired
-          })
-      })
-  },
-
-  componentDidMount: function () {
-    this
-      .props
-      .fetchBag();
+    items: React.PropTypes.shape(bag.itemShape)
   },
 
   render: function () {
 
-    if (this.props.fetching || this.props.removing) {
+    if (this.props.fetching || this.props.adding || this.props.removing) {
       return (
         <div>
           Carregando...
@@ -106,11 +75,9 @@ var ShoppingBag = React.createClass({
 
               <br/>
 
-              <DarkButton
-                click={() => {
-                  browserHistory.push('/login');
-                }}
-                label="Finalizar Compra"/>
+              <DarkButton click={() => {
+                browserHistory.push('/login');
+              }} label="Finalizar Compra"/>
 
             </div>
           </div>
@@ -250,7 +217,7 @@ var ShoppingBag = React.createClass({
               <a href="#" onClick={() => {
                 this
                   .props
-                .removeProductFromBag(itemId);
+                  .removeProductFromBag(itemId);
               }}>
                 x
               </a>
@@ -262,23 +229,27 @@ var ShoppingBag = React.createClass({
 
 });
 
-function mapStateToProps(state) {
-  return {
-    total: state.bag.total,
-    items: state.bag.items,
-    error: state.bag.error,
-    fetching: state.bag.fetching,
-    doneFetching: state.bag.doneFetching,
-    removing: state.bag.removing,
-    doneRemoving: state.bag.doneRemoving,
-    shipping: state.bag.shipping
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchBag: bagActions.fetchBag,
-    removeProductFromBag: bagActions.removeProductFromBag
-  }, dispatch);
-}
+module.exports = bag.connect(ShoppingBag);
 
-module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);
+// function mapStateToProps(state) {
+//   return {
+//     total: state.bag.total,
+//     items: state.bag.items,
+//     error: state.bag.error,
+//     fetching: state.bag.fetching,
+//     doneFetching: state.bag.doneFetching,
+//     removing: state.bag.removing,
+//     doneRemoving: state.bag.doneRemoving,
+//     adding: state.bag.adding,
+//     doneAdding: state.bag.doneAdding,
+//     shipping: state.bag.shipping
+//   };
+// }
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({
+//     fetchBag: bagActions.fetchBag,
+//     removeProductFromBag: bagActions.removeProductFromBag
+//   }, dispatch);
+// }
+//
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);

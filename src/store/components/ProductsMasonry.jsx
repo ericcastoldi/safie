@@ -1,25 +1,13 @@
 var React = require('react');
 var ProductCard = require('./ProductCard.jsx');
-var connect = require('react-redux').connect;
-var bindActionCreators = require('redux').bindActionCreators;
-var productsActions = require('./state/productsActions.js');
+var collection = require('./state/collection.js');
 
 var ProductsMasonry = React.createClass({
 
   propTypes: {
     params: React.PropTypes.object.isRequired,
     fetchProducts: React.PropTypes.func.isRequired,
-    products: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        name: React.PropTypes.string.isRequired,
-        pictures: React.PropTypes.shape({
-          main: React.PropTypes.number.isRequired,
-          product: React.PropTypes.number.isRequired,
-          paths: React.PropTypes.object
-        })
-      })
-    )
+    collection: collection.shape
   },
 
   componentDidMount: function() {
@@ -34,8 +22,8 @@ var ProductsMasonry = React.createClass({
 
   render: function () {
 
-    var noData = !this.props.products
-                || this.props.products.length === 0;
+    var noData = !this.props.collection
+                || this.props.collection.length === 0;
 
     if(noData) {
        return (
@@ -55,7 +43,7 @@ var ProductsMasonry = React.createClass({
   },
 
   renderProducts: function () {
-    return this.props.products.map(function (product, rowIndex) {
+    return this.props.collection.map(function (product, rowIndex) {
       return (
         <div key={rowIndex} className="masonry-item">
           <ProductCard product={product}/>
@@ -66,17 +54,4 @@ var ProductsMasonry = React.createClass({
 
 });
 
-
-function mapStateToProps(state) {
-  return {
-    products: state.products
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchProducts: productsActions.fetchProducts
-  }, dispatch);
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductsMasonry);
+module.exports = collection.connect(ProductsMasonry);

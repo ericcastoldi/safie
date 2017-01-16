@@ -72,6 +72,11 @@ const from = (customerCandidate, customer) => {
 };
 
 const whithoutSensitiveInfo = (customer) => {
+
+  if(!customer){
+    return null;
+  }
+
   return Object.assign({}, customerModel, {
     id: customer.id,
     name: customer.name,

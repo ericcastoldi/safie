@@ -1,8 +1,5 @@
 var React = require('react');
-
-var connect = require('react-redux').connect;
-var bindActionCreators = require('redux').bindActionCreators;
-var productActions = require('./state/productActions.js');
+var product = require('./state/product.js');
 
 var ProductColorPicker = React.createClass({
   propTypes: {
@@ -70,16 +67,4 @@ var ProductColorPicker = React.createClass({
   }
 });
 
-function mapStateToProps(state) {
-  return {
-    selectedColor: state.product.options.color
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    pickProductColor: productActions.pickProductColor
-  }, dispatch);
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductColorPicker);
+module.exports = product.connect(ProductColorPicker);

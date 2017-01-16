@@ -2,7 +2,7 @@ var React = require('react');
 var MenuItem = require('./MenuItem.jsx');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
-var menuActions = require('./state/menuActions.js');
+var menu = require('./state/menu.js');
 
 
 var SubMenu = React.createClass({
@@ -55,7 +55,7 @@ var SubMenu = React.createClass({
 
 function mapSubitemsDispatchToProps(dispatch) {
   return bindActionCreators({
-    toggleSubItems: menuActions.toggleSubItems
+    toggleSubItems: menu.toggleSubItems
   }, dispatch);
 }
 

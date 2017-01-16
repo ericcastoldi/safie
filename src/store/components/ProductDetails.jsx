@@ -8,12 +8,11 @@ import LightButton from './LightButton.jsx';
 import SocialIcons from './SocialIcons.jsx';
 import Popup from './Popup.jsx';
 import MeasurementsForm from './MeasurementsForm.jsx';
-import productActions from './state/productActions.js';
-import bagActions from './state/bagActions.js';
+import product from './state/product.js';
+import bag from './state/bag.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { browserHistory } from 'react-router';
-import productShape from './propTypes/productShape.js';
 
 var ProductDetails = React.createClass({
 
@@ -27,7 +26,7 @@ var ProductDetails = React.createClass({
       color: React.PropTypes.object,
       measurements: React.PropTypes.object
     }),
-    product: React.PropTypes.shape(productShape)
+    product: React.PropTypes.shape(product.shape)
   },
 
   addToBag: function(){
@@ -81,12 +80,14 @@ function mapStateToProps(state) {
     measurementsPopupOpen: state.product.measurementsPopupOpen
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    closeMeasurementsPopup: productActions.closeMeasurementsPopup,
-    openMeasurementsPopup: productActions.openMeasurementsPopup,
-    setProductMeasurements: productActions.setProductMeasurements,
-    addProductToBag: bagActions.addProductToBag
+    closeMeasurementsPopup: product.closeMeasurementsPopup,
+    openMeasurementsPopup: product.openMeasurementsPopup,
+    setProductMeasurements: product.setProductMeasurements,
+    addProductToBag: bag.addProductToBag
   }, dispatch);
 }
+
 module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

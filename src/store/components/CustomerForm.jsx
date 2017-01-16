@@ -1,8 +1,6 @@
 import React from 'react';
 import customerFactory from '../model/customerFactory.js';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import customerActions from './state/customerActions.js';
+import customer from './state/customer.js';
 
 class CustomerForm extends React.Component {
 
@@ -149,36 +147,6 @@ class CustomerForm extends React.Component {
   }
 }
 
-CustomerForm.propTypes = {
-  customer: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    name: React.PropTypes.string,
-    email: React.PropTypes.string,
-    password: React.PropTypes.string,
-    passwordConfirmation: React.PropTypes.string,
-    birthday: React.PropTypes.string,
-    phone: React.PropTypes.string
-  }).isRequired,
-  saving: React.PropTypes.bool,
-  doneSaving: React.PropTypes.bool,
-  error: React.PropTypes.string,
-  saveCustomer: React.PropTypes.func.isRequired
-};
+CustomerForm.propTypes = customer.shape;
 
-
-const mapCustomerFormStateToProps = (state) => {
-  return {
-    doneSaving: state.customer.doneSaving,
-    customer: state.customer.current,
-    saving: state.customer.saving,
-    error: state.customer.error
-  };
-};
-
-const mapCustomerFormDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    saveCustomer: customerActions.saveCustomer
-  }, dispatch);
-};
-
-module.exports = connect(mapCustomerFormStateToProps, mapCustomerFormDispatchToProps)(CustomerForm);
+module.exports = customer.connect(CustomerForm);

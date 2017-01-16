@@ -1,5 +1,5 @@
 import React from 'react';
-import productShape from './propTypes/productShape.js';
+import product from './state/product.js';
 
 class MeasurementsInfo extends React.Component {
 
@@ -55,7 +55,7 @@ class MeasurementsInfo extends React.Component {
 
 MeasurementsInfo.propTypes = {
   measurements: React.PropTypes.object,
-  product: React.PropTypes.shape(productShape)
+  product: React.PropTypes.shape(product.shape)
 };
 
 module.exports = MeasurementsInfo;

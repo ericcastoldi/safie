@@ -172,7 +172,7 @@ module.exports = {
     }
   },
   /// TODO: Alterar para objeto, contendo um array de "data" dentro ou algo do genero.
-  products: [],
+  collection: [],
   customer: {
     current: {},
     saving: false,
@@ -181,7 +181,7 @@ module.exports = {
     loggingOut: false,
     error: null
   },
-  mysafie: {
+  mySafie: {
     measurementsOpened: true,
     ordersOpened: true,
     addressesOpened: true,

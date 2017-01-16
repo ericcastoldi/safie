@@ -1,6 +1,6 @@
 /*eslint consistent-return: 1*/
 const apiResultFactory = require('../model/apiResultFactory.js');
-
+const customerFactory = require('../model/customerFactory.js');
 
 //   1475971773639: {
 //     options: {
@@ -125,7 +125,7 @@ module.exports = function(app, passport) {
   );
 
   app.get('/api/customer', (req, res) => {
-    let response = apiResultFactory.successResult(req.user);
+    let response = apiResultFactory.successResult(customerFactory.whithoutSensitiveInfo(req.user));
     res.json(response);
   });
 
@@ -151,14 +151,6 @@ module.exports = function(app, passport) {
   });
 
 
-  // Shopping bag
-  // 1. Alterar ShoppingBag e QuickBag para buscarem da api os itens da sacola
-  // no carregamento (ShoppingBag) e ao abrir (QuickBag);
-  //
-  // 2. Alterar Product para adicionar item na sacola utilizando a api
-  //
-  // 3. Adicionar exibição dos produtos na QuickBag
-  //
   // 4. Implementar calculo de frete na sacola de compras
   app.get('/api/bag', function(req, res) {
     var bag = req.session.shoppingBag;

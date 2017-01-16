@@ -4,24 +4,24 @@ var thunkMiddleware = require('redux-thunk');
 var createLogger = require('redux-logger');
 var loggerMiddleware = createLogger();
 var initialState = require('./data/initialState.js');
-var menuReducer = require('./menuReducer.js');
-var homeReducer = require('./homeReducer.js');
-var bagReducer = require('./bagReducer.js');
-var productsReducer = require('./productsReducer.js');
-var productReducer = require('./productReducer.js');
-var customerReducer = require('./customerReducer.js');
-var mysafieReducer = require('./mysafieReducer.js');
+var home = require('./home.js');
+var menu = require('./menu.js');
+var bag = require('./bag.js');
+var customer = require('./customer.js');
+var product = require('./product.js');
+var collection = require('./collection.js');
+var mySafie = require('./mySafie.js');
 
 //const initialState = window.SAFIE_PRELOADED_STATE;
 
 const rootReducer = Redux.combineReducers({
-  menu: menuReducer,
-  home: homeReducer,
-  bag: bagReducer,
-  products: productsReducer,
-  product: productReducer,
-  customer: customerReducer,
-  mysafie: mysafieReducer,
+  home: home.reducer,
+  menu: menu.reducer,
+  bag: bag.reducer,
+  collection: collection.reducer,
+  product: product.reducer,
+  customer: customer.reducer,
+  mysafie: mySafie.reducer,
   routing: ReactRouterRedux.routerReducer
 });
 

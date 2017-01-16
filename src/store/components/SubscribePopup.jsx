@@ -2,7 +2,7 @@ var React = require('react');
 var connect = require('react-redux').connect;
 var bindActionCreators = require('redux').bindActionCreators;
 var Popup = require('./Popup.jsx');
-var homeActions = require('./state/homeActions.js');
+var home = require('./state/home.js');
 
 var SubscribePopup = React.createClass({
   propTypes: {
@@ -33,7 +33,7 @@ var SubscribePopup = React.createClass({
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    dismiss: homeActions.dismissSubscribePopup
+    dismiss: home.dismissSubscribePopup
   }, dispatch);
 }
 
