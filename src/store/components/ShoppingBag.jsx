@@ -4,7 +4,7 @@ import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
 import bag from './state/bag.js';
 import {browserHistory} from 'react-router';
-
+import Loading from './Loading.jsx';
 
 var ShoppingBag = React.createClass({
 
@@ -26,11 +26,7 @@ var ShoppingBag = React.createClass({
   render: function () {
 
     if (this.props.fetching || this.props.adding || this.props.removing) {
-      return (
-        <div>
-          Carregando...
-        </div>
-      );
+      return (<Loading active={true} />);
     }
 
     if (!this.props.items || Object.keys(this.props.items).length === 0) {

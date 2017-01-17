@@ -1,6 +1,8 @@
 import React from 'react';
-import customerFactory from '../model/customerFactory.js';
 import customer from './state/customer.js';
+import customerFactory from '../model/customerFactory.js';
+
+
 
 class CustomerForm extends React.Component {
 

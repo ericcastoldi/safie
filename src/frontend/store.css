@@ -400,6 +400,7 @@ nav.menu.open {
 .foto-principal-produto i.fa {
   position: absolute;
   top     : 45%;
+  cursor  : pointer;
 }
 
 .foto-principal-produto i.fa-angle-double-right {
@@ -995,15 +996,15 @@ nav.menu.open {
   margin-top      : 20px;
 }
 
-  .conteudo-c{
-    margin-top: 0px;
-    font-family:'Raleway';
-  }
+.conteudo-c {
+  margin-top : 0;
+  font-family: "Raleway";
+}
 
-  .conteudo-c .conteudo-p{
-    position: relative;
-    text-align: center;
-  }
+.conteudo-c .conteudo-p {
+  position  : relative;
+  text-align: center;
+}
 
 /* Larger than tablet */
 @media (min-width: 750px) {

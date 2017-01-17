@@ -1,5 +1,6 @@
-var React = require('react');
-var product = require('./state/product.js');
+import React from 'react';
+import Loading from './Loading.jsx';
+import product from './state/product.js';
 
 var ProductColorPicker = React.createClass({
   propTypes: {
@@ -15,7 +16,7 @@ var ProductColorPicker = React.createClass({
 
   render: function(){
     if(!this.props.colors){
-      return (<div>Carregando cores...</div>);
+      return (<Loading active={true} />);
     }
 
     var colors = this.props.colors;

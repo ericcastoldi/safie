@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from './Menu.jsx';
 import QuickBag from './QuickBag.jsx';
 import CurrentCustomer from './CurrentCustomer.jsx';
+import Loading from './Loading.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -9,7 +10,6 @@ import bag from './state/bag.js';
 import customer from './state/customer.js';
 
 class Layout extends React.Component {
-
 
   componentDidMount() {
     this.props.fetchBag();
@@ -24,6 +24,9 @@ class Layout extends React.Component {
           <CurrentCustomer />
           {this.props.children}
         </div>
+
+        <Loading active={this.props.loading} />
+
         <QuickBag />
       </div>
     );
@@ -31,11 +34,18 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
+  loading: React.PropTypes.bool,
   children: React.PropTypes.node.isRequired,
   fetchBag: React.PropTypes.func.isRequired,
   fetchCurrentCustomer: React.PropTypes.func.isRequired
 };
 
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.main.loading
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
@@ -44,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-module.exports = connect(null, mapDispatchToProps)(Layout);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(Layout);

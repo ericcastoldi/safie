@@ -1,4 +1,7 @@
 module.exports = {
+  main: {
+    loading: false
+  },
   home: {
     subscribePopupOn: false,
     footer: {
@@ -12,19 +15,16 @@ module.exports = {
             }, {
               title: 'atendimento@safie.com.br'
             }, {
-              title: 'Telefone: (47) 3321-6698'
+              title: 'Telefone: (47) 3330-1680'
             }, {
-              title: 'De segunda a sexta das 10 às 17'
+              title: 'De segunda a sexta das 9 às 17'
             }
           ]
         }, {
           name: 'Informações',
           items: [
             {
-              title: 'Meus pedidos',
-              route: '/meus-pedidos'
-            }, {
-              title: 'Trocas e Devoluções',
+              title: 'Ajustes e Devoluções',
               route: '/politicas/trocas'
             }, {
               title: 'Prazos de Entrega',
@@ -130,10 +130,6 @@ module.exports = {
           {
             title: 'Barcelona',
             route: '/colecoes/barcelona'
-          },
-          {
-            title: 'Coleções Cápsula',
-            route: '/colecoes/capsula'
           }
         ]
       },

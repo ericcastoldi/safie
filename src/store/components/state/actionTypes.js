@@ -1,4 +1,8 @@
 module.exports = {
+
+  // Main
+  TOGGLE_LOADING: 'TOGGLE_LOADING',
+
   // Home
   DISMISS_SUBSCRIBE_POPUP: 'DISMISS_SUBSCRIBE_POPUP',
 
