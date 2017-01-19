@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import product from '.product.js';
+import product from './product.js';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
@@ -68,11 +68,11 @@ bag.fetchBag = actionFactory.smartAsyncFetchActionCreator('bag',
   payloadFactory
 );
 
-bag.addProductToBag = actionFactory.smartAsyncPostActionCreator('bag',
-  actionTypes.START_ADDING_PRODUCT_TO_BAG,
-  actionTypes.DONE_ADDING_PRODUCT_TO_BAG,
-  actionTypes.CANNOT_ADD_PRODUCT_TO_BAG,
-  payloadFactory
+bag.addProductToBag = actionFactory.asyncPostActionCreator('bag',
+  actionFactory.simpleActionCreator(actionTypes.START_ADDING_PRODUCT_TO_BAG),
+  actionFactory.payloadActionCreator(actionTypes.DONE_ADDING_PRODUCT_TO_BAG, payloadFactory),
+  actionFactory.errorActionCreator(actionTypes.CANNOT_ADD_PRODUCT_TO_BAG),
+  '/bag'
 );
 
 bag.removeProductFromBag = actionFactory.smartAsyncDeleteActionCreator('bag',

@@ -12,7 +12,6 @@ import product from './state/product.js';
 import bag from './state/bag.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
 
 var ProductDetails = React.createClass({
 
@@ -30,8 +29,12 @@ var ProductDetails = React.createClass({
   },
 
   addToBag: function(){
-    this.props.addProductToBag(this.props.product, this.props.options);
-    browserHistory.push('/bag');
+    const item = {
+      product: this.props.product,
+      options: this.props.options
+    };
+
+    this.props.addProductToBag(item);
   },
 
   setProductMeasurements: function(measurements){

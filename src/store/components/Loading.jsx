@@ -1,5 +1,6 @@
 import React from 'react';
 import Popup from './Popup.jsx';
+import LoadingRipple from './LoadingRipple.jsx';
 
 class Loading extends React.Component {
 
@@ -10,7 +11,7 @@ class Loading extends React.Component {
   render() {
     return (
       <Popup active={this.props.active}>
-        <img src='/img/ripple.gif' width="170" />
+        <LoadingRipple />
       </Popup>
     );
   }

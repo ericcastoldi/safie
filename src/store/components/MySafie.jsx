@@ -1,13 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
+import MySafieBox from './MySafieBox.jsx';
 import CustomerMeasurements from './CustomerMeasurements.jsx';
 import Orders from './Orders.jsx';
 import ShippingAddresses from './ShippingAddresses.jsx';
 import SmallBag from './SmallBag.jsx';
 import mySafie from './state/mySafie.js';
-import customer from './state/customer.js';
 
 class MySafie extends React.Component {
 
@@ -24,7 +21,6 @@ class MySafie extends React.Component {
   render() {
 
     if(!this.props.customer || !this.props.customer.id){
-      browserHistory.push('/');
       return null;
     }
 

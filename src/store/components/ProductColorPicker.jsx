@@ -1,5 +1,4 @@
 import React from 'react';
-import Loading from './Loading.jsx';
 import product from './state/product.js';
 
 var ProductColorPicker = React.createClass({
@@ -16,7 +15,7 @@ var ProductColorPicker = React.createClass({
 
   render: function(){
     if(!this.props.colors){
-      return (<Loading active={true} />);
+      return null;
     }
 
     var colors = this.props.colors;

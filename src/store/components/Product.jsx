@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductPicturesViewer from './ProductPicturesViewer.jsx';
 import ProductDetails from './ProductDetails.jsx';
-import Loading from './Loading.jsx';
+import LoadingRipple from './LoadingRipple.jsx';
 import product from './state/product.js';
 
 var Product = React.createClass({
@@ -26,9 +26,7 @@ var Product = React.createClass({
     var prod = this.props.product;
 
     if(!prod) {
-      return (
-        return (<Loading active={true} />);
-      );
+      return (<LoadingRipple />);
     }
 
     return (

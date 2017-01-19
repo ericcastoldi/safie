@@ -1,6 +1,6 @@
 import React from 'react';
 import DarkButton from './DarkButton.jsx';
-import Loading from './Loading.jsx';
+import LoadingRipple from './LoadingRipple.jsx';
 
 class MeasurementsForm extends React.Component {
 
@@ -16,7 +16,7 @@ class MeasurementsForm extends React.Component {
   render() {
 
     if(!this.props.measurements){
-      return (<Loading active={true} />);
+      return (<LoadingRipple />);
     }
 
     var renderedMeasurements = this.renderMeasurements();

@@ -5,7 +5,7 @@ import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
 import collections from './data/collections.js';
-import product from './data/product.js';
+import product from './product.js';
 
 let collection = {
   // shape: null,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import customer from './state/customer.js';
-import { browserHistory } from 'react-router';
 
 class LoginForm extends React.Component {
 
@@ -19,11 +18,6 @@ class LoginForm extends React.Component {
 
 
   render() {
-
-    if(this.props.customer && this.props.customer.id){
-      browserHistory.push('/my-safie');
-      return null;
-    }
 
     return (
       <div className="login-form">
@@ -83,14 +77,12 @@ class LoginForm extends React.Component {
   login(){
     if(!this.props.loggingIn){
       this.props.logIn(this.state);
-      browserHistory.push('/my-safie');
     }
   }
 
   facebookLogin(){
     if(!this.props.loggingIn){
       this.props.facebookLogin();
-      browserHistory.push('/my-safie');
     }
   }
 }

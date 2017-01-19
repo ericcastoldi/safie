@@ -1,9 +1,3 @@
-// require('babel-register')({
-//   presets: ['react']
-// });
-// const React = require('react');
-// const ReactDOMServer = require('react-dom/server');
-// const Safie = require('./src/store/components/Safie.jsx');
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -15,30 +9,14 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const configurePassport = require('./src/store/config/passport.js');
-const configureRoutes = require('./src/store/api/routes.js');
-const dbConfig = require('./src/store/config/database.js');
-//const renderMiddleware = require('./src/store/components/state/data/ServerRendering.js');
+const configurePassport = require('./src/store/api/config/passport.js');
+const configureRoutes = require('./src/store/api/config/routes.js');
+const dbConfig = require('./src/store/api/config/database.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url);
+
 configurePassport(passport);
-
-
-// https://scotch.io/tutorials/easy-node-authentication-facebook
-// https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md
-/*
-1 - Configurar o ServerRendering do react/redux
-2 - Configurar a base de dados de produtos
-3 - Implementar regras mais robustas na shopping bag
-
-===
-
-4 - Configurar o sign-up via Facebook
-5 - Configurar o login via Facebook
-6 - Testar e ajustar o login via Facebook
-*/
-
 
 const app = express();
 
@@ -78,17 +56,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//https://www.youtube.com/watch?v=Uf1Vk3RnXsk&list=PLVgOtoUBG2md5HxaABCcnfstF88CPzUeD&index=2
-//app.use(renderMiddleware);
-
-
-
 configureRoutes(app, passport);
-
-// app.get('*', (request, response) => {
-//   const html = ReactDOMServer.renderToString(React.createElement(Safie));
-//   response.send(html);
-// });
 
 app.get('*', (request, response) => {
   var indexHtml = path.resolve(__dirname, 'public/store/', 'index.html');

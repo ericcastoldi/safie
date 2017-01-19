@@ -76,7 +76,8 @@ customer.logIn = actionFactory.asyncPostActionCreator(
   'login',
   customer.startLoggingIn,
   customer.doneLoggingIn,
-  customer.cannotLogIn
+  customer.cannotLogIn,
+  '/my-safie'
 );
 
 customer.facebookLogin = actionFactory.asyncFetchActionCreator(
