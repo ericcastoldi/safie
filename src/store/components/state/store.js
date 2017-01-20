@@ -15,6 +15,7 @@ var collection = require('./collection.js');
 var mySafie = require('./mySafie.js');
 import { routerMiddleware } from 'react-router-redux';
 
+
 //const initialState = window.SAFIE_PRELOADED_STATE;
 
 const rootReducer = Redux.combineReducers({

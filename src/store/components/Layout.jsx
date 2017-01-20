@@ -19,7 +19,9 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
+
         <Menu />
+
         <div className="layout-content">
           <CurrentCustomer />
           {this.props.children}
@@ -28,6 +30,7 @@ class Layout extends React.Component {
         <Loading active={this.props.loading} />
 
         <QuickBag />
+
       </div>
     );
   }

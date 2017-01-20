@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
             <div className='box-login'>
 
               <div className='assinatura'>
-                <img src='/img/logo.jpg' width="200" />
+                <img src='/img/logo.png' width="200" />
               </div>
 
               <button

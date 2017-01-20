@@ -47,7 +47,7 @@ class CustomerForm extends React.Component {
         <div className="container">
           <div className='box-login'>
             <div className='assinatura'>
-              <img src='/img/logo.jpg' width="200" />
+              <img src='/img/logo.png' width="200" />
             </div>
             <h4>Criar nova conta</h4>
             <div className='row'>

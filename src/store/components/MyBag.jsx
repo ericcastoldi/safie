@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class SmallBag extends React.Component {
+class MyBag extends React.Component {
   constructor(props){
     super(props);
   }
@@ -55,4 +55,4 @@ class SmallBag extends React.Component {
 
 }
 
-module.exports = SmallBag;
+module.exports = MyBag;

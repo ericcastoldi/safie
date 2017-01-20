@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Orders extends React.Component {
+class MyOrders extends React.Component {
   constructor(props){
     super(props);
   }
@@ -104,4 +104,4 @@ class Orders extends React.Component {
 
 }
 
-module.exports = Orders;
+module.exports = MyOrders;

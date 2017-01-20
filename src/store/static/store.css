@@ -1048,6 +1048,16 @@ nav.menu.open {
   margin-top      : 20px;
 }
 
+.conteudo-c {
+  margin-top : 0;
+  font-family: "Raleway";
+}
+
+.conteudo-c .conteudo-p {
+  position  : relative;
+  text-align: center;
+}
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
@@ -1061,7 +1071,7 @@ nav.menu.open {
 
   .logo {
     display        : block;
-    background     : url("img/logo.jpg") no-repeat;
+    background     : url("img/logo.png") no-repeat;
     background-size: contain;
     height         : 45%;
     width          : 45%;

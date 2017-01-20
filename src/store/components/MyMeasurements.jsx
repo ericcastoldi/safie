@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class CustomerMeasurements extends React.Component {
+class MyMeasurements extends React.Component {
   constructor(props){
     super(props);
   }
@@ -155,4 +155,4 @@ class CustomerMeasurements extends React.Component {
   }
 }
 
-module.exports = CustomerMeasurements;
+module.exports = MyMeasurements;
