@@ -43,7 +43,6 @@ class AboutUs extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     );
   }

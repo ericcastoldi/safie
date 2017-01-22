@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Router, Route, browserHistory } from 'react-router';
-import ReactRouterRedux from 'react-router-redux';
+const ReactRouterRedux = require('react-router-redux');
 import store from './state/store.js';
 import Landing from './Landing.jsx';
 import Layout from './Layout.jsx';
@@ -11,14 +11,15 @@ import ShoppingBag from './ShoppingBag.jsx';
 import CustomerForm from './CustomerForm.jsx';
 import LoginForm from './LoginForm.jsx';
 import MySafie from './MySafie.jsx';
-import { routerActions } from 'react-router-redux';
-import { userAuthWrapper } from 'redux-auth-wrapper';
+// import { routerActions } from 'react-router-redux';
+// import { userAuthWrapper } from 'redux-auth-wrapper';
+//
+// const isUserAuthenticated = userAuthWrapper({
+//   authSelector: state => state.customer.current, // how to get the user state
+//   redirectAction: routerActions.replace, // the redux action to dispatch for redirect
+//   wrapperDisplayName: 'isUserAuthenticated' // a nice name for this auth check
+// });
 
-const isUserAuthenticated = userAuthWrapper({
-  authSelector: state => state.customer.current, // how to get the user state
-  redirectAction: routerActions.replace, // the redux action to dispatch for redirect
-  wrapperDisplayName: 'isUserAuthenticated' // a nice name for this auth check
-});
 
 const history = ReactRouterRedux.syncHistoryWithStore(browserHistory, store);
 
@@ -36,7 +37,7 @@ class Safie extends React.Component {
             <Route path="/sobre" component={AboutUs} />
             <Route path="/login" component={LoginForm} />
             <Route path="/cadastro" component={CustomerForm} />
-            <Route path="/my-safie" component={isUserAuthenticated(MySafie)} />
+            <Route path="/my-safie" component={MySafie} />
             <Route path="/colecoes/:collection" component={ProductsMasonry} />
             <Route path="/colecoes/:collection/:product" component={Product} />
           </Route>

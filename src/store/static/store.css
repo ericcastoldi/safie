@@ -264,11 +264,11 @@ nav.menu.open {
 }
 
 .quickbag .items i {
-  right    : 2.5rem;
-  margin   : 0 3px 0 0;
+  right    : 20%;
   color    : #999;
   cursor   : pointer;
   font-size: 20px;
+  position : absolute;
 }
 
 .quickbag .items i:hover {
@@ -430,6 +430,7 @@ nav.menu.open {
 .foto-principal-produto i.fa {
   position: absolute;
   top     : 45%;
+  cursor  : pointer;
 }
 
 .foto-principal-produto i.fa-angle-double-right {
@@ -832,6 +833,10 @@ nav.menu.open {
   left         : 25%;
 }
 
+.conteudo-p .assinatura {
+  left: auto;
+}
+
 /* My Safie */
 
 .my-safie h2 {
@@ -1061,7 +1066,7 @@ nav.menu.open {
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
-    background             : url("img/landing.jpg") no-repeat center center;
+    background             : url("img/landing.jpg") no-repeat right center;
     -webkit-background-size: cover;
     -moz-background-size   : cover;
     -o-background-size     : cover;

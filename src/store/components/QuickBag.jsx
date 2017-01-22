@@ -82,33 +82,3 @@ var QuickBag = React.createClass({
 
 
 module.exports = bag.connect(QuickBag);
-//
-//
-//
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     fetchBag: bagActions.fetchBag,
-//     removeProductFromBag: bagActions.removeProductFromBag,
-//     toggle: bagActions.toggleQuickBag
-//   }, dispatch);
-// }
-//
-// function mapStateToProps(state) {
-//   return {
-//     opened: state.bag.quickBagOpened,
-//     total: state.bag.total,
-//     items: state.bag.items,
-//     error: state.bag.error,
-//     fetching: state.bag.fetching,
-//     doneFetching: state.bag.doneFetching,
-//     removing: state.bag.removing,
-//     doneRemoving: state.bag.doneRemoving,
-//     adding: state.bag.adding,
-//     doneAdding: state.bag.doneAdding,
-//     shipping: state.bag.shipping
-//   };
-// }
-//
-//
-//
-// module.exports = connect(mapStateToProps, mapDispatchToProps)(QuickBag);

@@ -4,10 +4,7 @@ var CreditCards = React.createClass({
   render: function(){
     return (
       <div className="cartoes-de-credito">
-        <i className="fa fa-cc-visa" aria-hidden="true"></i>
-        <i className="fa fa-cc-mastercard" aria-hidden="true"></i>
-        <i className="fa fa-cc-amex" aria-hidden="true"></i>
-        <i className="fa fa-cc-diners-club" aria-hidden="true"></i>
+        <img src="https://stc.pagseguro.uol.com.br/public/img/banners/divulgacao/120x240_10X_pagseguro.gif" alt="Banner PagSeguro" title="Parcele suas compras em até 18x" />
       </div>
     );
   }

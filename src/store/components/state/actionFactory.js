@@ -126,7 +126,7 @@ actionFactory.asyncDeleteActionCreator = (route, start, success, fail, toggleLoa
       dispatch(start());
       dispatch(toggleLoading());
 
-      const request = axios.post('/api/' + route + '/' + resourceId);
+      const request = axios.delete('/api/' + route + '/' + resourceId);
       return handleRequest(request, dispatch, success, fail, toggleLoading);
     };
   };

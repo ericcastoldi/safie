@@ -28,6 +28,14 @@ bag.initialState = {
   shipping: null
 };
 
+bag.itemShape = {
+  product: product.shape,
+  options: React.PropTypes.shape({
+    color: React.PropTypes.object,
+    measurements: React.PropTypes.object
+  })
+};
+
 bag.shape = {
   fetchBag: React.PropTypes.func.isRequired,
   fetching: React.PropTypes.bool,
@@ -43,13 +51,7 @@ bag.shape = {
     price: React.PropTypes.number
   }),
   total: React.PropTypes.number,
-  items: React.PropTypes.shape({
-    product: product.shape,
-    options: React.PropTypes.shape({
-      color: React.PropTypes.object,
-      measurements: React.PropTypes.object
-    })
-  }),
+  items: React.PropTypes.shape(bag.itemShape),
   quickBagOpened: React.PropTypes.bool,
   toggleQuickBag: React.PropTypes.func.isRequired
 };

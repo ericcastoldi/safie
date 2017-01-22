@@ -13,7 +13,7 @@ module.exports = {
               title: 'Fale Conosco',
               route: '/fale-conosco'
             }, {
-              title: 'atendimento@safie.com.br'
+              title: 'contato@safie.com.br'
             }, {
               title: 'Telefone: (47) 3330-1680'
             }, {
@@ -36,15 +36,7 @@ module.exports = {
           ]
         }, {
           name: 'Pagamentos e Segurança',
-          items: [
-            {
-              title: 'Cartão de Crédito'
-            }, {
-              title: 'Parcelamento em até 5x sem juros'
-            }, {
-              title: 'Parcela mínima de R$ 300,00.'
-            }
-          ]
+          items: []
         }
       ]
     }
@@ -140,7 +132,7 @@ module.exports = {
         items: [
           {
             title: 'Medidas',
-            route: '/medidas'
+            route: '/my-safie'
           },
           {
             title: 'Login',

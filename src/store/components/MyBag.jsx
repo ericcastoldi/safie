@@ -1,7 +1,9 @@
 import React from 'react';
-
+import MyBagItemList from './MyBagItemList.jsx';
+import bag from './state/bag.js';
 
 class MyBag extends React.Component {
+
   constructor(props){
     super(props);
   }
@@ -12,34 +14,9 @@ class MyBag extends React.Component {
       <div className='meu-carrinho'>
         <div className='row'>
           <div className='twelve columns'>
-            <div className='row'>
-              <div className="three columns">
-                <img src='img/demo/saia-lapis-detalhe.jpg' width="150" />
-                <i className="fa fa-times-circle-o" aria-hidden="true"></i>
-                <p>Saia</p>
-                <p>R$ 100,00</p>
-              </div>
-              <div className="three columns">
-                <img src='img/demo/saia-lapis-detalhe.jpg' width="150" />
-                <i className="fa fa-times-circle-o" aria-hidden="true"></i>
-                <p>Saia</p>
-                <p>R$ 100,00</p>
-              </div>
-              <div className="three columns">
-                <img src='img/demo/saia-lapis-detalhe.jpg' width="150" />
-                <i className="fa fa-times-circle-o" aria-hidden="true"></i>
-                <p>Saia</p>
-                <p>R$ 100,00</p>
-              </div>
-              <div className="three columns">
-                <img src='img/demo/saia-lapis-detalhe.jpg' width="150" />
-                <i className="fa fa-times-circle-o" aria-hidden="true"></i>
-                <p>Saia</p>
-                <p>R$ 100,00</p>
-              </div>
-            </div>
+            <MyBagItemList items={this.props.items} />
             <div className="pedido-info">
-              <p><strong>Total:</strong> R$200,00</p>
+              <p><strong>Total:</strong> {this.props.total}</p>
             </div>
             <div className="limpar">
             </div>
@@ -55,4 +32,9 @@ class MyBag extends React.Component {
 
 }
 
-module.exports = MyBag;
+MyBag.propTypes = {
+  total: React.PropTypes.number,
+  items: React.PropTypes.shape(bag.itemShape)
+};
+
+module.exports = bag.connect(MyBag);
