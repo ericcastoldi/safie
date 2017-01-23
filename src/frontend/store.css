@@ -1,4 +1,8 @@
-
+@font-face {
+  font-family: 'BellMT';
+  src: url('fonts/bell-mt.ttf'); 
+  font-style: italic;
+}
 /* SafieStore.jsx*/
 .safie-store {
   font-family: "Raleway", sans-serif;
@@ -967,6 +971,11 @@ nav.menu.open {
 .meu-carrinho .three p{
   text-align: center;
   font-weight: 700;
+}
+
+.quote{
+  font-family: "BellMT";
+  font-size: 22px; 
 }
 
 .limpar{
