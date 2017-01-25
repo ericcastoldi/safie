@@ -2,37 +2,15 @@ import React from 'react';
 import DarkButton from './DarkButton.jsx';
 import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
+import TotalPrice from './TotalPrice.jsx';
+
 import bagActions from './state/bagActions.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-var ShoppingBag = React.createClass({
+class ShoppingBag extends React.Component {
 
-  propTypes: {
-    removeProductFromBag: React.PropTypes.func,
-    items: React.PropTypes.shape({
-      options: React.PropTypes.shape({
-        color: React.PropTypes.object,
-        measurements: React.PropTypes.object
-      }),
-      product: React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        name: React.PropTypes.string.isRequired,
-        description: React.PropTypes.string.isRequired,
-        price: React.PropTypes.string.isRequired,
-        measurements: React.PropTypes.object,
-        pictures: React.PropTypes.shape({
-          main: React.PropTypes.number.isRequired,
-          product: React.PropTypes.number.isRequired,
-          paths: React.PropTypes.arrayOf(React.PropTypes.object)
-        }),
-        colors: React.PropTypes.object.isRequired,
-        defaultColor: React.PropTypes.string.isRequired
-      })
-    })
-  },
-
-  render: function () {
+  render () {
 
     if(Object.keys(this.props.items).length === 0){
       return (
@@ -46,36 +24,27 @@ var ShoppingBag = React.createClass({
 
     return (
       <div className="sacola">
-        <div className="container">
-          <div className="row">
-            <div className="twelve columns">
 
-              <table>
-                <thead>
-                  <tr>
-                    <th>Peça</th>
-                    <th>Preço</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {renderedRows}
-                </tbody>
-              </table>
-            </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Peça</th>
+              <th>Preço</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderedRows}
+          </tbody>
+        </table>
+        <TotalPrice />
+        <DarkButton label="Finalizar Compra" />
 
-          </div>
-          <div className="row">
-            <div className="twelve columns">
-              <DarkButton label="Finalizar Compra" />
-            </div>
-          </div>
-        </div>
       </div>
     );
-  },
+  }
 
-  renderDataRows: function () {
+  renderDataRows () {
 
 
     return Object.keys(this.props.items).map(function (itemId, index) {
@@ -107,7 +76,31 @@ var ShoppingBag = React.createClass({
     }.bind(this));
   }
 
-});
+}
+
+ShoppingBag.propTypes = {
+  removeProductFromBag: React.PropTypes.func,
+  items: React.PropTypes.shape({
+    options: React.PropTypes.shape({
+      color: React.PropTypes.object,
+      measurements: React.PropTypes.object
+    }),
+    product: React.PropTypes.shape({
+      id: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string.isRequired,
+      description: React.PropTypes.string.isRequired,
+      price: React.PropTypes.string.isRequired,
+      measurements: React.PropTypes.object,
+      pictures: React.PropTypes.shape({
+        main: React.PropTypes.number.isRequired,
+        product: React.PropTypes.number.isRequired,
+        paths: React.PropTypes.arrayOf(React.PropTypes.object)
+      }),
+      colors: React.PropTypes.object.isRequired,
+      defaultColor: React.PropTypes.string.isRequired
+    })
+  })
+};
 
 
 function mapStateToProps(state) {

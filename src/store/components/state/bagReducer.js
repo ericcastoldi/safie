@@ -12,8 +12,17 @@ const addProductToBag = (state, action) => {
   var newState = Object.assign({}, state);
   var newItemId = new Date()
     .getTime();
-
   newState.items[newItemId] = newItem;
+
+  var subtotal = Object.keys(newState.items)
+    .map((item) =>{
+      return parseFloat(newState.items[item].product.price.replace(',', '.'));
+    })
+    .reduce((current, next) => {
+      return current + next;
+    });
+
+  newState.subtotal = subtotal;
   return newState;
 };
 
