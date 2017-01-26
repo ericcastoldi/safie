@@ -10,20 +10,21 @@ class CurrentCustomer extends React.Component {
 
   render() {
 
-    let out = '';
-    let route = '/login';
-    let description = 'Entrar';
-
     if(this.props.customer && this.props.customer.id){
-      out = ' | Sair';
-      route = '/my-safie';
-      description = this.props.customer.name;
+      return (
+        <div className="usuario-atual">
+          <Link to='/my-safie'>
+            Olá, {this.props.customer.name}!
+          </Link> | <a href="#" onClick={this.logout}>Sair</a>
+        </div>
+      );
     }
 
     return (
       <div className="usuario-atual">
-        <Link to={route}>{description}</Link>
-        <a href="#" onClick={this.logout}>{out}</a>
+        <span>
+          <Link to='/login'>Entrar</Link>
+        </span>
       </div>
     );
   }

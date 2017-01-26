@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const customerSchema = new Schema({
   name: String,
   email: String,
@@ -10,14 +9,7 @@ const customerSchema = new Schema({
   phone: String,
   facebookId: String,
   facebookToken: String,
-  measurements: [
-    {
-      name: String,
-      description: String
-    }
-  ]
+  addresses: [{ type: Schema.ObjectId, ref: 'Address' }]
 });
-
-
 
 module.exports = mongoose.model('Customer', customerSchema);

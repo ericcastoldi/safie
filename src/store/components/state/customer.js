@@ -18,6 +18,11 @@ let customer = {
 // State
 customer.initialState = {
   current: {},
+  addresses: [],
+  savingAddress: false,
+  doneSavingAddress: false,
+  currentAddress: null,
+  addressPopupOpen: false,
   saving: false,
   doneSaving: false,
   loggingIn: false,
@@ -35,6 +40,16 @@ customer.shape = {
     birthday: React.PropTypes.string,
     phone: React.PropTypes.string
   }),
+  addresses: React.PropTypes.arrayOf(React.PropTypes.shape({
+    id: React.PropTypes.string,
+    street: React.PropTypes.string,
+    number: React.PropTypes.string,
+    obs: React.PropTypes.string,
+    district: React.PropTypes.string,
+    state: React.PropTypes.string,
+    city: React.PropTypes.string,
+    code: React.PropTypes.string
+  })),
   saveCustomer: React.PropTypes.func,
   saving: React.PropTypes.bool,
   doneSaving: React.PropTypes.bool,

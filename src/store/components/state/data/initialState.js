@@ -36,7 +36,9 @@ module.exports = {
           ]
         }, {
           name: 'Pagamentos e Segurança',
-          items: []
+          items: [{
+            title: 'Compre com toda a segurança do PagSeguro!'
+          }]
         }
       ]
     }
@@ -116,6 +118,10 @@ module.exports = {
         title: 'Coleções',
         items: [
           {
+            title: 'Coleção Cápsula',
+            route: '/colecoes/capsula'
+          },
+          {
             title: 'Safie Conceito',
             route: '/colecoes/safie-conceito'
           },
@@ -159,8 +165,19 @@ module.exports = {
       color: null // TODO: Quando o initialState estiver vindo do server, essa color deve vir preenchida com a defaultColor do produto
     }
   },
-  /// TODO: Alterar para objeto, contendo um array de "data" dentro ou algo do genero.
   collection: [],
+  address: {
+    current: null,
+    addresses: [],
+    savingAddress: false,
+    doneSavingAddress: false,
+    fetchingAddresses: false,
+    doneFetchingAddresses: false,
+    addressPopupOpen: false,
+    removingAddress: false,
+    doneRemovingAddress: false,
+    error: null
+  },
   customer: {
     current: {},
     saving: false,

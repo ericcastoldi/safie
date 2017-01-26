@@ -1,6 +1,7 @@
 /*eslint consistent-return: 1*/
 const bag = require('../bagRoutes.js');
 const customer = require('../customerRoutes.js');
+const address = require('../addressRoutes.js');
 
 module.exports = function(app, passport) {
 
@@ -14,8 +15,19 @@ module.exports = function(app, passport) {
 
   app.post('/api/logout', customer.logout);
 
+  /* Addresses */
+  app.get('/api/address', address.get);
+  app.post('/api/address', address.post);
+
+  /* Measurements */
+  // app.get('/api/customer/measurements', customer.getMeasurements);
+  // app.post('/api/customer/measurements', customer.saveMeasurements);
+
+
+
   // Shopping Bag
   app.get('/api/bag', bag.get);
+  //app.get('/api/bag/shipping', bag.get);
   app.post('/api/bag', bag.post);
   app.delete('/api/bag/:itemId', bag.delete);
 

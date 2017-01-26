@@ -4,6 +4,12 @@ html {
   height: 100%;
 }
 
+.usuario-atual {
+  text-align   : right;
+  padding-right: 20%;
+  margin-bottom: 3rem;
+}
+
 /* SafieStore.jsx*/
 .safie-store {
   font-family: "Raleway", sans-serif;
@@ -341,6 +347,7 @@ nav.menu.open {
   transform       : translate(-50%,-50%);
   padding         : 3rem 5rem 4rem;
   min-width       : 30rem;
+  max-height      : 80vh;
 }
 
 .subscribe-popup .actions {
@@ -535,6 +542,15 @@ nav.menu.open {
   width        : 100%;
 }
 
+.form-medidas h2 {
+  text-transform: none;
+}
+
+.form-medidas label {
+  margin-bottom: 0;
+  text-align   : left;
+}
+
 .login-facebook {
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition   : all 0.30s ease-in-out;
@@ -598,8 +614,37 @@ nav.menu.open {
   color: rgba(238,166,130,0.8);
 }
 
-/* ShoppingBag.jsx */
+/* AddressForm */
+.form-enderecos {
+  width: 50vw;
+}
 
+.form-enderecos label {
+  margin-bottom: 0;
+  text-align   : left;
+}
+
+.form-enderecos #code {
+  width: 99%;
+}
+
+.form-enderecos button {
+  width     : 99%;
+  margin-top: 3rem;
+}
+
+.field-container:first-child {
+  margin-right: 1rem;
+}
+
+.field-container {
+  display   : inline;
+  float     : left;
+  width     : 49%;
+  text-align: left;
+}
+
+/* ShoppingBag.jsx */
 .sacola button {
   width: auto;
   float: right;
@@ -873,6 +918,7 @@ nav.menu.open {
 .titulo-mysafie p {
   margin-top: 25px;
   position  : relative;
+  font-size : 1.65rem;
 }
 
 .titulo-mysafie:before {
@@ -970,6 +1016,12 @@ nav.menu.open {
   margin   : 0 0 0 10px;
 }
 
+.my-safie .no-items {
+  padding-top   : 4rem;
+  padding-bottom: 3rem;
+  padding-left  : 3rem;
+}
+
 .my-safie .my-address .address {
   background-color: #fbeee8;
   margin-bottom   : 10px;
@@ -1003,6 +1055,10 @@ nav.menu.open {
   font-size       : 13px;
   padding         : 10px;
   line-height     : 0;
+}
+
+.my-safie .form-medidas input {
+  margin: 0;
 }
 
 .meu-carrinho {
@@ -1129,8 +1185,14 @@ nav.menu.open {
   }
 
 }
+@media screen and (min-width: 1500px) {
+  .sacola .container {
+    float: none;
+  }
+}
 @media screen and (min-width: 2000px) {
   .quickbag i {
     font-size: 300%;
   }
+
 }

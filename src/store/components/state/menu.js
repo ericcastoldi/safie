@@ -20,7 +20,7 @@ menu.shape = {
     React.PropTypes.shape({
       id: React.PropTypes.string,
       expanded: React.PropTypes.bool,
-      toggleSubItems: React.PropTypes.func.isRequired,
+      toggleSubItems: React.PropTypes.func,
       title: React.PropTypes.string.isRequired,
       route: React.PropTypes.string,
       items: React.PropTypes.arrayOf(

@@ -10,6 +10,7 @@ var main = require('./main.js');
 var menu = require('./menu.js');
 var bag = require('./bag.js');
 var customer = require('./customer.js');
+var address = require('./address.js');
 var product = require('./product.js');
 var collection = require('./collection.js');
 var mySafie = require('./mySafie.js');
@@ -26,6 +27,7 @@ const rootReducer = Redux.combineReducers({
   collection: collection.reducer,
   product: product.reducer,
   customer: customer.reducer,
+  address: address.reducer,
   mySafie: mySafie.reducer,
   routing: ReactRouterRedux.routerReducer
 });

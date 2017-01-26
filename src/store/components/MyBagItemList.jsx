@@ -9,6 +9,13 @@ class MyBagItemList extends React.Component {
   }
 
   render() {
+
+    if (!this.props.items) {
+      return (
+        <div className="no-items">Sua sacola está vazia.</div>
+      );
+    }
+
     const items = this.props.items;
     const keys = Object.keys(this.props.items);
     var splittedKeys = [];
