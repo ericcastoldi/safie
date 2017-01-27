@@ -1,21 +1,35 @@
-var React = require('react');
+import React from 'react';
 
-var SimpleButton = React.createClass({
+class SimpleButton extends React.Component {
 
-  propTypes: {
-    click: React.PropTypes.func,
-    className: React.PropTypes.string,
-    label: React.PropTypes.string.isRequired
-  },
+  constructor(props){
+    super(props);
+  }
 
-
-  render: function(){
+  render() {
     return (
-      <button onClick={this.props.click} className={this.props.className}>
+      <button
+        onClick={this.props.click}
+        disabled={this.props.disabled}
+        className={this.props.className}>
+
         {this.props.label}
+
       </button>
     );
   }
-});
+}
+
+SimpleButton.propTypes = {
+  click: React.PropTypes.func,
+  disabled: React.PropTypes.bool,
+  className: React.PropTypes.string,
+  label: React.PropTypes.string.isRequired
+};
+
+SimpleButton.defaultProps = {
+  disabled: false,
+  label: 'OK'
+};
 
 module.exports = SimpleButton;

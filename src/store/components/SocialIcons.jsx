@@ -6,8 +6,7 @@ var SocialIcons = React.createClass({
       <div className="social">
         <i className="fa fa-envelope" aria-hidden="true"></i>
         <i className="fa fa-facebook" aria-hidden="true"></i>
-        <i className="fa fa-twitter" aria-hidden="true"></i>
-        <i className="fa fa-pinterest-p" aria-hidden="true"></i>
+        <i className="fa fa-instagram" aria-hidden="true"></i>
       </div>
     );
   }

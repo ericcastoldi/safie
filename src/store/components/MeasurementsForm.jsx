@@ -1,6 +1,6 @@
 import React from 'react';
 import DarkButton from './DarkButton.jsx';
-
+import LoadingRipple from './LoadingRipple.jsx';
 
 class MeasurementsForm extends React.Component {
 
@@ -16,7 +16,7 @@ class MeasurementsForm extends React.Component {
   render() {
 
     if(!this.props.measurements){
-      return (<div>Carregando medidas...</div>);
+      return (<LoadingRipple />);
     }
 
     var renderedMeasurements = this.renderMeasurements();
@@ -67,7 +67,7 @@ class MeasurementsForm extends React.Component {
 }
 
 MeasurementsForm.propTypes = {
-  measurements: React.PropTypes.object.isRequired,
+  measurements: React.PropTypes.object,
   setProductMeasurements: React.PropTypes.func.isRequired
 };
 

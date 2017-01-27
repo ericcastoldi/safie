@@ -2,7 +2,7 @@ var React = require('react');
 
 var ProductPrice = React.createClass({
   propTypes: {
-    price: React.PropTypes.string.isRequired
+    price: React.PropTypes.string
   },
 
   render: function () {

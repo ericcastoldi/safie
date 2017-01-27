@@ -1,3 +1,14 @@
+.app,
+body,
+html {
+  height: 100%;
+}
+
+.usuario-atual {
+  text-align   : right;
+  padding-right: 20%;
+  margin-bottom: 3rem;
+}
 
 /* SafieStore.jsx*/
 .safie-store {
@@ -14,6 +25,7 @@ a:hover {
 }
 
 button,
+input[type="date"],
 input[type="email"],
 input[type="number"],
 input[type="password"],
@@ -225,7 +237,7 @@ nav.menu.open {
   cursor            : pointer;
 }
 
-.quickbag i {
+.quickbag a i {
   font-size   : 3rem;
   margin-right: 3rem;
   margin-top  : 3rem;
@@ -240,7 +252,8 @@ nav.menu.open {
 }
 
 .quickbag .items {
-  display: none;
+  display    : none;
+  padding-top: 3rem;
 }
 
 .quickbag.open {
@@ -249,6 +262,29 @@ nav.menu.open {
 
 .quickbag.open .items {
   display: block;
+}
+
+.quickbag .items img {
+  box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  width     : 60%;
+}
+
+.quickbag .items i {
+  right    : 20%;
+  color    : #999;
+  cursor   : pointer;
+  font-size: 20px;
+  position : absolute;
+}
+
+.quickbag .items i:hover {
+  color: #f5c2a2;
+}
+
+.quickbag .items .quickbag-item p {
+  text-transform: capitalize;
+  font-size     : small;
+  color         : #666;
 }
 
 .dimmer {
@@ -311,6 +347,7 @@ nav.menu.open {
   transform       : translate(-50%,-50%);
   padding         : 3rem 5rem 4rem;
   min-width       : 30rem;
+  max-height      : 80vh;
 }
 
 .subscribe-popup .actions {
@@ -400,6 +437,7 @@ nav.menu.open {
 .foto-principal-produto i.fa {
   position: absolute;
   top     : 45%;
+  cursor  : pointer;
 }
 
 .foto-principal-produto i.fa-angle-double-right {
@@ -504,6 +542,52 @@ nav.menu.open {
   width        : 100%;
 }
 
+.form-medidas h2 {
+  text-transform: none;
+}
+
+.form-medidas label {
+  margin-bottom: 0;
+  text-align   : left;
+}
+
+.login-facebook {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition   : all 0.30s ease-in-out;
+  -ms-transition    : all 0.30s ease-in-out;
+  -o-transition     : all 0.30s ease-in-out;
+  color             : #fff;
+  cursor            : pointer;
+  background-color  : #335483;
+  text-decoration   : none;
+  border            : 1px solid #335483;
+  text-transform    : uppercase;
+  display           : block;
+}
+
+.login-facebook:hover {
+  color           : #335483;
+  background-color: #fff;
+}
+
+/* CustomerForm.jsx */
+.form-cadastro {
+  float      : left;
+  width      : 35%;
+  margin-left: 8rem;
+}
+
+.form-cadastro label {
+  text-align: center;
+}
+
+.form-cadastro .form-cadastro button,
+.form-cadastro input {
+  border-radius: 0;
+  display      : block;
+  width        : 100%;
+}
+
 /* BuyButton.jsx */
 .comprar-produto {
   text-align: center;
@@ -530,8 +614,37 @@ nav.menu.open {
   color: rgba(238,166,130,0.8);
 }
 
-/* ShoppingBag.jsx */
+/* AddressForm */
+.form-enderecos {
+  width: 50vw;
+}
 
+.form-enderecos label {
+  margin-bottom: 0;
+  text-align   : left;
+}
+
+.form-enderecos #code {
+  width: 99%;
+}
+
+.form-enderecos button {
+  width     : 99%;
+  margin-top: 3rem;
+}
+
+.field-container:first-child {
+  margin-right: 1rem;
+}
+
+.field-container {
+  display   : inline;
+  float     : left;
+  width     : 49%;
+  text-align: left;
+}
+
+/* ShoppingBag.jsx */
 .sacola button {
   width: auto;
   float: right;
@@ -539,6 +652,11 @@ nav.menu.open {
 
 .sacola td {
   vertical-align: top;
+}
+
+.sacola td h5,
+.total td strong {
+  text-transform: uppercase;
 }
 
 /* ProductCardHorizontal.jsx */
@@ -642,8 +760,8 @@ nav.menu.open {
   background-color: #333;
   color           : #fff;
   display         : none;
-  text-align      : right;
-  position        : relative;
+  text-align      : center;
+  position        : fixed;
 }
 
 .delivery-bar span {
@@ -652,10 +770,359 @@ nav.menu.open {
   font-size     : 1.3rem;
 }
 
+.frete h4,
+.total h4 {
+  font-size  : 20px;
+  margin-top : 15px;
+  font-weight: 700;
+}
+
+.frete input {
+  width: 50%;
+}
+
+.subtotal td {
+  border: none;
+}
+
+/*Diego*/
+/*Diego*/
+.login-form {
+  margin-top : 0;
+  font-family: "Raleway";
+}
+
+.login-form button {
+  border       : none;
+  border-radius: 0;
+  width        : 100%;
+}
+
+.login-form .box-login {
+  position: relative;
+  margin  : 0 auto;
+  width   : 500px;
+}
+
+.login-form .orange-button {
+  background-color: rgba(238,166,130,0.8);
+  font-size       : 16px;
+  text-transform  : none;
+}
+
+.login-form input {
+  width           : 100%;
+  background-color: #efefef;
+  border          : none;
+  color           : #000;
+}
+
+.login-form .light-button {
+  width           : 200px;
+  margin          : 0 auto;
+  background-color: #efefef;
+}
+
+.login-form a {
+  font-size      : 12px;
+  text-decoration: underline;
+  color          : #fa2e2e;
+}
+
+.login-form .entrar {
+  color         : rgb(238,166,130);
+  text-transform: none;
+  font-size     : 17px;
+  position      : relative;
+  left          : 30%;
+}
+
+.login-form .light-button:hover {
+  background-color: #efefef;
+}
+
+.facebook-button i {
+  float     : left;
+  font-size : 25px;
+  margin-top: 7px;
+}
+
+.facebook-button {
+  background-color: #7daace;
+  color           : #fff;
+  font-size       : 16px;
+  text-transform  : none;
+}
+
+.facebook-button:hover {
+  color: #fff;
+}
+
+.box-login h4 {
+  font-weight: 700;
+  text-align : center;
+  font-size  : 25px;
+}
+
+.delivery-bar {
+  display: block;
+}
+
+.login-form::-webkit-input-placeholder {
+  color: #000;
+}
+
+.assinatura {
+  margin-bottom: 30px;
+  position     : relative;
+  left         : 25%;
+}
+
+.conteudo-p .assinatura {
+  left: auto;
+}
+
+/* My Safie */
+
+.my-safie h2 {
+  text-transform: uppercase;
+  font-weight   : 700;
+  text-align    : center;
+}
+
+.my-safie hr {
+  margin-top: 0;
+  border    : 2px solid #000;
+}
+
+.boas-vindas {
+  text-align   : center;
+  margin-bottom: 100px;
+  margin-top   : -20px;
+}
+
+.titulo-mysafie {
+  width        : 100px;
+  height       : 100px;
+  border-radius: 50%;
+  font-size    : 15px;
+  color        : #000;
+  text-align   : center;
+  background   : #fff;
+  border       : 1px solid;
+  margin       : 0 auto 20px;
+  position     : relative;
+
+}
+
+.titulo-mysafie p {
+  margin-top: 25px;
+  position  : relative;
+  font-size : 1.65rem;
+}
+
+.titulo-mysafie:before {
+  content      : "";
+  border-left  : 1px solid #000;
+  border-bottom: 1px solid #000;
+  position     : absolute;
+  width        : 90px;
+  height       : 20px;
+  right        : -40px;
+  bottom       : -20px;
+  z-index      : -1;
+  display      : none;
+}
+
+.aberto.titulo-mysafie:before {
+  display: block;
+}
+
+.my-safie .minhas-medidas p {
+  text-align: center;
+}
+
+.peca.six.columns {
+  margin-left: 5px;
+}
+
+.my-safie .container {
+  padding-left: 5rem;
+}
+
+.my-safie .cerca {
+  margin-bottom     : 50px;
+  opacity           : 0;
+  height            : 0;
+  margin-left       : 3rem;
+  -webkit-transition: all 0.5s ease;
+}
+
+.my-safie .cerca.aberto {
+  height : auto;
+  opacity: 1;
+  border : solid 1px #000;
+}
+
+.my-safie table {
+  margin-top     : 20px;
+  border-spacing : 10px;
+  border-collapse: separate;
+}
+
+.my-safie table tr td:first-child {
+  font-weight: 700;
+}
+
+.my-safie table tr td {
+  background-color: #fbeee8;
+  border          : none;
+  margin-right    : 10px;
+  padding         : 5px;
+}
+
+.my-address,
+.my-safie .meus-pedidos {
+  padding: 10px;
+}
+
+.my-safie .meus-pedidos .peca {
+  background-color: #fbeee8;
+  height          : 150px;
+  margin-bottom   : 20px;
+  padding         : 10px;
+  position        : relative;
+}
+
+.my-safie .meus-pedidos .peca .obs p span {
+  color: rgba(238,166,130,1);
+}
+
+.my-safie .meus-pedidos .peca .obs p:last-child {
+  position: absolute;
+  bottom  : 5px;
+}
+
+.my-safie .meus-pedidos .peca:last-child {
+  /*margin-left: -10px;*/
+}
+
+.my-safie .meus-pedidos p strong {
+  font-weight: 700;
+}
+
+.my-safie .meus-pedidos p {
+  font-size: 13px;
+  margin   : 0 0 0 10px;
+}
+
+.my-safie .no-items {
+  padding-top   : 4rem;
+  padding-bottom: 3rem;
+  padding-left  : 3rem;
+}
+
+.my-safie .my-address .address {
+  background-color: #fbeee8;
+  margin-bottom   : 10px;
+  padding         : 10px;
+  position        : relative;
+}
+
+.my-safie .my-address .address i {
+  color    : #f5c2a2;
+  position : absolute;
+  right    : 5px;
+  top      : 5px;
+  cursor   : pointer;
+  font-size: 20px;
+}
+
+.my-safie .my-address p {
+  margin: 0;
+}
+
+.my-safie .my-address input {
+  margin-top : 70px;
+  margin-left: 20px;
+}
+
+.my-safie .new-address button {
+  background-color: #f8dacc;
+  border          : none;
+  float           : right;
+  width           : 250px;
+  font-size       : 13px;
+  padding         : 10px;
+  line-height     : 0;
+}
+
+.my-safie .form-medidas input {
+  margin: 0;
+}
+
+.meu-carrinho {
+  padding: 10px;
+}
+
+.meu-carrinho img {
+  -webkit-box-shadow: -1px 1px 5px 1px rgba(148,145,148,1);
+  -moz-box-shadow   : -1px 1px 5px 1px rgba(148,145,148,1);
+  box-shadow        : -1px 1px 5px 1px rgba(148,145,148,1);
+  margin-right      : 10px;
+}
+
+.meu-carrinho p {
+  margin: 0;
+}
+
+.meu-carrinho .three {
+  position: relative;
+
+}
+
+.meu-carrinho .three i {
+  position : absolute;
+  right    : 0;
+  top      : 7px;
+  color    : #f5c2a2;
+  cursor   : pointer;
+  font-size: 20px;
+}
+
+.meu-carrinho .three p {
+  text-align : center;
+  font-weight: 700;
+}
+
+.limpar {
+  clear: both;
+}
+
+.meu-carrinho .pedido-info {
+  background-color: #fae6db;
+  border          : none;
+  float           : right;
+  width           : 230px;
+  margin-bottom   : 20px;
+  padding         : 10px;
+  margin-top      : 20px;
+}
+
+.conteudo-c {
+  margin-top : 0;
+  font-family: "Raleway";
+}
+
+.conteudo-c .conteudo-p {
+  position  : relative;
+  text-align: center;
+}
+
 /* Larger than tablet */
 @media (min-width: 750px) {
   .safie-store .landing {
-    background             : url("img/landing.jpg") no-repeat center center;
+    background             : url("img/landing.jpg") no-repeat right center;
     -webkit-background-size: cover;
     -moz-background-size   : cover;
     -o-background-size     : cover;
@@ -694,13 +1161,13 @@ nav.menu.open {
   }
 
   .quickbag {
-    height    : 100vh;
+    min-height: 100vh;
     width     : 3.5%;
     background: rgba(238,166,130,0.5);
     position  : fixed;
   }
 
-  .quickbag i {
+  .quickbag a i {
     margin-top  : 3vh;
     margin-right: auto;
   }
@@ -717,12 +1184,15 @@ nav.menu.open {
     float: left;
   }
 
-  .delivery-bar {
-    display: block;
+}
+@media screen and (min-width: 1500px) {
+  .sacola .container {
+    float: none;
   }
 }
 @media screen and (min-width: 2000px) {
   .quickbag i {
     font-size: 300%;
   }
+
 }

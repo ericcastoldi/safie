@@ -15,6 +15,11 @@ var PolicyCard = React.createClass({
   },
 
   renderPolicies: function(){
+
+    if (!this.props.policy.items || this.props.policy.items.length === 0) {
+      return null;
+    }
+
     return this.props.policy.items.map(function(item, index){
       return (
         <p key={index}>

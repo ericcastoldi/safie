@@ -1,6 +1,9 @@
 module.exports = {
+  main: {
+    loading: false
+  },
   home: {
-    subscribePopupOn: true,
+    subscribePopupOn: false,
     footer: {
       policies: [
         {
@@ -10,21 +13,18 @@ module.exports = {
               title: 'Fale Conosco',
               route: '/fale-conosco'
             }, {
-              title: 'atendimento@safie.com.br'
+              title: 'contato@safie.com.br'
             }, {
-              title: 'Telefone: (47) 3321-6698'
+              title: 'Telefone: (47) 3330-1680'
             }, {
-              title: 'De segunda a sexta das 10 às 17'
+              title: 'De segunda a sexta das 9 às 17'
             }
           ]
         }, {
           name: 'Informações',
           items: [
             {
-              title: 'Meus pedidos',
-              route: '/meus-pedidos'
-            }, {
-              title: 'Trocas e Devoluções',
+              title: 'Ajustes e Devoluções',
               route: '/politicas/trocas'
             }, {
               title: 'Prazos de Entrega',
@@ -36,21 +36,28 @@ module.exports = {
           ]
         }, {
           name: 'Pagamentos e Segurança',
-          items: [
-            {
-              title: 'Cartão de Crédito'
-            }, {
-              title: 'Parcelamento em até 5x sem juros'
-            }, {
-              title: 'Parcela mínima de R$ 300,00.'
-            }
-          ]
+          items: [{
+            title: 'Compre com toda a segurança do PagSeguro!'
+          }]
         }
       ]
     }
   },
   bag: {
+    error: null,
+    fetching: false,
+    doneFetching: false,
+    adding: false,
+    doneAdding: false,
+    removing: false,
+    doneRemoving: false,
     quickBagOpened: false,
+    shipping: null,
+    total: 0,
+    //           {
+    //   code: null,
+    //   price: 0
+    // },
     items: {
       //   1475971773639: {
       //     options: {
@@ -111,16 +118,16 @@ module.exports = {
         title: 'Coleções',
         items: [
           {
+            title: 'Coleção Cápsula',
+            route: '/colecoes/capsula'
+          },
+          {
             title: 'Safie Conceito',
             route: '/colecoes/safie-conceito'
           },
           {
             title: 'Barcelona',
             route: '/colecoes/barcelona'
-          },
-          {
-            title: 'Coleções Cápsula',
-            route: '/colecoes/capsula'
           }
         ]
       },
@@ -131,7 +138,7 @@ module.exports = {
         items: [
           {
             title: 'Medidas',
-            route: '/medidas'
+            route: '/my-safie'
           },
           {
             title: 'Login',
@@ -158,6 +165,31 @@ module.exports = {
       color: null // TODO: Quando o initialState estiver vindo do server, essa color deve vir preenchida com a defaultColor do produto
     }
   },
-  /// TODO: Alterar para objeto, contendo um array de "data" dentro ou algo do genero.
-  products: []
+  collection: [],
+  address: {
+    current: null,
+    addresses: [],
+    savingAddress: false,
+    doneSavingAddress: false,
+    fetchingAddresses: false,
+    doneFetchingAddresses: false,
+    addressPopupOpen: false,
+    removingAddress: false,
+    doneRemovingAddress: false,
+    error: null
+  },
+  customer: {
+    current: {},
+    saving: false,
+    doneSaving: false,
+    loggingIn: false,
+    loggingOut: false,
+    error: null
+  },
+  mySafie: {
+    measurementsOpened: true,
+    ordersOpened: true,
+    addressesOpened: true,
+    bagOpened: true
+  }
 };

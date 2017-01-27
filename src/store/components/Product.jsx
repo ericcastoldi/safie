@@ -1,12 +1,8 @@
-var React = require('react');
-var ProductPicturesViewer = require('./ProductPicturesViewer.jsx');
-var ProductDetails = require('./ProductDetails.jsx');
-
-var connect = require('react-redux').connect;
-var bindActionCreators = require('redux').bindActionCreators;
-var productActions = require('./state/productActions.js');
-
-
+import React from 'react';
+import ProductPicturesViewer from './ProductPicturesViewer.jsx';
+import ProductDetails from './ProductDetails.jsx';
+import LoadingRipple from './LoadingRipple.jsx';
+import product from './state/product.js';
 
 var Product = React.createClass({
 
@@ -17,20 +13,7 @@ var Product = React.createClass({
       color: React.PropTypes.object,
       measurements: React.PropTypes.object
     }),
-    product: React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
-      name: React.PropTypes.string.isRequired,
-      description: React.PropTypes.string.isRequired,
-      price: React.PropTypes.string.isRequired,
-      measurements: React.PropTypes.object,
-      pictures: React.PropTypes.shape({
-        main: React.PropTypes.number.isRequired,
-        product: React.PropTypes.number.isRequired,
-        paths: React.PropTypes.arrayOf(React.PropTypes.object)
-      }),
-      colors: React.PropTypes.object.isRequired,
-      defaultColor: React.PropTypes.string.isRequired
-    })
+    product: React.PropTypes.shape(product.shape)
   },
 
 
@@ -40,39 +23,23 @@ var Product = React.createClass({
 
 
   render: function() {
-    var product = this.props.product;
+    var prod = this.props.product;
 
-    if(!product) {
-      return (
-        <div>Carregando...</div>
-      );
+    if(!prod) {
+      return (<LoadingRipple />);
     }
 
     return (
       <div>
         <ProductPicturesViewer
-          pictures={product.pictures} />
+          pictures={prod.pictures} />
 
         <ProductDetails
-          product={product}
+          product={prod}
           options={this.props.options} />
       </div>
     );
   }
 });
 
-function mapStateToProps(state) {
-  return {
-    product: state.product.current,
-    options: state.product.options,
-    measurementsPopupOpen: state.product.measurementsPopupOpen
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchProduct: productActions.fetchProduct
-  }, dispatch);
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(Product);
+module.exports = product.connect(Product);

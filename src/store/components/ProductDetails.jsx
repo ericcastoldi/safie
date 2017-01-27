@@ -6,14 +6,12 @@ import ProductColorPicker from './ProductColorPicker.jsx';
 import MediumDarkButton from './MediumDarkButton.jsx';
 import LightButton from './LightButton.jsx';
 import SocialIcons from './SocialIcons.jsx';
-import Popup from './Popup.jsx';
+import DismissablePopup from './DismissablePopup.jsx';
 import MeasurementsForm from './MeasurementsForm.jsx';
-import productActions from './state/productActions.js';
-import bagActions from './state/bagActions.js';
+import product from './state/product.js';
+import bag from './state/bag.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
-import productShape from './propTypes/productShape.js';
 
 var ProductDetails = React.createClass({
 
@@ -27,12 +25,16 @@ var ProductDetails = React.createClass({
       color: React.PropTypes.object,
       measurements: React.PropTypes.object
     }),
-    product: React.PropTypes.shape(productShape)
+    product: React.PropTypes.shape(product.shape)
   },
 
   addToBag: function(){
-    this.props.addProductToBag(this.props.product, this.props.options);
-    browserHistory.push('/bag');
+    const item = {
+      product: this.props.product,
+      options: this.props.options
+    };
+
+    this.props.addProductToBag(item);
   },
 
   setProductMeasurements: function(measurements){
@@ -58,13 +60,13 @@ var ProductDetails = React.createClass({
             <div className="five columns">
               <div className="comprar-produto">
                 <MediumDarkButton label="Medidas" click={this.props.openMeasurementsPopup} />
-                <Popup
+                <DismissablePopup
                   dismiss={this.props.closeMeasurementsPopup}
                   active={this.props.measurementsPopupOpen}>
                   <MeasurementsForm
                     setProductMeasurements={this.setProductMeasurements}
                     measurements={this.props.product.measurements} />
-                </Popup>
+                </DismissablePopup>
                 <LightButton click={this.addToBag} label="Comprar" />
                 <SocialIcons />
               </div>
@@ -81,12 +83,14 @@ function mapStateToProps(state) {
     measurementsPopupOpen: state.product.measurementsPopupOpen
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    closeMeasurementsPopup: productActions.closeMeasurementsPopup,
-    openMeasurementsPopup: productActions.openMeasurementsPopup,
-    setProductMeasurements: productActions.setProductMeasurements,
-    addProductToBag: bagActions.addProductToBag
+    closeMeasurementsPopup: product.closeMeasurementsPopup,
+    openMeasurementsPopup: product.openMeasurementsPopup,
+    setProductMeasurements: product.setProductMeasurements,
+    addProductToBag: bag.addProductToBag
   }, dispatch);
 }
+
 module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

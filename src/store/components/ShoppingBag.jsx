@@ -2,39 +2,33 @@ import React from 'react';
 import DarkButton from './DarkButton.jsx';
 import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
-import bagActions from './state/bagActions.js';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import bag from './state/bag.js';
+import LoadingRipple from './LoadingRipple.jsx';
 
 var ShoppingBag = React.createClass({
 
   propTypes: {
-    removeProductFromBag: React.PropTypes.func,
-    items: React.PropTypes.shape({
-      options: React.PropTypes.shape({
-        color: React.PropTypes.object,
-        measurements: React.PropTypes.object
-      }),
-      product: React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        name: React.PropTypes.string.isRequired,
-        description: React.PropTypes.string.isRequired,
-        price: React.PropTypes.string.isRequired,
-        measurements: React.PropTypes.object,
-        pictures: React.PropTypes.shape({
-          main: React.PropTypes.number.isRequired,
-          product: React.PropTypes.number.isRequired,
-          paths: React.PropTypes.arrayOf(React.PropTypes.object)
-        }),
-        colors: React.PropTypes.object.isRequired,
-        defaultColor: React.PropTypes.string.isRequired
-      })
-    })
+    fetchBag: React.PropTypes.func.isRequired,
+    removeProductFromBag: React.PropTypes.func.isRequired,
+    error: React.PropTypes.object,
+    fetching: React.PropTypes.bool,
+    doneFetching: React.PropTypes.bool,
+    removing: React.PropTypes.bool,
+    doneRemoving: React.PropTypes.bool,
+    adding: React.PropTypes.bool,
+    doneAdding: React.PropTypes.bool,
+    shipping: React.PropTypes.object,
+    total: React.PropTypes.number,
+    items: React.PropTypes.shape(bag.itemShape)
   },
 
   render: function () {
 
-    if(Object.keys(this.props.items).length === 0){
+    if (this.props.fetching || this.props.adding || this.props.removing) {
+      return (<LoadingRipple active={true} />);
+    }
+
+    if (!this.props.items || Object.keys(this.props.items).length === 0) {
       return (
         <div>
           Nenhum produto na sacola :(
@@ -42,7 +36,9 @@ var ShoppingBag = React.createClass({
       );
     }
 
-    var renderedRows = this.renderDataRows();
+    const shipping = this.renderShipping();
+    const total = this.renderTotal();
+    const renderedRows = this.renderDataRows();
 
     return (
       <div className="sacola">
@@ -66,8 +62,16 @@ var ShoppingBag = React.createClass({
 
           </div>
           <div className="row">
-            <div className="twelve columns">
-              <DarkButton label="Finalizar Compra" />
+            <div className="six columns">
+              {shipping}
+            </div>
+            <div className="six columns">
+              {total}
+
+              <br/>
+
+              <DarkButton label="Finalizar Compra"/>
+
             </div>
           </div>
         </div>
@@ -75,50 +79,170 @@ var ShoppingBag = React.createClass({
     );
   },
 
+  renderTotal: function () {
+
+    if (!this.props.total) {
+      return null;
+    }
+
+    return (
+      <div className="total">
+        <h4>
+          Valor da compra
+        </h4>
+        {this.renderTotalItems()}
+      </div>
+    );
+  },
+
+  renderSubTotal: function () {
+    if (!this.props.total) {
+      return null;
+    }
+
+    return (
+      <tr className="subtotal">
+        <td>
+          <h4>Total</h4>
+        </td>
+        <td>
+          <h4>R$ {this
+              .props
+              .total
+              .toString()
+              .replace(',', '.')}</h4>
+        </td>
+      </tr>
+    );
+  },
+
+  renderTotalItems: function () {
+    var items = Object
+      .keys(this.props.items)
+      .map(function (itemId, index) {
+        var item = this.props.items[itemId];
+        var product = item.product;
+        return (
+          <tr key={index}>
+            <td>
+              <strong>{product.name}</strong>
+            </td>
+            <td>R$ {product.price}</td>
+          </tr>
+        );
+      }.bind(this));
+
+    return (
+      <table>
+        <tbody>
+
+          {items}
+          {this.renderShippingPrice()}
+          {this.renderSubTotal()}
+        </tbody>
+      </table>
+    );
+  },
+
+  renderShippingPrice: function () {
+    if (!this.props.shipping) {
+      return null;
+    }
+
+    return (
+      <tr>
+        <td>
+          <strong>Frete</strong>
+        </td>
+        <td>{this.props.shipping.price}</td>
+      </tr>
+    );
+  },
+
+  renderShipping: function () {
+
+    const shippingDetails = this.renderShippingDetails();
+
+    return (
+      <div className="frete">
+        <h4>Frete</h4>
+        <input type="text" placeholder="Informe seu cep"/>
+        <button className="light-button">Calcular</button>
+        {shippingDetails}
+      </div>
+    );
+
+  },
+
+  renderShippingDetails: function () {
+    if (this.props.shipping) {
+      return (
+        <p>
+          O frete para o cep
+          <strong>{this.props.shipping.code}</strong>
+          é
+          <strong>{this.props.shipping.price}</strong>
+        </p>
+      );
+    }
+    return null;
+  },
+
   renderDataRows: function () {
 
+    return Object
+      .keys(this.props.items)
+      .map(function (itemId, index) {
 
-    return Object.keys(this.props.items).map(function (itemId, index) {
+        var item = this.props.items[itemId];
+        var product = item.product;
+        var options = item.options;
 
-      var item = this.props.items[itemId];
-      var product = item.product;
-      var options = item.options;
-
-      return (
-        <tr key={index}>
-          <td>
-            <ProductCardHorizontal
-              product={product}
-              options={options}
-            />
-          </td>
-          <td>
-            <ProductPrice price={product.price}/>
-          </td>
-          <td>
-            <a href="#"
-              onClick={() => { this.props.removeProductFromBag(itemId); }}
-            >
-              x
-            </a>
-          </td>
-        </tr>
-      );
-    }.bind(this));
+        return (
+          <tr key={index}>
+            <td>
+              <ProductCardHorizontal product={product} options={options}/>
+            </td>
+            <td>
+              <ProductPrice price={product.price}/>
+            </td>
+            <td>
+              <a href="#" onClick={() => {
+                this
+                  .props
+                  .removeProductFromBag(itemId);
+              }}>
+                x
+              </a>
+            </td>
+          </tr>
+        );
+      }.bind(this));
   }
 
 });
 
+module.exports = bag.connect(ShoppingBag);
 
-function mapStateToProps(state) {
-  return {
-    items: state.bag.items
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    removeProductFromBag: bagActions.removeProductFromBag
-  }, dispatch);
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);
+// function mapStateToProps(state) {
+//   return {
+//     total: state.bag.total,
+//     items: state.bag.items,
+//     error: state.bag.error,
+//     fetching: state.bag.fetching,
+//     doneFetching: state.bag.doneFetching,
+//     removing: state.bag.removing,
+//     doneRemoving: state.bag.doneRemoving,
+//     adding: state.bag.adding,
+//     doneAdding: state.bag.doneAdding,
+//     shipping: state.bag.shipping
+//   };
+// }
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({
+//     fetchBag: bagActions.fetchBag,
+//     removeProductFromBag: bagActions.removeProductFromBag
+//   }, dispatch);
+// }
+//
+// module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);

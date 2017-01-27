@@ -2,7 +2,7 @@ import React from 'react';
 import ProductPicture from './ProductPicture.jsx';
 import ProductInfoSmall from './ProductInfoSmall.jsx';
 import MeasurementsInfo from './MeasurementsInfo.jsx';
-import productShape from './propTypes/productShape.js';
+import product from './state/product.js';
 
 var ProductCardHorizontal = React.createClass({
 
@@ -11,34 +11,34 @@ var ProductCardHorizontal = React.createClass({
       color: React.PropTypes.object,
       measurements: React.PropTypes.object
     }),
-    product: React.PropTypes.shape(productShape).isRequired
+    product: React.PropTypes.shape(product.shape).isRequired
   },
 
   render: function () {
 
     var options = this.props.options;
-    var product = this.props.product;
-    var picture = product.pictures.paths[product.pictures.product];
+    var prod = this.props.product;
+    var picture = prod.pictures.paths[prod.pictures.product];
 
     var colorName = options.color ?
-      product.colors[options.color].name :
-      product.colors[product.defaultColor].name;
+      prod.colors[options.color].name :
+      prod.colors[prod.defaultColor].name;
 
     return (
       <div className="produto-sacola">
 
         <ProductPicture
           picture={picture}
-          description={product.name} />
+          description={prod.name} />
 
         <ProductInfoSmall
-          name={product.name}
-          description={product.description} />
+          name={prod.name}
+          description={prod.description} />
 
         <div><strong>Cor:</strong> {colorName}</div>
 
         <MeasurementsInfo
-          product={product}
+          product={prod}
           measurements={options.measurements} />
 
       </div>

@@ -1,15 +1,12 @@
-var React = require('react');
-
-var connect = require('react-redux').connect;
-var bindActionCreators = require('redux').bindActionCreators;
-var productActions = require('./state/productActions.js');
+import React from 'react';
+import product from './state/product.js';
 
 var ProductColorPicker = React.createClass({
   propTypes: {
-    colors: React.PropTypes.object.isRequired,
-    pickProductColor: React.PropTypes.func.isRequired,
-    defaultColor: React.PropTypes.string.isRequired,
-    selectedColor: React.PropTypes.string.isRequired
+    colors: React.PropTypes.object,
+    pickProductColor: React.PropTypes.func,
+    defaultColor: React.PropTypes.string,
+    selectedColor: React.PropTypes.string
   },
 
   pickColor: function(color){
@@ -18,7 +15,7 @@ var ProductColorPicker = React.createClass({
 
   render: function(){
     if(!this.props.colors){
-      return (<div>Carregando cores...</div>);
+      return null;
     }
 
     var colors = this.props.colors;
@@ -43,11 +40,12 @@ var ProductColorPicker = React.createClass({
 
       return (
         <div
+          key={index}
           className={cssClasses.join(' ')}
           onClick={this.pickColor.bind(this, colorId)}>
 
           <div
-            key={index}
+
             style={divStyle}
             title={color.name}
             className="product-color-box">
@@ -69,16 +67,4 @@ var ProductColorPicker = React.createClass({
   }
 });
 
-function mapStateToProps(state) {
-  return {
-    selectedColor: state.product.options.color
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    pickProductColor: productActions.pickProductColor
-  }, dispatch);
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductColorPicker);
+module.exports = product.connect(ProductColorPicker);

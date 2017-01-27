@@ -1,32 +1,13 @@
 var React = require('react');
 var MenuItem = require('./MenuItem.jsx');
 var SubMenu = require('./SubMenu.jsx');
-var connect = require('react-redux').connect;
-var bindActionCreators = require('redux').bindActionCreators;
-var menuActions = require('./state/menuActions.js');
+var menu = require('./state/menu.js');
 
 var Menu = React.createClass({
-  propTypes: {
-    opened: React.PropTypes.bool.isRequired,
-    toggle: React.PropTypes.func.isRequired,
-    items: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        id: React.PropTypes.string,
-        expanded: React.PropTypes.bool,
-        title: React.PropTypes.string.isRequired,
-        route: React.PropTypes.string,
-        items: React.PropTypes.arrayOf(
-          React.PropTypes.shape({
-            title: React.PropTypes.string.isRequired,
-            route: React.PropTypes.string.isRequired
-          })
-        )
-      })
-    ).isRequired
-  },
+  propTypes: menu.shape,
 
   toggle: function(){
-    this.props.toggle();
+    this.props.toggleMobileMenu();
   },
 
   renderItems: function(){
@@ -45,7 +26,7 @@ var Menu = React.createClass({
 
   render: function () {
     let cssClasses = ['menu'];
-    if(this.props.opened) {
+    if(this.props.mobileMenuOpened) {
       cssClasses.push('open');
     }
 
@@ -62,17 +43,5 @@ var Menu = React.createClass({
   }
 });
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    toggle: menuActions.toggleMobileMenu
-  }, dispatch);
-}
 
-function mapStateToProps(state) {
-  return {
-    opened: state.menu.mobileMenuOpened,
-    items: state.menu.items
-  };
-}
-
-module.exports = connect(mapStateToProps, mapDispatchToProps)(Menu);
+module.exports = menu.connect(Menu);
