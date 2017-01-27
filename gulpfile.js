@@ -116,5 +116,5 @@ gulp.task('lint', function () {
 
 // Travis CI
 gulp.task('travis', ['clean'], function (done) {
-  runSequence('lint', 'cover', done);
+  runSequence('lint', /*'cover',*/ done);
 });

@@ -29,7 +29,7 @@ address.initialState = {
 };
 
 const addressShape = React.PropTypes.shape({
-  id: React.PropTypes.string,
+  addressId: React.PropTypes.string,
   street: React.PropTypes.string,
   number: React.PropTypes.string,
   obs: React.PropTypes.string,
@@ -111,12 +111,42 @@ address.saveAddress = (addr) => {
   };
 };
 
-address.removeAddress = actionFactory.smartAsyncDeleteActionCreator('address',
-  actionTypes.START_REMOVING_ADDRESS,
-  actionTypes.DONE_REMOVING_ADDRESS,
-  actionTypes.CANNOT_REMOVE_ADDRESS,
-  payloadFactory
-);
+
+address.startRemovingAddress = actionFactory.simpleActionCreator(actionTypes.START_REMOVING_ADDRESS);
+address.doneRemovingAddress = actionFactory.payloadActionCreator(actionTypes.DONE_REMOVING_ADDRESS, payloadFactory);
+address.cannotRemoveAddress = actionFactory.errorActionCreator(actionTypes.CANNOT_REMOVE_ADDRESS);
+
+
+address.removeAddress = (addressId) => {
+
+  return (dispatch) => {
+    dispatch(address.startRemovingAddress());
+
+    return axios.delete('/api/address/' + addressId)
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            dispatch(address.doneRemovingAddress());
+            dispatch(address.fetchAddresses());
+          }
+          else{
+            dispatch(address.cannotRemoveAddress(result.error));
+          }
+        })
+        .catch(function (response) {
+          dispatch(address.cannotRemoveAddress(response));
+        });
+
+  };
+};
+
+
+// actionFactory.smartAsyncDeleteActionCreator('address',
+//   actionTypes.START_REMOVING_ADDRESS,
+//   actionTypes.DONE_REMOVING_ADDRESS,
+//   actionTypes.CANNOT_REMOVE_ADDRESS,
+//   payloadFactory
+// );
 
 // React Redux
 function mapStateToProps(state) {
@@ -226,11 +256,10 @@ const startRemovingAddress = (state) => {
   });
 };
 
-const doneRemovingAddress = (state, action) => {
+const doneRemovingAddress = (state) => {
   return Object.assign({}, state, {
     removingAddress: false,
     doneRemovingAddress: true,
-    addresses: action.payload.addresses,
     error: null
   });
 };

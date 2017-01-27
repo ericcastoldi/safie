@@ -56,7 +56,12 @@ class MyAddresses extends React.Component {
     }
 
     const renderedAddresses = addresses.map((addr, index) => {
-        return (<AddressCard key={index} address={addr} />);
+        return (
+          <AddressCard
+            key={index}
+            address={addr}
+            removeAddress={this.props.removeAddress} />
+        );
     });
 
     return (

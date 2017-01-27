@@ -1,4 +1,4 @@
-/*eslint consistent-return: 1*/
+/*eslint consistent-return: 0*/
 const Customer = require('../../model/customer.js');
 const customerFactory = require('../../model/customerFactory.js');
 const LocalStrategy = require('passport-local').Strategy;

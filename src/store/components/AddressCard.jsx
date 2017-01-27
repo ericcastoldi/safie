@@ -3,6 +3,14 @@ import React from 'react';
 class AddressCard extends React.Component {
   constructor(props){
     super(props);
+
+    this.remove = this.remove.bind(this);
+  }
+
+  remove() {
+    if(!this.props.removingAddress){
+      this.props.removeAddress(this.props.address.addressId);
+    }
   }
 
   render() {
@@ -17,7 +25,7 @@ class AddressCard extends React.Component {
           <p>{this.props.address.city}</p>
           <p>{this.props.address.code}</p>
 
-          <i className="fa fa-times-circle-o" aria-hidden="true"></i>
+          <i onClick={this.remove} className="fa fa-times-circle-o" aria-hidden="true"></i>
 
         </div>
       </div>
@@ -27,7 +35,10 @@ class AddressCard extends React.Component {
 
 
 AddressCard.propTypes = {
+  removingAddress: React.PropTypes.bool,
+  removeAddress: React.PropTypes.func,
   address: React.PropTypes.shape({
+    addressId: React.PropTypes.string,
     street: React.PropTypes.string,
     number: React.PropTypes.string,
     obs: React.PropTypes.string,

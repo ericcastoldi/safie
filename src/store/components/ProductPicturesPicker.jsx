@@ -5,7 +5,7 @@ var ProductPicturesPicker = React.createClass({
 
   propTypes: {
     picturePicked: React.PropTypes.func,
-    activePicture: React.PropTypes.number,
+    activePicture: React.PropTypes.string,
     pictures: React.PropTypes.object
   },
 

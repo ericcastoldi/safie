@@ -18,6 +18,7 @@ module.exports = function(app, passport) {
   /* Addresses */
   app.get('/api/address', address.get);
   app.post('/api/address', address.post);
+  app.delete('/api/address/:addressId', address.delete);
 
   /* Measurements */
   // app.get('/api/customer/measurements', customer.getMeasurements);
