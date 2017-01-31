@@ -796,6 +796,98 @@ nav.menu.open {
 .assinatura{
   position: relative;
 }
+/*checkout */
+.conteudo-checkout h4{
+  color: #606060;
+}
+.conteudo-checkout .box{
+  border:1px solid #a8a8a8;
+  padding: 10px;
+}
+
+.conteudo-checkout .box .inside-box{
+  background-color: #fbeee8;
+  padding: 5px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.conteudo-checkout .box .linha-exterior{
+  padding: 5px;
+  border: 1px solid #fbeee8;
+}
+
+.conteudo-checkout .box .linha-exterior-2{
+  padding: 5px;
+  border: 1px solid #eac7ab;
+}
+
+.conteudo-checkout .box .linha-exterior-2 .inside-box{
+  background-color: #eac7ab;
+}
+.conteudo-checkout .new-address{
+  margin-top: 70px;
+}
+
+.conteudo-checkout .twelve .box{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.conteudo-checkout .twelve .box p{
+  font-size: 13px;
+}
+
+.conteudo-checkout .twelve .box .gray-button{
+  font-size: 16px;
+  color: #fff;
+  width: auto;
+  background-color: #7b7b7b;
+}
+
+/* agradecimento */
+.conteudo-agradecimento{
+  position: relative;
+  margin: 0 auto;
+  width: 60%;
+  text-align: center;
+  color: #a8a8a8;
+
+}
+.box-agradecimento{
+  border:1px solid #a8a8a8;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.box-agradecimento .titulo-agradecimento{
+  background-color: #fbeee8;
+  padding: 10px 5px 10px 10px;
+}
+
+.box-agradecimento .titulo-agradecimento h4{
+  color: #a8a8a8;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+.box-agradecimento p{
+  color: #a8a8a8;
+  font-size: 14px;
+  margin-top: 10px;
+} 
+
+.gray-button{
+  background-color: #a8a8a8;
+  color: #eac7ab;
+  text-transform: uppercase;
+  width: 50%;
+}
+
 
 /* My Safie */
 
