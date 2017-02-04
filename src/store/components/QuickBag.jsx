@@ -32,11 +32,14 @@ var QuickBag = React.createClass({
 
     const items = this.renderItems();
     return (
-      <div id="quickbag" className={cssClasses.join(' ')} onClick={this.toggle}>
-
-        <Link to="/bag">
-          <i className="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
-        </Link>
+      <div
+        id="quickbag"
+        className={cssClasses.join(' ')}>
+          <i
+            aria-hidden="true"
+            onClick={this.toggle}
+            className="fa fa-shopping-bag fa-2x">
+          </i>
         <div className="items">
 
           {items}

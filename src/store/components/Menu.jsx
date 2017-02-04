@@ -1,4 +1,5 @@
 var React = require('react');
+import { Link } from 'react-router';
 var MenuItem = require('./MenuItem.jsx');
 var SubMenu = require('./SubMenu.jsx');
 var menu = require('./state/menu.js');
@@ -37,6 +38,13 @@ var Menu = React.createClass({
         <i onClick={this.toggle} className="fa fa-bars" aria-hidden="true"></i>
         <nav className={cssClasses.join(' ')}>
           {items}
+
+          <Link to="/bag">
+            <i
+              aria-hidden="true"
+              className="fa fa-shopping-bag fa-2x">
+            </i>
+          </Link>
         </nav>
       </div>
     );
