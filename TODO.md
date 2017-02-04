@@ -1,7 +1,7 @@
-# Menu 
+# Menu
 
 ## Contato
-Criar página com formulário de contato (ao clicar em "Contato" no menu o usuário deve ser redirecionado para essa página). 
+Criar página com formulário de contato (ao clicar em "Contato" no menu o usuário deve ser redirecionado para essa página).
 
 No formulário de contato devem existir os campos Nome, email, telefone e texto de contato. Incluir nesta página também as informações da Safie: email para contato, telefone e horário de funcionamento.    
 
@@ -19,7 +19,7 @@ Deve ser criada uma tela com os resultados de pesquisa, nos moldes da listagem d
 
 ## Sacola de compras
 
-Abaixo do menu deve ser criado um link para a sacola de compras, com o mesmo formato da sacola da Quick Bag. 
+Abaixo do menu deve ser criado um link para a sacola de compras, com o mesmo formato da sacola da Quick Bag.
 
 # Home
  - Ajustar o ícone do PagSeguro
@@ -38,7 +38,7 @@ Caso a cliente não informe seu nome ou seu e-mail, ou ainda caso informe um e-m
 
 Caso ocorra algum erro inesperado ao tentar cadastrar o e-mail para receber as novidades, o site deve exibir uma mensagem de erro com a mensagem "Ops! Algo inesperado ocorreu :( Por favor tente novamente!"
 
-## Políticas (Ajustes, Emtrega, Pagamentos e Como Funciona)
+## Políticas (Ajustes, Entrega, Pagamentos e Como Funciona)
 
 Devem ser criadas as páginas de políticas da Safie, para que posteriormente sejam vinculadas aos links do rodapé da Home.
 
@@ -49,7 +49,7 @@ Devem ser criadas as páginas de políticas da Safie, para que posteriormente se
 
 # Painel usuário atual
 
-Ao clicar no link "Sair", o usuário deve ser redirecionado para a coleção Capsula. 
+Ao clicar no link "Sair", o usuário deve ser redirecionado para a coleção Capsula.
 
 # Login
 
@@ -63,11 +63,11 @@ Ao clicar no link "Sair", o usuário deve ser redirecionado para a coleção Cap
 Criar um formulário com um campo para informar o e-mail cadastrado e um botão "Criar uma nova senha". Ao clicar nesse botão deve ser verificado se existe um usuário com o email informado:
 
  - Caso exista, a senha desse usuário deve ser resetada e deve ser enviado um e-mail de notificação com a nova senha. O site deve então exibir a mensagem "Senha alterada com sucesso! A nova senha foi enviada para seu e-mail de cadastro." e um botão ou link para a tela de login.
- - Caso NÃO exista, deve ser exibida a mensagem "Não foi encontrado nenhum usuário com este endereço de email, deseja se cadastrar?" e um botão ou link apontando para a tela de cadastro. 
+ - Caso NÃO exista, deve ser exibida a mensagem "Não foi encontrado nenhum usuário com este endereço de email, deseja se cadastrar?" e um botão ou link apontando para a tela de cadastro.
 
 ## Login com o facebook
 
- - Ajustar as URLs de redirecionamento do facebook para tornar o processo de autenticação com o facebook mais suave. 
+ - Ajustar as URLs de redirecionamento do facebook para tornar o processo de autenticação com o facebook mais suave.
 
 # Cadastro de Usuários
 
@@ -77,11 +77,11 @@ Criar um formulário com um campo para informar o e-mail cadastrado e um botão 
 
 ## Termos de Uso
 
- - Criar página com os Termos de Uso da Safie. 
+ - Criar página com os Termos de Uso da Safie.
 
 # Listagem das Peças
 
- - Definir imagens e textos conceituais da coleção Barcelona. 
+ - Definir imagens e textos conceituais da coleção Barcelona.
 
  ## Informações necessárias de cada peça
  * Nome da peça
@@ -96,12 +96,12 @@ Criar um formulário com um campo para informar o e-mail cadastrado e um botão 
  * Foto somente da peça com fundo branco
 
 # Página principal das peças
- 
+
 Ajustar os links de email, facebook e instagram para ações reais de compartilhamento da peça e suas informações.
-  
+
 Adicionar um link no popup das medidas que abra em outra aba a imagem do manequim com a indicação de cada medida.
 
-# Sacolas de compras 
+# Sacolas de compras
 
 ## Sacola Principal
 
@@ -125,7 +125,7 @@ Adicionar um link no popup das medidas que abra em outra aba a imagem do manequi
  - Colocar link para as peças (ao clicar na foto vai para a pagina de detalhes da peça)
  - Adicionar painel com o valor total da compra (devidamente formatado)
  - Ajustar case da fonte, deixando o nome de todos os produtos da sacola em uppercase.
- 
+
  > No futuro deve ser implementado o drag and drop de peças para a sacola.
 
 # Checkout
@@ -138,7 +138,7 @@ Criar tela de Checkout de acordo com o modelo da pasta Frontend.
 
 Listar os produtos da sacola de compras. Caso já tenha sido feito um cálculo de frete, deve ser exibido o quadro "Frete" com o valor do frete. Caso ainda não tenha sido feito o cálculo de frete, o quadro não deve ser exibido.
 
-Exibir também o total a pagar, devidamente formatado. 
+Exibir também o total a pagar, devidamente formatado.
 
 ## Endereço da entrega
 
@@ -148,13 +148,13 @@ Ao selecionar um endereço de entrega o frete deve ser recalculado e o novo fret
 
 ## Realizar pagamento
 
-Ao clicar no botão "Realizar pagamento" deve ser verificado se existe um endereço de entrega selecionado e se o frete foi devidamente calculado. Em caso positivo deve ser acionado o PagSeguro, enviando as informações de peças, peso e endereço de entrega. 
+Ao clicar no botão "Realizar pagamento" deve ser verificado se existe um endereço de entrega selecionado e se o frete foi devidamente calculado. Em caso positivo deve ser acionado o PagSeguro, enviando as informações de peças, peso e endereço de entrega.
 Depois que o PagSeguro retornar um sinal de que o pagamento foi efetuado, o site deve:
 - Gerar um pedido, a ser exibido posteriormente na área My Safie
-- Ao gerar o pedido, a sacola de compras deve ser resetada. 
+- Ao gerar o pedido, a sacola de compras deve ser resetada.
 - Enviar um e-mail para o usuário informando que a compra foi efetuada com sucesso
 - Enviar um email para a administração da Safie para que seja providenciado o início da produção do pedido
-- Finalmente o usuário então deve ser redirecionado para a tela de agradecimento pela compra. 
+- Finalmente o usuário então deve ser redirecionado para a tela de agradecimento pela compra.
 
 > Definir formato, textos e assuntos dos e-mails.
 
@@ -165,44 +165,44 @@ O pedido a ser gerado deve ter as seguintes informações:
  - Valor do frete
  - Valor total
  - Status (Em produção, Enviado)
- 
+
 No caso de alguma falha na comunicação com o PagSeguro o site deve redirecionar o usuário para uma página de falha explicando que houve um problema e pedindo para que tente efetuar a compra novamente. A sacola de compras deve permanecer inalterada nesse caso.
 
-> Ao fim da implementação do pagamento deve ser ajustado o quadro "Meus pedidos" do My Safie. 
+> Ao fim da implementação do pagamento deve ser ajustado o quadro "Meus pedidos" do My Safie.
 
 # Agradecimento
 
 Criar a tela de Agradecimento de acordo com o modelo da pasta Frontend. Adicionar um vídeo promocional no painel inferior.
 
-Ao clicar no botão "Acompanhar meu pedido" o usuário deve ser redirecionado 
+Ao clicar no botão "Acompanhar meu pedido" o usuário deve ser redirecionado
 
 > Validar com a Sabrine qual será o vídeo a ser exibido no painel inferior no lugar da imagem.
- 
+
 # My Safie
- 
-- Colocar link nos itens circulares 
+
+- Colocar link nos itens circulares
 - Adicicionar validação para que o usuário seja redirecionado para a tela de login caso ele tente acessar a página /my-safie sem estar logado no site.
- 
+
 ## Minhas Medidas
 
 Implementar o cadastro de medidas da cliente, definindo como será o vínculo das medidas com a cliente e com as peças em questão de relacionamentos de banco de dados.
 
 Criar campos diretamente no painel de medidas, visando evitar o uso excessivo de popups, e criar um botão para salvar as medidas.
 
-> Validar com a Sabrine se será feito algum ajuste por parte do Diego nessa tela. 
+> Validar com a Sabrine se será feito algum ajuste por parte do Diego nessa tela.
 
 
 ## Meus Pedidos
 
 Listar os 5 últimos pedidos feitos pela cliente.
 
-> Esse painel será implementado após a implementação do processo de compra. Nesse painel serão exibidos os pedidos gerados pelo processo de compra. 
+> Esse painel será implementado após a implementação do processo de compra. Nesse painel serão exibidos os pedidos gerados pelo processo de compra.
 
 
 ## Meus Endereços
- 
+
 - Criar botão para editar um endereço já existente.
- 
+
 ## Minha Sacola
 
  - Ajustar posicionamento do botão de exclusão de item da sacola.
@@ -210,4 +210,3 @@ Listar os 5 últimos pedidos feitos pela cliente.
  - Formatar corretamente o valor total da compra
 
 > Validar com a Sabrine se iremos exibir o valor do frete na My Bag
-
