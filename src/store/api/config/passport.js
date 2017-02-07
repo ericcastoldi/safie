@@ -76,8 +76,8 @@ module.exports = (passport) => {
   );
 
   passport.use('facebook', new FacebookStrategy({
-        clientID: '',
-        clientSecret: '',
+        clientID: '1234',
+        clientSecret: '1234',
         callbackURL: 'http://localhost:3000/my-safie',
         profileFields: ['id', 'displayName', 'email', 'birthday'],
         passReqToCallback: true

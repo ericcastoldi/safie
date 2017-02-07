@@ -4,23 +4,20 @@ import ProductInfoSmall from './ProductInfoSmall.jsx';
 import MeasurementsInfo from './MeasurementsInfo.jsx';
 import product from './state/product.js';
 
-var ProductCardHorizontal = React.createClass({
+class ProductCardHorizontal extends React.Component {
 
-  propTypes: {
-    options: React.PropTypes.shape({
-      color: React.PropTypes.object,
-      measurements: React.PropTypes.object
-    }),
-    product: React.PropTypes.shape(product.shape).isRequired
-  },
 
-  render: function () {
+  constructor(props) {
+    super(props);
+  }
 
-    var options = this.props.options;
-    var prod = this.props.product;
-    var picture = prod.pictures.paths[prod.pictures.product];
+  render() {
 
-    var colorName = options.color ?
+    const options = this.props.options;
+    const prod = this.props.product;
+    const picture = prod.pictures.paths[prod.pictures.product];
+
+    const colorName = options.color ?
       prod.colors[options.color].name :
       prod.colors[prod.defaultColor].name;
 
@@ -32,6 +29,7 @@ var ProductCardHorizontal = React.createClass({
           description={prod.name} />
 
         <ProductInfoSmall
+          id={prod.id}
           name={prod.name}
           description={prod.description} />
 
@@ -44,6 +42,16 @@ var ProductCardHorizontal = React.createClass({
       </div>
     );
   }
-});
+}
+
+
+ProductCardHorizontal.propTypes = {
+  options: React.PropTypes.shape({
+    color: React.PropTypes.object,
+    measurements: React.PropTypes.object
+  }),
+  product: React.PropTypes.shape(product.shape).isRequired
+};
+
 
 module.exports = ProductCardHorizontal;
