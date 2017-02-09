@@ -138,6 +138,7 @@ button {
   width             : 5rem;
   text-align        : center;
   position          : relative;
+  padding-top: 5rem;
 }
 
 .navigation i.fa-shopping-bag {
@@ -412,7 +413,6 @@ nav.menu.open {
 }
 
 .layout-content {
-  margin-top   : 2rem;
   margin-bottom: 3rem;
   min-height   : 100vh;
 }
@@ -550,6 +550,11 @@ nav.menu.open {
 .form-medidas input {
   border-radius: 0;
   width        : 100%;
+}
+
+.form-medidas a {
+  text-decoration: underline;
+  font-size: 1.3rem;
 }
 
 .form-medidas h2 {
@@ -726,8 +731,16 @@ nav.menu.open {
   margin-bottom: 0;
 }
 
+
+
 .cartoes-de-credito {
-  font-size: 3rem;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.cartoes-de-credito img {
+    width: 90%;
 }
 
 .politica {
@@ -767,11 +780,14 @@ nav.menu.open {
 }
 
 .delivery-bar {
-  background-color: #333;
-  color           : #fff;
-  display         : none;
-  text-align      : center;
+  background-color: #bbbbbb;
+  color: #fff;
+  display: none;
+  text-align: center;
   position        : fixed;
+  width: 100%;
+  height: 3rem;
+  z-index: 999;
 }
 
 .delivery-bar span {
@@ -831,6 +847,10 @@ nav.menu.open {
   width           : 200px;
   margin          : 0 auto;
   background-color: #efefef;
+}
+
+.login-form p {
+  text-align: center;
 }
 
 .login-form a {
@@ -922,7 +942,7 @@ nav.menu.open {
   border       : 1px solid;
   margin       : 0 auto 20px;
   position     : relative;
-
+  cursor: pointer;
 }
 
 .titulo-mysafie p {
@@ -1179,6 +1199,7 @@ nav.menu.open {
     width     : 3.5%;
     background: rgba(238,166,130,0.5);
     position  : fixed;
+    margin-top: 3rem;
   }
 
   .quickbag i.fa-shopping-bag {

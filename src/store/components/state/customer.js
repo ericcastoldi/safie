@@ -110,7 +110,8 @@ customer.logOut = actionFactory.asyncPostActionCreator(
   'logout',
   customer.startLoggingOut,
   customer.doneLoggingOut,
-  customer.cannotLogOut
+  customer.cannotLogOut,
+  '/colecoes/barcelona'
 );
 
 customer.startSavingCustomer = actionFactory.simpleActionCreator(actionTypes.START_SAVING_CUSTOMER);

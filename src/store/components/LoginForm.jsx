@@ -53,13 +53,14 @@ class LoginForm extends React.Component {
                 onChange={e => this.fieldChanged({ password: e.target.value })}
               />
 
-              <p><a href='#'>Esqueci minha senha</a></p>
 
               <button
                 onClick={this.login}
                 className="button light-button entrar">
                 Entrar
               </button>
+
+              <p><a href='#'>Esqueci minha senha</a></p>
 
             </div>
           </div>

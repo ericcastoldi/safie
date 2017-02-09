@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from './Menu.jsx';
 import QuickBag from './QuickBag.jsx';
 import CurrentCustomer from './CurrentCustomer.jsx';
+import DeliveryBar from './DeliveryBar.jsx';
 import Loading from './Loading.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,6 +20,8 @@ class Layout extends React.Component {
   render() {
     return (
       <div>
+
+        <DeliveryBar />
 
         <Menu />
 

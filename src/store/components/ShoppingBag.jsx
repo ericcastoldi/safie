@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+import LightButton from './LightButton.jsx';
 import DarkButton from './DarkButton.jsx';
 import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
@@ -69,6 +71,10 @@ var ShoppingBag = React.createClass({
               {total}
 
               <br/>
+
+              <Link to='/colecoes/barcelona'>
+                <LightButton label="Continuar Comprando"/>
+              </Link>
 
               <DarkButton label="Finalizar Compra"/>
 
@@ -223,26 +229,3 @@ var ShoppingBag = React.createClass({
 });
 
 module.exports = bag.connect(ShoppingBag);
-
-// function mapStateToProps(state) {
-//   return {
-//     total: state.bag.total,
-//     items: state.bag.items,
-//     error: state.bag.error,
-//     fetching: state.bag.fetching,
-//     doneFetching: state.bag.doneFetching,
-//     removing: state.bag.removing,
-//     doneRemoving: state.bag.doneRemoving,
-//     adding: state.bag.adding,
-//     doneAdding: state.bag.doneAdding,
-//     shipping: state.bag.shipping
-//   };
-// }
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     fetchBag: bagActions.fetchBag,
-//     removeProductFromBag: bagActions.removeProductFromBag
-//   }, dispatch);
-// }
-//
-// module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);
