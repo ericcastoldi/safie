@@ -6,11 +6,13 @@ import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
 import bag from './state/bag.js';
 import LoadingRipple from './LoadingRipple.jsx';
+import PrettyPrice from './PrettyPrice.jsx';
 
 var ShoppingBag = React.createClass({
 
   propTypes: {
     fetchBag: React.PropTypes.func.isRequired,
+    checkout: React.PropTypes.func.isRequired,
     removeProductFromBag: React.PropTypes.func.isRequired,
     error: React.PropTypes.object,
     fetching: React.PropTypes.bool,
@@ -64,10 +66,10 @@ var ShoppingBag = React.createClass({
 
           </div>
           <div className="row">
-            <div className="six columns">
+            <div className="five columns">
               {shipping}
             </div>
-            <div className="six columns">
+            <div className="seven columns">
               {total}
 
               <br/>
@@ -76,7 +78,7 @@ var ShoppingBag = React.createClass({
                 <LightButton label="Continuar Comprando"/>
               </Link>
 
-              <DarkButton label="Finalizar Compra"/>
+              <DarkButton click={this.props.checkout} label="Finalizar Compra"/>
 
             </div>
           </div>
@@ -112,11 +114,7 @@ var ShoppingBag = React.createClass({
           <h4>Total</h4>
         </td>
         <td>
-          <h4>R$ {this
-              .props
-              .total
-              .toString()
-              .replace(',', '.')}</h4>
+          <h4><PrettyPrice price={this.props.total} /></h4>
         </td>
       </tr>
     );
@@ -133,7 +131,7 @@ var ShoppingBag = React.createClass({
             <td>
               <strong>{product.name}</strong>
             </td>
-            <td>R$ {product.price}</td>
+            <td><PrettyPrice price={product.price} /></td>
           </tr>
         );
       }.bind(this));
@@ -160,7 +158,7 @@ var ShoppingBag = React.createClass({
         <td>
           <strong>Frete</strong>
         </td>
-        <td>{this.props.shipping.price}</td>
+        <td><PrettyPrice price={this.props.shipping.price} /></td>
       </tr>
     );
   },
@@ -187,7 +185,7 @@ var ShoppingBag = React.createClass({
           O frete para o cep
           <strong>{this.props.shipping.code}</strong>
           é
-          <strong>{this.props.shipping.price}</strong>
+          <strong><PrettyPrice price={this.props.shipping.price} /></strong>
         </p>
       );
     }

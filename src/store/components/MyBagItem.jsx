@@ -1,4 +1,5 @@
 import React from 'react';
+import PrettyPrice from './PrettyPrice.jsx';
 import bag from './state/bag.js';
 import product from './state/product.js';
 
@@ -20,15 +21,11 @@ class MyBagItem extends React.Component {
         <i
           className="fa fa-times-circle-o"
           aria-hidden="true"
-          onClick={() => {
-            this
-              .props
-            .removeProductFromBag(id);
-          }}>
+          onClick={() => { this.props.removeProductFromBag(id); }}>
         </i>
 
         <p>{prod.name}</p>
-        <p>{prod.price}</p>
+        <p><PrettyPrice price={prod.price} /></p>
       </div>
     );
   }

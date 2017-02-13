@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -5,6 +6,7 @@ import product from './product.js';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
+import { push } from 'react-router-redux';
 
 let bag = {
   // shape: null,
@@ -86,6 +88,44 @@ bag.removeProductFromBag = actionFactory.smartAsyncDeleteActionCreator('bag',
 
 bag.toggleQuickBag = actionFactory.simpleActionCreator(actionTypes.TOGGLE_QUICK_BAG);
 
+bag.startCheckingOut = actionFactory.simpleActionCreator(actionTypes.START_CHECKING_OUT);
+bag.doneCheckingOut = actionFactory.payloadActionCreator(actionTypes.DONE_CHECKING_OUT, payloadFactory);
+bag.cannotCheckOut = actionFactory.errorActionCreator(actionTypes.CANNOT_CHECK_OUT);
+
+bag.checkout = () => {
+
+  return (dispatch) => {
+    dispatch(bag.startCheckingOut());
+
+    return axios.post('/api/bag/checkout')
+        .then(function (apiResult) {
+          var result = apiResult.data;
+          if(result.success){
+            // Dispatch action que altera validMeasurements paraa true
+            // Dispatch action que abre popup solicitando confirmação dos dados informados
+            //    (ao confirmar deve ser alterado userConfirmedMeasurements para true
+            //      e redirecionado para /checkout.
+            //      no onEnter do /checkout deve ser verificado se está logado,
+            //      se não estiver deve ser redireciononaado para /login   )
+            dispatch(bag.doneCheckingOut(result.data));
+            dispatch(push('/checkout'));
+          }
+          else{
+            // Dispatch action de exibição de popup de mensagem "precisamos de suas medidas"
+            dispatch(bag.cannotCheckOut(result.error));
+          }
+        })
+        .catch(function (response) {
+          dispatch(bag.cannotCheckOut(response));
+        });
+
+  };
+};
+
+
+
+
+
 // React Redux
 const mapStateToProps = (state) => {
   return {
@@ -106,6 +146,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchBag: bag.fetchBag,
+    checkout: bag.checkout,
     removeProductFromBag: bag.removeProductFromBag,
     addProductToBag: bag.addProductToBag,
     toggleQuickBag: bag.toggleQuickBag

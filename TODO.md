@@ -22,13 +22,13 @@ Deve ser criada uma tela com os resultados de pesquisa, nos moldes da listagem d
 ~~Abaixo do menu deve ser criado um link para a sacola de compras, com o mesmo formato da sacola da Quick Bag.~~
 
 # Home
--   Ajustar o ícone do PagSeguro
+-   ~~Ajustar o ícone do PagSeguro~~
 -   Implementar envio de email da área "Receba as novidades"
--   Ajustar link "Quero entender como a SAFIE funciona" (quando a página "Como a Safie funciona" estiver concluída)
--   Ajustar link "Ajustes e Devoluções" (quando a página com a política de ajustes estiver concluída)
--   Ajustar link "Prazos de Entrega" (quando a página com a política de prazos de entrega estiver concluída)
--   Ajustar link "Pagamentos" (quando a página com a política de pagamentos estiver concluída)
--   Criar barra de "Entrega em todo o Brasil" no topo do site com um cinza mais claro que o da versão instalada.
+-   Ajustar link "Quero entender como a SAFIE funciona" (quando a página "Como a Safie funciona" estiver concluída)*
+-   Ajustar link "Ajustes e Devoluções" (quando a página com a política de ajustes estiver concluída)*
+-   Ajustar link "Prazos de Entrega" (quando a página com a política de prazos de entrega estiver concluída)*
+-   Ajustar link "Pagamentos" (quando a página com a política de pagamentos estiver concluída)*
+-   ~~Criar barra de "Entrega em todo o Brasil" no topo do site com um cinza mais claro que o da versão instalada.~~
 
 ## Receba as novidades
 
@@ -42,19 +42,19 @@ Caso ocorra algum erro inesperado ao tentar cadastrar o e-mail para receber as n
 
 Devem ser criadas as páginas de políticas da Safie, para que posteriormente sejam vinculadas aos links do rodapé da Home.
 
--   Criar página contendo o texto de política de troca
--   Criar página contendo o texto de política de pagamentos
--   Criar página contendo o texto de política de entrega
--   Criar página "Como a Safie Funciona"
+-   Criar página contendo o texto de política de troca*
+-   Criar página contendo o texto de política de pagamentos*
+-   Criar página contendo o texto de política de entrega*
+-   Criar página "Como a Safie Funciona"*
 
-# Painel usuário atual
+# ~~Painel usuário atual~~
 
-Ao clicar no link "Sair", o usuário deve ser redirecionado para a coleção Capsula.
+~~Ao clicar no link "Sair", o usuário deve ser redirecionado para a coleção Capsula.~~
 
 # Login
 
--   Criar validação garantindo que caso o usuário JÁ esteja logado, ao tentar acessar a tela de login o usuário seja redirecionado para o My Safie.
--   Centralizar o link "Esqueci minha senha" e ajustar para que ele aponte para a página "Esqueci minha senha".
+-   ~~Criar validação garantindo que caso o usuário JÁ esteja logado, ao tentar acessar a tela de login o usuário seja redirecionado para o My Safie.~~
+-   ~~Centralizar o link "Esqueci minha senha"~~ e ajustar para que ele aponte para a página "Esqueci minha senha".
 
 > Enquanto a funcionalidade "Esqueci minha senha" não estiver implementada o link deve ficar oculto.
 
@@ -71,13 +71,13 @@ Criar um formulário com um campo para informar o e-mail cadastrado e um botão 
 
 # Cadastro de Usuários
 
--   Criar validação garantindo que caso o usuário JÁ esteja logado, ao tentar acessar a tela de cadastro o usuário seja redirecionado para o My Safie.
--   Centralizar o link de termos e privacidade e ajustar para que ele aponte para a página de termos de uso da Safie.
--   Remover a mensagem "Cadastro realizado com sucesso" que sempre aparece mesmo quando não foi realizada ação alguma no formulário (alterar para que seja utilizado o novo componente de exibição de mensagens de sucesso e de erro).
+-   ~~Criar validação garantindo que caso o usuário JÁ esteja logado, ao tentar acessar a tela de cadastro o usuário seja redirecionado para o My Safie.~~
+-   ~~Centralizar o link de termos e privacidade~~ e ajustar para que ele aponte para a página de termos de uso da Safie.
+-   ~~Remover a mensagem "Cadastro realizado com sucesso" que sempre aparece mesmo quando não foi realizada ação alguma no formulário~~ (alterar para que seja utilizado o novo componente de exibição de mensagens de sucesso e de erro).
 
-## Termos de Uso
+## Termos de Uso*
 
--   Criar página com os Termos de Uso da Safie.
+-   Criar página com os Termos de Uso da Safie.*
 
 # Listagem das Peças
 
@@ -99,7 +99,7 @@ Criar um formulário com um campo para informar o e-mail cadastrado e um botão 
 
 Ajustar os links de email, facebook e instagram para ações reais de compartilhamento da peça e suas informações.
 
-Adicionar um link no popup das medidas que abra em outra aba a imagem do manequim com a indicação de cada medida.
+~~Adicionar um link no popup das medidas que abra em outra aba a imagem do manequim com a indicação de cada medida.~~
 
 # Sacolas de compras
 
@@ -111,7 +111,7 @@ Adicionar um link no popup das medidas que abra em outra aba a imagem do manequi
 -   ~~Colocar link para as peças (ao clicar na foto vai para a pagina de detalhes da peça)~~
 -   Criar botão para editar/corrigir as medidas de uma peça da sacola. Ao clicar no botão deve ser aberto o formulário de medidas.
 -   Criar botão para editar/corrigir as cores de uma peça da sacola. Ao clicar no botão deve ser aberto um pop-up com o seletor de cores.
--   Criar botão "Continuar comprando" ao lado do botão "Finalizar compra". Ao clicar no botão o usuário deve ser redirecionado para a coleção conceito.
+-   ~~Criar botão "Continuar comprando" ao lado do botão "Finalizar compra". Ao clicar no botão o usuário deve ser redirecionado para a coleção conceito.~~
 -   Criar validação no botão "Finalizar Compra", garantindo que só pode ser finalizada uma compra que tenha todas as medidas informadas.
 -   Criar popup com mensagem de confirmação de que todas as medidas foram informadas e que  as informações dadas são verdadeiras ao clicar no "Finalizar compra" (caso todas as medidas tenham sido informadas corretamente)
 -   Ao final do processo de "Finalizar Compra" o usuário deve ser redirecionado:
@@ -182,8 +182,8 @@ Ao clicar no botão "Acompanhar meu pedido" o usuário deve ser redirecionado
 
 # My Safie
 
--   Colocar link nos itens circulares
--   Adicicionar validação para que o usuário seja redirecionado para a tela de login caso ele tente acessar a página /my-safie sem estar logado no site.
+-   ~~Colocar link nos itens circulares~~
+-   ~~Adicionar validação para que o usuário seja redirecionado para a tela de login caso ele tente acessar a página /my-safie sem estar logado no site.~~
 
 ## Minhas Medidas
 

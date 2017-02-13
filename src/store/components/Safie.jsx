@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { Redirect, Router, Route, browserHistory } from 'react-router';
 const ReactRouterRedux = require('react-router-redux');
@@ -13,28 +12,22 @@ import CustomerForm from './CustomerForm.jsx';
 import LoginForm from './LoginForm.jsx';
 import MySafie from './MySafie.jsx';
 
-const isUserAuthenticated = (cb) => {
-  axios.get('/api/customer').then((apiResult) => {
-    var result = apiResult.data;
-    if(result.success) {
-      cb((result.data && result.data.id));
-    }
-  }).catch(() => {
-    cb(false);
-  });
+const userIsAuthenticated = () => {
+  const state = store.getState();
+  return Boolean(state.customer.current.id);
 };
 
-const authCheck = (nextState, replaceState) => {
-  isUserAuthenticated((userIsAuthenticated) => {
-    if(userIsAuthenticated) {
-      replaceState('/my-safie');
-      return;
-    }
-
-    replaceState('/login');
-  });
+const redirectIfAuthenticated = (nextState, replace) => {
+  if(userIsAuthenticated()){
+    replace('/my-safie');
+  }
 };
 
+const redirectIfAuthenticationIsNeeded = (nextState, replace) => {
+  if(!userIsAuthenticated()){
+    replace('/login');
+  }
+};
 
 
 
@@ -52,9 +45,9 @@ class Safie extends React.Component {
           <Route component={Layout}>
             <Route path="/bag" component={ShoppingBag} />
             <Route path="/sobre" component={AboutUs} />
-            <Route path="/login" component={LoginForm} onEnter={authCheck} />
-            <Route path="/cadastro" component={CustomerForm} onEnter={authCheck} />
-            <Route path="/my-safie" component={MySafie} onEnter={authCheck} />
+            <Route path="/login" component={LoginForm} onEnter={redirectIfAuthenticated} />
+            <Route path="/cadastro" component={CustomerForm} onEnter={redirectIfAuthenticated} />
+            <Route path="/my-safie" component={MySafie} onEnter={redirectIfAuthenticationIsNeeded} />
             <Route path="/colecoes/:collection" component={ProductsMasonry} />
             <Route path="/colecoes/:collection/:product" component={Product} />
           </Route>

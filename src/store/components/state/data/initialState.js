@@ -54,6 +54,9 @@ module.exports = {
     quickBagOpened: false,
     shipping: null,
     total: 0,
+    count: 0,
+    validMeasurements: false,
+    userConfirmedMeasurements: false,
     //           {
     //   code: null,
     //   price: 0
