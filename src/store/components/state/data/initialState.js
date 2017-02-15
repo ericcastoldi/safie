@@ -55,7 +55,9 @@ module.exports = {
     shipping: null,
     total: 0,
     count: 0,
+    errorPopupOpen: false,
     validMeasurements: false,
+    measurementsResponsibilityPopupOpen: false,
     userConfirmedMeasurements: false,
     //           {
     //   code: null,

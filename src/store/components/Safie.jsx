@@ -11,6 +11,8 @@ import ShoppingBag from './ShoppingBag.jsx';
 import CustomerForm from './CustomerForm.jsx';
 import LoginForm from './LoginForm.jsx';
 import MySafie from './MySafie.jsx';
+import Checkout from './Checkout.jsx';
+import ThankYou from './ThankYou.jsx';
 
 const userIsAuthenticated = () => {
   const state = store.getState();
@@ -48,6 +50,8 @@ class Safie extends React.Component {
             <Route path="/login" component={LoginForm} onEnter={redirectIfAuthenticated} />
             <Route path="/cadastro" component={CustomerForm} onEnter={redirectIfAuthenticated} />
             <Route path="/my-safie" component={MySafie} onEnter={redirectIfAuthenticationIsNeeded} />
+            <Route path="/checkout" component={Checkout} onEnter={redirectIfAuthenticationIsNeeded} />
+            <Route path="/agradecimento" component={ThankYou} />
             <Route path="/colecoes/:collection" component={ProductsMasonry} />
             <Route path="/colecoes/:collection/:product" component={Product} />
           </Route>

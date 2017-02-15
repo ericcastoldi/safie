@@ -17,17 +17,21 @@ let bag = {
 
 // State
 bag.initialState = {
+  error: null,
   fetching: false,
   doneFetching: false,
   adding: false,
   doneAdding: false,
   removing: false,
   doneRemoving: false,
-  error: null,
   quickBagOpened: false,
-  items: {},
+  shipping: null,
   total: 0,
-  shipping: null
+  count: 0,
+  validMeasurements: false,
+  userConfirmedMeasurements: false,
+  errorPopupOpen: false,
+  items: {}
 };
 
 bag.itemShape = {
@@ -47,7 +51,7 @@ bag.shape = {
   doneRemoving: React.PropTypes.bool,
   adding: React.PropTypes.bool,
   doneAdding: React.PropTypes.bool,
-  error: React.PropTypes.object,
+  error: React.PropTypes.string,
   shipping: React.PropTypes.shape({
     code: React.PropTypes.string,
     price: React.PropTypes.number
@@ -55,7 +59,12 @@ bag.shape = {
   total: React.PropTypes.number,
   items: React.PropTypes.shape(bag.itemShape),
   quickBagOpened: React.PropTypes.bool,
-  toggleQuickBag: React.PropTypes.func.isRequired
+  toggleQuickBag: React.PropTypes.func.isRequired,
+  checkout: React.PropTypes.func,
+  count: React.PropTypes.number,
+  validMeasurements: React.PropTypes.bool,
+  userConfirmedMeasurements: React.PropTypes.bool,
+  errorPopupOpen: React.PropTypes.bool
 };
 
 // Actions
@@ -87,10 +96,12 @@ bag.removeProductFromBag = actionFactory.smartAsyncDeleteActionCreator('bag',
 );
 
 bag.toggleQuickBag = actionFactory.simpleActionCreator(actionTypes.TOGGLE_QUICK_BAG);
-
+bag.dismissErrorPopup = actionFactory.simpleActionCreator(actionTypes.DISMISS_ERROR_POPUP);
 bag.startCheckingOut = actionFactory.simpleActionCreator(actionTypes.START_CHECKING_OUT);
 bag.doneCheckingOut = actionFactory.payloadActionCreator(actionTypes.DONE_CHECKING_OUT, payloadFactory);
 bag.cannotCheckOut = actionFactory.errorActionCreator(actionTypes.CANNOT_CHECK_OUT);
+
+
 
 bag.checkout = () => {
 
@@ -101,17 +112,10 @@ bag.checkout = () => {
         .then(function (apiResult) {
           var result = apiResult.data;
           if(result.success){
-            // Dispatch action que altera validMeasurements paraa true
-            // Dispatch action que abre popup solicitando confirmação dos dados informados
-            //    (ao confirmar deve ser alterado userConfirmedMeasurements para true
-            //      e redirecionado para /checkout.
-            //      no onEnter do /checkout deve ser verificado se está logado,
-            //      se não estiver deve ser redireciononaado para /login   )
             dispatch(bag.doneCheckingOut(result.data));
             dispatch(push('/checkout'));
           }
           else{
-            // Dispatch action de exibição de popup de mensagem "precisamos de suas medidas"
             dispatch(bag.cannotCheckOut(result.error));
           }
         })
@@ -139,7 +143,11 @@ const mapStateToProps = (state) => {
     quickBagOpened: state.bag.quickBagOpened,
     shipping: state.bag.shipping,
     total: state.bag.total,
-    items: state.bag.items
+    items: state.bag.items,
+    count: state.bag.count,
+    validMeasurements: state.bag.validMeasurements,
+    userConfirmedMeasurements: state.bag.userConfirmedMeasurements,
+    errorPopupOpen: state.bag.errorPopupOpen
   };
 };
 
@@ -244,7 +252,45 @@ const toggleQuickBag = (state) => {
   });
 };
 
+const startCheckingOut = (state) => {
+  return Object.assign({}, state, {
+    error: null,
+    fetching: true,
+    doneFetching: false,
+    validMeasurements: false,
+    errorPopupOpen: false
+  });
+};
+
+const doneCheckingOut = (state) => {
+  return Object.assign({}, state, {
+    error: null,
+    fetching: false,
+    doneFetching: true,
+    validMeasurements: true,
+    errorPopupOpen: false
+  });
+};
+
+const cannotCheckOut = (state, action) => {
+  return Object.assign({}, state, {
+    fetching: false,
+    doneFetching: true,
+    errorPopupOpen: true,
+    validMeasurements: false,
+    error: action.payload.error
+  });
+};
+
+const dismissErrorPopup = (state) => {
+  return Object.assign({}, state, {
+    errorPopupOpen: false
+  });
+};
+
 bag.actionTypeMapping = [];
+
+bag.actionTypeMapping[actionTypes.DISMISS_ERROR_POPUP] = dismissErrorPopup;
 bag.actionTypeMapping[actionTypes.TOGGLE_QUICK_BAG] = toggleQuickBag;
 
 bag.actionTypeMapping[actionTypes.START_FETCHING_BAG] = startFetchingBag;
@@ -258,6 +304,10 @@ bag.actionTypeMapping[actionTypes.CANNOT_ADD_PRODUCT_TO_BAG] = cannotAddProductT
 bag.actionTypeMapping[actionTypes.START_REMOVING_PRODUCT_FROM_BAG] = startRemovingProductFromBag;
 bag.actionTypeMapping[actionTypes.DONE_REMOVING_PRODUCT_FROM_BAG] = doneRemovingProductFromBag;
 bag.actionTypeMapping[actionTypes.CANNOT_REMOVE_PRODUCT_FROM_BAG] = cannotRemoveProductFromBag;
+
+bag.actionTypeMapping[actionTypes.START_CHECKING_OUT] = startCheckingOut;
+bag.actionTypeMapping[actionTypes.DONE_CHECKING_OUT] = doneCheckingOut;
+bag.actionTypeMapping[actionTypes.CANNOT_CHECK_OUT] = cannotCheckOut;
 
 bag.reducer = (state = bag.initialState, action) => {
   return modelReducer(bag, state, action);

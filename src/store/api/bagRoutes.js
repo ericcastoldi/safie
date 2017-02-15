@@ -84,7 +84,9 @@ module.exports = {
 
               if(itemMeasurements && measurement in itemMeasurements) {
                 const itemMeasurement = itemMeasurements[measurement];
-                return !isNaN(itemMeasurement) && itemMeasurement > 0;
+                return itemMeasurement.value &&
+                  !isNaN(itemMeasurement.value) &&
+                  itemMeasurement.value > 0;
               }
 
               return false;

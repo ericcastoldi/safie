@@ -8,25 +8,23 @@ import bag from './state/bag.js';
 import LoadingRipple from './LoadingRipple.jsx';
 import PrettyPrice from './PrettyPrice.jsx';
 
-var ShoppingBag = React.createClass({
+class ShoppingBag extends React.Component {
 
-  propTypes: {
-    fetchBag: React.PropTypes.func.isRequired,
-    checkout: React.PropTypes.func.isRequired,
-    removeProductFromBag: React.PropTypes.func.isRequired,
-    error: React.PropTypes.object,
-    fetching: React.PropTypes.bool,
-    doneFetching: React.PropTypes.bool,
-    removing: React.PropTypes.bool,
-    doneRemoving: React.PropTypes.bool,
-    adding: React.PropTypes.bool,
-    doneAdding: React.PropTypes.bool,
-    shipping: React.PropTypes.object,
-    total: React.PropTypes.number,
-    items: React.PropTypes.shape(bag.itemShape)
-  },
+    constructor() {
+      super();
 
-  render: function () {
+      this.renderDataRows = this.renderDataRows.bind(this);
+
+      this.renderTotal = this.renderTotal.bind(this);
+      this.renderSubTotal = this.renderSubTotal.bind(this);
+      this.renderTotalItems = this.renderTotalItems.bind(this);
+
+      this.renderShipping = this.renderShipping.bind(this);
+      this.renderShippingPrice = this.renderShippingPrice.bind(this);
+      this.renderShippingDetails = this.renderShippingDetails.bind(this);
+    }
+
+  render() {
 
     if (this.props.fetching || this.props.adding || this.props.removing) {
       return (<LoadingRipple active={true} />);
@@ -85,9 +83,9 @@ var ShoppingBag = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
-  renderTotal: function () {
+  renderTotal() {
 
     if (!this.props.total) {
       return null;
@@ -101,9 +99,9 @@ var ShoppingBag = React.createClass({
         {this.renderTotalItems()}
       </div>
     );
-  },
+  }
 
-  renderSubTotal: function () {
+  renderSubTotal() {
     if (!this.props.total) {
       return null;
     }
@@ -118,9 +116,9 @@ var ShoppingBag = React.createClass({
         </td>
       </tr>
     );
-  },
+  }
 
-  renderTotalItems: function () {
+  renderTotalItems() {
     var items = Object
       .keys(this.props.items)
       .map(function (itemId, index) {
@@ -146,9 +144,9 @@ var ShoppingBag = React.createClass({
         </tbody>
       </table>
     );
-  },
+  }
 
-  renderShippingPrice: function () {
+  renderShippingPrice() {
     if (!this.props.shipping) {
       return null;
     }
@@ -161,9 +159,9 @@ var ShoppingBag = React.createClass({
         <td><PrettyPrice price={this.props.shipping.price} /></td>
       </tr>
     );
-  },
+  }
 
-  renderShipping: function () {
+  renderShipping() {
 
     const shippingDetails = this.renderShippingDetails();
 
@@ -176,9 +174,9 @@ var ShoppingBag = React.createClass({
       </div>
     );
 
-  },
+  }
 
-  renderShippingDetails: function () {
+  renderShippingDetails() {
     if (this.props.shipping) {
       return (
         <p>
@@ -190,9 +188,9 @@ var ShoppingBag = React.createClass({
       );
     }
     return null;
-  },
+  }
 
-  renderDataRows: function () {
+  renderDataRows() {
 
     return Object
       .keys(this.props.items)
@@ -212,9 +210,7 @@ var ShoppingBag = React.createClass({
             </td>
             <td>
               <a href="#" onClick={() => {
-                this
-                  .props
-                  .removeProductFromBag(itemId);
+                this.props.removeProductFromBag(itemId);
               }}>
                 x
               </a>
@@ -224,6 +220,7 @@ var ShoppingBag = React.createClass({
       }.bind(this));
   }
 
-});
+}
 
+ShoppingBag.propTypes = bag.shape;
 module.exports = bag.connect(ShoppingBag);
