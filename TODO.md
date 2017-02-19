@@ -103,7 +103,7 @@ Ajustar os links de email, facebook e instagram para ações reais de compartilh
 
 # Sacolas de compras
 
-> **Criar um componente com o ícone da sacola de compras e a contagem de produtos na lateral**
+> ~~**Criar um componente com o ícone da sacola de compras e a contagem de produtos na lateral**~~
 
 ## Sacola Principal
 
@@ -112,17 +112,17 @@ Ajustar os links de email, facebook e instagram para ações reais de compartilh
 -   Criar botão para editar/corrigir as medidas de uma peça da sacola. Ao clicar no botão deve ser aberto o formulário de medidas.
 -   Criar botão para editar/corrigir as cores de uma peça da sacola. Ao clicar no botão deve ser aberto um pop-up com o seletor de cores.
 -   ~~Criar botão "Continuar comprando" ao lado do botão "Finalizar compra". Ao clicar no botão o usuário deve ser redirecionado para a coleção conceito.~~
--   Criar validação no botão "Finalizar Compra", garantindo que só pode ser finalizada uma compra que tenha todas as medidas informadas.
--   Criar popup com mensagem de confirmação de que todas as medidas foram informadas e que  as informações dadas são verdadeiras ao clicar no "Finalizar compra" (caso todas as medidas tenham sido informadas corretamente)
--   Ao final do processo de "Finalizar Compra" o usuário deve ser redirecionado:
-  * Caso NÃO esteja logado, deve ser redirecionado para o login. Após se cadastrar ou fazer o login o usuário será redirecionado para o My Safie onde ele pode clicar novamente em "Finalizar Compra".
-  * Caso ESTEJA logado, deve ser redirecionado para a tela de checkout.
--   Formatar valor total da compra corretamente
+-   ~~Criar validação no botão "Finalizar Compra", garantindo que só pode ser finalizada uma compra que tenha todas as medidas informadas.~~
+-   ~~Criar popup com mensagem de confirmação de que todas as medidas foram informadas e que  as informações dadas são verdadeiras ao clicar no "Finalizar compra" (caso todas as medidas tenham sido informadas corretamente)~~
+-   ~~Ao final do processo de "Finalizar Compra" o usuário deve ser redirecionado:~~
+  * ~~Caso NÃO esteja logado, deve ser redirecionado para o login. Após se cadastrar ou fazer o login o usuário será redirecionado para o My Safie onde ele pode clicar novamente em "Finalizar Compra".~~
+  * ~~Caso ESTEJA logado, deve ser redirecionado para a tela de checkout.~~
+-   ~~Formatar valor total da compra corretamente~~
 -   Implementar o cálculo de frete
 
 ## Quick Bag
 
--   Ajustar altura da Quick Bag
+-   ~~Ajustar altura da Quick Bag~~
 -   ~~Ajustar abertura/fechamento da quickbag ao clicar no "x" dos itens e no link da sacola.~~
 -   Colocar link para as peças (ao clicar na foto vai para a pagina de detalhes da peça)
 -   Adicionar painel com o valor total da compra (devidamente formatado)
@@ -132,9 +132,9 @@ Ajustar os links de email, facebook e instagram para ações reais de compartilh
 
 # Checkout
 
-Criar tela de Checkout de acordo com o modelo da pasta Frontend.
+~~Criar tela de Checkout de acordo com o modelo da pasta Frontend.~~
 
-> Validar com a Sabrine se os botões "Adicionar novo endereço" e "Realizar pagamento" estão corretos (na minha versão estão com cantos arredondados e o botão de endereço aparece diferente de todos os demais botões do site).
+> ~~Validar com a Sabrine se os botões "Adicionar novo endereço" e "Realizar pagamento" estão corretos (na minha versão estão com cantos arredondados e o botão de endereço aparece diferente de todos os demais botões do site).~~
 
 ## Resumo do pedido
 
@@ -174,9 +174,10 @@ No caso de alguma falha na comunicação com o PagSeguro o site deve redireciona
 
 # Agradecimento
 
-Criar a tela de Agradecimento de acordo com o modelo da pasta Frontend. Adicionar um vídeo promocional no painel inferior.
+~~Criar a tela de Agradecimento de acordo com o modelo da pasta Frontend. 
+Ao clicar no botão "Acompanhar meu pedido" o usuário deve ser redirecionado para o My Safie.~~
 
-Ao clicar no botão "Acompanhar meu pedido" o usuário deve ser redirecionado
+Adicionar um vídeo promocional no painel inferior.
 
 > Validar com a Sabrine qual será o vídeo a ser exibido no painel inferior no lugar da imagem.
 
