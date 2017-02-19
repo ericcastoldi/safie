@@ -5,7 +5,7 @@ var ProductPicturesPicker = React.createClass({
 
   propTypes: {
     picturePicked: React.PropTypes.func,
-    activePicture: React.PropTypes.string,
+    activePicture: React.PropTypes.number,
     pictures: React.PropTypes.object
   },
 
@@ -14,7 +14,7 @@ var ProductPicturesPicker = React.createClass({
     return Object.keys(this.props.pictures).map(function(pic, index) {
       var thumbnailCssClasses = [ 'thumbnail-produto' ];
 
-      if(pic === this.props.activePicture){
+      if(pic === this.props.activePicture.toString()){
         thumbnailCssClasses.push('active');
       }
 

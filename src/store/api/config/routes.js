@@ -28,6 +28,7 @@ module.exports = function(app, passport) {
 
   // Shopping Bag
   app.get('/api/bag', bag.get);
+  app.post('/api/bag/checkout', bag.checkout);
   //app.get('/api/bag/shipping', bag.get);
   app.post('/api/bag', bag.post);
   app.delete('/api/bag/:itemId', bag.delete);

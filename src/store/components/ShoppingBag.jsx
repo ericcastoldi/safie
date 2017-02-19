@@ -1,28 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router';
+import LightButton from './LightButton.jsx';
 import DarkButton from './DarkButton.jsx';
 import ProductPrice from './ProductPrice.jsx';
 import ProductCardHorizontal from './ProductCardHorizontal.jsx';
 import bag from './state/bag.js';
 import LoadingRipple from './LoadingRipple.jsx';
+import PrettyPrice from './PrettyPrice.jsx';
 
-var ShoppingBag = React.createClass({
+class ShoppingBag extends React.Component {
 
-  propTypes: {
-    fetchBag: React.PropTypes.func.isRequired,
-    removeProductFromBag: React.PropTypes.func.isRequired,
-    error: React.PropTypes.object,
-    fetching: React.PropTypes.bool,
-    doneFetching: React.PropTypes.bool,
-    removing: React.PropTypes.bool,
-    doneRemoving: React.PropTypes.bool,
-    adding: React.PropTypes.bool,
-    doneAdding: React.PropTypes.bool,
-    shipping: React.PropTypes.object,
-    total: React.PropTypes.number,
-    items: React.PropTypes.shape(bag.itemShape)
-  },
+    constructor() {
+      super();
 
-  render: function () {
+      this.renderDataRows = this.renderDataRows.bind(this);
+
+      this.renderTotal = this.renderTotal.bind(this);
+      this.renderSubTotal = this.renderSubTotal.bind(this);
+      this.renderTotalItems = this.renderTotalItems.bind(this);
+
+      this.renderShipping = this.renderShipping.bind(this);
+      this.renderShippingPrice = this.renderShippingPrice.bind(this);
+      this.renderShippingDetails = this.renderShippingDetails.bind(this);
+    }
+
+  render() {
 
     if (this.props.fetching || this.props.adding || this.props.removing) {
       return (<LoadingRipple active={true} />);
@@ -62,24 +64,28 @@ var ShoppingBag = React.createClass({
 
           </div>
           <div className="row">
-            <div className="six columns">
+            <div className="five columns">
               {shipping}
             </div>
-            <div className="six columns">
+            <div className="seven columns">
               {total}
 
               <br/>
 
-              <DarkButton label="Finalizar Compra"/>
+              <Link to='/colecoes/barcelona'>
+                <LightButton label="Continuar Comprando"/>
+              </Link>
+
+              <DarkButton click={this.props.checkout} label="Finalizar Compra"/>
 
             </div>
           </div>
         </div>
       </div>
     );
-  },
+  }
 
-  renderTotal: function () {
+  renderTotal() {
 
     if (!this.props.total) {
       return null;
@@ -93,9 +99,9 @@ var ShoppingBag = React.createClass({
         {this.renderTotalItems()}
       </div>
     );
-  },
+  }
 
-  renderSubTotal: function () {
+  renderSubTotal() {
     if (!this.props.total) {
       return null;
     }
@@ -106,17 +112,13 @@ var ShoppingBag = React.createClass({
           <h4>Total</h4>
         </td>
         <td>
-          <h4>R$ {this
-              .props
-              .total
-              .toString()
-              .replace(',', '.')}</h4>
+          <h4><PrettyPrice price={this.props.total} /></h4>
         </td>
       </tr>
     );
-  },
+  }
 
-  renderTotalItems: function () {
+  renderTotalItems() {
     var items = Object
       .keys(this.props.items)
       .map(function (itemId, index) {
@@ -127,7 +129,7 @@ var ShoppingBag = React.createClass({
             <td>
               <strong>{product.name}</strong>
             </td>
-            <td>R$ {product.price}</td>
+            <td><PrettyPrice price={product.price} /></td>
           </tr>
         );
       }.bind(this));
@@ -142,9 +144,9 @@ var ShoppingBag = React.createClass({
         </tbody>
       </table>
     );
-  },
+  }
 
-  renderShippingPrice: function () {
+  renderShippingPrice() {
     if (!this.props.shipping) {
       return null;
     }
@@ -154,12 +156,12 @@ var ShoppingBag = React.createClass({
         <td>
           <strong>Frete</strong>
         </td>
-        <td>{this.props.shipping.price}</td>
+        <td><PrettyPrice price={this.props.shipping.price} /></td>
       </tr>
     );
-  },
+  }
 
-  renderShipping: function () {
+  renderShipping() {
 
     const shippingDetails = this.renderShippingDetails();
 
@@ -172,23 +174,23 @@ var ShoppingBag = React.createClass({
       </div>
     );
 
-  },
+  }
 
-  renderShippingDetails: function () {
+  renderShippingDetails() {
     if (this.props.shipping) {
       return (
         <p>
           O frete para o cep
           <strong>{this.props.shipping.code}</strong>
           é
-          <strong>{this.props.shipping.price}</strong>
+          <strong><PrettyPrice price={this.props.shipping.price} /></strong>
         </p>
       );
     }
     return null;
-  },
+  }
 
-  renderDataRows: function () {
+  renderDataRows() {
 
     return Object
       .keys(this.props.items)
@@ -208,9 +210,7 @@ var ShoppingBag = React.createClass({
             </td>
             <td>
               <a href="#" onClick={() => {
-                this
-                  .props
-                  .removeProductFromBag(itemId);
+                this.props.removeProductFromBag(itemId);
               }}>
                 x
               </a>
@@ -220,29 +220,7 @@ var ShoppingBag = React.createClass({
       }.bind(this));
   }
 
-});
+}
 
+ShoppingBag.propTypes = bag.shape;
 module.exports = bag.connect(ShoppingBag);
-
-// function mapStateToProps(state) {
-//   return {
-//     total: state.bag.total,
-//     items: state.bag.items,
-//     error: state.bag.error,
-//     fetching: state.bag.fetching,
-//     doneFetching: state.bag.doneFetching,
-//     removing: state.bag.removing,
-//     doneRemoving: state.bag.doneRemoving,
-//     adding: state.bag.adding,
-//     doneAdding: state.bag.doneAdding,
-//     shipping: state.bag.shipping
-//   };
-// }
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     fetchBag: bagActions.fetchBag,
-//     removeProductFromBag: bagActions.removeProductFromBag
-//   }, dispatch);
-// }
-//
-// module.exports = connect(mapStateToProps, mapDispatchToProps)(ShoppingBag);

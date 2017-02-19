@@ -120,6 +120,7 @@ class CustomerForm extends React.Component {
 
               </div>
             </div>
+
             <p><a href='#'>Cadastrando-se voce aceita nossos termos e privacidade</a></p>
 
             <button

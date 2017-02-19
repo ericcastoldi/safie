@@ -1,18 +1,24 @@
-var React = require('react');
+import React from 'react';
+import PrettyPrice from './PrettyPrice.jsx';
 
-var ProductPrice = React.createClass({
-  propTypes: {
-    price: React.PropTypes.string
-  },
+class ProductPrice extends React.Component {
+  constructor(props){
+    super(props);
+  }
 
-  render: function () {
+  render() {
     return (
       <span className="produto-preco">
-        <h5>R$ {this.props.price}</h5>
+        <h5><PrettyPrice price={this.props.price} /></h5>
       </span>
     );
   }
-});
+
+}
+
+ProductPrice.propTypes = {
+  price: React.PropTypes.number
+};
 
 
 module.exports = ProductPrice;

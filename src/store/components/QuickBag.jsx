@@ -1,30 +1,20 @@
 import React from 'react';
 import bag from './state/bag.js';
-import {Link} from 'react-router';
 
-var QuickBag = React.createClass({
-  propTypes: {
-    fetchBag: React.PropTypes.func.isRequired,
-    quickBagOpened: React.PropTypes.bool.isRequired,
-    toggleQuickBag: React.PropTypes.func.isRequired,
-    removeProductFromBag: React.PropTypes.func.isRequired,
-    error: React.PropTypes.object,
-    fetching: React.PropTypes.bool,
-    doneFetching: React.PropTypes.bool,
-    removing: React.PropTypes.bool,
-    doneRemoving: React.PropTypes.bool,
-    adding: React.PropTypes.bool,
-    doneAdding: React.PropTypes.bool,
-    shipping: React.PropTypes.object,
-    total: React.PropTypes.number,
-    items: React.PropTypes.shape(bag.itemShape)
-  },
+class QuickBag extends React.Component {
 
-  toggle: function(){
+  constructor() {
+    super();
+
+    this.toggle = this.toggle.bind(this);
+    this.renderItems = this.renderItems.bind(this);
+  }
+
+  toggle(){
     this.props.toggleQuickBag();
-  },
+  }
 
-  render: function () {
+  render() {
     let cssClasses = ['quickbag'];
     if(this.props.quickBagOpened) {
       cssClasses.push('open');
@@ -47,9 +37,9 @@ var QuickBag = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
-  renderItems: function() {
+  renderItems() {
     if(this.props.fetching || this.props.adding || this.props.removing ||
       (!this.props.items || Object.keys(this.props.items).length === 0)) {
       return null;
@@ -81,7 +71,7 @@ var QuickBag = React.createClass({
       }.bind(this));
 
   }
-});
+}
 
-
+QuickBag.propTypes = bag.shape;
 module.exports = bag.connect(QuickBag);

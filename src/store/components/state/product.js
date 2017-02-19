@@ -28,7 +28,7 @@ product.shape = {
   id: React.PropTypes.string,
   name: React.PropTypes.string,
   description: React.PropTypes.string,
-  price: React.PropTypes.string,
+  price: React.PropTypes.number,
   measurements: React.PropTypes.object,
   pictures: React.PropTypes.shape({
     main: React.PropTypes.number,

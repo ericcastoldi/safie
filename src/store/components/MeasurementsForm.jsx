@@ -25,6 +25,9 @@ class MeasurementsForm extends React.Component {
         <h2>Medidas</h2>
         {renderedMeasurements}
         <DarkButton click={this.setMeasurements} label="Definir Medidas" />
+        <a target="blank" href="/img/medidas.jpg">
+          CONSULTAR TABELA DE MEDIDAS
+        </a>
       </div>
     );
   }

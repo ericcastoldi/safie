@@ -11,14 +11,26 @@ import ShoppingBag from './ShoppingBag.jsx';
 import CustomerForm from './CustomerForm.jsx';
 import LoginForm from './LoginForm.jsx';
 import MySafie from './MySafie.jsx';
-// import { routerActions } from 'react-router-redux';
-// import { userAuthWrapper } from 'redux-auth-wrapper';
-//
-// const isUserAuthenticated = userAuthWrapper({
-//   authSelector: state => state.customer.current, // how to get the user state
-//   redirectAction: routerActions.replace, // the redux action to dispatch for redirect
-//   wrapperDisplayName: 'isUserAuthenticated' // a nice name for this auth check
-// });
+import Checkout from './Checkout.jsx';
+import ThankYou from './ThankYou.jsx';
+
+const userIsAuthenticated = () => {
+  const state = store.getState();
+  return Boolean(state.customer.current.id);
+};
+
+const redirectIfAuthenticated = (nextState, replace) => {
+  if(userIsAuthenticated()){
+    replace('/my-safie');
+  }
+};
+
+const redirectIfAuthenticationIsNeeded = (nextState, replace) => {
+  if(!userIsAuthenticated()){
+    replace('/login');
+  }
+};
+
 
 
 const history = ReactRouterRedux.syncHistoryWithStore(browserHistory, store);
@@ -35,9 +47,11 @@ class Safie extends React.Component {
           <Route component={Layout}>
             <Route path="/bag" component={ShoppingBag} />
             <Route path="/sobre" component={AboutUs} />
-            <Route path="/login" component={LoginForm} />
-            <Route path="/cadastro" component={CustomerForm} />
-            <Route path="/my-safie" component={MySafie} />
+            <Route path="/login" component={LoginForm} onEnter={redirectIfAuthenticated} />
+            <Route path="/cadastro" component={CustomerForm} onEnter={redirectIfAuthenticated} />
+            <Route path="/my-safie" component={MySafie} onEnter={redirectIfAuthenticationIsNeeded} />
+            <Route path="/checkout" component={Checkout} onEnter={redirectIfAuthenticationIsNeeded} />
+            <Route path="/agradecimento" component={ThankYou} />
             <Route path="/colecoes/:collection" component={ProductsMasonry} />
             <Route path="/colecoes/:collection/:product" component={Product} />
           </Route>
