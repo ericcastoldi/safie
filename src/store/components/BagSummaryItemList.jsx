@@ -1,5 +1,6 @@
 import React from 'react';
 import BagSummaryItem from './BagSummaryItem.jsx';
+import { itemShape } from './state/bag.js';
 
 class BagSummaryItemList extends React.Component {
 
@@ -8,16 +9,24 @@ class BagSummaryItemList extends React.Component {
     }
 
     render() {
-      const items = this.props.items.map(item => {
-        return <BagSummaryItem>{item.name}</BagSummaryItem>;
+      const items = this.props.items;
+
+      const renderedItems = Object.keys(items).map((itemId, idx) => {
+        const item = items[itemId];
+
+        return (
+          <BagSummaryItem key={idx}>
+            {item.product.name}
+          </BagSummaryItem>
+        );
       });
 
-      return <div>{items}</div>;
+      return <div>{renderedItems}</div>;
     }
 }
 
 BagSummaryItemList.propTypes = {
-  items: React.PropTypes.arrayOf(React.PropTypes.object)
+  items: React.PropTypes.shape(itemShape)
 };
 
 module.exports = BagSummaryItemList;

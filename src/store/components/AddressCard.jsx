@@ -1,6 +1,7 @@
 import React from 'react';
 
 class AddressCard extends React.Component {
+
   constructor(props){
     super(props);
 
@@ -15,9 +16,16 @@ class AddressCard extends React.Component {
 
   render() {
 
+    let cssClasses = ['linha-exterior'];
+    if(this.props.address.active) {
+      cssClasses.push('active');
+    }
+
+
     return (
-      <div className='twelve columns'>
-        <div className='address'>
+      <div className={cssClasses.join(' ')}>
+        <div className='address inside-box'>
+
           <p>{this.props.address.street}, {this.props.address.number}</p>
           <p>{this.props.address.obs}</p>
           <p>{this.props.address.district}</p>
@@ -26,6 +34,8 @@ class AddressCard extends React.Component {
           <p>{this.props.address.code}</p>
 
           <i onClick={this.remove} className="fa fa-times-circle-o" aria-hidden="true"></i>
+
+          <p className="alterar-end">Alterar endereço</p>
 
         </div>
       </div>
@@ -38,6 +48,7 @@ AddressCard.propTypes = {
   removingAddress: React.PropTypes.bool,
   removeAddress: React.PropTypes.func,
   address: React.PropTypes.shape({
+    active: React.PropTypes.bool,
     addressId: React.PropTypes.string,
     street: React.PropTypes.string,
     number: React.PropTypes.string,

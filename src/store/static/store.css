@@ -481,6 +481,7 @@ nav.menu.open {
 .thumbnail-produto {
     width: 10rem;
     overflow: hidden;
+    filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
@@ -492,6 +493,7 @@ nav.menu.open {
 
 .thumbnail-produto.active,
 .thumbnail-produto:hover {
+    filter: grayscale(0);
     -webkit-filter: grayscale(0);
 }
 
@@ -590,6 +592,7 @@ nav.menu.open {
     -moz-transition: all 0.30s ease-in-out;
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
+    transition: all 0.30s ease-in-out;
     color: #fff;
     cursor: pointer;
     background-color: #335483;
@@ -679,8 +682,6 @@ nav.menu.open {
 
 .field-container {
     display: inline;
-    float: left;
-    width: 49%;
     text-align: left;
 }
 
@@ -986,12 +987,12 @@ nav.menu.open {
     border: 1px solid #fbeee8;
 }
 
-.conteudo-checkout .box .linha-exterior-2 {
+.conteudo-checkout .box .linha-exterior.active {
     padding: 5px;
     border: 1px solid #eac7ab;
 }
 
-.conteudo-checkout .box .linha-exterior-2 .inside-box {
+.conteudo-checkout .box .linha-exterior.active .inside-box {
     background-color: #eac7ab;
 }
 
@@ -1017,8 +1018,7 @@ nav.menu.open {
     border-radius: 0px;
 }
 
-.linha-exterior p,
-.linha-exterior-2 p {
+.linha-exterior p {
     margin-bottom: -5px;
 }
 
@@ -1156,6 +1156,7 @@ nav.menu.open {
     height: 0;
     margin-left: 3rem;
     -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .my-safie .cerca.aberto {
@@ -1201,10 +1202,6 @@ nav.menu.open {
 .my-safie .meus-pedidos .peca .obs p:last-child {
     position: absolute;
     bottom: 5px;
-}
-
-.my-safie .meus-pedidos .peca:last-child {
-    /*margin-left: -10px;*/
 }
 
 .my-safie .meus-pedidos p strong {
