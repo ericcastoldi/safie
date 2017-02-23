@@ -1,4 +1,6 @@
 import React from 'react';
+import PrettyPrice from './PrettyPrice.jsx';
+import { Link } from 'react-router';
 import bag from './state/bag.js';
 
 class QuickBag extends React.Component {
@@ -10,13 +12,13 @@ class QuickBag extends React.Component {
     this.renderItems = this.renderItems.bind(this);
   }
 
-  toggle(){
+  toggle() {
     this.props.toggleQuickBag();
   }
 
   render() {
     let cssClasses = ['quickbag'];
-    if(this.props.quickBagOpened) {
+    if (this.props.quickBagOpened) {
       cssClasses.push('open');
     }
 
@@ -25,11 +27,11 @@ class QuickBag extends React.Component {
       <div
         id="quickbag"
         className={cssClasses.join(' ')}>
-          <i
-            aria-hidden="true"
-            onClick={this.toggle}
-            className="fa fa-shopping-bag fa-2x">
-          </i>
+        <i
+          aria-hidden="true"
+          onClick={this.toggle}
+          className="fa fa-shopping-bag fa-2x">
+        </i>
         <div className="items">
 
           {items}
@@ -40,7 +42,7 @@ class QuickBag extends React.Component {
   }
 
   renderItems() {
-    if(this.props.fetching || this.props.adding || this.props.removing ||
+    if (this.props.fetching || this.props.adding || this.props.removing ||
       (!this.props.items || Object.keys(this.props.items).length === 0)) {
       return null;
     }
@@ -51,6 +53,7 @@ class QuickBag extends React.Component {
 
         var item = this.props.items[itemId];
         var product = item.product;
+        var route = '/colecoes/barcelona/' + product.id;
         var picture = product.pictures.paths[product.pictures.product];
 
         return (
@@ -62,10 +65,14 @@ class QuickBag extends React.Component {
               onClick={() => {
                 this
                   .props
-                .removeProductFromBag(itemId);
+                  .removeProductFromBag(itemId);
               }}>
             </i>
-            <p>{product.name}<br />R$ {product.price}</p>
+            <p>
+              <Link to={route}>{product.name}</Link>
+              <br />
+              <PrettyPrice price={product.price} />
+            </p>
           </div>
         );
       }.bind(this));

@@ -4,7 +4,7 @@ import bag from './state/bag.js';
 import product from './state/product.js';
 
 class MyBagItem extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
@@ -15,7 +15,7 @@ class MyBagItem extends React.Component {
     const picture = prod.pictures.paths[prod.pictures.product];
 
     return (
-      <div>
+      <div className="my-bag-item">
         <img src={picture} alt={prod.name.toUpperCase()} width="150" />
 
         <i

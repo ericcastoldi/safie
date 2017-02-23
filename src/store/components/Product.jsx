@@ -4,25 +4,17 @@ import ProductDetails from './ProductDetails.jsx';
 import LoadingRipple from './LoadingRipple.jsx';
 import product from './state/product.js';
 
-var Product = React.createClass({
+class Product extends React.Component {
 
-  propTypes: {
-    fetchProduct: React.PropTypes.func.isRequired,
-    params: React.PropTypes.object.isRequired,
-    options: React.PropTypes.shape({
-      color: React.PropTypes.object,
-      measurements: React.PropTypes.object
-    }),
-    product: React.PropTypes.shape(product.shape)
-  },
+  constructor(props){
+    super(props);
+  }
 
-
-  componentDidMount: function() {
+  componentDidMount() {
     this.props.fetchProduct(this.props.params.product);
-  },
+  }
 
-
-  render: function() {
+  render() {
     var prod = this.props.product;
 
     if(!prod) {
@@ -40,6 +32,17 @@ var Product = React.createClass({
       </div>
     );
   }
-});
+}
+
+
+Product.propTypes = {
+  fetchProduct: React.PropTypes.func.isRequired,
+  params: React.PropTypes.object.isRequired,
+  options: React.PropTypes.shape({
+    color: React.PropTypes.object,
+    measurements: React.PropTypes.object
+  }),
+  product: React.PropTypes.shape(product.shape)
+};
 
 module.exports = product.connect(Product);

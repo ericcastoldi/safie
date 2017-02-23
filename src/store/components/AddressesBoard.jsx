@@ -16,19 +16,19 @@ class AddressesBoard extends React.Component {
   render() {
 
     const addresses = this.props.addresses;
-    if(!addresses || addresses.length === 0){
+    if (!addresses || addresses.length === 0) {
       return (
-         <NothingToSeeHere text="Nenhum endereço foi encontrado." />
+        <NothingToSeeHere text="Nenhum endereço encontrado. Cadastre o endereço em que você deseja receber sua encomenda da Safie!" />
       );
     }
 
-    if(addresses.length === 1) {
+    if (addresses.length === 1) {
 
       return (
-          <AddressCard
-            address={addresses[0]}
-            removeAddress={this.props.removeAddress} />
-        );
+        <AddressCard
+          address={addresses[0]}
+          removeAddress={this.props.removeAddress} />
+      );
     }
 
     const renderedAddresses = this.renderCards();
@@ -58,9 +58,9 @@ class AddressesBoard extends React.Component {
       var addressRowContent = rowAddresses.map((addr, rowIndex) => {
         return (
           <div key={rowIndex} className="six columns">
-             <AddressCard
-                address={addr}
-                removeAddress={this.props.removeAddress} />
+            <AddressCard
+              address={addr}
+              removeAddress={this.props.removeAddress} />
           </div>
         );
       });

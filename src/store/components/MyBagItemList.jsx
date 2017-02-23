@@ -1,10 +1,11 @@
 import React from 'react';
 import MyBagItem from './MyBagItem.jsx';
+import NothingToSeeHere from './NothingToSeeHere.jsx';
 import bag from './state/bag.js';
 
 class MyBagItemList extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
@@ -12,7 +13,7 @@ class MyBagItemList extends React.Component {
 
     if (!this.props.items) {
       return (
-        <div className="no-items">Sua sacola está vazia.</div>
+        <NothingToSeeHere text="Sua sacola está vazia." />
       );
     }
 

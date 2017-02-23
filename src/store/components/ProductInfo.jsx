@@ -1,28 +1,13 @@
-var React = require('react');
+import React from 'react';
 
-//var ProductTitle = require('./ProductTitle.jsx');
-//var ProductInfoLayout = require('./ProductInfoLayout.jsx');
-// var ProductInfo = React.createClass({
-//   propTypes: {
-//     name: React.PropTypes.string.isRequired,
-//     description: React.PropTypes.string
-//   },
-//
-//   render: function () {
-//     return (
-//       <ProductInfoLayout description={this.props.description}>
-//         <ProductTitle name={this.props.name} />
-//       </ProductInfoLayout>
-//     );
-//   }
-// });
+class ProductInfo extends React.Component {
 
-var ProductInfo = React.createClass({
-  propTypes: {
-    description: React.PropTypes.string
-  },
+  constructor(props){
+    super(props);
+  }
 
-  render: function () {
+
+  render() {
     return (
       <div className="informacoes-produto">
         <h3>Descrição & Detalhes</h3>
@@ -30,7 +15,12 @@ var ProductInfo = React.createClass({
       </div>
     );
   }
-});
+
+}
+
+ProductInfo.propTypes = {
+  description: React.PropTypes.string
+};
 
 
 module.exports = ProductInfo;

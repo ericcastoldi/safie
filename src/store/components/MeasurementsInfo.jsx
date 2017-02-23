@@ -1,4 +1,7 @@
 import React from 'react';
+import PrettyMeasurement from './PrettyMeasurement.jsx';
+import EmptyMeasurement from './EmptyMeasurement.jsx';
+import MeasurementName from './MeasurementName.jsx';
 import product from './state/product.js';
 
 class MeasurementsInfo extends React.Component {
@@ -20,30 +23,25 @@ class MeasurementsInfo extends React.Component {
   }
 
 
-  renderMeasurements(){
+  renderMeasurements() {
 
-    if(!this.props.product.measurements){
+    if (!this.props.product.measurements) {
       return 'Peça sem especificação de medidas';
     }
 
-    var measurementsMap = Object.keys(this.props.product.measurements).map(function(measurementId, index){
+    const measurements = this.props.measurements;
+    var measurementsMap = Object.keys(this.props.product.measurements).map(function (measurementId, index) {
 
       let productMeasurement = this.props.product.measurements[measurementId];
-      let measurementValue = 'Medida não especificada';
 
-      if(this.props.measurements &&
-        measurementId in this.props.measurements) {
-        let measurement = this.props.measurements[measurementId];
-
-        if(measurement.value){
-          measurementValue = measurement.value + 'cm';
-        }
-      }
+      let measurementValue = (measurements && measurementId in measurements)
+        ? <PrettyMeasurement measurement={measurements[measurementId]} />
+        : <EmptyMeasurement />;
 
       return (
         <p key={index} title={productMeasurement.description}>
-          <span className="medida">{productMeasurement.name}:</span>
-          <span className="tamanho">{measurementValue}</span>
+          <MeasurementName measurement={productMeasurement} />
+          {measurementValue}
         </p>
       );
     }.bind(this));

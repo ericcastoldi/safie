@@ -1,12 +1,18 @@
 import axios from 'axios';
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+    connect
+} from 'react-redux';
+import {
+    bindActionCreators
+} from 'redux';
 import product from './product.js';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
-import { push } from 'react-router-redux';
+import {
+    push
+} from 'react-router-redux';
 
 let bag = {
     // shape: null,
@@ -108,6 +114,7 @@ bag.dismissAgreementAcceptancePopup = actionFactory.simpleActionCreator(actionTy
 bag.acceptAgreement = actionFactory.simpleActionCreator(actionTypes.ACCEPT_AGREEMENT);
 
 bag.agreementAcceptance = () => {
+
 
     return (dispatch) => {
         dispatch(bag.acceptAgreement());

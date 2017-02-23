@@ -13,36 +13,33 @@ import bag from './state/bag.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-var ProductDetails = React.createClass({
+class ProductDetails extends React.Component {
 
-  propTypes: {
-    measurementsPopupOpen: React.PropTypes.bool,
-    openMeasurementsPopup: React.PropTypes.func,
-    closeMeasurementsPopup: React.PropTypes.func,
-    setProductMeasurements: React.PropTypes.func.isRequired,
-    addProductToBag: React.PropTypes.func.isRequired,
-    options: React.PropTypes.shape({
-      color: React.PropTypes.object,
-      measurements: React.PropTypes.object
-    }),
-    product: React.PropTypes.shape(product.shape)
-  },
+  constructor(props) {
+    super(props);
 
-  addToBag: function(){
+    this.addToBag = this.addToBag.bind(this);
+    this.setProductMeasurements = this.setProductMeasurements.bind(this);
+  }
+
+
+  addToBag() {
     const item = {
       product: this.props.product,
       options: this.props.options
     };
 
     this.props.addProductToBag(item);
-  },
+  }
 
-  setProductMeasurements: function(measurements){
+  setProductMeasurements(measurements){
     this.props.setProductMeasurements(measurements);
     this.props.closeMeasurementsPopup();
-  },
 
-  render: function () {
+    this.addToBag();
+  }
+
+  render() {
     return (
       <div className="detalhes-produto">
         <div className="container">
@@ -76,21 +73,35 @@ var ProductDetails = React.createClass({
       </div>
     );
   }
-});
+}
 
-function mapStateToProps(state) {
+ProductDetails.propTypes = {
+  measurementsPopupOpen: React.PropTypes.bool,
+  openMeasurementsPopup: React.PropTypes.func,
+  closeMeasurementsPopup: React.PropTypes.func,
+  setProductMeasurements: React.PropTypes.func.isRequired,
+  addProductToBag: React.PropTypes.func.isRequired,
+  options: React.PropTypes.shape({
+    color: React.PropTypes.object,
+    measurements: React.PropTypes.object
+  }),
+  product: React.PropTypes.shape(product.shape)
+};
+
+
+const mapStateToProps = (state) => {
   return {
     measurementsPopupOpen: state.product.measurementsPopupOpen
   };
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     closeMeasurementsPopup: product.closeMeasurementsPopup,
     openMeasurementsPopup: product.openMeasurementsPopup,
     setProductMeasurements: product.setProductMeasurements,
     addProductToBag: bag.addProductToBag
   }, dispatch);
-}
+};
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
