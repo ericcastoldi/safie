@@ -4,7 +4,7 @@ var ReactRouterRedux = require('react-router-redux');
 var thunkMiddleware = require('redux-thunk');
 var createLogger = require('redux-logger');
 var loggerMiddleware = createLogger();
-var initialState = require('./data/initialState.js');
+//var initialState = require('./data/initialState.js');
 var home = require('./home.js');
 var main = require('./main.js');
 var menu = require('./menu.js');
@@ -14,8 +14,21 @@ var address = require('./address.js');
 var product = require('./product.js');
 var collection = require('./collection.js');
 var mySafie = require('./mySafie.js');
-import { routerMiddleware } from 'react-router-redux';
+import {
+  routerMiddleware
+} from 'react-router-redux';
 
+const initialState = {
+  main: main.initialState,
+  home: home.initialState,
+  bag: bag.initialState,
+  menu: menu.initialState,
+  product: product.initialState,
+  collection: [],
+  address: address.initialState,
+  customer: customer.initialState,
+  mySafie: mySafie.initialState
+};
 
 //const initialState = window.SAFIE_PRELOADED_STATE;
 

@@ -1,6 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
@@ -14,25 +18,32 @@ let main = {
 
 // State
 main.initialState = {
-  loading: false
+  loading: false,
+  infoExpanded: false
 };
 
 main.shape = {
-  loading: React.PropTypes.bool
+  loading: React.PropTypes.bool,
+  infoExpanded: React.PropTypes.bool,
+  toggleInfo: React.PropTypes.func
 };
 
+main.toggleInfo = actionFactory.simpleActionCreator(actionTypes.TOGGLE_INFO);
 main.toggleLoading = actionFactory.simpleActionCreator(actionTypes.TOGGLE_LOADING);
+
 
 // React Redux
 const mapStateToProps = (state) => {
   return {
-    loading: state.main.loading
+    loading: state.main.loading,
+    infoExpanded: state.main.infoExpanded
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    toggleLoading: main.toggleLoading
+    toggleLoading: main.toggleLoading,
+    toggleInfo: main.toggleInfo
   }, dispatch);
 };
 
@@ -48,7 +59,15 @@ const toggleLoading = (state) => {
   });
 };
 
+
+const toggleInfo = (state) => {
+  return Object.assign({}, state, {
+    infoExpanded: !state.infoExpanded
+  });
+};
+
 main.actionTypeMapping = [];
+main.actionTypeMapping[actionTypes.TOGGLE_INFO] = toggleInfo;
 main.actionTypeMapping[actionTypes.TOGGLE_LOADING] = toggleLoading;
 
 main.reducer = (state = main.initialState, action) => {

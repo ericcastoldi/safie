@@ -12,6 +12,7 @@ import CustomerForm from './CustomerForm.jsx';
 import LoginForm from './LoginForm.jsx';
 import MySafie from './MySafie.jsx';
 import Checkout from './Checkout.jsx';
+import MeasureYourself from './MeasureYourself.jsx';
 import ThankYou from './ThankYou.jsx';
 
 const userIsAuthenticated = () => {
@@ -20,13 +21,13 @@ const userIsAuthenticated = () => {
 };
 
 const redirectIfAuthenticated = (nextState, replace) => {
-  if(userIsAuthenticated()){
+  if (userIsAuthenticated()) {
     replace('/my-safie');
   }
 };
 
 const redirectIfAuthenticationIsNeeded = (nextState, replace) => {
-  if(!userIsAuthenticated()){
+  if (!userIsAuthenticated()) {
     replace('/login');
   }
 };
@@ -36,27 +37,29 @@ const redirectIfAuthenticationIsNeeded = (nextState, replace) => {
 const history = ReactRouterRedux.syncHistoryWithStore(browserHistory, store);
 
 class Safie extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
   render() {
     return (
-        <Router history={history}>
-          <Route path="/" component={Landing} />
-          <Route component={Layout}>
-            <Route path="/bag" component={ShoppingBag} />
-            <Route path="/sobre" component={AboutUs} />
-            <Route path="/login" component={LoginForm} onEnter={redirectIfAuthenticated} />
-            <Route path="/cadastro" component={CustomerForm} onEnter={redirectIfAuthenticated} />
-            <Route path="/my-safie" component={MySafie} onEnter={redirectIfAuthenticationIsNeeded} />
-            <Route path="/checkout" component={Checkout} onEnter={redirectIfAuthenticationIsNeeded} />
-            <Route path="/agradecimento" component={ThankYou} />
-            <Route path="/colecoes/:collection" component={ProductsMasonry} />
-            <Route path="/colecoes/:collection/:product" component={Product} />
-          </Route>
-          <Redirect from="*" to="/" />
-        </Router>
+      <Router history={history}>
+        <Route path="/" component={Landing} />
+        <Route component={Layout}>
+          <Route path="/bag" component={ShoppingBag} />
+          <Route path="/sobre" component={AboutUs} />
+          <Route path="/login" component={LoginForm} onEnter={redirectIfAuthenticated} />
+          <Route path="/cadastro" component={CustomerForm} onEnter={redirectIfAuthenticated} />
+          <Route path="/my-safie" component={MySafie} onEnter={redirectIfAuthenticationIsNeeded} />
+          <Route path="/checkout" component={Checkout} onEnter={redirectIfAuthenticationIsNeeded} />
+          <Route path="/medidas" component={MeasureYourself} />
+          <Route path="/agradecimento" component={ThankYou} />
+          <Route path="/entenda" component={MeasureYourself} />
+          <Route path="/colecoes/:collection" component={ProductsMasonry} />
+          <Route path="/colecoes/:collection/:product" component={Product} />
+        </Route>
+        <Redirect from="*" to="/" />
+      </Router>
     );
   }
 

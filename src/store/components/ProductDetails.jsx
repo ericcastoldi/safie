@@ -32,11 +32,9 @@ class ProductDetails extends React.Component {
     this.props.addProductToBag(item);
   }
 
-  setProductMeasurements(measurements){
+  setProductMeasurements(measurements) {
     this.props.setProductMeasurements(measurements);
     this.props.closeMeasurementsPopup();
-
-    this.addToBag();
   }
 
   render() {

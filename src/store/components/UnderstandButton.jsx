@@ -1,10 +1,10 @@
 var React = require('react');
 
 var UnderstandButton = React.createClass({
-  render: function() {
+  render: function () {
     return (
       <div className="understand-button">
-        <a href="/como-funciona" >
+        <a href="/entenda" >
           Quero entender como a
           <br />
           SAFIE funciona!

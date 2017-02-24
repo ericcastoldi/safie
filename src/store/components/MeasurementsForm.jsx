@@ -15,7 +15,7 @@ class MeasurementsForm extends React.Component {
 
   render() {
 
-    if(!this.props.measurements){
+    if (!this.props.measurements) {
       return (<LoadingRipple />);
     }
 
@@ -57,14 +57,14 @@ class MeasurementsForm extends React.Component {
       value: event.target.value
     };
 
-    if(this.state.measurements){
+    if (this.state.measurements) {
       measurements = Object.assign({}, this.state.measurements, measurements);
     }
 
-    this.setState({measurements: measurements});
+    this.setState({ measurements: measurements });
   }
 
-  setMeasurements(){
+  setMeasurements() {
     this.props.setProductMeasurements(this.state.measurements);
   }
 }

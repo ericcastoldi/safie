@@ -1,6 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
@@ -35,8 +39,7 @@ menu.shape = {
 
 menu.initialState = {
   mobileMenuOpened: false,
-  items: [
-    {
+  items: [{
       title: 'Home',
       route: '/'
     },
@@ -44,8 +47,7 @@ menu.initialState = {
       id: 'colecoes',
       expanded: false,
       title: 'Coleções',
-      items: [
-        {
+      items: [{
           title: 'Safie Conceito',
           route: '/colecoes/safie-conceito'
         },
@@ -59,8 +61,7 @@ menu.initialState = {
       id: 'mysafie',
       expanded: false,
       title: 'My Safie',
-      items: [
-        {
+      items: [{
           title: 'Medidas',
           route: '/medidas'
         },
