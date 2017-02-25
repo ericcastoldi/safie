@@ -27,20 +27,20 @@ class AgreementAcceptanceCheck extends React.Component {
         <p>Ah! Mais uma coisa, suas medidas estão salvas na área MY SAFIE. Certifique-se que elas estão atualizadas e de acordo com seu corpo no momento presente.
         Para mais esclarecimentos, leia as "Políticas & Termos de uso".
         Se você ainda estiver com duvidas, por favor, não hesite em nos contatar!</p>
-        
+
         <p className="nice-shopping">
 
           Boas compras!
-          
+
           <br /> <br />
 
-          <DarkButton 
-            click={this.props.accept} 
+          <DarkButton
+            click={this.props.accept}
             label="Eu aceito o termo de responsabilidade da Safie" />
 
         </p>
-        
-        
+
+
       </article>
     );
   }
