@@ -12,6 +12,7 @@ import CustomerForm from './CustomerForm.jsx';
 import LoginForm from './LoginForm.jsx';
 import MySafie from './MySafie.jsx';
 import Checkout from './Checkout.jsx';
+import Policies from './Policies.jsx';
 import MeasureYourself from './MeasureYourself.jsx';
 import ThankYou from './ThankYou.jsx';
 
@@ -55,6 +56,7 @@ class Safie extends React.Component {
           <Route path="/medidas" component={MeasureYourself} />
           <Route path="/agradecimento" component={ThankYou} />
           <Route path="/entenda" component={MeasureYourself} />
+          <Route path="/politicas" component={Policies} />
           <Route path="/colecoes/:collection" component={ProductsMasonry} />
           <Route path="/colecoes/:collection/:product" component={Product} />
         </Route>

@@ -12,7 +12,7 @@ var Footer = React.createClass({
         name: React.PropTypes.string.isRequired,
         items: React
           .PropTypes
-          .arrayOf(React.PropTypes.shape({title: React.PropTypes.string.isRequired, route: React.PropTypes.string}))
+          .arrayOf(React.PropTypes.shape({ title: React.PropTypes.string.isRequired, route: React.PropTypes.string }))
           .isRequired
       }))
       .isRequired
@@ -25,13 +25,13 @@ var Footer = React.createClass({
           <div className="row">
             <div className="twelve columns">
               <div className="politica">
-                <PolicyCard policy={this.props.policies[0]}/>
+                <PolicyCard policy={this.props.policies[0]} />
               </div>
               <div className="politica">
-                <PolicyCard policy={this.props.policies[1]}/>
+                <PolicyCard policy={this.props.policies[1]} />
               </div>
               <div className="politica">
-                <PolicyCard policy={this.props.policies[2]}/>
+                <PolicyCard policy={this.props.policies[2]} />
                 <CreditCards />
               </div>
             </div>

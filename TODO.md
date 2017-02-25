@@ -27,11 +27,11 @@ Deve ser criada uma tela com os resultados de pesquisa, nos moldes da listagem d
 ## Home
 
 - ~~Ajustar o ícone do PagSeguro~~
-- Implementar envio de email da área "Receba as novidades"
-- Ajustar link "Quero entender como a SAFIE funciona" (quando a página "Como a Safie funciona" estiver concluída)*
-- Ajustar link "Ajustes e Devoluções" (quando a página com a política de ajustes estiver concluída)*
-- Ajustar link "Prazos de Entrega" (quando a página com a política de prazos de entrega estiver concluída)*
-- Ajustar link "Pagamentos" (quando a página com a política de pagamentos estiver concluída)*
+- Programar envio de email da área "Receba as novidades"
+- ~~Ajustar link "Quero entender como a SAFIE funciona" (quando a página "Como a Safie funciona" estiver concluída)~~
+- ~~Ajustar link "Ajustes e Devoluções" (quando a página com a política de ajustes estiver concluída)*~~
+- ~~Ajustar link "Prazos de Entrega" (quando a página com a política de prazos de entrega estiver concluída)*~~
+- ~~Ajustar link "Pagamentos" (quando a página com a política de pagamentos estiver concluída)*~~
 - ~~Criar barra de "Entrega em todo o Brasil" no topo do site com um cinza mais claro que o da versão instalada.~~
 
 ### Receba as novidades
@@ -42,14 +42,14 @@ Caso a cliente não informe seu nome ou seu e-mail, ou ainda caso informe um e-m
 
 Caso ocorra algum erro inesperado ao tentar cadastrar o e-mail para receber as novidades, o site deve exibir uma mensagem de erro com a mensagem "Ops! Algo inesperado ocorreu :( Por favor tente novamente!"
 
-### Políticas (Ajustes, Entrega, Pagamentos e Como Funciona)
+### ~~Políticas (Ajustes, Entrega, Pagamentos e Como Funciona)~~
 
-Devem ser criadas as páginas de políticas da Safie, para que posteriormente sejam vinculadas aos links do rodapé da Home.
+~~Devem ser criadas as páginas de políticas da Safie, para que posteriormente sejam vinculadas aos links do rodapé da Home.~~
 
-- Criar página contendo o texto de política de troca*
-- Criar página contendo o texto de política de pagamentos*
-- Criar página contendo o texto de política de entrega*
-- Criar página "Como a Safie Funciona"*
+- ~~Criar página contendo o texto de política de troca*~~
+- ~~Criar página contendo o texto de política de pagamentos*~~
+- ~~Criar página contendo o texto de política de entrega*~~
+- ~~Criar página "Como a Safie Funciona"*~~
 
 ## ~~Painel usuário atual~~
 

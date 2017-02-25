@@ -11,51 +11,33 @@ let home = {
 home.initialState = {
   subscribePopupOn: false,
   footer: {
-    policies: [
-      {
-        name: 'Central de Atendimento',
-        items: [
-          {
-            title: 'Fale Conosco',
-            route: '/fale-conosco'
-          }, {
-            title: 'atendimento@safie.com.br'
-          }, {
-            title: 'Telefone: (47) 3321-6698'
-          }, {
-            title: 'De segunda a sexta das 10 às 17'
-          }
-        ]
+    policies: [{
+      name: 'Central de Atendimento',
+      items: [{
+        title: 'Fale Conosco',
+        route: '/fale-conosco'
       }, {
-        name: 'Informações',
-        items: [
-          {
-            title: 'Meus pedidos',
-            route: '/meus-pedidos'
-          }, {
-            title: 'Trocas e Devoluções',
-            route: '/politicas/trocas'
-          }, {
-            title: 'Prazos de Entrega',
-            route: '/politicas/entregas'
-          }, {
-            title: 'Pagamentos',
-            route: '/politicas/pagamentos'
-          }
-        ]
+        title: 'contato@safie.com.br'
       }, {
-        name: 'Pagamentos e Segurança',
-        items: [
-          {
-            title: 'Cartão de Crédito'
-          }, {
-            title: 'Parcelamento em até 5x sem juros'
-          }, {
-            title: 'Parcela mínima de R$ 300,00.'
-          }
-        ]
-      }
-    ]
+        title: 'Telefone: (47) 3330-1680'
+      }, {
+        title: 'De segunda a sexta das 9 às 17'
+      }]
+    }, {
+      name: 'Informações',
+      items: [{
+        title: 'Ajustes e Devoluções',
+        route: '/politicas/#devolucoes'
+      }, {
+        title: 'Prazos de Entrega',
+        route: '/politicas/#entrega'
+      }]
+    }, {
+      name: 'Pagamentos e Segurança',
+      items: [{
+        title: 'Compre com toda a segurança do PagSeguro!'
+      }]
+    }]
   }
 };
 
