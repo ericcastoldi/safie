@@ -1265,6 +1265,12 @@ nav.menu.open {
   line-height: 0;
 }
 
+.form-medidas.form-enderecos .dark-button {
+  background-color: #100D08;
+  border: 1px solid #100D08;
+  float: none;
+}
+
 .my-safie .form-medidas input {
   margin: 0;
 }

@@ -2,14 +2,14 @@ import React from 'react';
 
 class AddressCard extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.remove = this.remove.bind(this);
   }
 
   remove() {
-    if(!this.props.removingAddress){
+    if (!this.props.removingAddress) {
       this.props.removeAddress(this.props.address.addressId);
     }
   }
@@ -17,7 +17,7 @@ class AddressCard extends React.Component {
   render() {
 
     let cssClasses = ['linha-exterior'];
-    if(this.props.address.active) {
+    if (this.props.address.active) {
       cssClasses.push('active');
     }
 

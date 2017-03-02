@@ -47,16 +47,16 @@ module.exports = {
     doneRemoving: false,
     quickBagOpened: false,
     shipping: null,
+    //           {
+    //   code: null,
+    //   price: 0
+    // },
     total: 0,
     count: 0,
     errorPopupOpen: false,
     validMeasurements: false,
     measurementsResponsibilityPopupOpen: false,
     agreementAccepted: false,
-    //           {
-    //   code: null,
-    //   price: 0
-    // },
     items: {
       //   1475971773639: {
       //     options: {

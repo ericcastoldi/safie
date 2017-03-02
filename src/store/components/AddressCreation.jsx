@@ -5,12 +5,12 @@ import address from './state/address.js';
 
 class AddressCreation extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.openAddressPopup = this.openAddressPopup.bind(this);
   }
 
-  openAddressPopup(){
+  openAddressPopup() {
     this.props.openAddressPopup();
   }
 
@@ -23,10 +23,16 @@ class AddressCreation extends React.Component {
         <DismissablePopup
           dismiss={this.props.closeAddressPopup}
           active={this.props.addressPopupOpen}>
+
           <AddressForm
+            address={this.props.foundAddress}
+            searching={this.props.fetchingAddresses}
             saveAddress={this.props.saveAddress}
             savingAddress={this.props.savingAddress}
+            foundAddress={this.props.foundAddress}
+            searchAddress={this.props.searchAddress}
           />
+
         </DismissablePopup>
 
         <button onClick={this.openAddressPopup} className='new-address-button'>

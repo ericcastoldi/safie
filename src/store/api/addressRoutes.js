@@ -2,6 +2,7 @@
 const apiResultFactory = require('./apiResultFactory.js');
 const Address = require('../model/address.js');
 const ObjectId = require('mongoose').Types.ObjectId;
+const searchAddress = require('io-cep');
 
 const cleanAddress = (address) => {
   return Object.assign({}, {
@@ -22,13 +23,14 @@ module.exports = {
 
     const userId = new ObjectId(req.user.id);
 
-    Address.find({customer: userId}, (err, addresses) => {
+    Address.find({
+      customer: userId
+    }, (err, addresses) => {
       if (!err) {
         const addrs = addresses.map(cleanAddress);
         let response = apiResultFactory.successResult(addrs);
         res.json(response);
-      }
-      else {
+      } else {
         res.json(apiResultFactory.errorResult(err));
       }
     });
@@ -40,21 +42,24 @@ module.exports = {
 
     address.customer = new ObjectId(req.user.id);
 
-    Address.findByIdAndUpdate(addressId, address, { upsert: true, new: true }, (err, doc) => {
+    Address.findByIdAndUpdate(addressId, address, {
+      upsert: true,
+      new: true
+    }, (err, doc) => {
 
-        if (err) {
-          res.json(apiResultFactory.errorResult(err));
-        }
+      if (err) {
+        res.json(apiResultFactory.errorResult(err));
+      }
 
-        let response = apiResultFactory.successResult(doc);
-        res.json(response);
+      let response = apiResultFactory.successResult(doc);
+      res.json(response);
     });
   },
 
 
   delete: (req, res) => {
 
-    if(!req.params.addressId) {
+    if (!req.params.addressId) {
       res.json(apiResultFactory.errorResult('Impossível excluir um endereço sem identificador.'));
     }
 
@@ -62,11 +67,40 @@ module.exports = {
 
     Address.findByIdAndRemove(addressId, (err) => {
 
-        if (err) {
-          res.json(apiResultFactory.errorResult(err));
-        }
+      if (err) {
+        res.json(apiResultFactory.errorResult(err));
+      }
 
-        res.json(apiResultFactory.successResult());
+      res.json(apiResultFactory.successResult());
     });
+  },
+
+  search: (req, res) => {
+
+
+    if (!req.query.cep) {
+      res.json(apiResultFactory.errorResult('Impossível buscar endereço. CEP Inválido!'));
+    }
+
+    searchAddress(req.query.cep)
+      .then(cepResponse => {
+        if (cepResponse.success) {
+          const addr = cepResponse.dados[0];
+          const address = {
+            street: addr.logradouro,
+            city: addr.localidade,
+            state: addr.uf,
+            district: addr.bairro,
+            code: addr.cep
+          };
+          let response = apiResultFactory.successResult(address);
+          res.json(response);
+        } else {
+          res.json(apiResultFactory.errorResult(cepResponse.message));
+        }
+      })
+      .catch(err => {
+        res.json(apiResultFactory.errorResult(err));
+      });
   }
 };

@@ -4,7 +4,6 @@ import MyMeasurements from './MyMeasurements.jsx';
 import MyOrders from './MyOrders.jsx';
 import MyAddresses from './MyAddresses.jsx';
 import MyBag from './MyBag.jsx';
-import MeasureYourself from './MeasureYourself.jsx';
 import mySafie from './state/mySafie.js';
 
 class MySafie extends React.Component {
@@ -58,7 +57,6 @@ class MySafie extends React.Component {
           </MySafieBox>
 
         </div>
-        <MeasureYourself />
       </div>
     );
   }

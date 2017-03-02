@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
@@ -17,6 +21,7 @@ let address = {
 // State
 address.initialState = {
   current: null,
+  foundAddress: null,
   addresses: [],
   savingAddress: false,
   doneSavingAddress: false,
@@ -41,6 +46,7 @@ const addressShape = React.PropTypes.shape({
 
 address.shape = {
   current: addressShape,
+  foundAddress: React.PropTypes.object,
   addresses: React.PropTypes.arrayOf(addressShape),
   saveAddress: React.PropTypes.func,
   savingAddress: React.PropTypes.bool,
@@ -54,7 +60,8 @@ address.shape = {
   addressPopupOpen: React.PropTypes.bool,
   openAddressPopup: React.PropTypes.func,
   closeAddressPopup: React.PropTypes.func,
-  changeCurrentAddress: React.PropTypes.func
+  changeCurrentAddress: React.PropTypes.func,
+  searchAddress: React.PropTypes.func
 };
 
 // Actions
@@ -82,6 +89,42 @@ address.fetchAddresses = actionFactory.smartAsyncFetchActionCreator('address',
   payloadFactory
 );
 
+const foundAddressPayloadFactory = (addr) => {
+  return {
+    foundAddress: addr
+  };
+};
+
+address.startSearchingAddress = actionFactory.simpleActionCreator(actionTypes.START_SEARCHING_ADDRESS);
+address.doneSearchingAddress = actionFactory.payloadActionCreator(actionTypes.DONE_SEARCHING_ADDRESS, foundAddressPayloadFactory);
+address.cannotSearchAddress = actionFactory.errorActionCreator(actionTypes.CANNOT_SEARCH_ADDRESS);
+
+address.searchAddress = (cep) => {
+
+  return (dispatch) => {
+
+    dispatch(address.startSearchingAddress());
+
+    return axios.get('/api/address/search', {
+        params: {
+          cep: cep
+        }
+      })
+      .then(function (apiResult) {
+        var result = apiResult.data;
+        if (result.success) {
+          dispatch(address.doneSearchingAddress(result.data));
+        } else {
+          dispatch(address.cannotSearchAddress(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(address.cannotSearchAddress(response));
+      });
+
+  };
+};
+
 address.startSavingAddress = actionFactory.simpleActionCreator(actionTypes.START_SAVING_ADDRESS);
 address.doneSavingAddress = actionFactory.payloadActionCreator(actionTypes.DONE_SAVING_ADDRESS, payloadFactory);
 address.cannotSaveAddress = actionFactory.errorActionCreator(actionTypes.CANNOT_SAVE_ADDRESS);
@@ -92,21 +135,20 @@ address.saveAddress = (addr) => {
     dispatch(address.startSavingAddress());
 
     return axios.post('/api/address', addr)
-        .then(function (apiResult) {
-          var result = apiResult.data;
-          if(result.success){
-            dispatch(address.doneSavingAddress(result.data));
-            dispatch(address.changeCurrentAddress(addr));
-            dispatch(address.closeAddressPopup());
-            dispatch(address.fetchAddresses());
-          }
-          else{
-            dispatch(address.cannotSaveAddress(result.error));
-          }
-        })
-        .catch(function (response) {
-          dispatch(address.cannotSaveAddress(response));
-        });
+      .then(function (apiResult) {
+        var result = apiResult.data;
+        if (result.success) {
+          dispatch(address.doneSavingAddress(result.data));
+          dispatch(address.changeCurrentAddress(addr));
+          dispatch(address.closeAddressPopup());
+          dispatch(address.fetchAddresses());
+        } else {
+          dispatch(address.cannotSaveAddress(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(address.cannotSaveAddress(response));
+      });
 
   };
 };
@@ -123,19 +165,18 @@ address.removeAddress = (addressId) => {
     dispatch(address.startRemovingAddress());
 
     return axios.delete('/api/address/' + addressId)
-        .then(function (apiResult) {
-          var result = apiResult.data;
-          if(result.success){
-            dispatch(address.doneRemovingAddress());
-            dispatch(address.fetchAddresses());
-          }
-          else{
-            dispatch(address.cannotRemoveAddress(result.error));
-          }
-        })
-        .catch(function (response) {
-          dispatch(address.cannotRemoveAddress(response));
-        });
+      .then(function (apiResult) {
+        var result = apiResult.data;
+        if (result.success) {
+          dispatch(address.doneRemovingAddress());
+          dispatch(address.fetchAddresses());
+        } else {
+          dispatch(address.cannotRemoveAddress(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(address.cannotRemoveAddress(response));
+      });
 
   };
 };
@@ -159,7 +200,8 @@ function mapStateToProps(state) {
     doneFetchingAddresses: state.address.doneFetchingAddresses,
     removingAddress: state.address.removingAddress,
     doneRemovingAddress: state.address.doneRemovingAddress,
-    addressPopupOpen: state.address.addressPopupOpen
+    addressPopupOpen: state.address.addressPopupOpen,
+    foundAddress: state.address.foundAddress
   };
 }
 
@@ -170,7 +212,8 @@ function mapDispatchToProps(dispatch) {
     fetchAddresses: address.fetchAddresses,
     closeAddressPopup: address.closeAddressPopup,
     openAddressPopup: address.openAddressPopup,
-    changeCurrentAddress: address.changeCurrentAddress
+    changeCurrentAddress: address.changeCurrentAddress,
+    searchAddress: address.searchAddress
   }, dispatch);
 }
 
@@ -188,7 +231,16 @@ const changeCurrentAddress = (state, action) => {
 
 const openAddressPopup = (state) => {
   return Object.assign({}, state, {
-    addressPopupOpen: true
+    addressPopupOpen: true,
+    foundAddress: {
+      street: '',
+      city: '',
+      state: '',
+      district: '',
+      code: '',
+      obs: '',
+      number: ''
+    }
   });
 };
 
@@ -248,6 +300,32 @@ const cannotFetchAddresses = (state, action) => {
 };
 
 
+const startSearchingAddress = (state) => {
+  return Object.assign({}, state, {
+    fetchingAddresses: true,
+    doneFetchingAddresses: false,
+    error: null,
+    foundAddress: null
+  });
+};
+
+const doneSearchingAddress = (state, action) => {
+  return Object.assign({}, state, {
+    fetchingAddresses: false,
+    doneFetchingAddresses: true,
+    foundAddress: action.payload.foundAddress
+  });
+};
+
+const cannotSearchAddress = (state, action) => {
+  return Object.assign({}, state, {
+    fetchingAddresses: false,
+    doneFetchingAddresses: true,
+    error: action.payload.error
+  });
+};
+
+
 const startRemovingAddress = (state) => {
   return Object.assign({}, state, {
     removingAddress: true,
@@ -286,6 +364,10 @@ address.actionTypeMapping[actionTypes.CANNOT_SAVE_ADDRESS] = cannotSaveAddress;
 address.actionTypeMapping[actionTypes.START_FETCHING_ADDRESSES] = startFetchingAddresses;
 address.actionTypeMapping[actionTypes.DONE_FETCHING_ADDRESSES] = doneFetchingAddresses;
 address.actionTypeMapping[actionTypes.CANNOT_FETCH_ADDRESSES] = cannotFetchAddresses;
+
+address.actionTypeMapping[actionTypes.START_SEARCHING_ADDRESS] = startSearchingAddress;
+address.actionTypeMapping[actionTypes.DONE_SEARCHING_ADDRESS] = doneSearchingAddress;
+address.actionTypeMapping[actionTypes.CANNOT_SEARCH_ADDRESS] = cannotSearchAddress;
 
 address.actionTypeMapping[actionTypes.START_REMOVING_ADDRESS] = startRemovingAddress;
 address.actionTypeMapping[actionTypes.DONE_REMOVING_ADDRESS] = doneRemovingAddress;

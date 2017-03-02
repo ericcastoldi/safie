@@ -6,14 +6,14 @@ import address from './state/address.js';
 
 class MyAddresses extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.openAddressPopup = this.openAddressPopup.bind(this);
     this.renderCards = this.renderCards.bind(this);
   }
 
-  openAddressPopup(){
+  openAddressPopup() {
     this.props.openAddressPopup();
   }
 
@@ -39,17 +39,17 @@ class MyAddresses extends React.Component {
   renderCards() {
 
     const addresses = this.props.addresses;
-    if(!addresses || addresses.length === 0){
+    if (!addresses || addresses.length === 0) {
       return <NothingToSeeHere text="Nenhum endereço foi encontrado." />;
     }
 
     return addresses.map((addr, index) => {
-        return (
-          <AddressCard
-            key={index}
-            address={addr}
-            removeAddress={this.props.removeAddress} />
-        );
+      return (
+        <AddressCard
+          key={index}
+          address={addr}
+          removeAddress={this.props.removeAddress} />
+      );
     });
 
   }
