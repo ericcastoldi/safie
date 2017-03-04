@@ -1,17 +1,18 @@
 import axios from 'axios';
 import actionTypes from './actionTypes.js';
-import { push } from 'react-router-redux';
+import {
+  push
+} from 'react-router-redux';
 
 const apiResultHandling = (apiResult, dispatch, success, fail, toggleLoading, redirectRoute) => {
   var result = apiResult.data;
-  if(result.success){
+  if (result.success) {
     dispatch(success(result.data));
 
-    if(redirectRoute) {
+    if (redirectRoute) {
       dispatch(push(redirectRoute));
     }
-  }
-  else{
+  } else {
     dispatch(fail(result.error));
   }
 
@@ -20,17 +21,17 @@ const apiResultHandling = (apiResult, dispatch, success, fail, toggleLoading, re
 
 const handleRequest = (request, dispatch, success, fail, toggleLoading, redirectRoute) => {
   return request.then((apiResult) => {
-    apiResultHandling(apiResult,
-      dispatch,
-      success,
-      fail,
-      toggleLoading,
-      redirectRoute);
-  })
-  .catch((response) => {
-    dispatch(fail(response));
-    dispatch(toggleLoading());
-  });
+      apiResultHandling(apiResult,
+        dispatch,
+        success,
+        fail,
+        toggleLoading,
+        redirectRoute);
+    })
+    .catch((response) => {
+      dispatch(fail(response));
+      dispatch(toggleLoading());
+    });
 };
 
 

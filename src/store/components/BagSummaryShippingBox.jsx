@@ -5,20 +5,20 @@ import BagSummaryBox from './BagSummaryBox.jsx';
 
 class BagSummaryShippingBox extends React.Component {
 
-    constructor() {
-      super();
+  constructor() {
+    super();
+  }
+
+  render() {
+    if (!this.props.shippingPrice) {
+      return null;
     }
 
-    render() {
-      if(!this.props.shippingPrice) {
-        return null;
-      }
+    const shippingLabel = <BagSummaryItem>Frete</BagSummaryItem>;
+    const shippingPrice = <BagSummaryItemPrice price={this.props.shippingPrice} />;
 
-      const shippingLabel = <BagSummaryItem>Frete</BagSummaryItem>;
-      const shippingPrice = <BagSummaryItemPrice price={this.props.shippingPrice} />;
-
-      return <BagSummaryBox leftContent={shippingLabel} rightContent={shippingPrice} />;
-    }
+    return <BagSummaryBox leftContent={shippingLabel} rightContent={shippingPrice} />;
+  }
 
 }
 

@@ -32,7 +32,9 @@ module.exports = function (app, passport) {
   app.get('/api/bag', bag.get);
   app.post('/api/bag/checkout', bag.checkout);
   app.get('/api/bag/shipping', bag.shipping);
-  app.post('/api/bag/payment', bag.payment);
+
+  app.post('/api/bag/address', bag.setShippingAddress);
+  app.get('/api/bag/payment', bag.payment);
   app.post('/api/bag', bag.post);
   app.delete('/api/bag/:itemId', bag.delete);
 

@@ -6,6 +6,13 @@ class AddressCard extends React.Component {
     super(props);
 
     this.remove = this.remove.bind(this);
+    this.selectAddress = this.selectAddress.bind(this);
+  }
+
+  selectAddress() {
+    if (this.props.selectAddress) {
+      this.props.selectAddress(this.props.address);
+    }
   }
 
   remove() {
@@ -23,10 +30,10 @@ class AddressCard extends React.Component {
 
 
     return (
-      <div className={cssClasses.join(' ')}>
+      <div onClick={this.selectAddress} className={cssClasses.join(' ')}>
         <div className='address inside-box'>
 
-          <p>{this.props.address.street}, {this.props.address.number}</p>
+          <p>{this.props.address.street}, nº {this.props.address.number}</p>
           <p>{this.props.address.obs}</p>
           <p>{this.props.address.district}</p>
           <p>{this.props.address.state}</p>
@@ -45,6 +52,7 @@ class AddressCard extends React.Component {
 
 
 AddressCard.propTypes = {
+  selectAddress: React.PropTypes.func,
   removingAddress: React.PropTypes.bool,
   removeAddress: React.PropTypes.func,
   address: React.PropTypes.shape({

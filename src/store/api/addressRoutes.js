@@ -4,7 +4,12 @@ const Address = require('../model/address.js');
 const ObjectId = require('mongoose').Types.ObjectId;
 const searchAddress = require('io-cep');
 
-const cleanAddress = (address) => {
+const cleanAddress = (address, bag) => {
+  const selected = (bag &&
+    bag.shipping &&
+    bag.shipping.address &&
+    bag.shipping.address.addressId === address.id);
+
   return Object.assign({}, {
     addressId: address.id,
     street: address.street,
@@ -13,7 +18,8 @@ const cleanAddress = (address) => {
     district: address.district,
     state: address.state,
     city: address.city,
-    code: address.code
+    code: address.code,
+    active: selected
   });
 };
 
@@ -27,7 +33,11 @@ module.exports = {
       customer: userId
     }, (err, addresses) => {
       if (!err) {
-        const addrs = addresses.map(cleanAddress);
+
+        const addrs = addresses.map((address) => {
+          return cleanAddress(address, req.session.shoppingBag);
+        });
+
         let response = apiResultFactory.successResult(addrs);
         res.json(response);
       } else {

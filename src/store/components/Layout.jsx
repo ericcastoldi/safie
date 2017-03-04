@@ -14,6 +14,10 @@ import customer from './state/customer.js';
 
 class Layout extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     this.props.fetchBag();
     this.props.fetchCurrentCustomer();

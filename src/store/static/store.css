@@ -1000,10 +1000,6 @@ nav.menu.open {
   background-color: #eac7ab;
 }
 
-.conteudo-checkout .new-address {
-  margin-top: 70px;
-}
-
 .conteudo-checkout .twelve .box {
   margin-top: 30px;
   text-align: center;
@@ -1236,6 +1232,10 @@ nav.menu.open {
   top: 5px;
   cursor: pointer;
   font-size: 20px;
+}
+
+.conteudo-checkout .my-address .address {
+  cursor: pointer;
 }
 
 .address .inside-box i.fa-times-circle-o {

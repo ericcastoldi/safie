@@ -33,7 +33,7 @@ address.initialState = {
   error: null
 };
 
-const addressShape = React.PropTypes.shape({
+address.addressShape = React.PropTypes.shape({
   addressId: React.PropTypes.string,
   street: React.PropTypes.string,
   number: React.PropTypes.string,
@@ -45,9 +45,9 @@ const addressShape = React.PropTypes.shape({
 });
 
 address.shape = {
-  current: addressShape,
+  current: address.addressShape,
   foundAddress: React.PropTypes.object,
-  addresses: React.PropTypes.arrayOf(addressShape),
+  addresses: React.PropTypes.arrayOf(address.addressShape),
   saveAddress: React.PropTypes.func,
   savingAddress: React.PropTypes.bool,
   doneSavingAddress: React.PropTypes.bool,
@@ -374,8 +374,9 @@ address.actionTypeMapping[actionTypes.DONE_REMOVING_ADDRESS] = doneRemovingAddre
 address.actionTypeMapping[actionTypes.CANNOT_REMOVE_ADDRESS] = cannotRemoveAddress;
 
 
-address.reducer = (state = address.initialState, action) => {
-  return modelReducer(address, state, action);
+address.reducer = (state, action) => {
+  const actualState = state || address.initialState;
+  return modelReducer(address, actualState, action);
 };
 
 module.exports = address;

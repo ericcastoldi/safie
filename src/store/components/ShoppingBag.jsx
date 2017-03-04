@@ -10,19 +10,25 @@ import PrettyPrice from './PrettyPrice.jsx';
 
 class ShoppingBag extends React.Component {
 
-    constructor() {
-      super();
+  constructor() {
+    super();
 
-      this.renderDataRows = this.renderDataRows.bind(this);
+    this.renderDataRows = this.renderDataRows.bind(this);
 
-      this.renderTotal = this.renderTotal.bind(this);
-      this.renderSubTotal = this.renderSubTotal.bind(this);
-      this.renderTotalItems = this.renderTotalItems.bind(this);
+    this.renderTotal = this.renderTotal.bind(this);
+    this.renderSubTotal = this.renderSubTotal.bind(this);
+    this.renderTotalItems = this.renderTotalItems.bind(this);
 
-      this.renderShipping = this.renderShipping.bind(this);
-      this.renderShippingPrice = this.renderShippingPrice.bind(this);
-      this.renderShippingDetails = this.renderShippingDetails.bind(this);
-    }
+    this.renderShipping = this.renderShipping.bind(this);
+    this.renderShippingPrice = this.renderShippingPrice.bind(this);
+    this.renderShippingDetails = this.renderShippingDetails.bind(this);
+
+    this.checkShippingPrice = this.checkShippingPrice.bind(this);
+
+    this.state = {
+      cep: ''
+    };
+  }
 
   render() {
 
@@ -70,13 +76,13 @@ class ShoppingBag extends React.Component {
             <div className="seven columns">
               {total}
 
-              <br/>
+              <br />
 
               <Link to='/colecoes/barcelona'>
-                <LightButton label="Continuar Comprando"/>
+                <LightButton label="Continuar Comprando" />
               </Link>
 
-              <DarkButton click={this.props.checkout} label="Finalizar Compra"/>
+              <DarkButton click={this.props.checkout} label="Finalizar Compra" />
 
             </div>
           </div>
@@ -161,6 +167,10 @@ class ShoppingBag extends React.Component {
     );
   }
 
+  checkShippingPrice() {
+    this.props.checkShippingPrice(this.state.cep);
+  }
+
   renderShipping() {
 
     const shippingDetails = this.renderShippingDetails();
@@ -168,8 +178,11 @@ class ShoppingBag extends React.Component {
     return (
       <div className="frete">
         <h4>Frete</h4>
-        <input type="text" placeholder="Informe seu cep"/>
-        <button className="light-button">Calcular</button>
+        <input
+          type="text"
+          onChange={event => this.setState({ cep: event.target.value })}
+          placeholder="Informe seu cep" />
+        <button onClick={this.checkShippingPrice} className="light-button">Calcular</button>
         {shippingDetails}
       </div>
     );
@@ -178,12 +191,13 @@ class ShoppingBag extends React.Component {
 
   renderShippingDetails() {
     if (this.props.shipping) {
+      const addr = this.props.shipping.address;
       return (
         <p>
-          O frete para o cep
-          <strong>{this.props.shipping.code}</strong>
+          O frete para o CEP
+          <strong> {addr.code} </strong>
           é
-          <strong><PrettyPrice price={this.props.shipping.price} /></strong>
+          <strong> <PrettyPrice price={this.props.shipping.price} /></strong>
         </p>
       );
     }
@@ -203,10 +217,10 @@ class ShoppingBag extends React.Component {
         return (
           <tr key={index}>
             <td>
-              <ProductCardHorizontal product={product} options={options}/>
+              <ProductCardHorizontal product={product} options={options} />
             </td>
             <td>
-              <ProductPrice price={product.price}/>
+              <ProductPrice price={product.price} />
             </td>
             <td>
               <a href="#" onClick={() => {

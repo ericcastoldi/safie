@@ -8,6 +8,7 @@ import {
   bindActionCreators
 } from 'redux';
 import product from './product.js';
+import address from './address.js';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
@@ -61,7 +62,7 @@ bag.shape = {
   doneAdding: React.PropTypes.bool,
   error: React.PropTypes.string,
   shipping: React.PropTypes.shape({
-    code: React.PropTypes.string,
+    address: React.PropTypes.shape(address.addressShape),
     price: React.PropTypes.number
   }),
   total: React.PropTypes.number,
@@ -123,6 +124,35 @@ bag.agreementAcceptance = () => {
   };
 };
 
+bag.startCheckingShippingPrice = actionFactory.simpleActionCreator(actionTypes.START_CHECKING_SHIPPING_PRICE);
+bag.doneCheckingShippingPrice = actionFactory.payloadActionCreator(actionTypes.DONE_CHECKING_SHIPPING_PRICE, payloadFactory);
+bag.cannotCheckShippingPrice = actionFactory.errorActionCreator(actionTypes.CANNOT_CHECK_SHIPPING_PRICE);
+
+bag.checkShippingPrice = (cep) => {
+
+  return (dispatch) => {
+    dispatch(bag.startCheckingShippingPrice());
+
+    return axios
+      .get('/api/bag/shipping', {
+        params: {
+          cep: cep
+        }
+      })
+      .then(function (apiResult) {
+        var result = apiResult.data;
+        if (result.success) {
+          dispatch(bag.doneCheckingShippingPrice(result.data));
+        } else {
+          dispatch(bag.cannotCheckShippingPrice(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(bag.cannotCheckShippingPrice(response));
+      });
+
+  };
+};
 
 
 bag.checkout = () => {
@@ -147,28 +177,91 @@ bag.checkout = () => {
   };
 };
 
-bag.pay = () => {
 
-  return axios
-    .get('/api/bag/payment')
-    .then(function (apiResult) {
-      var result = apiResult.data;
-      if (result.success) {
-        PagSeguroLightbox({
-          code: result.data.token
-        }, {
-          success: function (transactionCode) {
-            console.log(transactionCode);
-          },
-          abort: function () {
-            console.log('abort');
-          }
-        });
-      }
-    });
+bag.startSelectingAddress = actionFactory.simpleActionCreator(actionTypes.START_SELECTING_ADDRESS);
+bag.doneSelectingAddress = actionFactory.payloadActionCreator(actionTypes.DONE_SELECTING_ADDRESS, payloadFactory);
+bag.cannotSelectAddress = actionFactory.errorActionCreator(actionTypes.CANNOT_SELECT_ADDRESS);
 
+bag.selectAddress = (addr) => {
+
+  return (dispatch) => {
+    dispatch(bag.startSelectingAddress());
+
+    return axios
+      .post('/api/bag/address', addr)
+      .then(function (apiResult) {
+        var result = apiResult.data;
+        if (result.success) {
+          dispatch(bag.doneSelectingAddress(result.data));
+          dispatch(address.fetchAddresses());
+        } else {
+          dispatch(bag.cannotSelectAddress(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(bag.cannotSelectAddress(response));
+      });
+
+  };
 };
 
+// bag.createOrder = (transactionCode) => {
+//   return (dispatch) => {
+//     // disparar chamada ajax criando pedido com o transactionCode
+// o pedido deve receber a sacola completa, com os itens e as informações de entrega
+/*
+
+- Gerar um pedido, a ser exibido posteriormente na área My Safie
+- Ao gerar o pedido, a sacola de compras deve ser resetada.
+- Enviar um e-mail para o usuário informando que a compra foi efetuada com sucesso
+- Enviar um email para a administração da Safie para que seja providenciado o início da produção do pedido
+- Finalmente o usuário então deve ser redirecionado para a tela de agradecimento pela compra.
+
+> Definir formato, textos e assuntos dos e-mails.
+
+O pedido a ser gerado deve ter as seguintes informações:
+
+- Número de pedido gerado automaticamente
+- Peças do pedido e opções das peças (cor e medidas)
+- Endereço de entrega
+- Valor do frete
+- Valor total
+- Status (Em produção, Enviado)
+
+
+*/
+//   };
+// };
+
+bag.pay = () => {
+
+
+  return (dispatch) => {
+
+    return axios
+      .get('/api/bag/payment')
+      .then((apiResult) => {
+
+        var result = apiResult.data;
+
+        if (result.success) {
+          PagSeguroLightbox({
+            code: result.data.token
+          }, {
+            success: function (transactionCode) {
+              //dispatch(bag.createOrder(transactionCode));
+              console.log(transactionCode);
+              dispatch(push('/agradecimento'));
+            },
+            abort: function () {
+              dispatch(push('/bag'));
+            }
+          });
+        }
+      });
+
+  };
+};
 
 
 
@@ -196,7 +289,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    pay: bag.pay,
     fetchBag: bag.fetchBag,
+    checkShippingPrice: bag.checkShippingPrice,
     checkout: bag.checkout,
     removeProductFromBag: bag.removeProductFromBag,
     addProductToBag: bag.addProductToBag,
@@ -223,6 +318,7 @@ const doneFetchingBag = (state, action) => {
     doneFetching: true,
     fetching: false,
     error: null,
+    shipping: action.payload.bag.shipping,
     items: action.payload.bag.items,
     total: action.payload.bag.total
   });
@@ -232,6 +328,34 @@ const cannotFetchBag = (state, action) => {
   return Object.assign({}, state, {
     doneFetching: true,
     fetching: false,
+    error: action.payload.error
+  });
+};
+
+const startCheckingShippingPrice = (state) => {
+  return Object.assign({}, state, {
+    error: null,
+    fetching: true,
+    doneFetching: false,
+    shipping: null
+  });
+};
+
+const doneCheckingShippingPrice = (state, action) => {
+  return Object.assign({}, state, {
+    doneFetching: true,
+    fetching: false,
+    error: null,
+    shipping: action.payload.bag.shipping,
+    total: action.payload.bag.total
+  });
+};
+
+const cannotCheckShippingPrice = (state, action) => {
+  return Object.assign({}, state, {
+    doneFetching: true,
+    fetching: false,
+    errorPopupOpen: true,
     error: action.payload.error
   });
 };
@@ -351,6 +475,24 @@ const dismissAgreementAcceptancePopup = (state) => {
   });
 };
 
+const doneSelectingAddress = (state, action) => {
+  return Object.assign({}, state, {
+    error: null,
+    shipping: action.payload.bag.shipping,
+    total: action.payload.bag.total
+  });
+};
+
+const cannotSelectAddress = (state, action) => {
+  return Object.assign({}, state, {
+    errorPopupOpen: true,
+    error: action.payload.error
+  });
+};
+
+
+
+
 bag.actionTypeMapping = [];
 
 bag.actionTypeMapping[actionTypes.DISMISS_ERROR_POPUP] = dismissErrorPopup;
@@ -368,6 +510,10 @@ bag.actionTypeMapping[actionTypes.START_REMOVING_PRODUCT_FROM_BAG] = startRemovi
 bag.actionTypeMapping[actionTypes.DONE_REMOVING_PRODUCT_FROM_BAG] = doneRemovingProductFromBag;
 bag.actionTypeMapping[actionTypes.CANNOT_REMOVE_PRODUCT_FROM_BAG] = cannotRemoveProductFromBag;
 
+bag.actionTypeMapping[actionTypes.START_CHECKING_SHIPPING_PRICE] = startCheckingShippingPrice;
+bag.actionTypeMapping[actionTypes.DONE_CHECKING_SHIPPING_PRICE] = doneCheckingShippingPrice;
+bag.actionTypeMapping[actionTypes.CANNOT_CHECK_SHIPPING_PRICE] = cannotCheckShippingPrice;
+
 bag.actionTypeMapping[actionTypes.START_CHECKING_OUT] = startCheckingOut;
 bag.actionTypeMapping[actionTypes.DONE_CHECKING_OUT] = doneCheckingOut;
 bag.actionTypeMapping[actionTypes.CANNOT_CHECK_OUT] = cannotCheckOut;
@@ -375,6 +521,9 @@ bag.actionTypeMapping[actionTypes.CANNOT_CHECK_OUT] = cannotCheckOut;
 bag.actionTypeMapping[actionTypes.ACCEPT_AGREEMENT] = acceptAgreement;
 bag.actionTypeMapping[actionTypes.OPEN_AGREEMENT_ACCEPTANCE_POPUP] = openAgreementAcceptancePopup;
 bag.actionTypeMapping[actionTypes.DISMISS_AGREEMENT_ACCEPTANCE_POPUP] = dismissAgreementAcceptancePopup;
+
+bag.actionTypeMapping[actionTypes.DONE_SELECTING_ADDRESS] = doneSelectingAddress;
+bag.actionTypeMapping[actionTypes.CANNOT_SELECT_ADDRESS] = cannotSelectAddress;
 
 
 bag.reducer = (state = bag.initialState, action) => {

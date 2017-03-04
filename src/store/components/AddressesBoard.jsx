@@ -1,8 +1,15 @@
 import React from 'react';
 import AddressCard from './AddressCard.jsx';
-import AddressCreation from './AddressCreation.jsx';
 import NothingToSeeHere from './NothingToSeeHere.jsx';
 import address from './state/address.js';
+import bag from './state/bag.js';
+
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
 
 
 class AddressesBoard extends React.Component {
@@ -11,6 +18,15 @@ class AddressesBoard extends React.Component {
     super();
 
     this.renderCards = this.renderCards.bind(this);
+    this.selectAddress = this.selectAddress.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchAddresses();
+  }
+
+  selectAddress(addr) {
+    this.props.selectAddress(addr);
   }
 
   render() {
@@ -22,21 +38,12 @@ class AddressesBoard extends React.Component {
       );
     }
 
-    if (addresses.length === 1) {
-
-      return (
-        <AddressCard
-          address={addresses[0]}
-          removeAddress={this.props.removeAddress} />
-      );
-    }
 
     const renderedAddresses = this.renderCards();
 
     return (
       <div className='my-address'>
         {renderedAddresses}
-        <AddressCreation />
       </div>
     );
 
@@ -47,6 +54,18 @@ class AddressesBoard extends React.Component {
   renderCards() {
 
     let addresses = this.props.addresses;
+
+
+    if (addresses.length === 1) {
+
+      return (
+        <AddressCard
+          address={addresses[0]}
+          selectAddress={this.selectAddress}
+          removeAddress={this.props.removeAddress} />
+      );
+    }
+
     let splittedAddresses = [];
 
     while (addresses.length) {
@@ -60,6 +79,7 @@ class AddressesBoard extends React.Component {
           <div key={rowIndex} className="six columns">
             <AddressCard
               address={addr}
+              selectAddress={this.selectAddress}
               removeAddress={this.props.removeAddress} />
           </div>
         );
@@ -77,6 +97,25 @@ class AddressesBoard extends React.Component {
 }
 
 
-AddressesBoard.propTypes = address.shape;
+AddressesBoard.propTypes = {
+  removeAddress: React.PropTypes.func,
+  selectAddress: React.PropTypes.func,
+  addresses: React.PropTypes.arrayOf(address.addressShape),
+  fetchAddresses: React.PropTypes.func
+};
 
-module.exports = address.connect(AddressesBoard);
+const mapStateToProps = (state) => {
+  return {
+    addresses: state.address.addresses
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    removeAddress: address.removeAddress,
+    fetchAddresses: address.fetchAddresses,
+    selectAddress: bag.selectAddress
+  }, dispatch);
+};
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(AddressesBoard);

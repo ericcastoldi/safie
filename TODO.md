@@ -123,7 +123,7 @@ Ajustar os links de email, facebook e instagram para ações reais de compartilh
   - ~~Caso NÃO esteja logado, deve ser redirecionado para o login. Após se cadastrar ou fazer o login o usuário será redirecionado para o My Safie onde ele pode clicar novamente em "Finalizar Compra".~~
   - ~~Caso ESTEJA logado, deve ser redirecionado para a tela de checkout.~~
 - ~~Formatar valor total da compra corretamente~~
-- Implementar o cálculo de frete
+- ~~Implementar o cálculo de frete~~
 
 > Criar um preenchimento automatico das medidas que a cliente ja tiver cadastradas no My Safie, bem como salvar as medidas no My Safie apos uma compra.
 
@@ -157,14 +157,14 @@ Ao selecionar um endereço de entrega o frete deve ser recalculado e o novo fret
 
 ### Realizar pagamento
 
-Ao clicar no botão "Realizar pagamento" deve ser verificado se existe um endereço de entrega selecionado e se o frete foi devidamente calculado. Em caso positivo deve ser acionado o PagSeguro, enviando as informações de peças, peso e endereço de entrega.
+~~Ao clicar no botão "Realizar pagamento" deve ser verificado se existe um endereço de entrega selecionado e se o frete foi devidamente calculado. Em caso positivo deve ser acionado o PagSeguro, enviando as informações de peças, peso e endereço de entrega.~~
 Depois que o PagSeguro retornar um sinal de que o pagamento foi efetuado, o site deve:
 
 - Gerar um pedido, a ser exibido posteriormente na área My Safie
 - Ao gerar o pedido, a sacola de compras deve ser resetada.
 - Enviar um e-mail para o usuário informando que a compra foi efetuada com sucesso
 - Enviar um email para a administração da Safie para que seja providenciado o início da produção do pedido
-- Finalmente o usuário então deve ser redirecionado para a tela de agradecimento pela compra.
+- ~~Finalmente o usuário então deve ser redirecionado para a tela de agradecimento pela compra.~~
 
 > Definir formato, textos e assuntos dos e-mails.
 

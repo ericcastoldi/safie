@@ -11,19 +11,41 @@ const shoppingBagModel = {
   validMeasurements: false
 };
 
+
+const allTrue = (prev, curr) => {
+  return prev && curr;
+};
+
+const sum = (prev, curr) => {
+  return parseFloat(prev) + parseFloat(curr);
+};
+
+const calcTotalPrice = (bag) => {
+  const itemsPrice = Object.keys(bag.items)
+    .map(itemId => {
+      return bag.items[itemId].product.price;
+    })
+    .reduce(sum);
+
+  const shippingPrice = bag.shipping && bag.shipping.price ?
+    bag.shipping.price :
+    0;
+
+  return itemsPrice + shippingPrice;
+};
+
 const addToBag = (item, bag) => {
   if (!item) {
     throw 'Item inválido.';
   }
 
-  var product = item.product;
   var newItemId = new Date().getTime();
   var actualBag = bag || Object.assign({}, shoppingBagModel);
 
   actualBag.items = actualBag.items || {};
   actualBag.items[newItemId] = item;
-  actualBag.total = parseFloat(actualBag.total) + parseFloat(product.price);
-  actualBag.count++;
+  actualBag.total = calcTotalPrice(actualBag);
+  actualBag.count = Object.keys(actualBag.items).length;
 
   return actualBag;
 };
@@ -37,16 +59,57 @@ const removeFromBag = (itemId, bag) => {
     return bag;
   }
 
-  const item = bag.items[itemId];
-  bag.total = parseFloat(bag.total) - parseFloat(item.product.price);
-  bag.count--;
   delete bag.items[itemId];
+  bag.total = calcTotalPrice(bag);
+  bag.count = Object.keys(bag.items).length;
 
   return bag;
 };
 
-const allTrue = (prev, curr) => {
-  return prev && curr;
+
+const checkShippingPrice = (bag, address, cb) => {
+
+  if (!bag || !bag.items) {
+    cb('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!');
+    return;
+  }
+
+  if (!address || !address.code) {
+    cb('Impossível calcular frete. CEP Inválido!');
+  }
+
+  const totalWeight = Object.keys(bag.items)
+    .map(itemId => {
+      return bag.items[itemId].product.weight;
+    })
+    .reduce(sum) * 0.001;
+
+
+  correios.getPrice({
+    serviceType: 'pac',
+    from: '89040-320',
+    to: address.code,
+    weight: totalWeight.toString(),
+    width: 15,
+    height: 50,
+    length: 30
+  }, (err, result) => {
+
+    if (err) {
+      cb(err);
+    } else {
+
+      bag.shipping = {
+        address: address,
+        price: result.GrandTotal
+      };
+
+      bag.total = calcTotalPrice(bag);
+
+      cb(null, bag);
+    }
+
+  });
 };
 
 module.exports = {
@@ -76,6 +139,18 @@ module.exports = {
 
   payment: (req, res) => {
 
+    const bag = req.session.shoppingBag;
+
+    if (!bag || !bag.items) {
+      res.json(apiResultFactory.errorResult('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!'));
+      return;
+    }
+
+    if (!bag.shipping.address) {
+      res.json(apiResultFactory.errorResult('Diga pra gente um endereço onde possamos te entregar suas peças exclusivas feitas especialmente para você!'));
+      return;
+    }
+
     const pag = new PagSeguro({
       email: 'sabrinefernandess@gmail.com',
       token: '6F26796364124974844649FEAD6B1A71',
@@ -83,18 +158,14 @@ module.exports = {
     });
 
     pag.currency('BRL');
-    // pag.reference('12345');
 
-    var bag = req.session.shoppingBag;
-    var actualBag = bag || Object.assign({}, shoppingBagModel);
-
-    Object.keys(actualBag.items)
+    Object.keys(bag.items)
       .map(itemId => {
-        var item = actualBag.items[itemId];
+        var item = bag.items[itemId];
         pag.addItem({
           id: itemId,
           description: item.product.name,
-          amount: item.product.price,
+          amount: parseFloat(item.product.price).toFixed(2),
           quantity: 1,
           weight: item.product.weight
         });
@@ -106,7 +177,7 @@ module.exports = {
       email: req.user.email
     });
 
-    const addr = req.body;
+    const addr = bag.shipping.address;
 
     pag.shipping({
       type: 1,
@@ -126,17 +197,26 @@ module.exports = {
     pag.send(function (err, pagSeguroResponse) {
       if (err) {
         res.json(apiResultFactory.errorResult(err));
-      } else {
-        parseXml(pagSeguroResponse, function (xmlErr, result) {
-          if (xmlErr) {
-            res.json(apiResultFactory.errorResult(err));
-          } else {
-            res.json(apiResultFactory.successResult({
-              token: result.checkout.code[0]
-            }));
-          }
-        });
+        return;
       }
+
+      parseXml(pagSeguroResponse, function (xmlErr, result) {
+        if (xmlErr) {
+          res.json(apiResultFactory.errorResult(err));
+          return;
+        }
+
+        if (result.errors) {
+          res.json(apiResultFactory.errorResult(result.errors.error[0].message));
+          return;
+        }
+
+        res.json(apiResultFactory.successResult({
+          token: result.checkout.code[0]
+        }));
+
+      });
+
     });
 
   },
@@ -187,53 +267,34 @@ module.exports = {
     res.json(response);
   },
 
+  setShippingAddress: (req, res) => {
+
+    let bag = req.session.shoppingBag;
+    const address = req.body;
+
+    checkShippingPrice(bag, address, (err, updatedBag) => {
+      if (err) {
+        res.json(apiResultFactory.errorResult(err));
+      } else {
+        res.json(apiResultFactory.successResult(updatedBag));
+      }
+    });
+  },
+
   shipping: (req, res) => {
 
     let bag = req.session.shoppingBag;
 
-    if (!bag || !bag.items) {
-      res.json(apiResultFactory.errorResult('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!'));
-      return;
-    }
+    const address = {
+      code: req.query.cep
+    };
 
-    if (!req.query.cep) {
-      res.json(apiResultFactory.errorResult('Impossível calcular frete. CEP Inválido!'));
-    }
-
-    const totalWeight = Object.keys(bag.items)
-      .map(itemId => {
-        return bag.items[itemId].product.weight;
-      })
-      .reduce((prev, curr) => {
-        return prev + curr;
-      }) * 0.001;
-
-
-    correios.getPrice({
-      serviceType: 'pac',
-      from: '89040-320',
-      to: req.query.cep,
-      weight: totalWeight.toString(),
-      width: 15,
-      height: 50,
-      length: 30
-    }, (err, result) => {
-
+    checkShippingPrice(bag, address, (err, updatedBag) => {
       if (err) {
         res.json(apiResultFactory.errorResult(err));
       } else {
-        const shipping = {
-          code: req.query.cep,
-          price: result.GrandTotal
-        };
-
-        const updatedBag = Object.assign({}, bag, {
-          shipping: shipping
-        });
-
         res.json(apiResultFactory.successResult(updatedBag));
       }
-
     });
   }
 };

@@ -7,11 +7,18 @@ class AddressCreation extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.openAddressPopup = this.openAddressPopup.bind(this);
+    this.closeAddressPopup = this.closeAddressPopup.bind(this);
   }
 
   openAddressPopup() {
     this.props.openAddressPopup();
+  }
+
+  closeAddressPopup() {
+    this.props.closeAddressPopup();
+    this.props.fetchAddresses();
   }
 
   render() {
@@ -21,7 +28,7 @@ class AddressCreation extends React.Component {
       <div className='new-address'>
 
         <DismissablePopup
-          dismiss={this.props.closeAddressPopup}
+          dismiss={this.closeAddressPopup}
           active={this.props.addressPopupOpen}>
 
           <AddressForm

@@ -1,7 +1,6 @@
 /*eslint no-undef: 0 new-cap: 0*/
 
 import React from 'react';
-import { Link } from 'react-router';
 import CheckoutSection from './CheckoutSection.jsx';
 import BagSummaryItemsBox from './BagSummaryItemsBox.jsx';
 import BagSummaryShippingBox from './BagSummaryShippingBox.jsx';
@@ -10,6 +9,7 @@ import CheckoutBox from './CheckoutBox.jsx';
 import AddressCreation from './AddressCreation.jsx';
 import AddressesBoard from './AddressesBoard.jsx';
 import bag from './state/bag.js';
+
 
 class Checkout extends React.Component {
 
@@ -20,12 +20,15 @@ class Checkout extends React.Component {
   }
 
   openLightbox() {
-    bag.pay();
+    this.props.pay();
   }
 
 
   render() {
 
+    const shippingPrice = this.props.shipping
+      ? this.props.shipping.price
+      : null;
 
     return (
       <div className="conteudo-c">
@@ -35,7 +38,7 @@ class Checkout extends React.Component {
               <div className="six columns">
                 <CheckoutSection title="Resumo do Pedido">
                   <BagSummaryItemsBox items={this.props.items} />
-                  <BagSummaryShippingBox shippingPrice={this.props.shippingPrice} />
+                  <BagSummaryShippingBox shippingPrice={shippingPrice} />
                   <BagSummaryTotalBox total={this.props.total} />
                 </CheckoutSection>
               </div>
@@ -49,9 +52,11 @@ class Checkout extends React.Component {
             <div className="row">
               <div className="twelve columns">
                 <CheckoutBox>
+
                   <p> Você será redirecionado ao PagSeguro</p>
 
                   <button onClick={this.openLightbox} className="button gray-button">Realizar pagamento</button>
+
                 </CheckoutBox>
               </div>
             </div>
@@ -66,8 +71,9 @@ class Checkout extends React.Component {
 
 Checkout.propTypes = {
   items: React.PropTypes.shape(bag.itemShape),
-  shippingPrice: React.PropTypes.number,
-  total: React.PropTypes.number
+  shipping: React.PropTypes.object,
+  total: React.PropTypes.number,
+  pay: React.PropTypes.func
 };
 
 module.exports = bag.connect(Checkout);
