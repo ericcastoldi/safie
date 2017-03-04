@@ -1,5 +1,7 @@
 const apiResultFactory = require('./apiResultFactory.js');
 const correios = require('correios');
+const PagSeguro = require('pagseguro');
+const parseXml = require('xml2js').parseString;
 
 const shoppingBagModel = {
   shipping: null,
@@ -72,6 +74,73 @@ module.exports = {
     res.json(response);
   },
 
+  payment: (req, res) => {
+
+    const pag = new PagSeguro({
+      email: 'sabrinefernandess@gmail.com',
+      token: '6F26796364124974844649FEAD6B1A71',
+      mode: 'sandbox'
+    });
+
+    pag.currency('BRL');
+    // pag.reference('12345');
+
+    var bag = req.session.shoppingBag;
+    var actualBag = bag || Object.assign({}, shoppingBagModel);
+
+    Object.keys(actualBag.items)
+      .map(itemId => {
+        var item = actualBag.items[itemId];
+        pag.addItem({
+          id: itemId,
+          description: item.product.name,
+          amount: item.product.price,
+          quantity: 1,
+          weight: item.product.weight
+        });
+      });
+
+    //Configurando as informações do comprador
+    pag.buyer({
+      name: req.user.name,
+      email: req.user.email
+    });
+
+    const addr = req.body;
+
+    pag.shipping({
+      type: 1,
+      street: addr.street,
+      number: addr.number,
+      complement: addr.obs,
+      district: addr.district,
+      postalCode: addr.code,
+      city: addr.city,
+      state: addr.state,
+      country: 'BRA'
+    });
+
+    //pag.setNotificationURL('http://www.lojamodelo.com.br/notificacao');
+
+    //Enviando o xml ao pagseguro
+    pag.send(function (err, pagSeguroResponse) {
+      if (err) {
+        res.json(apiResultFactory.errorResult(err));
+      } else {
+        parseXml(pagSeguroResponse, function (xmlErr, result) {
+          if (xmlErr) {
+            res.json(apiResultFactory.errorResult(err));
+          } else {
+            res.json(apiResultFactory.successResult({
+              token: result.checkout.code[0]
+            }));
+          }
+        });
+      }
+    });
+
+  },
+
   checkout: (req, res) => {
 
     if (!req.session.shoppingBag ||
@@ -142,7 +211,7 @@ module.exports = {
 
     correios.getPrice({
       serviceType: 'pac',
-      from: '88330-725',
+      from: '89040-320',
       to: req.query.cep,
       weight: totalWeight.toString(),
       width: 15,

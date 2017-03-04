@@ -1,3 +1,4 @@
+/*eslint no-undef: 0 new-cap: 0*/
 import axios from 'axios';
 import React from 'react';
 import {
@@ -144,6 +145,28 @@ bag.checkout = () => {
       });
 
   };
+};
+
+bag.pay = () => {
+
+  return axios
+    .get('/api/bag/payment')
+    .then(function (apiResult) {
+      var result = apiResult.data;
+      if (result.success) {
+        PagSeguroLightbox({
+          code: result.data.token
+        }, {
+          success: function (transactionCode) {
+            console.log(transactionCode);
+          },
+          abort: function () {
+            console.log('abort');
+          }
+        });
+      }
+    });
+
 };
 
 
@@ -327,7 +350,6 @@ const dismissAgreementAcceptancePopup = (state) => {
     agreementAcceptancePopupOpen: false
   });
 };
-
 
 bag.actionTypeMapping = [];
 

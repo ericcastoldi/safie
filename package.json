@@ -78,6 +78,7 @@
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.8",
     "morgan": "^1.7.0",
+    "pagseguro": "^0.1.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
@@ -100,7 +101,8 @@
     "skeleton-css": "^2.0.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "babel": "^6.5.2",

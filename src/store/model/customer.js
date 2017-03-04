@@ -9,7 +9,10 @@ const customerSchema = new Schema({
   phone: String,
   facebookId: String,
   facebookToken: String,
-  addresses: [{ type: Schema.ObjectId, ref: 'Address' }]
+  addresses: [{
+    type: Schema.ObjectId,
+    ref: 'Address'
+  }]
 });
 
 module.exports = mongoose.model('Customer', customerSchema);
