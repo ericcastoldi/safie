@@ -10,7 +10,6 @@ import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
 import collections from './data/collections.js';
 
-// TODO: Alterar para "productView" ou algo do genero e colocar as options dentro do current: {current: {product: {}, options: {}}}
 let product = {
   // shape: null,
   // initialState: null,
@@ -21,11 +20,7 @@ let product = {
 // State
 product.initialState = {
   measurementsPopupOpen: false,
-  current: {},
-  options: {
-    measurements: null,
-    color: null // TODO: Quando o initialState estiver vindo do server, essa color deve vir preenchida com a defaultColor do produto
-  }
+  current: {}
 };
 
 product.shape = {
@@ -40,7 +35,7 @@ product.shape = {
     paths: React.PropTypes.object
   }),
   colors: React.PropTypes.object,
-  defaultColor: React.PropTypes.string
+  defaultColor: React.PropTypes.object
 };
 
 // Actions
@@ -72,10 +67,13 @@ product.setProductMeasurements = actionFactory.payloadActionCreator(
 
 // React Redux
 function mapStateToProps(state) {
+  const current = state.product.current;
+  const options = current && current.options ? current.options : null;
+  const selectedColor = options ? options.color : null;
   return {
-    product: state.product.current,
-    options: state.product.options,
-    selectedColor: state.product.options.color,
+    product: current,
+    options: options,
+    selectedColor: selectedColor,
     measurementsPopupOpen: state.product.measurementsPopupOpen
   };
 }
@@ -104,24 +102,33 @@ const closeMeasurementsPopup = (state) => {
   });
 };
 
-const pickProductColor = (state, action) => {
-  var updatedOptions = Object.assign({}, state.options, {
-    color: action.payload.color
+const updateOptions = (state, change) => {
+  const options = state.current.options;
+  const updatedOptions = Object.assign({}, options, change);
+
+  const updatedCurrent = Object.assign({}, state.current, {
+    options: updatedOptions
   });
 
   return Object.assign({}, state, {
-    options: updatedOptions
+    current: updatedCurrent
   });
 };
 
-const setProductMeasurements = (state, action) => {
-  var updatedMeasurementsOptions = Object.assign({}, state.options, {
-    measurements: action.payload.measurements
-  });
+const pickProductColor = (state, action) => {
+  const change = {
+    color: action.payload.color
+  };
 
-  return Object.assign({}, state, {
-    options: updatedMeasurementsOptions
-  });
+  return updateOptions(state, change);
+};
+
+const setProductMeasurements = (state, action) => {
+  const change = {
+    measurements: action.payload.measurements
+  };
+
+  return updateOptions(state, change);
 };
 
 const fetchProduct = (state, action) => {

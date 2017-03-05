@@ -1,6 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';

@@ -1,6 +1,5 @@
 module.exports = {
-  'barcelona': [
-    {
+  'barcelona': [{
       id: 'saia-lapis',
       name: 'SAIA LÁPIS URBAN',
       description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
@@ -18,12 +17,19 @@ module.exports = {
           value: 123
         }
       },
-      defaultColor: 'preto',
+      defaultColor: {
+        name: 'Preto',
+        hex: '#000000'
+      },
       colors: {
         preto: {
           name: 'Preto',
           hex: '#000000'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       },
       pictures: {
         main: 1,
@@ -59,7 +65,10 @@ module.exports = {
           value: 95
         }
       },
-      defaultColor: 'preto',
+      defaultColor: {
+        name: 'Preto',
+        hex: '#000000'
+      },
       colors: {
         preto: {
           name: 'Preto',
@@ -78,6 +87,10 @@ module.exports = {
           2: '/img/demo/blazer-detalhe.jpg',
           3: '/img/demo/blazer-look-02.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     },
     {
@@ -103,7 +116,10 @@ module.exports = {
           value: 110
         }
       },
-      defaultColor: 'salmao',
+      defaultColor: {
+        name: 'Salmão',
+        hex: '#EEA682'
+      },
       colors: {
         salmao: {
           name: 'Salmão',
@@ -118,6 +134,10 @@ module.exports = {
           2: '/img/demo/calca-detalhe.jpg',
           3: '/img/demo/calca-look-02.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     },
     {
@@ -138,7 +158,10 @@ module.exports = {
           value: 99
         }
       },
-      defaultColor: 'cinza',
+      defaultColor: {
+        name: 'Cinza',
+        hex: '#666666'
+      },
       colors: {
         preto: {
           name: 'Preto',
@@ -157,6 +180,10 @@ module.exports = {
           2: '/img/demo/camisa-detalhe.jpg',
           3: '/img/demo/camisa-look-02.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     },
     {
@@ -172,7 +199,10 @@ module.exports = {
           value: 50
         }
       },
-      defaultColor: 'azul',
+      defaultColor: {
+        name: 'Azul',
+        hex: '#a8c9ff'
+      },
       colors: {
         salmao: {
           name: 'Salmão',
@@ -192,6 +222,10 @@ module.exports = {
           3: '/img/demo/camiseta-look-02.jpg',
           4: '/img/demo/camiseta-look-03.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     },
     {
@@ -217,7 +251,10 @@ module.exports = {
           value: 95
         }
       },
-      defaultColor: 'bege',
+      defaultColor: {
+        name: 'Bege',
+        hex: '#ffffe0'
+      },
       colors: {
         bege: {
           name: 'Bege',
@@ -233,6 +270,10 @@ module.exports = {
           3: '/img/demo/casaco-look-02.jpg',
           4: '/img/demo/casaco-look-03.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     },
     {
@@ -263,7 +304,10 @@ module.exports = {
           value: 110
         }
       },
-      defaultColor: 'bege',
+      defaultColor: {
+        name: 'Bege',
+        hex: '#ffffe0'
+      },
       colors: {
         bege: {
           name: 'Bege',
@@ -282,6 +326,10 @@ module.exports = {
           2: '/img/demo/macacao-detalhe.jpg',
           3: '/img/demo/macacao-look-02.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     },
     {
@@ -312,7 +360,10 @@ module.exports = {
           value: 110
         }
       },
-      defaultColor: 'salmao',
+      defaultColor: {
+        name: 'Salmão',
+        hex: '#EEA682'
+      },
       colors: {
         salmao: {
           name: 'Salmão',
@@ -331,6 +382,10 @@ module.exports = {
           2: '/img/demo/vestido-detalhe.jpg',
           3: '/img/demo/vestido-look-02.jpg'
         }
+      },
+      options: {
+        measurements: null,
+        color: null
       }
     }
   ]

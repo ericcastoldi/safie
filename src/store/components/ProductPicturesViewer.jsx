@@ -12,21 +12,20 @@ var ProductPicturesViewer = React.createClass({
     })
   },
 
-  getInitialState: function (){
-    if(this.props.pictures) {
+  getInitialState: function () {
+    if (this.props.pictures) {
       return {
-        activePicture: this.props.pictures.main
+        activePicture: this.props.pictures.main.toString()
       };
     }
 
     return {
-      activePicture: 1
+      activePicture: '1'
     };
   },
 
-  nextPicture: function(){
-    if(Number(this.state.activePicture) === Object.keys(this.props.pictures.paths).length)
-    {
+  nextPicture: function () {
+    if (Number(this.state.activePicture) === Object.keys(this.props.pictures.paths).length) {
       this.changeActivePicture(1);
       return;
     }
@@ -35,9 +34,8 @@ var ProductPicturesViewer = React.createClass({
     this.changeActivePicture(next);
   },
 
-  previousPicture: function(){
-    if(Number(this.state.activePicture) === 1)
-    {
+  previousPicture: function () {
+    if (Number(this.state.activePicture) === 1) {
       this.changeActivePicture(Object.keys(this.props.pictures.paths).length);
       return;
     }
@@ -46,14 +44,14 @@ var ProductPicturesViewer = React.createClass({
     this.changeActivePicture(next);
   },
 
-  changeActivePicture: function(pic){
-    this.setState({activePicture: pic});
+  changeActivePicture: function (pic) {
+    this.setState({ activePicture: pic.toString() });
   },
 
 
-  render: function(){
+  render: function () {
 
-    if(!this.props.pictures){
+    if (!this.props.pictures) {
       return (<div>Carregando imagens...</div>);
     }
 

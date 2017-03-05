@@ -6,7 +6,7 @@ import product from './state/product.js';
 
 class Product extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
@@ -17,7 +17,7 @@ class Product extends React.Component {
   render() {
     var prod = this.props.product;
 
-    if(!prod) {
+    if (!prod) {
       return (<LoadingRipple />);
     }
 

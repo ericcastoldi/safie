@@ -2,6 +2,7 @@ import React from 'react';
 import ProductPicture from './ProductPicture.jsx';
 import ProductInfoSmall from './ProductInfoSmall.jsx';
 import MeasurementsInfo from './MeasurementsInfo.jsx';
+import ProductColorPicker from './ProductColorPicker.jsx';
 import product from './state/product.js';
 
 class ProductCardHorizontal extends React.Component {
@@ -9,6 +10,12 @@ class ProductCardHorizontal extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.pickProductColor = this.pickProductColor.bind(this);
+  }
+
+  pickProductColor(color) {
+    console.log(color);
   }
 
   render() {
@@ -16,10 +23,6 @@ class ProductCardHorizontal extends React.Component {
     const options = this.props.options;
     const prod = this.props.product;
     const picture = prod.pictures.paths[prod.pictures.product];
-
-    const colorName = options.color ?
-      prod.colors[options.color].name :
-      prod.colors[prod.defaultColor].name;
 
     return (
       <div className="produto-sacola">
@@ -33,11 +36,16 @@ class ProductCardHorizontal extends React.Component {
           name={prod.name}
           description={prod.description} />
 
-        <div><strong>Cor:</strong> {colorName}</div>
-
         <MeasurementsInfo
           product={prod}
           measurements={options.measurements} />
+
+
+        <ProductColorPicker
+          colors={prod.colors}
+          pickProductColor={this.pickProductColor}
+          defaultColor={prod.defaultColor}
+          selectedColor={options.color} />
 
       </div>
     );

@@ -44,7 +44,7 @@ bag.initialState = {
 };
 
 bag.itemShape = {
-  product: product.shape,
+  product: React.PropTypes.shape(product.shape),
   options: React.PropTypes.shape({
     color: React.PropTypes.object,
     measurements: React.PropTypes.object
@@ -62,7 +62,7 @@ bag.shape = {
   doneAdding: React.PropTypes.bool,
   error: React.PropTypes.string,
   shipping: React.PropTypes.shape({
-    address: React.PropTypes.shape(address.addressShape),
+    address: address.addressShape,
     price: React.PropTypes.number
   }),
   total: React.PropTypes.number,

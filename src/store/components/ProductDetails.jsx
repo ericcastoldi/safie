@@ -20,8 +20,12 @@ class ProductDetails extends React.Component {
 
     this.addToBag = this.addToBag.bind(this);
     this.setProductMeasurements = this.setProductMeasurements.bind(this);
+    this.pickProductColor = this.pickProductColor.bind(this);
   }
 
+  pickProductColor(color) {
+    this.props.pickProductColor(color);
+  }
 
   addToBag() {
     const item = {
@@ -43,11 +47,18 @@ class ProductDetails extends React.Component {
         <div className="container">
           <div className="row">
             <div className="three columns">
+
               <ProductTitle name={this.props.product.name} />
+
               <ProductPrice price={this.props.product.price} />
+
               <ProductColorPicker
+                colors={this.props.product.colors}
+                pickProductColor={this.pickProductColor}
                 defaultColor={this.props.product.defaultColor}
-                colors={this.props.product.colors} />
+                selectedColor={this.props.selectedColor} />
+
+
             </div>
             <div className="four columns">
               <ProductInfo description={this.props.product.description} />
@@ -74,11 +85,13 @@ class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
+  pickProductColor: React.PropTypes.func,
   measurementsPopupOpen: React.PropTypes.bool,
   openMeasurementsPopup: React.PropTypes.func,
   closeMeasurementsPopup: React.PropTypes.func,
   setProductMeasurements: React.PropTypes.func.isRequired,
   addProductToBag: React.PropTypes.func.isRequired,
+  selectedColor: React.PropTypes.object,
   options: React.PropTypes.shape({
     color: React.PropTypes.object,
     measurements: React.PropTypes.object
@@ -88,7 +101,12 @@ ProductDetails.propTypes = {
 
 
 const mapStateToProps = (state) => {
+
+  const current = state.product.current;
+  const color = current && current.options && current.options.color ? current.options.color : null;
+
   return {
+    selectedColor: color,
     measurementsPopupOpen: state.product.measurementsPopupOpen
   };
 };
@@ -98,7 +116,9 @@ const mapDispatchToProps = (dispatch) => {
     closeMeasurementsPopup: product.closeMeasurementsPopup,
     openMeasurementsPopup: product.openMeasurementsPopup,
     setProductMeasurements: product.setProductMeasurements,
+    pickProductColor: product.pickProductColor,
     addProductToBag: bag.addProductToBag
+
   }, dispatch);
 };
 

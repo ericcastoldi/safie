@@ -6,7 +6,7 @@ var PolicyCard = React.createClass({
     policy: React.PropTypes.shape({
       name: React.PropTypes.string.isRequired,
       items: React.PropTypes.arrayOf(
-       React.PropTypes.shape({
+        React.PropTypes.shape({
           title: React.PropTypes.string.isRequired,
           route: React.PropTypes.string
         })
@@ -14,13 +14,13 @@ var PolicyCard = React.createClass({
     }).isRequired
   },
 
-  renderPolicies: function(){
+  renderPolicies: function () {
 
     if (!this.props.policy.items || this.props.policy.items.length === 0) {
       return null;
     }
 
-    return this.props.policy.items.map(function(item, index){
+    return this.props.policy.items.map(function (item, index) {
       return (
         <p key={index}>
           <PolicyItem item={item} />
@@ -29,7 +29,7 @@ var PolicyCard = React.createClass({
     });
   },
 
-  render: function(){
+  render: function () {
 
     var renderedPolicies = this.renderPolicies();
 

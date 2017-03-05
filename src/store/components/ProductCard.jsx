@@ -17,7 +17,7 @@ var ProductCard = React.createClass({
     }).isRequired
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     var product = this.props.product;
     return {
       activePicture: product.pictures.paths[product.pictures.main],
@@ -32,8 +32,8 @@ var ProductCard = React.createClass({
     return (
       <div
         className="card-produto"
-        onMouseEnter={() => { this.setState({activePicture: this.state.productPicture}); }}
-        onMouseLeave={() => { this.setState({activePicture: this.state.mainPicture}); }}>
+        onMouseEnter={() => { this.setState({ activePicture: this.state.productPicture }); }}
+        onMouseLeave={() => { this.setState({ activePicture: this.state.mainPicture }); }}>
         <Link to={route}>
           <ProductPicture picture={this.state.activePicture} description={product.name} />
         </Link>

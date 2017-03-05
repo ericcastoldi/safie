@@ -1,11 +1,17 @@
 import axios from 'axios';
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {
+  connect
+} from 'react-redux';
+import {
+  bindActionCreators
+} from 'redux';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
-import { push } from 'react-router-redux';
+import {
+  push
+} from 'react-router-redux';
 
 let customer = {
   // shape: null,
@@ -124,19 +130,18 @@ customer.saveCustomer = (cust) => {
     dispatch(customer.startSavingCustomer());
 
     return axios.post('/api/customer', cust)
-        .then(function (apiResult) {
-          var result = apiResult.data;
-          if(result.success){
-            dispatch(customer.doneSavingCustomer(result.data));
-            dispatch(push('/my-safie'));
-          }
-          else{
-            dispatch(customer.cannotSaveCustomer(result.error));
-          }
-        })
-        .catch(function (response) {
-          dispatch(customer.cannotSaveCustomer(response));
-        });
+      .then(function (apiResult) {
+        var result = apiResult.data;
+        if (result.success) {
+          dispatch(customer.doneSavingCustomer(result.data));
+          dispatch(push('/my-safie'));
+        } else {
+          dispatch(customer.cannotSaveCustomer(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(customer.cannotSaveCustomer(response));
+      });
 
   };
 };

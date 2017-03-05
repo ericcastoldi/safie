@@ -20,7 +20,16 @@ const sum = (prev, curr) => {
   return parseFloat(prev) + parseFloat(curr);
 };
 
+const bagHasItems = (bag) => {
+  return bag && bag.items && Object.keys(bag.items).length > 0;
+};
+
 const calcTotalPrice = (bag) => {
+
+  if (!bagHasItems(bag)) {
+    return 0;
+  }
+
   const itemsPrice = Object.keys(bag.items)
     .map(itemId => {
       return bag.items[itemId].product.price;
@@ -46,6 +55,7 @@ const addToBag = (item, bag) => {
   actualBag.items[newItemId] = item;
   actualBag.total = calcTotalPrice(actualBag);
   actualBag.count = Object.keys(actualBag.items).length;
+  actualBag.shipping = null;
 
   return actualBag;
 };
@@ -55,11 +65,12 @@ const removeFromBag = (itemId, bag) => {
     throw 'Item inválido.';
   }
 
-  if (!bag.items || !(itemId in bag.items)) {
+  if (!bagHasItems(bag) || !(itemId in bag.items)) {
     return bag;
   }
 
   delete bag.items[itemId];
+  bag.shipping = null;
   bag.total = calcTotalPrice(bag);
   bag.count = Object.keys(bag.items).length;
 
@@ -69,7 +80,7 @@ const removeFromBag = (itemId, bag) => {
 
 const checkShippingPrice = (bag, address, cb) => {
 
-  if (!bag || !bag.items) {
+  if (!bagHasItems(bag)) {
     cb('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!');
     return;
   }
@@ -141,12 +152,12 @@ module.exports = {
 
     const bag = req.session.shoppingBag;
 
-    if (!bag || !bag.items) {
+    if (!bagHasItems(bag)) {
       res.json(apiResultFactory.errorResult('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!'));
       return;
     }
 
-    if (!bag.shipping.address) {
+    if (!bag.shipping.address || !bag.shipping.address.addressId) {
       res.json(apiResultFactory.errorResult('Diga pra gente um endereço onde possamos te entregar suas peças exclusivas feitas especialmente para você!'));
       return;
     }
@@ -223,15 +234,14 @@ module.exports = {
 
   checkout: (req, res) => {
 
-    if (!req.session.shoppingBag ||
-      !req.session.shoppingBag.items) {
+    var bag = req.session.shoppingBag;
+
+    if (!bagHasItems(bag)) {
       res.json(apiResultFactory.errorResult('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!'));
       return;
     }
 
-    var bag = req.session.shoppingBag;
     var actualBag = bag || Object.assign({}, shoppingBagModel);
-
     let validItemsAndMeasurements = Object.keys(actualBag.items)
       .map(itemId => {
         var item = actualBag.items[itemId];
@@ -249,6 +259,7 @@ module.exports = {
             }
 
             return false;
+
           })
           .reduce(allTrue);
       })

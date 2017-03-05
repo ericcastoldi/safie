@@ -20,11 +20,11 @@ var SubMenu = React.createClass({
     )
   },
 
-  titleClicked: function() {
+  titleClicked: function () {
     this.props.toggleSubItems(this.props.id);
   },
 
-  renderItems: function(){
+  renderItems: function () {
     return this.props.items.map(function (item, rowIndex) {
       return (
         <li key={rowIndex}>
@@ -36,19 +36,19 @@ var SubMenu = React.createClass({
 
   render: function () {
     let cssClasses = ['submenu'];
-    if(this.props.expanded) {
+    if (this.props.expanded) {
       cssClasses.push('open');
     }
 
     var items = this.renderItems();
 
     return (
-    <div>
-      <MenuItem click={this.titleClicked} title={this.props.title} />
-      <ul className={cssClasses.join(' ')}>
-        {items}
-      </ul>
-    </div>
+      <div>
+        <MenuItem click={this.titleClicked} title={this.props.title} />
+        <ul className={cssClasses.join(' ')}>
+          {items}
+        </ul>
+      </div>
     );
   }
 });

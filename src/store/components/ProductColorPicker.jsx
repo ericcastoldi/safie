@@ -1,36 +1,33 @@
 import React from 'react';
-import product from './state/product.js';
 
 var ProductColorPicker = React.createClass({
   propTypes: {
     colors: React.PropTypes.object,
     pickProductColor: React.PropTypes.func,
-    defaultColor: React.PropTypes.string,
-    selectedColor: React.PropTypes.string
+    defaultColor: React.PropTypes.object,
+    selectedColor: React.PropTypes.object
   },
 
-  pickColor: function(color){
+  pickColor: function (color) {
     this.props.pickProductColor(color);
   },
 
-  render: function(){
-    if(!this.props.colors){
+  render: function () {
+    if (!this.props.colors) {
       return null;
     }
 
     var colors = this.props.colors;
 
-    var selectedColorId = this.props.selectedColor ?
-                    this.props.selectedColor :
-                    this.props.defaultColor;
+    var selectedColor = this.props.selectedColor ?
+      this.props.selectedColor :
+      this.props.defaultColor;
 
-    var selectedColor = colors[selectedColorId];
-
-    var colorBoxes = Object.keys(colors).map(function(colorId, index){
+    var colorBoxes = Object.keys(colors).map(function (colorId, index) {
 
       var color = colors[colorId];
       let cssClasses = ['product-color'];
-      if(colorId === selectedColorId) {
+      if (color.hex === selectedColor.hex) {
         cssClasses.push('selected');
       }
 
@@ -38,16 +35,17 @@ var ProductColorPicker = React.createClass({
         backgroundColor: color.hex
       };
 
+
+      const title = 'Trocar cor para ' + color.name;
       return (
         <div
           key={index}
           className={cssClasses.join(' ')}
-          onClick={this.pickColor.bind(this, colorId)}>
+          onClick={this.pickColor.bind(this, color)}>
 
           <div
-
             style={divStyle}
-            title={color.name}
+            title={title}
             className="product-color-box">
           </div>
 
@@ -67,4 +65,4 @@ var ProductColorPicker = React.createClass({
   }
 });
 
-module.exports = product.connect(ProductColorPicker);
+module.exports = ProductColorPicker;
