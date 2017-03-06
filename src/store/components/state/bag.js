@@ -84,6 +84,9 @@ const payloadFactory = (result) => {
   };
 };
 
+bag.doneFetchingBag = actionFactory.payloadActionCreator(actionTypes.DONE_FETCHING_BAG, payloadFactory);
+
+
 bag.fetchBag = actionFactory.smartAsyncFetchActionCreator('bag',
   actionTypes.START_FETCHING_BAG,
   actionTypes.DONE_FETCHING_BAG,
@@ -264,6 +267,32 @@ bag.pay = () => {
 };
 
 
+bag.patch = (patch) => {
+
+
+  return (dispatch) => {
+
+    return axios
+      .patch('/api/bag', patch)
+      .then((apiResult) => {
+
+        var result = apiResult.data;
+
+        if (result.success) {
+          dispatch(bag.doneFetchingBag(result.data));
+        } else {
+          dispatch(bag.cannotSelectAddress(result.error));
+        }
+      })
+      .catch(function (response) {
+        dispatch(bag.cannotSelectAddress(response));
+      });
+
+  };
+};
+
+
+
 
 
 // React Redux
@@ -290,6 +319,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     pay: bag.pay,
+    patch: bag.patch,
     fetchBag: bag.fetchBag,
     checkShippingPrice: bag.checkShippingPrice,
     checkout: bag.checkout,

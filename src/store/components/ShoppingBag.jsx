@@ -30,6 +30,15 @@ class ShoppingBag extends React.Component {
     };
   }
 
+  patch(item, change) {
+    const ptch = {
+      item: item,
+      change: change
+    };
+
+    this.props.patch(ptch);
+  }
+
   render() {
 
     if (this.props.fetching || this.props.adding || this.props.removing) {
@@ -217,7 +226,10 @@ class ShoppingBag extends React.Component {
         return (
           <tr key={index}>
             <td>
-              <ProductCardHorizontal product={product} options={options} />
+              <ProductCardHorizontal
+                patch={change => this.patch(itemId, change)}
+                product={product}
+                options={options} />
             </td>
             <td>
               <ProductPrice price={product.price} />

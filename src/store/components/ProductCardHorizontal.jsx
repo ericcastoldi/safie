@@ -15,7 +15,11 @@ class ProductCardHorizontal extends React.Component {
   }
 
   pickProductColor(color) {
-    console.log(color);
+    const change = {
+      color: color
+    };
+
+    this.props.patch(change);
   }
 
   render() {
@@ -58,7 +62,8 @@ ProductCardHorizontal.propTypes = {
     color: React.PropTypes.object,
     measurements: React.PropTypes.object
   }),
-  product: React.PropTypes.shape(product.shape).isRequired
+  product: React.PropTypes.shape(product.shape).isRequired,
+  patch: React.PropTypes.func
 };
 
 

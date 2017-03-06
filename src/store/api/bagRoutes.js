@@ -307,5 +307,56 @@ module.exports = {
         res.json(apiResultFactory.successResult(updatedBag));
       }
     });
+  },
+
+  patch: (req, res) => {
+
+
+    /*
+     Mudando a cor...
+     {
+       item: 123123123,
+       change: {
+         color: {
+           name: "Preto",
+           hex: "#000000"
+         }
+       }
+     }
+
+     Mudando as medidas...
+     {
+       item: 123123123,
+       change: {
+         measurements: {
+           ombros: null,
+           bracos: null,
+           comprimento: null
+         }
+       }
+     }
+     */
+
+    let bag = req.session.shoppingBag;
+    if (!bagHasItems(bag)) {
+      res.json(apiResultFactory.errorResult('Não existem peças na sacola de compras a terem suas opções atualizadas.'));
+      return;
+    }
+
+    const patch = req.body;
+
+    if (!patch || !patch.item || !patch.change) {
+      res.json(apiResultFactory.errorResult('Patch inválido.'));
+      return;
+    }
+
+    const item = bag.items[patch.item];
+    const updatedOptions = Object.assign({}, item.options, patch.change);
+    bag.items[patch.item] = Object.assign({}, item, {
+      options: updatedOptions
+    });
+
+    req.session.shoppingBag = bag;
+    res.json(apiResultFactory.successResult(bag));
   }
 };
