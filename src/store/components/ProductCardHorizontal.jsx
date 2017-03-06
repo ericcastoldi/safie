@@ -2,6 +2,7 @@ import React from 'react';
 import ProductPicture from './ProductPicture.jsx';
 import ProductInfoSmall from './ProductInfoSmall.jsx';
 import MeasurementsInfo from './MeasurementsInfo.jsx';
+import MeasurementsFormPopup from './MeasurementsFormPopup.jsx';
 import ProductColorPicker from './ProductColorPicker.jsx';
 import product from './state/product.js';
 
@@ -12,11 +13,20 @@ class ProductCardHorizontal extends React.Component {
     super(props);
 
     this.pickProductColor = this.pickProductColor.bind(this);
+    this.changeMeasurements = this.changeMeasurements.bind(this);
   }
 
   pickProductColor(color) {
     const change = {
       color: color
+    };
+
+    this.props.patch(change);
+  }
+
+  changeMeasurements(measurements) {
+    const change = {
+      measurements: measurements
     };
 
     this.props.patch(change);
@@ -45,6 +55,18 @@ class ProductCardHorizontal extends React.Component {
           measurements={options.measurements} />
 
 
+        <MeasurementsFormPopup
+          popupOpen={this.props.measurementsPopupOpen}
+          closePopup={this.props.closeMeasurementsPopup}
+          setMeasurements={this.changeMeasurements}
+          measurements={prod.measurements} />
+
+        <div className="alterar-medidas">
+          <a onClick={this.props.openMeasurementsPopup}>
+            Alterar medidas
+          </a> <i className="fa fa-pencil" aria-hidden="true"></i>
+        </div>
+
         <ProductColorPicker
           colors={prod.colors}
           pickProductColor={this.pickProductColor}
@@ -63,7 +85,10 @@ ProductCardHorizontal.propTypes = {
     measurements: React.PropTypes.object
   }),
   product: React.PropTypes.shape(product.shape).isRequired,
-  patch: React.PropTypes.func
+  patch: React.PropTypes.func,
+  measurementsPopupOpen: React.PropTypes.bool,
+  openMeasurementsPopup: React.PropTypes.func,
+  closeMeasurementsPopup: React.PropTypes.func
 };
 
 

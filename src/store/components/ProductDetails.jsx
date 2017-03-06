@@ -6,8 +6,7 @@ import ProductColorPicker from './ProductColorPicker.jsx';
 import MediumDarkButton from './MediumDarkButton.jsx';
 import LightButton from './LightButton.jsx';
 import SocialIcons from './SocialIcons.jsx';
-import DismissablePopup from './DismissablePopup.jsx';
-import MeasurementsForm from './MeasurementsForm.jsx';
+import MeasurementsFormPopup from './MeasurementsFormPopup.jsx';
 import product from './state/product.js';
 import bag from './state/bag.js';
 import { connect } from 'react-redux';
@@ -66,14 +65,15 @@ class ProductDetails extends React.Component {
             <div className="five columns">
               <div className="comprar-produto">
                 <MediumDarkButton label="Medidas" click={this.props.openMeasurementsPopup} />
-                <DismissablePopup
-                  dismiss={this.props.closeMeasurementsPopup}
-                  active={this.props.measurementsPopupOpen}>
-                  <MeasurementsForm
-                    setProductMeasurements={this.setProductMeasurements}
-                    measurements={this.props.product.measurements} />
-                </DismissablePopup>
+
+                <MeasurementsFormPopup
+                  popupOpen={this.props.measurementsPopupOpen}
+                  closePopup={this.props.closeMeasurementsPopup}
+                  setMeasurements={this.props.setProductMeasurements}
+                  measurements={this.props.product.measurements} />
+
                 <LightButton click={this.addToBag} label="Comprar" />
+
                 <SocialIcons />
               </div>
             </div>

@@ -229,7 +229,10 @@ class ShoppingBag extends React.Component {
               <ProductCardHorizontal
                 patch={change => this.patch(itemId, change)}
                 product={product}
-                options={options} />
+                options={options}
+                measurementsPopupOpen={this.props.measurementsPopupOpen}
+                openMeasurementsPopup={this.props.openMeasurementsPopup}
+                closeMeasurementsPopup={this.props.closeMeasurementsPopup} />
             </td>
             <td>
               <ProductPrice price={product.price} />

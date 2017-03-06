@@ -567,10 +567,16 @@ nav.menu.open {
 
 /* MeasurementsForm.jsx */
 
-.form-medidas button,
+.form-medidas button.dark-button {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.form-medidas button.dark-button,
 .form-medidas input {
   border-radius: 0;
   width: 100%;
+  font-size: 1.5rem;
 }
 
 .form-medidas a {
@@ -638,10 +644,6 @@ nav.menu.open {
   width: 80%;
 }
 
-.form-medidas button {
-  width: 100%;
-}
-
 .social {
   font-size: 2rem;
   letter-spacing: 1.5rem;
@@ -687,6 +689,20 @@ nav.menu.open {
 
 
 /* ShoppingBag.jsx */
+
+.alterar-medidas {
+  cursor: pointer;
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+}
+
+.alterar-medidas:hover {
+  color: #555;
+}
+
+.alterar-medidas a:hover {
+  text-decoration: underline;
+}
 
 .sacola button {
   width: auto;

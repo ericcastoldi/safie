@@ -40,6 +40,7 @@ bag.initialState = {
   agreementAccepted: false,
   agreementAcceptancePopupOpen: false,
   errorPopupOpen: false,
+  measurementsPopupOpen: false,
   items: {}
 };
 
@@ -74,7 +75,8 @@ bag.shape = {
   validMeasurements: React.PropTypes.bool,
   agreementAccepted: React.PropTypes.bool,
   agreementAcceptancePopupOpen: React.PropTypes.bool,
-  errorPopupOpen: React.PropTypes.bool
+  errorPopupOpen: React.PropTypes.bool,
+  measurementsPopupOpen: React.PropTypes.bool
 };
 
 // Actions
@@ -86,6 +88,8 @@ const payloadFactory = (result) => {
 
 bag.doneFetchingBag = actionFactory.payloadActionCreator(actionTypes.DONE_FETCHING_BAG, payloadFactory);
 
+bag.openMeasurementsPopup = actionFactory.simpleActionCreator(actionTypes.OPEN_EDIT_MEASUREMENTS_POPUP);
+bag.closeMeasurementsPopup = actionFactory.simpleActionCreator(actionTypes.CLOSE_EDIT_MEASUREMENTS_POPUP);
 
 bag.fetchBag = actionFactory.smartAsyncFetchActionCreator('bag',
   actionTypes.START_FETCHING_BAG,
@@ -312,7 +316,8 @@ const mapStateToProps = (state) => {
     count: state.bag.count,
     validMeasurements: state.bag.validMeasurements,
     agreementAccepted: state.bag.agreementAccepted,
-    errorPopupOpen: state.bag.errorPopupOpen
+    errorPopupOpen: state.bag.errorPopupOpen,
+    measurementsPopupOpen: state.bag.measurementsPopupOpen
   };
 };
 
@@ -325,7 +330,9 @@ const mapDispatchToProps = (dispatch) => {
     checkout: bag.checkout,
     removeProductFromBag: bag.removeProductFromBag,
     addProductToBag: bag.addProductToBag,
-    toggleQuickBag: bag.toggleQuickBag
+    toggleQuickBag: bag.toggleQuickBag,
+    closeMeasurementsPopup: bag.closeMeasurementsPopup,
+    openMeasurementsPopup: bag.openMeasurementsPopup
   }, dispatch);
 };
 
@@ -521,9 +528,25 @@ const cannotSelectAddress = (state, action) => {
 };
 
 
+const openMeasurementsPopup = (state) => {
+  return Object.assign({}, state, {
+    measurementsPopupOpen: true
+  });
+};
+
+
+const closeMeasurementsPopup = (state) => {
+  return Object.assign({}, state, {
+    measurementsPopupOpen: false
+  });
+};
+
 
 
 bag.actionTypeMapping = [];
+
+bag.actionTypeMapping[actionTypes.OPEN_EDIT_MEASUREMENTS_POPUP] = openMeasurementsPopup;
+bag.actionTypeMapping[actionTypes.CLOSE_EDIT_MEASUREMENTS_POPUP] = closeMeasurementsPopup;
 
 bag.actionTypeMapping[actionTypes.DISMISS_ERROR_POPUP] = dismissErrorPopup;
 bag.actionTypeMapping[actionTypes.TOGGLE_QUICK_BAG] = toggleQuickBag;
