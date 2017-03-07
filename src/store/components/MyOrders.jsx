@@ -1,11 +1,49 @@
 import React from 'react';
+import OrderCard from './OrderCard.jsx';
+import NothingToSeeHere from './NothingToSeeHere.jsx';
 
 class MyOrders extends React.Component {
-  constructor(props){
+
+  constructor(props) {
     super(props);
   }
 
   render() {
+
+    const orders = this.props.orders;
+    const content = orders ?
+      orders.map((order) => {
+        return (
+          <OrderCard order={order} />
+        );
+      })
+      : (<NothingToSeeHere />);
+
+    return (
+      <div className='meus-pedidos'>
+        {content}
+      </div>
+    );
+  }
+}
+
+MyOrders.propTypes = {
+  orders: React.PropTypes.arrayOf(React.PropTypes.shape({
+    items: React.PropTypes.object,
+    shipping: React.PropTypes.object,
+    totalPrice: React.PropTypes.number,
+    status: React.PropTypes.string
+  }))
+};
+
+
+module.exports = MyOrders;
+
+
+
+
+/*
+  render2() {
 
     return (
       <div className='meus-pedidos'>
@@ -98,10 +136,7 @@ class MyOrders extends React.Component {
           </div>
         </div>
       </div>
-    );
+    );*/
 
-  }
+//  }
 
-}
-
-module.exports = MyOrders;

@@ -311,32 +311,6 @@ module.exports = {
 
   patch: (req, res) => {
 
-
-    /*
-     Mudando a cor...
-     {
-       item: 123123123,
-       change: {
-         color: {
-           name: "Preto",
-           hex: "#000000"
-         }
-       }
-     }
-
-     Mudando as medidas...
-     {
-       item: 123123123,
-       change: {
-         measurements: {
-           ombros: null,
-           bracos: null,
-           comprimento: null
-         }
-       }
-     }
-     */
-
     let bag = req.session.shoppingBag;
     if (!bagHasItems(bag)) {
       res.json(apiResultFactory.errorResult('Não existem peças na sacola de compras a terem suas opções atualizadas.'));

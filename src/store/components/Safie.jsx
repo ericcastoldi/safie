@@ -15,24 +15,53 @@ import Checkout from './Checkout.jsx';
 import Policies from './Policies.jsx';
 import MeasureYourself from './MeasureYourself.jsx';
 import ThankYou from './ThankYou.jsx';
+import axios from 'axios';
 
 const userIsAuthenticated = () => {
   const state = store.getState();
   return Boolean(state.customer.current.id);
 };
 
-const redirectIfAuthenticated = (nextState, replace) => {
+
+const oldredirectIfAuthenticated = (nextState, replace) => {
   if (userIsAuthenticated()) {
     replace('/my-safie');
   }
 };
 
-const redirectIfAuthenticationIsNeeded = (nextState, replace) => {
+const oldredirectIfAuthenticationIsNeeded = (nextState, replace) => {
   if (!userIsAuthenticated()) {
     replace('/login');
   }
 };
 
+const serverUserIsAuthenticated = (cb) => {
+  axios.get('/api/customer')
+    .then((apiResult) => {
+      const result = apiResult.data;
+      cb(result.success && result.data && result.data.id);
+    })
+    .catch(() => {
+      cb(false);
+    });
+};
+
+
+const redirectIfAuthenticated = (nextState, replace) => {
+  serverUserIsAuthenticated((isThereAnybodyOutThere) => {
+    if (isThereAnybodyOutThere) {
+      replace('/my-safie');
+    }
+  });
+};
+
+const redirectIfAuthenticationIsNeeded = (nextState, replace) => {
+  serverUserIsAuthenticated((isThereAnybodyOutThere) => {
+    if (!isThereAnybodyOutThere) {
+      replace('/login');
+    }
+  });
+};
 
 
 const history = ReactRouterRedux.syncHistoryWithStore(browserHistory, store);

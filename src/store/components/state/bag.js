@@ -245,6 +245,8 @@ bag.pay = () => {
 
   return (dispatch) => {
 
+
+
     return axios
       .get('/api/bag/payment')
       .then((apiResult) => {

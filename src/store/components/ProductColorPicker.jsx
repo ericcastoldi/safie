@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductColorLabel from './ProductColorLabel.jsx';
 
 var ProductColorPicker = React.createClass({
   propTypes: {
@@ -56,7 +57,7 @@ var ProductColorPicker = React.createClass({
 
     return (
       <div className="product-colors">
-        Cor: <b>{selectedColor.name}</b>
+        <ProductColorLabel color={selectedColor} />
         <div>
           {colorBoxes}
         </div>

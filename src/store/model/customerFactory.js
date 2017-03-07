@@ -14,51 +14,51 @@ const validEmail = (email) => {
 };
 
 const encryptPassword = (password) => {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 const validPassword = (password, customer) => {
-    return bcrypt.compareSync(password, customer.password);
+  return bcrypt.compareSync(password, customer.password);
 };
 
 const from = (customerCandidate, customer) => {
-  if(!customerCandidate){
+  if (!customerCandidate) {
     throw 'Instancia vazia de cliente.';
   }
 
-  if(!customerCandidate.name){
+  if (!customerCandidate.name) {
     throw 'Informe seu nome.';
   }
 
-  if(!customerCandidate.birthday){
+  if (!customerCandidate.birthday) {
     throw 'Informe sua data de nascimento.';
   }
 
-  if(!Date.parse(customerCandidate.birthday)) {
+  if (!Date.parse(customerCandidate.birthday)) {
     throw 'A data de nascimento deve ser uma data válida.';
   }
 
-  if(!customerCandidate.phone){
+  if (!customerCandidate.phone) {
     throw 'Informe seu telefone.';
   }
 
-  if(!customerCandidate.email){
+  if (!customerCandidate.email) {
     throw 'Informe seu e-mail.';
   }
 
-  if(!validEmail(customerCandidate.email)){
+  if (!validEmail(customerCandidate.email)) {
     throw 'Informe um e-mail valido.';
   }
 
-  if(!customerCandidate.password){
+  if (!customerCandidate.password) {
     throw 'Informe sua senha.';
   }
 
-  if(!customerCandidate.passwordConfirmation){
+  if (!customerCandidate.passwordConfirmation) {
     throw 'Repita sua senha.';
   }
 
-  if(!(customerCandidate.password === customerCandidate.passwordConfirmation)){
+  if (!(customerCandidate.password === customerCandidate.passwordConfirmation)) {
     throw 'A senha e a confirmação da senha devem ser iguais.';
   }
 
@@ -73,7 +73,7 @@ const from = (customerCandidate, customer) => {
 
 const whithoutSensitiveInfo = (customer) => {
 
-  if(!customer){
+  if (!customer) {
     return null;
   }
 

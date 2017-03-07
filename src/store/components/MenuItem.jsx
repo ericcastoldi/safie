@@ -9,14 +9,14 @@ var MenuItem = React.createClass({
     click: React.PropTypes.func
   },
 
-  itemClicked: function() {
-    if(this.props.click) {
+  itemClicked: function () {
+    if (this.props.click) {
       this.props.click();
     }
   },
 
   render: function () {
-    if(this.props.route){
+    if (this.props.route) {
       return (
         <Link to={this.props.route}>{this.props.title}</Link>
       );

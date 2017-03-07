@@ -43,7 +43,6 @@ class AddressCreation extends React.Component {
         </DismissablePopup>
 
         <button onClick={this.openAddressPopup} className='new-address-button'>
-          <i className="fa fa-plus-square-o" aria-hidden="true"></i>
           Adicionar Novo endereco
         </button>
 
