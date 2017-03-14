@@ -6,8 +6,11 @@ class ProductColorLabel extends React.Component {
   }
 
   render() {
+
+    const color = this.props.color && this.props.color.name ? this.props.color.name : 'Oops. Não conseguimos identificar a cor escolhida.';
+
     return (
-      <span>Cor: <b>{this.props.color.name}</b></span>
+      <span>Cor: <strong>{color}</strong></span>
     );
   }
 }

@@ -1157,6 +1157,11 @@ nav.menu.open {
   text-align: center;
 }
 
+.my-safie .minhas-medidas span.medida {
+    display: block;
+    width: 10rem;
+}
+
 .peca.six.columns {
   margin-left: 5px;
 }
@@ -1200,23 +1205,18 @@ nav.menu.open {
 .my-address,
 .my-safie .meus-pedidos {
   padding: 10px;
+  min-height: 15rem;
 }
 
 .my-safie .meus-pedidos .peca {
-  background-color: #fbeee8;
-  height: 150px;
-  margin-bottom: 20px;
-  padding: 10px;
-  position: relative;
+    background-color: #fbeee8;
+    margin-bottom: 20px;
+    padding: 10px;
+    height: 20rem;
 }
 
 .my-safie .meus-pedidos .peca .obs p span {
   color: rgba(238, 166, 130, 1);
-}
-
-.my-safie .meus-pedidos .peca .obs p:last-child {
-  position: absolute;
-  bottom: 5px;
 }
 
 .my-safie .meus-pedidos p strong {

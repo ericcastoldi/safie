@@ -1,6 +1,9 @@
 import React from 'react';
 import OrderCard from './OrderCard.jsx';
 import NothingToSeeHere from './NothingToSeeHere.jsx';
+import {
+  connect
+} from 'react-redux';
 
 class MyOrders extends React.Component {
 
@@ -11,13 +14,20 @@ class MyOrders extends React.Component {
   render() {
 
     const orders = this.props.orders;
-    const content = orders ?
-      orders.map((order) => {
+
+    if(!orders || orders.length === 0){
+      return (
+        <div className='meus-pedidos'>
+          <NothingToSeeHere text='Aqui ficam seus pedidos da Safie. Fique à vontade para escolher suas peças favoritas e fazer seu pedido!' />
+        </div>
+      );
+    }
+
+    const content = orders.map((order, i) => {
         return (
-          <OrderCard order={order} />
+          <OrderCard key={i} order={order} />
         );
-      })
-      : (<NothingToSeeHere />);
+      });
 
     return (
       <div className='meus-pedidos'>
@@ -36,107 +46,14 @@ MyOrders.propTypes = {
   }))
 };
 
+const mapStateToProps = (state) => {
+  const orders = state.customer.current ? state.customer.current.orders : null;
 
-module.exports = MyOrders;
+  return {
+    orders: orders
+  };
+};
 
 
-
-
-/*
-  render2() {
-
-    return (
-      <div className='meus-pedidos'>
-        <div className='row'>
-          <div className='twelve columns'>
-            <div className='row'>
-              <div className='six columns peca'>
-                <div className='row'>
-                  <div className='four columns'>
-                    <img src='img/demo/saia-lapis-detalhe.jpg' width="100" />
-                  </div>
-                  <div className='eight columns'>
-                    <p><strong>Descricao:</strong> Texto da peca</p>
-                    <p><strong>Medidas:</strong> 12.24 | 12.24...</p>
-                    <p><strong>Prazo de Entrega:</strong> 20 dias</p>
-                  </div>
-                </div>
-              </div>
-              <div className='six columns peca'>
-                <div className='row'>
-                  <div className='six columns obs'>
-                    <p><strong>Observacoes:</strong> texto da cliente</p>
-                    <p><strong>Frete:</strong> R$12,34</p>
-
-                  </div>
-                  <div className='six columns obs'>
-                    <p><strong>Pedido:</strong> <span className='pedido-status'>Concluído</span></p>
-
-                    <p><strong>Valor:</strong> R$123,45</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='six columns peca'>
-                <div className='row'>
-                  <div className='four columns'>
-                    <img src='img/demo/saia-lapis-detalhe.jpg' width="100" />
-                  </div>
-                  <div className='eight columns'>
-                    <p><strong>Descricao:</strong> Texto da peca</p>
-                    <p><strong>Medidas:</strong> 12.24 | 12.24...</p>
-                    <p><strong>Prazo de Entrega:</strong> 20 dias</p>
-                  </div>
-                </div>
-              </div>
-              <div className='six columns peca'>
-                <div className='row'>
-                  <div className='six columns obs'>
-                    <p><strong>Observacoes:</strong> texto da cliente</p>
-                    <p><strong>Frete:</strong> R$12,34</p>
-
-                  </div>
-                  <div className='six columns obs'>
-                    <p><strong>Pedido:</strong> <span className='pedido-status'>Concluído</span></p>
-
-                    <p><strong>Valor:</strong> R$123,45</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='six columns peca'>
-                <div className='row'>
-                  <div className='four columns'>
-                    <img src='img/demo/saia-lapis-detalhe.jpg' width="100" />
-                  </div>
-                  <div className='eight columns'>
-                    <p><strong>Descricao:</strong> Texto da peca</p>
-                    <p><strong>Medidas:</strong> 12.24 | 12.24...</p>
-                    <p><strong>Prazo de Entrega:</strong> 20 dias</p>
-                  </div>
-                </div>
-              </div>
-              <div className='six columns peca'>
-                <div className='row'>
-                  <div className='six columns obs'>
-                    <p><strong>Observacoes:</strong> texto da cliente</p>
-                    <p><strong>Frete:</strong> R$12,34</p>
-
-                  </div>
-                  <div className='six columns obs'>
-                    <p><strong>Pedido:</strong> <span className='pedido-status'>Concluído</span></p>
-
-                    <p><strong>Valor:</strong> R$123,45</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );*/
-
-//  }
+module.exports = connect(mapStateToProps)(MyOrders);
 

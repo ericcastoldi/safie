@@ -27,9 +27,16 @@ class ProductDetails extends React.Component {
   }
 
   addToBag() {
+
+    const color = this.props.selectedColor || this.props.product.defaultColor;
+
+    const options = Object.assign({}, this.props.options, {
+      color: color
+    });
+
     const item = {
       product: this.props.product,
-      options: this.props.options
+      options: options
     };
 
     this.props.addProductToBag(item);

@@ -17,17 +17,15 @@ class OrderCard extends React.Component {
       <div className='row'>
         <OrderItems items={order.items} />
         <div className='six columns peca'>
-          <div className='row'>
-            <div className='six columns obs'>
+            <OrderStatus status={order.status} />
+            <div className='obs'>
               <OrderPrice caption="Frete" price={order.shipping.price} />
             </div>
-            <div className='six columns obs'>
-              <OrderStatus status={order.status} />
-              <OrderPrice caption="Valor" price={order.totalPrice} />
+            <div className='obs'>
+              <OrderPrice caption="Valor total" price={order.totalPrice} />
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

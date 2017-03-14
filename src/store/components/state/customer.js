@@ -6,6 +6,8 @@ import {
 import {
   bindActionCreators
 } from 'redux';
+import bag from './bag.js';
+import address from './address.js';
 import actionTypes from './actionTypes.js';
 import actionFactory from './actionFactory.js';
 import modelReducer from './modelReducer.js';
@@ -25,6 +27,7 @@ let customer = {
 customer.initialState = {
   current: {},
   addresses: [],
+  orders: [],
   savingAddress: false,
   doneSavingAddress: false,
   currentAddress: null,
@@ -36,6 +39,18 @@ customer.initialState = {
   error: null
 };
 
+customer.orderShape = {
+  items: React.PropTypes.shape(bag.itemShape),
+  totalPrice: React.PropTypes.number,
+  status: React.PropTypes.string,
+  transactionCode: React.PropTypes.string,
+  date: React.PropTypes.string,
+  shipping: React.PropTypes.shape({
+    address: address.addressShape,
+    price: React.PropTypes.number
+  })
+};
+
 customer.shape = {
   customer: React.PropTypes.shape({
     id: React.PropTypes.string,
@@ -44,7 +59,8 @@ customer.shape = {
     password: React.PropTypes.string,
     passwordConfirmation: React.PropTypes.string,
     birthday: React.PropTypes.string,
-    phone: React.PropTypes.string
+    phone: React.PropTypes.string,
+    orders: React.PropTypes.arrayOf(React.PropTypes.shape(customer.orderShape))
   }),
   addresses: React.PropTypes.arrayOf(React.PropTypes.shape({
     id: React.PropTypes.string,
@@ -147,13 +163,16 @@ customer.saveCustomer = (cust) => {
 };
 
 const mapStateToProps = (state) => {
+  const orders = state.customer.current ? state.customer.current.orders : null;
+
   return {
     loggingIn: state.customer.loggingIn,
     loggingOut: state.customer.loggingOut,
     doneSaving: state.customer.doneSaving,
     customer: state.customer.current,
     saving: state.customer.saving,
-    error: state.customer.error
+    error: state.customer.error,
+    orders: orders
   };
 };
 

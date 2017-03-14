@@ -34,6 +34,7 @@ module.exports = function (app, passport) {
   app.patch('/api/bag', bag.patch);
   app.post('/api/bag/checkout', bag.checkout);
   app.get('/api/bag/shipping', bag.shipping);
+  app.post('/api/bag/createOrder', bag.createOrder);
 
   app.post('/api/bag/address', bag.setShippingAddress);
   app.get('/api/bag/payment', bag.payment);

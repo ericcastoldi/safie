@@ -12,7 +12,7 @@ class OrderItems extends React.Component {
 
     const renderedItems = Object.keys(items).map((itemKey) => {
       const orderItem = items[itemKey];
-      return <OrderProductCard product={orderItem.product} options={orderItem.options} />;
+      return <OrderProductCard key={itemKey} product={orderItem.product} options={orderItem.options} />;
     });
 
     return (

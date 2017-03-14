@@ -240,6 +240,32 @@ O pedido a ser gerado deve ter as seguintes informações:
 //   };
 // };
 
+bag.createOrder = (transactionCode) => {
+
+
+  return (dispatch) => {
+
+    return axios
+      .post('/api/bag/createOrder', {
+        transactionCode: transactionCode
+      })
+      .then((apiResult) => {
+
+        var result = apiResult.data;
+        if (!result.success) {
+          dispatch(bag.cannotSelectAddress(result.error));
+        }
+        else {
+          dispatch(push('/agradecimento'));
+        }
+      })
+      .catch(function (response) {
+        dispatch(bag.cannotSelectAddress(response));
+      });
+
+  };
+};
+
 bag.pay = () => {
 
 
@@ -258,9 +284,8 @@ bag.pay = () => {
             code: result.data.token
           }, {
             success: function (transactionCode) {
-              //dispatch(bag.createOrder(transactionCode));
-              console.log(transactionCode);
-              dispatch(push('/agradecimento'));
+              dispatch(bag.createOrder(transactionCode));
+
             },
             abort: function () {
               dispatch(push('/bag'));

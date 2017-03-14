@@ -42,8 +42,6 @@ class AddressCard extends React.Component {
 
           <i onClick={this.remove} className="fa fa-times-circle-o" aria-hidden="true"></i>
 
-          <p className="alterar-end">Alterar endereço</p>
-
         </div>
       </div>
     );

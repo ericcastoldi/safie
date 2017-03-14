@@ -2,6 +2,8 @@ const apiResultFactory = require('./apiResultFactory.js');
 const correios = require('correios');
 const PagSeguro = require('pagseguro');
 const parseXml = require('xml2js').parseString;
+const Order = require('../model/order.js');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const shoppingBagModel = {
   shipping: null,
@@ -10,7 +12,6 @@ const shoppingBagModel = {
   count: 0,
   validMeasurements: false
 };
-
 
 const allTrue = (prev, curr) => {
   return prev && curr;
@@ -21,7 +22,9 @@ const sum = (prev, curr) => {
 };
 
 const bagHasItems = (bag) => {
-  return bag && bag.items && Object.keys(bag.items).length > 0;
+  return bag && bag.items && Object
+    .keys(bag.items)
+    .length > 0;
 };
 
 const calcTotalPrice = (bag) => {
@@ -30,15 +33,16 @@ const calcTotalPrice = (bag) => {
     return 0;
   }
 
-  const itemsPrice = Object.keys(bag.items)
+  const itemsPrice = Object
+    .keys(bag.items)
     .map(itemId => {
       return bag.items[itemId].product.price;
     })
     .reduce(sum);
 
-  const shippingPrice = bag.shipping && bag.shipping.price ?
-    bag.shipping.price :
-    0;
+  const shippingPrice = bag.shipping && bag.shipping.price
+    ? bag.shipping.price
+    : 0;
 
   return itemsPrice + shippingPrice;
 };
@@ -54,7 +58,9 @@ const addToBag = (item, bag) => {
   actualBag.items = actualBag.items || {};
   actualBag.items[newItemId] = item;
   actualBag.total = calcTotalPrice(actualBag);
-  actualBag.count = Object.keys(actualBag.items).length;
+  actualBag.count = Object
+    .keys(actualBag.items)
+    .length;
   actualBag.shipping = null;
 
   return actualBag;
@@ -72,11 +78,12 @@ const removeFromBag = (itemId, bag) => {
   delete bag.items[itemId];
   bag.shipping = null;
   bag.total = calcTotalPrice(bag);
-  bag.count = Object.keys(bag.items).length;
+  bag.count = Object
+    .keys(bag.items)
+    .length;
 
   return bag;
 };
-
 
 const checkShippingPrice = (bag, address, cb) => {
 
@@ -89,12 +96,12 @@ const checkShippingPrice = (bag, address, cb) => {
     cb('Impossível calcular frete. CEP Inválido!');
   }
 
-  const totalWeight = Object.keys(bag.items)
+  const totalWeight = Object
+    .keys(bag.items)
     .map(itemId => {
       return bag.items[itemId].product.weight;
     })
     .reduce(sum) * 0.001;
-
 
   correios.getPrice({
     serviceType: 'pac',
@@ -103,7 +110,7 @@ const checkShippingPrice = (bag, address, cb) => {
     weight: totalWeight.toString(),
     width: 15,
     height: 50,
-    length: 30
+    length: 50
   }, (err, result) => {
 
     if (err) {
@@ -122,6 +129,7 @@ const checkShippingPrice = (bag, address, cb) => {
 
   });
 };
+
 
 module.exports = {
   get: (req, res) => {
@@ -162,15 +170,12 @@ module.exports = {
       return;
     }
 
-    const pag = new PagSeguro({
-      email: 'sabrinefernandess@gmail.com',
-      token: '6F26796364124974844649FEAD6B1A71',
-      mode: 'sandbox'
-    });
+    const pag = new PagSeguro({email: 'sabrinefernandess@gmail.com', token: '6F26796364124974844649FEAD6B1A71', mode: 'sandbox'});
 
     pag.currency('BRL');
 
-    Object.keys(bag.items)
+    Object
+      .keys(bag.items)
       .map(itemId => {
         var item = bag.items[itemId];
         pag.addItem({
@@ -183,10 +188,7 @@ module.exports = {
       });
 
     //Configurando as informações do comprador
-    pag.buyer({
-      name: req.user.name,
-      email: req.user.email
-    });
+    pag.buyer({name: req.user.name, email: req.user.email});
 
     const addr = bag.shipping.address;
 
@@ -202,9 +204,8 @@ module.exports = {
       country: 'BRA'
     });
 
-    //pag.setNotificationURL('http://www.lojamodelo.com.br/notificacao');
-
-    //Enviando o xml ao pagseguro
+    // pag.setNotificationURL('http://www.lojamodelo.com.br/notificacao'); Enviando o
+    // xml ao pagseguro
     pag.send(function (err, pagSeguroResponse) {
       if (err) {
         res.json(apiResultFactory.errorResult(err));
@@ -222,11 +223,55 @@ module.exports = {
           return;
         }
 
-        res.json(apiResultFactory.successResult({
-          token: result.checkout.code[0]
-        }));
+        if(!result.checkout || !result.checkout.code[0]){
+          res.json(apiResultFactory.errorResult('Não conseguimos finalizer o código pagamento no PagSeguro.'));
+          return;
+        }
 
+        res.json(apiResultFactory.successResult({token: result.checkout.code[0]}));
       });
+
+    });
+
+  },
+
+  createOrder: (req, res) => {
+
+    const bag = req.session.shoppingBag;
+
+    if (!bagHasItems(bag)) {
+      res.json(apiResultFactory.errorResult('Escolha as peças que você mais gostou e nos conte suas medidas para fazer seu pedido e receber em sua casa peças incríveis feitas exclusivamente para você!'));
+      return;
+    }
+
+    const items = Object.keys(bag.items).map((itemId) => {
+      const item = bag.items[itemId];
+      return Object.assign({}, {
+        bagItemId: itemId,
+        product: item.product,
+        options: item.options
+      });
+    });
+
+    const price = calcTotalPrice(bag);
+    const order = new Order({
+      items: items,
+      shipping: bag.shipping,
+      totalPrice: price,
+      status: 'Pedido realizado',
+      transactionCode: req.body.transactionCode,
+      date: new Date(),
+      customer: new ObjectId(req.user.id)
+    });
+
+    order.save((err, actualOrder) => {
+      if (err){
+        res.json(apiResultFactory.errorResult('Algo de errado ocorreu... Por favor, tente novamente.'));
+        return;
+      }
+
+      req.session.shoppingBag = Object.assign({}, shoppingBagModel);
+      res.json(apiResultFactory.successResult(actualOrder));
 
     });
 
@@ -242,20 +287,21 @@ module.exports = {
     }
 
     var actualBag = bag || Object.assign({}, shoppingBagModel);
-    let validItemsAndMeasurements = Object.keys(actualBag.items)
+    let validItemsAndMeasurements = Object
+      .keys(actualBag.items)
       .map(itemId => {
         var item = actualBag.items[itemId];
 
         const productMeasurements = item.product.measurements;
         const itemMeasurements = item.options.measurements;
 
-        return Object.keys(productMeasurements).map(measurement => {
+        return Object
+          .keys(productMeasurements)
+          .map(measurement => {
 
             if (itemMeasurements && measurement in itemMeasurements) {
               const itemMeasurement = itemMeasurements[measurement];
-              return itemMeasurement.value &&
-                !isNaN(itemMeasurement.value) &&
-                itemMeasurement.value > 0;
+              return itemMeasurement.value && !isNaN(itemMeasurement.value) && itemMeasurement.value > 0;
             }
 
             return false;
@@ -265,18 +311,18 @@ module.exports = {
       })
       .reduce(allTrue);
 
-    let updatedBag = Object.assign({}, actualBag, {
-      validMeasurements: Boolean(validItemsAndMeasurements)
-    });
+    let updatedBag = Object.assign({}, actualBag, {validMeasurements: Boolean(validItemsAndMeasurements)});
 
     req.session.shoppingBag = updatedBag;
 
-    let response = validItemsAndMeasurements ?
-      apiResultFactory.successResult(updatedBag) :
-      apiResultFactory.errorResult('Precisamos de todas as suas medidas para podermos criar uma peça incrível para você!');
+    let response = validItemsAndMeasurements
+      ? apiResultFactory.successResult(updatedBag)
+      : apiResultFactory.errorResult('Precisamos de todas as suas medidas para podermos criar uma peça incrível para você!');
 
     res.json(response);
   },
+
+
 
   setShippingAddress: (req, res) => {
 
@@ -326,9 +372,7 @@ module.exports = {
 
     const item = bag.items[patch.item];
     const updatedOptions = Object.assign({}, item.options, patch.change);
-    bag.items[patch.item] = Object.assign({}, item, {
-      options: updatedOptions
-    });
+    bag.items[patch.item] = Object.assign({}, item, {options: updatedOptions});
 
     req.session.shoppingBag = bag;
     res.json(apiResultFactory.successResult(bag));

@@ -13,7 +13,7 @@ class OrderStatus extends React.Component {
 }
 
 OrderStatus.propTypes = {
-  status: React.PropTypes.bool
+  status: React.PropTypes.string
 };
 
 

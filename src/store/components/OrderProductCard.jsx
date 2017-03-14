@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductPicture from './ProductPicture.jsx';
-import ProductInfoSmall from './ProductInfoSmall.jsx';
 import MeasurementsInfo from './MeasurementsInfo.jsx';
 import ProductColorLabel from './ProductColorLabel.jsx';
 import product from './state/product.js';
@@ -20,38 +19,31 @@ class OrderProductCard extends React.Component {
       <div className='order-product-card row'>
         <div className='four columns'>
 
-          <ProductPicture
-            picture={picture}
-            description={prod.name} />
+          <ProductPicture picture={picture} description={prod.name}/>
 
         </div>
         <div className='eight columns'>
+          <div className="order-product">
+            <p>
+              <strong>{prod.name}</strong>
+            </p>
+            <p><ProductColorLabel color={options.color}/></p>
 
-          <ProductInfoSmall
-            id={prod.id}
-            name={prod.name}
-            description={prod.description} />
-
-          <ProductColorLabel color={options.color} />
-
-          <MeasurementsInfo
-            product={prod}
-            measurements={options.measurements} />
-
+            <MeasurementsInfo product={prod} measurements={options.measurements}/>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-
 OrderProductCard.propTypes = {
-  options: React.PropTypes.shape({
-    color: React.PropTypes.object,
-    measurements: React.PropTypes.object
-  }),
-  product: React.PropTypes.shape(product.shape)
+  options: React
+    .PropTypes
+    .shape({color: React.PropTypes.object, measurements: React.PropTypes.object}),
+  product: React
+    .PropTypes
+    .shape(product.shape)
 };
-
 
 module.exports = OrderProductCard;
