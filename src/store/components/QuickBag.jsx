@@ -53,7 +53,7 @@ class QuickBag extends React.Component {
 
         var item = this.props.items[itemId];
         var product = item.product;
-        var route = '/colecoes/barcelona/' + product.id;
+        var route = '/colecoes/' + product.collection + '/' + product.id;
         var picture = product.pictures.paths[product.pictures.product];
 
         return (

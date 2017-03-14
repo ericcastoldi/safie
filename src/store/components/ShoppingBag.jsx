@@ -87,7 +87,7 @@ class ShoppingBag extends React.Component {
 
               <br />
 
-              <Link to='/colecoes/barcelona'>
+              <Link to='/colecoes/continua'>
                 <LightButton label="Continuar Comprando" />
               </Link>
 

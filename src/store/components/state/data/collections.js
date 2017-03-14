@@ -101,6 +101,11 @@ const alturaJoelho = {
   description: 'Altura do Joelho.'
 };
 
+const amarelo = {
+  name: 'Amarelo',
+  hex: '#f2b31f'
+};
+
 const preto = {
   name: 'Preto',
   hex: '#000000'
@@ -148,6 +153,7 @@ const collections = {
       id: 'camisa-basic',
       code: 'CC1',
       name: 'Camisa Basic',
+      collection: 'continua',
       description: `Camisa Clássica com bolso.
 Tecido de Tricoline com boa elasticidade, garantindo maior conforto e qualidade.
 Tecido com ausência de toxidade para a pele e o meio ambiente, boas práticas ambientais ao longo da cadeia produtiva e processo produtivo transparente.
@@ -190,6 +196,7 @@ Material: 65% Algodão / 30% Poliamida / 5% Lastol.`,
       id: 'macacao',
       code: 'CC2',
       name: 'Macacão',
+      collection: 'continua',
       description: `Macacão com frente única e ajustado ao corpo, parte frontal dupla para maior conforto.
 Malha encorpada com alta elasticidade.
 Ausência de toxidade para a pele e o meio ambiente, boas práticas ambientais ao longo da cadeia produtiva e processo produtivo transparente.
@@ -232,6 +239,7 @@ Material : 81% Liocel / 15% Poliamida / 4% Elastano`,
       id: 'shorts-simple',
       code: 'CC3',
       name: 'Shorts Simple',
+      collection: 'continua',
       description: `O Shorts Simple é aquela peça coringa que não pode faltar no closet.
 Malha encorpada com alta elasticidade.
 Ausência de toxidade para a pele e o meio ambiente, boas práticas ambientais ao longo da cadeia produtiva e processo produtivo transparente.
@@ -267,6 +275,7 @@ Material : 81% Liocel / 15% Poliamida / 4% Elastano`,
       id: 'vestido-simple',
       code: 'CC4',
       name: 'Vestido Simple',
+      collection: 'continua',
       description: `Vestido atemporal para usar na praia ou no shopping, de salto ou rasteirinha, esse é aquele vestido para qualquer hora.
 
 Tecido de Tricoline com a elasticidade certa para garantir maior conforto.
@@ -308,6 +317,7 @@ Material : 65% Algodão / 30% Poliamida / 5% Lastol.`,
       id: 'vestido-blazer',
       code: 'CC5',
       name: 'Vestido Blazer',
+      collection: 'continua',
       description: `Vestido com cara de alfaiataria, é o pretinho clássico mas nada básico de cada closet.
 
 Malha encorpada com alta elasticidade.
@@ -350,6 +360,7 @@ Material : 81% Liocel / 15% Poliamida / 4% Elastano`,
       id: 'blusa-fio',
       code: 'CC6',
       name: 'Blusa Fio',
+      collection: 'continua',
       description: `Blusinha de malha coringa para qualquer look.
 
 Frente Dupla.
@@ -387,6 +398,7 @@ Material: 96% Viscose / 4% Elastano`,
       id: 'kimono',
       code: 'CC7',
       name: 'Kimono',
+      collection: 'continua',
       description: `Kimono nada comum, plissado com tecido estruturado que lembra courino.
 
 Sem Fechamento.
@@ -424,6 +436,7 @@ Material: 100% Poliester`,
       id: 'bomber-jacket',
       code: 'CC8',
       name: 'Bomber Jacket',
+      collection: 'continua',
       description: `Bomber jacket levinha.
 
 Acompanha faixa.
@@ -462,6 +475,7 @@ Material: 100% Poliester`,
       id: 'calca-pantalona',
       code: 'CC9',
       name: 'Calça Pantalona',
+      collection: 'continua',
       description: `Calça Pantalona atemporal caimento leve e confortalvel.
 
 Tecido acetinado, levemente brilhante e toque macio.
@@ -496,6 +510,7 @@ Material: 100% Poliester`,
       id: 'colete',
       code: 'CC10',
       name: 'Colete',
+      collection: 'continua',
       description: `Colete longo com corte de alfaiataria.
 
 Tecido texturizado e leve.
@@ -535,6 +550,7 @@ Material: 100% Algodão`,
       id: 'blusa-black',
       code: 'CC12',
       name: 'Blusa Black',
+      collection: 'continua',
       description: `Blusa Black tem uma modelagem confortável e simples, combinando com qualquer ocasião.
 
 Tecido acetinado, levemente brilhante e toque macio.
@@ -575,6 +591,7 @@ Material: 100% Poliéster`,
       id: 'camisa-laco',
       code: 'CB1',
       name: 'Camisa Laço',
+      collection: 'barcelona',
       description: `A Camisa Laço transformou o básico em algo novo, as costas abertas e o laço deixam tudo mais charmoso.
 
 Tecido de Tricoline com boa elasticidade, garantindo maior conforto e qualidade.
@@ -618,6 +635,7 @@ Material : 65% Algodão / 30% Poliamida / 5% Lastol.`,
       id: 'pantacourt',
       code: 'CB2',
       name: 'Pantacourt',
+      collection: 'barcelona',
       description: `Pantacourt a calça da temporada, com modelagem cintura alta e corte até a canela, garante um estilo único.
 
 Tecido acetinado e brilhante, com caimento estruturado.
@@ -653,6 +671,7 @@ Material : 60% Algodão / 38% Poliester / 2% Elastano.`,
       id: 'saia-gotic',
       code: 'CB3',
       name: 'Saia Gòtic',
+      collection: 'barcelona',
       description: `A Saia Gòtic foi inspirada no histórico bairro gótico de barcelona, que leva esse nome devido a sua arquitetura medieval. Porém, assim como Barcelona a saia trás uma estrutura e um corte moderno.
 
 Malha encorpada com alta elasticidade.
@@ -686,6 +705,7 @@ Material : 81% Liocel / 15% Poliamida / 4% Elastano | Renda upcycling: 100% Poli
       id: 'shorts-summer',
       code: 'CB4',
       name: 'Shorts Summer',
+      collection: 'barcelona',
       description: `Shorts Summer, é assim mesmo bem verão, levinho e delicado.
 
 Elástico na cintura.
@@ -720,6 +740,7 @@ Material: 96% Viscose / 4% Elastano | Renda upcycling: 100% Poliamida`,
       id: 'vestido-lady-like',
       code: 'CB5',
       name: 'Vestido Lady Like',
+      collection: 'barcelona',
       description: `O Vestido Lady like é inspirado no fim de tarde na capital da catalunha e pelo estilo que leva esse mesmo nome.
 
 Tecido de brilho suave com boa elasticidade.
@@ -759,6 +780,7 @@ Material : 92% Poliamida 8% Elastano.`,
       id: 'calca-rose',
       code: 'CB6',
       name: 'Calça Rosê',
+      collection: 'barcelona',
       description: `Calça Skinny de corte clássico.
 
 Tecido de brilho suave com boa elasticidade.
@@ -796,6 +818,7 @@ Material : 92% Poliamida 8% Elastano.`,
       id: 'camisa-seda',
       code: 'CB7',
       name: 'Camisa Seda',
+      collection: 'barcelona',
       description: `Camisa de seda, com modelagem simples e recorte abertura nas costas.
 
 Tecido leve, brilhante e toque muito macio.
@@ -834,6 +857,7 @@ Material: 60% linho 40% seda`,
       id: 'saia-lapis',
       code: 'CB8',
       name: 'Saia Lapis',
+      collection: 'barcelona',
       description: `A Saia Lápis é um clássico e por isso é super versátil em qualquer guarda-roupa.
 
 Tecido acetinado e brilhante, com caimento estruturado.
@@ -869,6 +893,7 @@ Material : 60% Algodão / 38% Poliester / 2% Elastano.`,
       id: 'macacao-gaudi',
       code: 'CB9',
       name: 'Macacão Gaudi',
+      collection: 'barcelona',
       description: `O Macacão Gaudi é uma peça especial, foi inpirada no estilo do renomado arquiteto espanhol Antoni Gaudi.
 
 Malha encorpada com alta elasticidade.
@@ -915,6 +940,7 @@ Material : 81% Liocel / 15% Poliamida / 4% Elastano`,
       id: 'vestido-fluid',
       code: 'CB10',
       name: 'Vestido Fluid',
+      collection: 'barcelona',
       description: `O Vestido Fluid, tem movimento e caimento suave, assim como as águas que dançam nas fontes da Plaza de Espanha em Barcelona.
 
 Tecido de brilho suave, sua trama é bem aberta tornando-o muito transparente. Ideal para ser usado com sobreposição de outras peças.
@@ -951,6 +977,7 @@ Material : 100% Poliester`,
       id: 'blusa-capa',
       code: 'CB11',
       name: 'Blusa Capa',
+      collection: 'barcelona',
       description: `A Capa Montjuïc, foi inspirada nos paredões do castelo medieval de Montjuïc onde se tem uma visão linda da cidade, assim como de todo colo a mostra nessa peça.
 
 Malha encorpada com alta elasticidade.
@@ -989,6 +1016,7 @@ Material : 81% Liocel / 15% Poliamida / 4% Elastano`,
       id: 'camiseta-metalic',
       code: 'CB12',
       name: 'Camiseta Metalic',
+      collection: 'barcelona',
       description: `Camiseta inspirada na estrutura de aço em formato de peixe construída pelo arquiteto Frank Gehry na praia de barcelona.
 
 Malha de Algodão orgânico.
@@ -1026,6 +1054,7 @@ Material 100% Algodão / Barra e Gola de tecido upcycling : 100% Poliester.`,
       id: 'colete-miro',
       code: 'CCP1',
       name: 'Colete Miró',
+      collection: 'capsula',
       description: `Camiseta inspirada na estrutura de aço em formato de peixe construída pelo arquiteto Frank Gehry na praia de barcelona.
 
 Malha de Algodão orgânico.
@@ -1056,403 +1085,588 @@ Material 100% Algodão / Barra e Gola de tecido upcycling : 100% Poliester.`,
           3: '/img/colecoes/capsula/colete-miro/Safie stills-041.jpg'
         }
       }
+    },
+    {
+      id: 'calca-paisaje',
+      code: 'CCP2',
+      name: 'Calça Paisaje',
+      collection: 'capsula',
+      description: `A Calça Paisaje foi inspirada na obra de Miró que leva esse nome. ‘O silêncio é uma negação do ruído, mas o menor ruído no meio do silêncio torna-se enorme’ Disse miró. Como o único elemento referencial, um ponto embaçado, adquire uma presença poderosa na tela de sua obra.
+
+Calça tem corte duplo nas costas, evitando transparência.
+Tecido com ausência de toxidade para a pele e o meio ambiente, boas práticas ambientais ao longo da cadeia produtiva e processo produtivo transparente.
+Material : 65% Algodão / 30% Poliamida / 5% Lastol.`,
+      price: 172.2,
+      weight: 178,
+      measurements: {
+        circunferenciaCintura: circunferenciaCintura,
+        circunferenciaQuadril: circunferenciaQuadril,
+        circunferenciaCoxa: circunferenciaCoxa,
+        alturaPerna: alturaPerna,
+        tornozelo: tornozelo,
+        alturaEntrePernas: alturaEntrePernas
+      },
+      defaultColor: branco,
+      colors: {
+        branco: branco
+      },
+      options: options,
+      pictures: {
+        main: 1,
+        product: 3,
+        paths: {
+          1: '/img/colecoes/capsula/calca-paisaje/calca-paisaje.jpg',
+          2: '/img/colecoes/capsula/calca-paisaje/calca-paisaje-2.jpg',
+          3: '/img/colecoes/capsula/calca-paisaje/Safie stills-111.jpg',
+          4: '/img/colecoes/capsula/calca-paisaje/Safie stills-112.jpg'
+        }
+      }
+    },
+    {
+      id: 'blusa-silence',
+      code: 'CCP3',
+      name: 'Blusa Silence',
+      collection: 'capsula',
+      description: `A Blusa Silence é inspirada na obra ‘Gota de água na neve rosa’ de Joan Miró, em uma fase onde ele foi influenciado por monges do extremo oriente.
+
+Blusa assimétrica de uma manga só.
+A Malha dessa peça é sustentável. Para maiores informações sobre upcycling acesse : link
+Material : 96% Viscose 4% Elástano`,
+      price: 245,
+      weight: 240,
+      measurements: {
+        larguraOmbro: larguraOmbro,
+        larguraOmbroAOmbro: larguraOmbroAOmbro,
+        alturaBusto: alturaBusto,
+        circunferenciaBusto: circunferenciaBusto,
+        larguraCostas: larguraCostas,
+        circunferenciaCintura: circunferenciaCintura,
+        circunferenciaQuadril: circunferenciaQuadril,
+        larguraBraco: larguraBraco,
+        mangaComprida: mangaComprida,
+        comprimentoFrente: comprimentoFrente
+      },
+      defaultColor: amarelo,
+      colors: {
+        amarelo: amarelo
+      },
+      options: options,
+      pictures: {
+        main: 1,
+        product: 3,
+        paths: {
+          1: '/img/colecoes/capsula/blusa-silence/blusa-silence.jpg',
+          2: '/img/colecoes/capsula/blusa-silence/blusa-silence-2.jpg',
+          3: '/img/colecoes/capsula/blusa-silence/Safie stills-113.jpg',
+          4: '/img/colecoes/capsula/blusa-silence/Safie stills-114.jpg'
+        }
+      }
+    },
+    {
+      id: 'saia-picasso',
+      code: 'CCP4',
+      name: 'Saia Picasso',
+      collection: 'capsula',
+      description: `A Saia Picasso, como o nome sugere, foi inspirada no artista Espanhol Pablo Picasso e no estilo cubista que marcou sua carreira.
+
+Malha estruturada com boa elasticidade, sem necessidade de botões ou zíper.
+
+Ausência de toxidade para a pele e o meio ambiente, boas práticas ambientais ao longo da cadeia produtiva e processo produtivo transparente.
+Material : 81% Liocel / 15% Poliamida / 4% Elastano.`,
+      price: 272.5,
+      weight: 350,
+      measurements: {
+        circunferenciaCoxa: circunferenciaCoxa,
+        circunferenciaCintura: circunferenciaCintura,
+        circunferenciaQuadril: circunferenciaQuadril,
+        alturaJoelho: alturaJoelho
+      },
+      defaultColor: branco,
+      colors: {
+        branco: branco
+      },
+      options: options,
+      pictures: {
+        main: 1,
+        product: 3,
+        paths: {
+          1: '/img/colecoes/capsula/saia-picasso/saia-picasso.jpg',
+          2: '/img/colecoes/capsula/saia-picasso/saia-picasso-2.jpg',
+          3: '/img/colecoes/capsula/saia-picasso/Safie stills-100.jpg',
+          4: '/img/colecoes/capsula/saia-picasso/Safie stills-101.jpg'
+        }
+      }
+    },
+    {
+      id: 'body',
+      code: 'CCP5',
+      name: 'Body',
+      collection: 'capsula',
+      description: `O Body foi criado em conjunto com a Saia Fluid, e ambos foram inspirados na expediência da coleção 31 do Museu de arte contemporânea de Barcelona.
+
+Malha encorpada com alta elasticidade.
+Alças em elástico para maior conforto.
+Ausência de toxidade para a pele e o meio ambiente, boas práticas ambientais ao longo da cadeia produtiva e processo produtivo transparente.
+
+§ Material : 81% Liocel / 15% Poliamida / 4% Elastano`,
+      price: 100,
+      weight: 147,
+      measurements: {
+        larguraOmbroAOmbro: larguraOmbroAOmbro,
+        circunferenciaBusto: circunferenciaBusto,
+        circunferenciaCintura: circunferenciaCintura,
+        circunferenciaQuadril: circunferenciaQuadril,
+        alturaBusto: alturaBusto
+      },
+      defaultColor: preto,
+      colors: {
+        preto: preto,
+        roxo: roxo,
+        lilas: lilas
+      },
+      options: options,
+      pictures: {
+        main: 1,
+        product: 3,
+        paths: {
+          1: '/img/colecoes/capsula/body/body.jpg',
+          2: '/img/colecoes/capsula/body/body-2.jpg',
+          3: '/img/colecoes/capsula/body/Safie stills-004p.jpg',
+          4: '/img/colecoes/capsula/body/Safie stills-004pCostas.jpg'
+        }
+      }
+    },
+    {
+      id: 'saia-fluid',
+      code: 'CCP6',
+      name: 'Saia Fluid',
+      collection: 'capsula',
+      description: `A Saia Fluid foi criada em conjunto com o Body, e ambos foram inspirados na expediência da coleção 31 do Museu de arte contemporânea de Barcelona.
+
+Tecido de brilho suave, sua trama é bem aberta tornando-o muito transparente. Ideal para ser usado com sobreposição de outras peças.
+Fendas nas costas.
+O tecido dessa peça é sustentável.
+Material : 100% Poliester`,
+      price: 179.9,
+      weight: 60,
+      measurements: {
+        circunferenciaCoxa: circunferenciaCoxa,
+        circunferenciaCintura: circunferenciaCintura,
+        circunferenciaQuadril: circunferenciaQuadril,
+        alturaJoelho: alturaJoelho
+      },
+      defaultColor: branco,
+      colors: {
+        branco: branco
+      },
+      options: options,
+      pictures: {
+        main: 1,
+        product: 3,
+        paths: {
+          1: '/img/colecoes/capsula/saia-fluid/saia-fluid.jpg',
+          2: '/img/colecoes/capsula/saia-fluid/saia-fluid-2.jpg',
+          3: '/img/colecoes/capsula/saia-fluid/Safie stills-087.jpg',
+          4: '/img/colecoes/capsula/saia-fluid/Safie stills-090.jpg'
+        }
+      }
     }
   ]
 };
 
 
+module.exports = collections;
 
 
-
-module.exports = {
-  'barcelona': [{
-      id: 'saia-lapis',
-      name: 'SAIA LÁPIS URBAN',
-      description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
-      price: 230.9,
-      weight: 100,
-      measurements: {
-        cintura: {
-          name: 'Cintura',
-          description: 'Medida da cintura',
-          value: 80
-        },
-        pernas: {
-          name: 'Pernas',
-          description: 'Medida das pernas',
-          value: 123
-        }
-      },
-      defaultColor: {
-        name: 'Preto',
-        hex: '#000000'
-      },
-      colors: {
-        preto: {
-          name: 'Preto',
-          hex: '#000000'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/saia-lapis-look-01.jpg',
-          2: '/img/demo/saia-lapis-detalhe.jpg',
-          3: '/img/demo/saia-lapis-look-02.jpg',
-          4: '/img/demo/saia-lapis-look-03.jpg'
-        }
-      }
-    },
-    {
-      id: 'blazer-soho',
-      name: 'Blazer soho',
-      description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
-      price: 1130.8,
-      weight: 300,
-      measurements: {
-        ombros: {
-          name: 'Ombros',
-          description: 'Distância entre os ombros',
-          value: 60
-        },
-        bracos: {
-          name: 'Braços',
-          description: 'Comprimento dos braços',
-          value: 102
-        },
-        comprimento: {
-          name: 'Comprimento',
-          description: 'Altura da peça, medida da altura do ombro até a cintura',
-          value: 95
-        }
-      },
-      defaultColor: {
-        name: 'Preto',
-        hex: '#000000'
-      },
-      colors: {
-        preto: {
-          name: 'Preto',
-          hex: '#000000'
-        },
-        cinza: {
-          name: 'Cinza',
-          hex: '#666666'
-        }
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/blazer-look-01.jpg',
-          2: '/img/demo/blazer-detalhe.jpg',
-          3: '/img/demo/blazer-look-02.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    },
-    {
-      id: 'calca-noelle',
-      name: 'calca noelle',
-      description: 'Calça reta com cós com passantes. Possui 4 bolsos sendo os dois posteriores falsos. Fechamento frontal em zíper e botões.',
-      price: 522,
-      weight: 220,
-      measurements: {
-        cintura: {
-          name: 'Cintura',
-          description: 'Medida da cintura',
-          value: 75
-        },
-        quadril: {
-          name: 'Quadril',
-          description: 'Medida do quadril',
-          value: 88
-        },
-        pernas: {
-          name: 'Pernas',
-          description: 'Comprimento das pernas',
-          value: 110
-        }
-      },
-      defaultColor: {
-        name: 'Salmão',
-        hex: '#EEA682'
-      },
-      colors: {
-        salmao: {
-          name: 'Salmão',
-          hex: '#EEA682'
-        }
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/calca-look-01.jpg',
-          2: '/img/demo/calca-detalhe.jpg',
-          3: '/img/demo/calca-look-02.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    },
-    {
-      id: 'camisa-alabama',
-      name: 'CAMISA ALABAMA',
-      description: 'Camisa cropped, gola de ponta, manga longa, punho fechado em botão, 2 bolsos e barra com faixa para amarração. Abotoamento frontal.',
-      price: 397,
-      weight: 80,
-      measurements: {
-        ombros: {
-          name: 'Ombros',
-          description: 'Largura dos ombros',
-          value: 50
-        },
-        bracos: {
-          name: 'Braços',
-          description: 'Comprimento dos braços',
-          value: 99
-        }
-      },
-      defaultColor: {
-        name: 'Cinza',
-        hex: '#666666'
-      },
-      colors: {
-        preto: {
-          name: 'Preto',
-          hex: '#000000'
-        },
-        cinza: {
-          name: 'Cinza',
-          hex: '#666666'
-        }
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/camisa-look-01.jpg',
-          2: '/img/demo/camisa-detalhe.jpg',
-          3: '/img/demo/camisa-look-02.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    },
-    {
-      id: 'camiseta-pop',
-      name: 'TOP POP NO STYLE',
-      weight: 90,
-      description: 'Top reto em malha, decote arredondado, manga curta e 2 fendas laterais. Estampa frontal: "NAH POP NO STYLE AS STRICTLY ROOTS".',
-      price: 144,
-      measurements: {
-        ombros: {
-          name: 'Ombros',
-          description: 'Largura dos ombros',
-          value: 50
-        }
-      },
-      defaultColor: {
-        name: 'Azul',
-        hex: '#a8c9ff'
-      },
-      colors: {
-        salmao: {
-          name: 'Salmão',
-          hex: '#EEA682'
-        },
-        azul: {
-          name: 'Azul',
-          hex: '#a8c9ff'
-        }
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/camiseta-look-01.jpg',
-          2: '/img/demo/camiseta-detalhe.jpg',
-          3: '/img/demo/camiseta-look-02.jpg',
-          4: '/img/demo/camiseta-look-03.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    },
-    {
-      id: 'casaco-mirage',
-      name: 'CASAQUETO MIRAGE',
-      description: 'Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.',
-      price: 1244,
-      weight: 260,
-      measurements: {
-        ombros: {
-          name: 'Ombros',
-          description: 'Largura dos ombros',
-          value: 50
-        },
-        bracos: {
-          name: 'Braços',
-          description: 'Comprimento dos braços',
-          value: 99
-        },
-        comprimento: {
-          name: 'Comprimento',
-          description: 'Altura da peça, medida da altura do ombro até a cintura',
-          value: 95
-        }
-      },
-      defaultColor: {
-        name: 'Bege',
-        hex: '#ffffe0'
-      },
-      colors: {
-        bege: {
-          name: 'Bege',
-          hex: '#ffffe0'
-        }
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/casaco-look-01.jpg',
-          2: '/img/demo/casaco-detalhe.jpg',
-          3: '/img/demo/casaco-look-02.jpg',
-          4: '/img/demo/casaco-look-03.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    },
-    {
-      id: 'macacao-xai-xai',
-      name: 'macacao xai xai',
-      weight: 400,
-      description: 'Top reto em seda, gola alta fechada em colchete e manga longa. Levemente transparente.',
-      price: 822,
-      measurements: {
-        ombros: {
-          name: 'Ombros',
-          description: 'Largura dos ombros',
-          value: 50
-        },
-        bracos: {
-          name: 'Braços',
-          description: 'Comprimento dos braços',
-          value: 99
-        },
-        quadril: {
-          name: 'Quadril',
-          description: 'Medida do quadril',
-          value: 88
-        },
-        pernas: {
-          name: 'Pernas',
-          description: 'Comprimento das pernas',
-          value: 110
-        }
-      },
-      defaultColor: {
-        name: 'Bege',
-        hex: '#ffffe0'
-      },
-      colors: {
-        bege: {
-          name: 'Bege',
-          hex: '#ffffe0'
-        },
-        preto: {
-          name: 'Preto',
-          hex: '#000000'
-        }
-      },
-      pictures: {
-        main: 1,
-        product: 2,
-        paths: {
-          1: '/img/demo/macacao-look-01.jpg',
-          2: '/img/demo/macacao-detalhe.jpg',
-          3: '/img/demo/macacao-look-02.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    },
-    {
-      id: 'vestido-elliot',
-      name: 'vestido elliot',
-      description: 'Vestido curto estilo kimono e decote V. Sem fechamento. Acompanha faixa no mesmo tecido para amarração.',
-      price: 689.6,
-      weight: 220,
-      measurements: {
-        ombros: {
-          name: 'Ombros',
-          description: 'Largura dos ombros',
-          value: 50
-        },
-        bracos: {
-          name: 'Braços',
-          description: 'Comprimento dos braços',
-          value: 99
-        },
-        quadril: {
-          name: 'Quadril',
-          description: 'Medida do quadril',
-          value: 88
-        },
-        pernas: {
-          name: 'Pernas',
-          description: 'Comprimento das pernas',
-          value: 110
-        }
-      },
-      defaultColor: {
-        name: 'Salmão',
-        hex: '#EEA682'
-      },
-      colors: {
-        salmao: {
-          name: 'Salmão',
-          hex: '#EEA682'
-        },
-        preto: {
-          name: 'Preto',
-          hex: '#000000'
-        }
-      },
-      pictures: {
-        main: 3,
-        product: 2,
-        paths: {
-          1: '/img/demo/vestido-look-01.jpg',
-          2: '/img/demo/vestido-detalhe.jpg',
-          3: '/img/demo/vestido-look-02.jpg'
-        }
-      },
-      options: {
-        measurements: null,
-        color: null
-      }
-    }
-  ]
-};
+// module.exports = {
+//   'barcelona': [{
+//       id: 'saia-lapis',
+//       name: 'SAIA LÁPIS URBAN',
+//       description: 'A SAIA LÁPIS URBAN é confeccionada em tecido encorpado e flexível com toque de viscose. O modelo saia lápis se adapta facilmente em diferentes silhuetas, valorizando e modelando as curvas do corpo. Seu comprimento é até os joelhos, caimento ajustado e elegância, sem igual. A peça é detalhada por víes e fenda discreta da parte frontal. Ideal para look no trabalho e jantares à noite.',
+//       price: 230.9,
+//       weight: 100,
+//       measurements: {
+//         cintura: {
+//           name: 'Cintura',
+//           description: 'Medida da cintura',
+//           value: 80
+//         },
+//         pernas: {
+//           name: 'Pernas',
+//           description: 'Medida das pernas',
+//           value: 123
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Preto',
+//         hex: '#000000'
+//       },
+//       colors: {
+//         preto: {
+//           name: 'Preto',
+//           hex: '#000000'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/saia-lapis-look-01.jpg',
+//           2: '/img/demo/saia-lapis-detalhe.jpg',
+//           3: '/img/demo/saia-lapis-look-02.jpg',
+//           4: '/img/demo/saia-lapis-look-03.jpg'
+//         }
+//       }
+//     },
+//     {
+//       id: 'blazer-soho',
+//       name: 'Blazer soho',
+//       description: 'Blazer oversized, manga longa, 3 bolsos falsos e 1 fenda posterior. Abotoamento frontal em botões de pressão.',
+//       price: 1130.8,
+//       weight: 300,
+//       measurements: {
+//         ombros: {
+//           name: 'Ombros',
+//           description: 'Distância entre os ombros',
+//           value: 60
+//         },
+//         bracos: {
+//           name: 'Braços',
+//           description: 'Comprimento dos braços',
+//           value: 102
+//         },
+//         comprimento: {
+//           name: 'Comprimento',
+//           description: 'Altura da peça, medida da altura do ombro até a cintura',
+//           value: 95
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Preto',
+//         hex: '#000000'
+//       },
+//       colors: {
+//         preto: {
+//           name: 'Preto',
+//           hex: '#000000'
+//         },
+//         cinza: {
+//           name: 'Cinza',
+//           hex: '#666666'
+//         }
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/blazer-look-01.jpg',
+//           2: '/img/demo/blazer-detalhe.jpg',
+//           3: '/img/demo/blazer-look-02.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     },
+//     {
+//       id: 'calca-noelle',
+//       name: 'calca noelle',
+//       description: 'Calça reta com cós com passantes. Possui 4 bolsos sendo os dois posteriores falsos. Fechamento frontal em zíper e botões.',
+//       price: 522,
+//       weight: 220,
+//       measurements: {
+//         cintura: {
+//           name: 'Cintura',
+//           description: 'Medida da cintura',
+//           value: 75
+//         },
+//         quadril: {
+//           name: 'Quadril',
+//           description: 'Medida do quadril',
+//           value: 88
+//         },
+//         pernas: {
+//           name: 'Pernas',
+//           description: 'Comprimento das pernas',
+//           value: 110
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Salmão',
+//         hex: '#EEA682'
+//       },
+//       colors: {
+//         salmao: {
+//           name: 'Salmão',
+//           hex: '#EEA682'
+//         }
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/calca-look-01.jpg',
+//           2: '/img/demo/calca-detalhe.jpg',
+//           3: '/img/demo/calca-look-02.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     },
+//     {
+//       id: 'camisa-alabama',
+//       name: 'CAMISA ALABAMA',
+//       description: 'Camisa cropped, gola de ponta, manga longa, punho fechado em botão, 2 bolsos e barra com faixa para amarração. Abotoamento frontal.',
+//       price: 397,
+//       weight: 80,
+//       measurements: {
+//         ombros: {
+//           name: 'Ombros',
+//           description: 'Largura dos ombros',
+//           value: 50
+//         },
+//         bracos: {
+//           name: 'Braços',
+//           description: 'Comprimento dos braços',
+//           value: 99
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Cinza',
+//         hex: '#666666'
+//       },
+//       colors: {
+//         preto: {
+//           name: 'Preto',
+//           hex: '#000000'
+//         },
+//         cinza: {
+//           name: 'Cinza',
+//           hex: '#666666'
+//         }
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/camisa-look-01.jpg',
+//           2: '/img/demo/camisa-detalhe.jpg',
+//           3: '/img/demo/camisa-look-02.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     },
+//     {
+//       id: 'camiseta-pop',
+//       name: 'TOP POP NO STYLE',
+//       weight: 90,
+//       description: 'Top reto em malha, decote arredondado, manga curta e 2 fendas laterais. Estampa frontal: "NAH POP NO STYLE AS STRICTLY ROOTS".',
+//       price: 144,
+//       measurements: {
+//         ombros: {
+//           name: 'Ombros',
+//           description: 'Largura dos ombros',
+//           value: 50
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Azul',
+//         hex: '#a8c9ff'
+//       },
+//       colors: {
+//         salmao: {
+//           name: 'Salmão',
+//           hex: '#EEA682'
+//         },
+//         azul: {
+//           name: 'Azul',
+//           hex: '#a8c9ff'
+//         }
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/camiseta-look-01.jpg',
+//           2: '/img/demo/camiseta-detalhe.jpg',
+//           3: '/img/demo/camiseta-look-02.jpg',
+//           4: '/img/demo/camiseta-look-03.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     },
+//     {
+//       id: 'casaco-mirage',
+//       name: 'CASAQUETO MIRAGE',
+//       description: 'Casaqueto oversized em tricot, manga longa. Possui bordado posterior. Fechamento frontal por abotoamento.',
+//       price: 1244,
+//       weight: 260,
+//       measurements: {
+//         ombros: {
+//           name: 'Ombros',
+//           description: 'Largura dos ombros',
+//           value: 50
+//         },
+//         bracos: {
+//           name: 'Braços',
+//           description: 'Comprimento dos braços',
+//           value: 99
+//         },
+//         comprimento: {
+//           name: 'Comprimento',
+//           description: 'Altura da peça, medida da altura do ombro até a cintura',
+//           value: 95
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Bege',
+//         hex: '#ffffe0'
+//       },
+//       colors: {
+//         bege: {
+//           name: 'Bege',
+//           hex: '#ffffe0'
+//         }
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/casaco-look-01.jpg',
+//           2: '/img/demo/casaco-detalhe.jpg',
+//           3: '/img/demo/casaco-look-02.jpg',
+//           4: '/img/demo/casaco-look-03.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     },
+//     {
+//       id: 'macacao-xai-xai',
+//       name: 'macacao xai xai',
+//       weight: 400,
+//       description: 'Top reto em seda, gola alta fechada em colchete e manga longa. Levemente transparente.',
+//       price: 822,
+//       measurements: {
+//         ombros: {
+//           name: 'Ombros',
+//           description: 'Largura dos ombros',
+//           value: 50
+//         },
+//         bracos: {
+//           name: 'Braços',
+//           description: 'Comprimento dos braços',
+//           value: 99
+//         },
+//         quadril: {
+//           name: 'Quadril',
+//           description: 'Medida do quadril',
+//           value: 88
+//         },
+//         pernas: {
+//           name: 'Pernas',
+//           description: 'Comprimento das pernas',
+//           value: 110
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Bege',
+//         hex: '#ffffe0'
+//       },
+//       colors: {
+//         bege: {
+//           name: 'Bege',
+//           hex: '#ffffe0'
+//         },
+//         preto: {
+//           name: 'Preto',
+//           hex: '#000000'
+//         }
+//       },
+//       pictures: {
+//         main: 1,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/macacao-look-01.jpg',
+//           2: '/img/demo/macacao-detalhe.jpg',
+//           3: '/img/demo/macacao-look-02.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     },
+//     {
+//       id: 'vestido-elliot',
+//       name: 'vestido elliot',
+//       description: 'Vestido curto estilo kimono e decote V. Sem fechamento. Acompanha faixa no mesmo tecido para amarração.',
+//       price: 689.6,
+//       weight: 220,
+//       measurements: {
+//         ombros: {
+//           name: 'Ombros',
+//           description: 'Largura dos ombros',
+//           value: 50
+//         },
+//         bracos: {
+//           name: 'Braços',
+//           description: 'Comprimento dos braços',
+//           value: 99
+//         },
+//         quadril: {
+//           name: 'Quadril',
+//           description: 'Medida do quadril',
+//           value: 88
+//         },
+//         pernas: {
+//           name: 'Pernas',
+//           description: 'Comprimento das pernas',
+//           value: 110
+//         }
+//       },
+//       defaultColor: {
+//         name: 'Salmão',
+//         hex: '#EEA682'
+//       },
+//       colors: {
+//         salmao: {
+//           name: 'Salmão',
+//           hex: '#EEA682'
+//         },
+//         preto: {
+//           name: 'Preto',
+//           hex: '#000000'
+//         }
+//       },
+//       pictures: {
+//         main: 3,
+//         product: 2,
+//         paths: {
+//           1: '/img/demo/vestido-look-01.jpg',
+//           2: '/img/demo/vestido-detalhe.jpg',
+//           3: '/img/demo/vestido-look-02.jpg'
+//         }
+//       },
+//       options: {
+//         measurements: null,
+//         color: null
+//       }
+//     }
+//   ]
+// };

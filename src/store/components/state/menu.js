@@ -47,9 +47,14 @@ menu.initialState = {
       id: 'colecoes',
       expanded: false,
       title: 'Coleções',
-      items: [{
-          title: 'Safie Conceito',
-          route: '/colecoes/safie-conceito'
+      items: [
+        {
+          title: 'Coleção Cápsula',
+          route: '/colecoes/capsula'
+        },
+        {
+          title: 'Coleção Contínua',
+          route: '/colecoes/continua'
         },
         {
           title: 'Barcelona',

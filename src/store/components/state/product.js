@@ -26,6 +26,7 @@ product.initialState = {
 product.shape = {
   id: React.PropTypes.string,
   name: React.PropTypes.string,
+  collection: React.PropTypes.string,
   description: React.PropTypes.string,
   price: React.PropTypes.number,
   measurements: React.PropTypes.object,
@@ -42,9 +43,10 @@ product.shape = {
 product.openMeasurementsPopup = actionFactory.simpleActionCreator(actionTypes.OPEN_MEASUREMENTS_POPUP);
 product.closeMeasurementsPopup = actionFactory.simpleActionCreator(actionTypes.CLOSE_MEASUREMENTS_POPUP);
 
-const fetchPayloadFactory = (arg) => {
+const fetchPayloadFactory = (fetchArgs) => {
   return {
-    id: arg
+    id: fetchArgs.id,
+    collection: fetchArgs.collection
   };
 };
 product.fetchProduct = actionFactory.payloadActionCreator(actionTypes.FETCH_PRODUCT, fetchPayloadFactory);
@@ -132,7 +134,10 @@ const setProductMeasurements = (state, action) => {
 };
 
 const fetchProduct = (state, action) => {
-  var prod = collections.barcelona.find(function (piece) {
+
+  const collection = action.payload.collection;
+
+  var prod = collections[collection].find(function (piece) {
     return piece.id === action.payload.id;
   });
 

@@ -7,13 +7,14 @@ var ProductInfoLayout = require('./ProductInfoLayout.jsx');
 var ProductInfoSmall = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
+    collection: React.PropTypes.string,
     description: React.PropTypes.string,
     id: React.PropTypes.string
   },
 
   render: function () {
 
-    var route = '/colecoes/barcelona/' + this.props.id;
+    var route = '/colecoes/' + this.props.collection + '/' + this.props.id;
 
     return (
       <ProductInfoLayout description={this.props.description}>

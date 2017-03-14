@@ -11,7 +11,10 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchProduct(this.props.params.product);
+    this.props.fetchProduct({
+      collection: this.props.params.collection,
+      id: this.props.params.product
+    });
   }
 
   render() {

@@ -2,13 +2,13 @@ var React = require('react');
 var Link = require('react-router').Link;
 var ProductPicture = require('./ProductPicture.jsx');
 
-
 var ProductCard = React.createClass({
 
   propTypes: {
     product: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
       name: React.PropTypes.string.isRequired,
+      collection: React.PropTypes.string.isRequired,
       pictures: React.PropTypes.shape({
         main: React.PropTypes.number.isRequired,
         product: React.PropTypes.number.isRequired,
@@ -27,8 +27,10 @@ var ProductCard = React.createClass({
   },
 
   render: function () {
+
     var product = this.props.product;
-    var route = '/colecoes/barcelona/' + product.id;
+    var collection = product.collection;
+    var route = '/colecoes/' + collection + '/' + product.id;
     return (
       <div
         className="card-produto"

@@ -48,7 +48,8 @@ class ProductCardHorizontal extends React.Component {
         <ProductInfoSmall
           id={prod.id}
           name={prod.name}
-          description={prod.description} />
+          description={prod.description}
+          collection={prod.collection} />
 
         <MeasurementsInfo
           product={prod}

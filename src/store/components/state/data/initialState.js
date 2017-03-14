@@ -119,8 +119,8 @@ module.exports = {
             route: '/colecoes/capsula'
           },
           {
-            title: 'Safie Conceito',
-            route: '/colecoes/safie-conceito'
+            title: 'Coleção Contínua',
+            route: '/colecoes/continua'
           },
           {
             title: 'Barcelona',
