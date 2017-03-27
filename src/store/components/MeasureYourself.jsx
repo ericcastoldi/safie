@@ -68,7 +68,7 @@ class MeasureYourself extends React.Component {
         <div className="row">
           <div className="twelve columns">
             <div className="three columns">
-              <iframe src="https://www.youtube.com/embed/GPP8CgkjWMk?ecver=2" width="100%" height="220" frameBorder="0"></iframe>
+              <iframe src="https://www.youtube.com/embed/1ywqjV7WA9k" width="100%" height="220" frameBorder="0"></iframe>
             </div>
             <div className="three columns">
               <img src="img/instagram3.jpg" width="100%" />
@@ -78,20 +78,6 @@ class MeasureYourself extends React.Component {
             </div>
             <div className="three columns">
               <img src="img/instagram1.jpg" width="100%" />
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="mostruario">
-            <div className="texto">
-              <div className="four columns">
-                <p>Se você precisar enviamos um mostruário com os tecidos da coleção vigente.</p>
-                <p>Assim você pode tocar, esticar conferir as cores e ter certeza de que o produto que você receberá é do
-                    jeitinho que você imaginou!</p>
-                <div className="call-to-action">
-                  Quero receber o mostruário
-                  </div>
-              </div>
             </div>
           </div>
         </div>
