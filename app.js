@@ -13,6 +13,7 @@ const configurePassport = require('./src/store/api/config/passport.js');
 const configureRoutes = require('./src/store/api/config/routes.js');
 const dbConfig = require('./src/store/api/config/database.js');
 
+// Comentário xPTO
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url);
 
